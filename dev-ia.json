@@ -1,0 +1,23 @@
+{"nome": "dev-ia",
+                    "aulas" : [
+  {
+    "data": "01/01/2026",
+    "creditos": 2,
+    "assunto": "Introdução ao curso e Introdução a agentes de software"
+  },
+  {
+    "data": "05/01/2026",
+    "creditos": 2,
+    "assunto": "IA Generativa: modelos e capacidades"
+  },
+  {
+    "data": "08/01/2026",
+    "creditos": 2,
+    "assunto": "Engenharia de prompt"
+  },
+  {
+    "data": "12/01/2026",
+    "creditos": 2,
+    "assunto": "Agentes no ciclo de desenvolvimento de software"
+  }
+]}
