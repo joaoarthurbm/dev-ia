@@ -1,0 +1,41 @@
+
+   <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+     <channel>
+       <title>Posts on Desenvolvimento de Software com Agentes e IA Generativa</title>
+       <link>https://joaoarthurbm.github.io/dev-ia/posts/</link>
+       <description>Recent content in Posts on Desenvolvimento de Software com Agentes e IA Generativa</description>
+       <generator>Hugo -- gohugo.io</generator>
+       <copyright>Copyright &amp;copy; 2026 - João Arthur Brunet. Licença de uso: versão para uso pessoal, sendo proibida sua redistribuição ou modificação.</copyright>
+       <lastBuildDate>Thu, 01 Jan 2026 00:00:00 -0300</lastBuildDate>
+       
+           <atom:link href="https://joaoarthurbm.github.io/dev-ia/posts/index.xml" rel="self" type="application/rss+xml" />
+       
+       
+       <item>
+         <title>Introdução a Agentes de Software</title>
+         <link>https://joaoarthurbm.github.io/dev-ia/posts/introducao-a-agentes/</link>
+         <pubDate>Thu, 01 Jan 2026 00:00:00 -0300</pubDate>
+         
+         <guid>https://joaoarthurbm.github.io/dev-ia/posts/introducao-a-agentes/</guid>
+         <description>&lt;hr&gt;
+&lt;p&gt;Nesta primeira aula apresentamos o conceito de &lt;strong&gt;agente de software&lt;/strong&gt;. Um agente é um sistema autônomo que percebe o ambiente, decide e age para atingir objetivos.&lt;/p&gt;
+&lt;h2 id=&#34;o-que-é-um-agente&#34;&gt;O que é um agente?&lt;/h2&gt;
+&lt;p&gt;Um agente é caracterizado por:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Autonomia&lt;/strong&gt;: opera sem intervenção constante.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Percepção&lt;/strong&gt;: coleta informações do ambiente.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Ação&lt;/strong&gt;: executa ações que afetam o ambiente.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;agentes-e-ia-generativa&#34;&gt;Agentes e IA Generativa&lt;/h2&gt;
+&lt;p&gt;A IA generativa amplia as capacidades dos agentes, permitindo que eles:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Gere texto, código, imagens e outros artefatos;&lt;/li&gt;
+&lt;li&gt;Compreenda linguagem natural;&lt;/li&gt;
+&lt;li&gt;Racional sobre tarefas complexas.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Vamos explorar esses conceitos ao longo da disciplina.&lt;/p&gt;
+</description>
+       </item>
+       
+     </channel>
+   </rss>

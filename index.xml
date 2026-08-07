@@ -1,0 +1,147 @@
+
+   <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+     <channel>
+       <title>Desenvolvimento de Software com Agentes e IA Generativa</title>
+       <link>https://joaoarthurbm.github.io/dev-ia/</link>
+       <description>Recent content on Desenvolvimento de Software com Agentes e IA Generativa</description>
+       <generator>Hugo -- gohugo.io</generator>
+       <copyright>Copyright &amp;copy; 2026 - João Arthur Brunet. Licença de uso: versão para uso pessoal, sendo proibida sua redistribuição ou modificação.</copyright>
+       <lastBuildDate>Thu, 01 Jan 2026 00:00:00 -0300</lastBuildDate>
+       
+           <atom:link href="https://joaoarthurbm.github.io/dev-ia/index.xml" rel="self" type="application/rss+xml" />
+       
+       
+       <item>
+         <title>Curso</title>
+         <link>https://joaoarthurbm.github.io/dev-ia/curso/</link>
+         <pubDate>Thu, 01 Jan 2026 00:00:00 +0000</pubDate>
+         
+         <guid>https://joaoarthurbm.github.io/dev-ia/curso/</guid>
+         <description>&lt;hr&gt;
+&lt;p&gt;Para atingir os nossos &lt;a class=&#34;external&#34; href=&#34;https://joaoarthurbm.github.io/dev-ia/objetivos/&#34;&gt;Objetivos de Aprendizagem&lt;/a&gt;, o curso é organizado nas etapas a seguir.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;fundamentos&#34;&gt;Fundamentos&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Introdução a agentes de software&lt;/li&gt;
+&lt;li&gt;IA Generativa: modelos e capacidades&lt;/li&gt;
+&lt;li&gt;Engenharia de prompt&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;desenvolvimento-de-software-com-ia&#34;&gt;Desenvolvimento de Software com IA&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Uso de agentes e LLMs no ciclo de desenvolvimento&lt;/li&gt;
+&lt;li&gt;Automação de tarefas de engenharia de software&lt;/li&gt;
+&lt;li&gt;Integração com ferramentas e APIs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;projetos&#34;&gt;Projetos&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Projeto guiado&lt;/li&gt;
+&lt;li&gt;Projeto final&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+       </item>
+       
+       <item>
+         <title>Objetivos</title>
+         <link>https://joaoarthurbm.github.io/dev-ia/objetivos/</link>
+         <pubDate>Thu, 01 Jan 2026 00:00:00 +0000</pubDate>
+         
+         <guid>https://joaoarthurbm.github.io/dev-ia/objetivos/</guid>
+         <description>&lt;hr&gt;
+&lt;p&gt;Ao final da disciplina, o aluno deverá ser capaz de:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Compreender os conceitos fundamentais de agentes de software e inteligência artificial generativa;&lt;/li&gt;
+&lt;li&gt;Utilizar agentes e modelos de IA generativa no desenvolvimento de software;&lt;/li&gt;
+&lt;li&gt;Construir prompts eficazes para diferentes contextos de engenharia de software;&lt;/li&gt;
+&lt;li&gt;Integrar agentes, modelos e ferramentas de IA ao ciclo de desenvolvimento;&lt;/li&gt;
+&lt;li&gt;Avaliar criticamente a qualidade e os limites das soluções baseadas em IA generativa.&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+       </item>
+       
+       <item>
+         <title>Conteúdo</title>
+         <link>https://joaoarthurbm.github.io/dev-ia/conteudo/</link>
+         <pubDate>Thu, 01 Jan 2026 00:00:00 +0000</pubDate>
+         
+         <guid>https://joaoarthurbm.github.io/dev-ia/conteudo/</guid>
+         <description>&lt;hr&gt;
+&lt;h3 id=&#34;fundamentos&#34;&gt;Fundamentos&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;&#34;&gt;Introdução a agentes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;&#34;&gt;IA Generativa&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;&#34;&gt;Engenharia de prompt&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;desenvolvimento-de-software-com-ia&#34;&gt;Desenvolvimento de Software com IA&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;&#34;&gt;Agentes no ciclo de desenvolvimento&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;&#34;&gt;Automação e integração (&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;projetos&#34;&gt;Projetos&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;&#34;&gt;Projeto final&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+       </item>
+       
+       <item>
+         <title>Bibliografia</title>
+         <link>https://joaoarthurbm.github.io/dev-ia/bibliografia/</link>
+         <pubDate>Thu, 01 Jan 2026 00:00:00 +0000</pubDate>
+         
+         <guid>https://joaoarthurbm.github.io/dev-ia/bibliografia/</guid>
+         <description>&lt;hr&gt;
+&lt;p&gt;Lista de referências bibliográficas da disciplina.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Em construção.&lt;/em&gt;&lt;/p&gt;
+</description>
+       </item>
+       
+       <item>
+         <title>Contribua</title>
+         <link>https://joaoarthurbm.github.io/dev-ia/contribua/</link>
+         <pubDate>Thu, 01 Jan 2026 00:00:00 +0000</pubDate>
+         
+         <guid>https://joaoarthurbm.github.io/dev-ia/contribua/</guid>
+         <description>&lt;hr&gt;
+&lt;p&gt;Você pode contribuir com o material da disciplina: correções, sugestões, novos conteúdos, figuras e exemplos.&lt;/p&gt;
+&lt;h2 id=&#34;como-contribuir&#34;&gt;Como contribuir&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Leia o &lt;a href=&#34;https://github.com/joaoarthurbm/dev-ia&#34;&gt;README&lt;/a&gt; para entender a estrutura do repositório;&lt;/li&gt;
+&lt;li&gt;Crie um &lt;em&gt;fork&lt;/em&gt; do repositório;&lt;/li&gt;
+&lt;li&gt;Produza o conteúdo seguindo o &lt;a href=&#34;https://joaoarthurbm.github.io/dev-ia/dev-ia/contribua/#como-criar-um-post&#34;&gt;guia de posts&lt;/a&gt;;&lt;/li&gt;
+&lt;li&gt;Envie um &lt;em&gt;Pull Request&lt;/em&gt; com o arquivo &lt;code&gt;.md&lt;/code&gt; e as figuras, se houver.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;como-criar-um-post&#34;&gt;Como criar um post&lt;/h2&gt;
+&lt;p&gt;Um post é um arquivo &lt;code&gt;.md&lt;/code&gt; dentro da pasta &lt;code&gt;content/posts&lt;/code&gt;. Veja o modelo abaixo:&lt;/p&gt;
+&lt;pre&gt;
++++
+title = &#34;Título do post&#34;
+date = 2026-01-01
+tags = []
+categories = []
++++
+
+Conteúdo do post em markdown.
+&lt;/pre&gt;
+&lt;p&gt;Se o post tiver figuras, crie um diretório com o mesmo nome do arquivo dentro de &lt;code&gt;content/posts&lt;/code&gt; e referencie as imagens a partir dele. Por exemplo, para o post &lt;code&gt;minha-aula.md&lt;/code&gt;, crie &lt;code&gt;content/posts/minha-aula/&lt;/code&gt; e use &lt;code&gt;minha-aula/figura.png&lt;/code&gt; no markdown.&lt;/p&gt;
+&lt;h2 id=&#34;validação-local&#34;&gt;Validação local&lt;/h2&gt;
+&lt;p&gt;Para gerar o site localmente:&lt;/p&gt;
+&lt;pre&gt;
+hugo server
+&lt;/pre&gt;
+&lt;p&gt;E acesse o endereço indicado no final da saída (normalmente http://localhost:1313/dev-ia/).&lt;/p&gt;
+</description>
+       </item>
+       
+       <item>
+         <title>Posts</title>
+         <link>https://joaoarthurbm.github.io/dev-ia/posts/</link>
+         <pubDate>Thu, 01 Jan 2026 00:00:00 -0300</pubDate>
+         
+         <guid>https://joaoarthurbm.github.io/dev-ia/posts/</guid>
+         <description></description>
+       </item>
+       
+     </channel>
+   </rss>

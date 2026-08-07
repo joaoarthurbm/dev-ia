@@ -1,0 +1,24 @@
+
+   <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+     <channel>
+       <title>Categories on Desenvolvimento de Software com Agentes e IA Generativa</title>
+       <link>https://joaoarthurbm.github.io/dev-ia/categories/</link>
+       <description>Recent content in Categories on Desenvolvimento de Software com Agentes e IA Generativa</description>
+       <generator>Hugo -- gohugo.io</generator>
+       <copyright>Copyright &amp;copy; 2026 - João Arthur Brunet. Licença de uso: versão para uso pessoal, sendo proibida sua redistribuição ou modificação.</copyright>
+       <lastBuildDate>Thu, 01 Jan 2026 00:00:00 -0300</lastBuildDate>
+       
+           <atom:link href="https://joaoarthurbm.github.io/dev-ia/categories/index.xml" rel="self" type="application/rss+xml" />
+       
+       
+       <item>
+         <title>fundamentos</title>
+         <link>https://joaoarthurbm.github.io/dev-ia/categories/fundamentos/</link>
+         <pubDate>Thu, 01 Jan 2026 00:00:00 -0300</pubDate>
+         
+         <guid>https://joaoarthurbm.github.io/dev-ia/categories/fundamentos/</guid>
+         <description></description>
+       </item>
+       
+     </channel>
+   </rss>
