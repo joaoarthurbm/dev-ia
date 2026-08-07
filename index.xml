@@ -5,8 +5,7 @@
        <link>https://joaoarthurbm.github.io/dev-ia/</link>
        <description>Recent content on Desenvolvimento de Software com Agentes e IA Generativa</description>
        <generator>Hugo -- gohugo.io</generator>
-       <copyright>Copyright &amp;copy; 2026 - João Arthur Brunet. Licença de uso: versão para uso pessoal, sendo proibida sua redistribuição ou modificação.</copyright>
-       <lastBuildDate>Thu, 01 Jan 2026 00:00:00 -0300</lastBuildDate>
+       <copyright>Copyright &amp;copy; 2026 - joaoarthurbm.github.io. Licença de uso: versão para uso pessoal, sendo proibida sua redistribuição ou modificação.</copyright>
        
            <atom:link href="https://joaoarthurbm.github.io/dev-ia/index.xml" rel="self" type="application/rss+xml" />
        
@@ -132,15 +131,6 @@ hugo server
 &lt;/pre&gt;
 &lt;p&gt;E acesse o endereço indicado no final da saída (normalmente http://localhost:1313/dev-ia/).&lt;/p&gt;
 </description>
-       </item>
-       
-       <item>
-         <title>Posts</title>
-         <link>https://joaoarthurbm.github.io/dev-ia/posts/</link>
-         <pubDate>Thu, 01 Jan 2026 00:00:00 -0300</pubDate>
-         
-         <guid>https://joaoarthurbm.github.io/dev-ia/posts/</guid>
-         <description></description>
        </item>
        
      </channel>
