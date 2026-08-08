@@ -77,21 +77,19 @@
          
          <guid>https://joaoarthurbm.github.io/dev-ia/conteudo/</guid>
          <description>&lt;hr&gt;
-&lt;h3 id=&#34;fundamentos&#34;&gt;Fundamentos&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;&#34;&gt;Introdução a agentes&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;&#34;&gt;IA Generativa&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;&#34;&gt;Engenharia de prompt&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;desenvolvimento-de-software-com-ia&#34;&gt;Desenvolvimento de Software com IA&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;&#34;&gt;Agentes no ciclo de desenvolvimento&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;&#34;&gt;Automação e integração (&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;projetos&#34;&gt;Projetos&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;&#34;&gt;Projeto final&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;h3 id=&#34;em-construção&#34;&gt;Em construção&lt;/h3&gt;
+&lt;p&gt;Esta seção está em construção. Em breve, o material de apoio de cada aula da disciplina estará disponível aqui.&lt;/p&gt;
+</description>
+       </item>
+       
+       <item>
+         <title>Cronograma</title>
+         <link>https://joaoarthurbm.github.io/dev-ia/cronograma/</link>
+         <pubDate>Thu, 01 Jan 2026 00:00:00 +0000</pubDate>
+         
+         <guid>https://joaoarthurbm.github.io/dev-ia/cronograma/</guid>
+         <description>&lt;hr&gt;
+&lt;p&gt;O cronograma da disciplina está disponível na planilha: &lt;a class=&#34;external&#34; href=&#34;https://docs.google.com/spreadsheets/d/e/2PACX-1vT03bNljzmWaFXs4mcNeWQPeilFyJIuEw5aDLu3sSJnLAgzYYwJ7P7GVghA13Taq8Wucgcod__dFbwG/pubhtml&#34; target=&#34;_blank&#34;&gt;Cronograma - Dev-IA&lt;/a&gt;.&lt;/p&gt;
 </description>
        </item>
        
