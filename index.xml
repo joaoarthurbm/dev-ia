@@ -17,26 +17,32 @@
          
          <guid>https://joaoarthurbm.github.io/dev-ia/curso/</guid>
          <description>&lt;hr&gt;
-&lt;p&gt;Para atingir os nossos &lt;a class=&#34;external&#34; href=&#34;https://joaoarthurbm.github.io/dev-ia/objetivos/&#34;&gt;Objetivos de Aprendizagem&lt;/a&gt;, o curso é organizado nas etapas a seguir.&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;fundamentos&#34;&gt;Fundamentos&lt;/h2&gt;
+&lt;p&gt;Engenharia de Software é sobre produto, pessoas e processo. Nesta disciplina eu foco no produto, nas práticas relacionadas ao desenvolvimento de software. A disciplina tem um viés prático, mas também vamos ler com profundidade referências importantes da área e ouvir com atenção pessoas influentes, do mundo acadêmico e do mundo coorporativo.&lt;/p&gt;
+&lt;h1 id=&#34;fases&#34;&gt;Fases&lt;/h1&gt;
+&lt;p&gt;Para atingir os nossos &lt;a class=&#34;external&#34; href=&#34;https://joaoarthurbm.github.io/dev-ia/objetivos/&#34;&gt;Objetivos de Aprendizagem&lt;/a&gt;, o curso é organizado em 3 fases bem claras: &lt;em&gt;contexto&lt;/em&gt;, &lt;em&gt;harness&lt;/em&gt; e &lt;em&gt;ciclo de desenvolvimento&lt;/em&gt;.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Introdução a agentes de software&lt;/li&gt;
-&lt;li&gt;IA Generativa: modelos e capacidades&lt;/li&gt;
-&lt;li&gt;Engenharia de prompt&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;No &lt;strong&gt;contexto&lt;/strong&gt;, vamos falar sobre agentes, modelos, modelos generativos e agentes com modelos generativos, além de relembrar o ciclo de desenvolvimento de software. Também vamos ver o que a pesquisa em Engenharia de Software tem dito a respeito da área e discutir artigos e posicionamentos influentes.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Em &lt;strong&gt;harness&lt;/strong&gt;, vamos nos aprofundar no que transforma modelos que só geram texto em agentes que executam tarefas: ambiente de execução, loop, gestão de contexto, memória, skills, ferramentas, MCP, tratamento de erros, &lt;em&gt;guardrails&lt;/em&gt;, entre outros.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;No &lt;strong&gt;ciclo de desenvolvimento&lt;/strong&gt;, exploramos na prática, com agentes, cada uma das etapas do ciclo de desenvolvimento. Vamos utilizar agentes para entender, projetar, implementar, avaliar, implantar e operar.&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
-&lt;h2 id=&#34;desenvolvimento-de-software-com-ia&#34;&gt;Desenvolvimento de Software com IA&lt;/h2&gt;
+&lt;h1 id=&#34;método&#34;&gt;Método&lt;/h1&gt;
+&lt;p&gt;Vamos ler muito, experimentar muito e discutir muito! As leituras e discussões vão envolver artigo científicos e opinativos sobre o tema.&lt;/p&gt;
+&lt;p&gt;Vamos ter encontros com devs do Nubank, QuintoAndar, VTEX, entre outras empresas importantes de tecnologia. Nosso objetivo é ver como as coisas de fato estão sendo feitas na prática.&lt;/p&gt;
+&lt;p&gt;Temos dois tipos de atividade avaliativa:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Uso de agentes e LLMs no ciclo de desenvolvimento&lt;/li&gt;
-&lt;li&gt;Automação de tarefas de engenharia de software&lt;/li&gt;
-&lt;li&gt;Integração com ferramentas e APIs&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;projetos&#34;&gt;Projetos&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Projeto guiado&lt;/li&gt;
-&lt;li&gt;Projeto final&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Semanais (50%)&lt;/strong&gt;: majoritariamente práticas, com discussão de resultados. Vamos focar todos no mesmo projeto escolhido por mim para podermos comparar e discutir em sala de aula;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Projeto (50%)&lt;/strong&gt;: no último mês, individual e escolhido por você, com resultado concreto (software executando) e um relatório discutindo os conceitos vistos na disciplina.&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 </description>
        </item>
@@ -48,13 +54,18 @@
          
          <guid>https://joaoarthurbm.github.io/dev-ia/objetivos/</guid>
          <description>&lt;hr&gt;
-&lt;p&gt;Ao final da disciplina, o aluno deverá ser capaz de:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Geral.&lt;/strong&gt; Ao final deste curso o aluno será capaz de utilizar, avaliar criticamente e integrar modelos de linguagem de grande porte (LLMs) e agentes de Inteligência Artificial (IA) como ferramentas de apoio às principais práticas do desenvolvimento de software, incluindo entendimento, projeto, implementação, avaliação, implantação e operação, entre outras, com base tanto em evidências científicas quanto em práticas correntes de mercado.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Específicos.&lt;/strong&gt; Ao final da disciplina, o aluno deverá ser capaz de:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;Compreender os conceitos fundamentais de agentes de software e inteligência artificial generativa;&lt;/li&gt;
-&lt;li&gt;Utilizar agentes e modelos de IA generativa no desenvolvimento de software;&lt;/li&gt;
-&lt;li&gt;Construir prompts eficazes para diferentes contextos de engenharia de software;&lt;/li&gt;
-&lt;li&gt;Integrar agentes, modelos e ferramentas de IA ao ciclo de desenvolvimento;&lt;/li&gt;
-&lt;li&gt;Avaliar criticamente a qualidade e os limites das soluções baseadas em IA generativa.&lt;/li&gt;
+&lt;li&gt;Explicar e debater conceitos-chave no desenvolvimento de software com agentes, quais sejam, LLMs, Agentes, MCP, ferramentas, skills, e desenvolvimento orientado a especificação (spec-driven development);&lt;/li&gt;
+&lt;li&gt;Descrever o que a pesquisa em Engenharia de Software tem investigado e evidenciado sobre o uso de LLMs e agentes de IA no desenvolvimento de software;&lt;/li&gt;
+&lt;li&gt;Descrever práticas, ferramentas e posicionamentos adotados por desenvolvedores e organizações de referência no uso de LLMs e agentes de IA;&lt;/li&gt;
+&lt;li&gt;Especificar Agentes e skills;&lt;/li&gt;
+&lt;li&gt;Implementar Servidores MCP;&lt;/li&gt;
+&lt;li&gt;Utilizar agentes de IA na prática em tarefas reais de desenvolvimento de software;&lt;/li&gt;
+&lt;li&gt;Aplicar Desenvolvimento orientado à especificações (Spec-Driven Development) usando LLMs, agentes e MCP para diversas tarefas de engenharia de software, sobretudo as relacionadas ao produto, incluindo desenvolvimento, testes, documentação, refatoração, entendimento, entre outras;&lt;/li&gt;
+&lt;li&gt;Atuar com postura de engenheiro de software ao usar LLMs e agentes, indo além da produtividade para levantar preocupações sobre o código gerado, propor e aplicar mecanismos de controle de qualidade e padronização, e experimentar mecanismos para compreensão e evolução do código;&lt;/li&gt;
+&lt;li&gt;Compreender e discutir o impacto dos LLMs na prática contemporânea de desenvolvimento de software, sobretudo em questões como o papel do desenvolvedor, riscos, qualidade, produtividade, ética, entre outras preocupações importantes.&lt;/li&gt;
 &lt;/ol&gt;
 </description>
        </item>

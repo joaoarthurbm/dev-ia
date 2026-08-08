@@ -40,3 +40,44 @@
     margin: 0 auto 1.5em auto;
   }
 }
+
+#tldr {
+  margin: 1.5em 0;
+  padding: 1.4em 1.6em;
+  background: #f2f4f8;
+  border-left: 4px solid #1980e6;
+  border-radius: 8px;
+}
+
+#tldr h2 {
+  margin: 0 0 0.6em;
+  color: #0a579f;
+  font-size: 1.3rem;
+}
+
+#tldr ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#tldr ul li {
+  margin: 0.6em 0;
+  padding-left: 1.4em;
+  position: relative;
+  line-height: 1.5;
+}
+
+#tldr ul li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: #1980e6;
+  font-weight: 700;
+}
+
+#tldr ul li strong,
+#container main strong {
+  color: #0a579f;
+  font-weight: 800;
+}
