@@ -58,7 +58,7 @@
 &lt;p&gt;&lt;strong&gt;Específicos.&lt;/strong&gt; Ao final da disciplina, o aluno deverá ser capaz de:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Explicar e debater conceitos-chave no desenvolvimento de software com agentes, quais sejam, LLMs, Agentes, MCP, ferramentas, skills, e desenvolvimento orientado a especificação (spec-driven development);&lt;/li&gt;
-&lt;li&gt;Descrever o que a pesquisa em Engenharia de Software tem investigado e evidenciado sobre o uso de LLMs e agentes de IA no desenvolvimento de software;&lt;/li&gt;
+&lt;li&gt;Descrever o que a pesquisa e a indústria em Engenharia de Software tem investigado e evidenciado sobre o uso de LLMs e agentes de IA no desenvolvimento de software;&lt;/li&gt;
 &lt;li&gt;Descrever práticas, ferramentas e posicionamentos adotados por desenvolvedores e organizações de referência no uso de LLMs e agentes de IA;&lt;/li&gt;
 &lt;li&gt;Especificar Agentes e skills;&lt;/li&gt;
 &lt;li&gt;Implementar Servidores MCP;&lt;/li&gt;
