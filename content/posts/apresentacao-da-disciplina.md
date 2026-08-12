@@ -3,7 +3,7 @@ title = "Apresentação da Disciplina"
 date = 2026-08-12
 tags = ["apresentação", "introdução"]
 categories = ["contexto"]
-ppt = ""
+ppt = "https://docs.google.com/presentation/d/1B0mx0eVqTrpmAcgGtkM_wh1cEseT96eAWQT_u8rW_6g/edit?usp=sharing"
 youtube = ""
 +++
 
@@ -13,7 +13,7 @@ Ao final dessa aula, o aluno deve ser capaz de entender do que (e do que não) s
 
 ## Preâmbulo
 
-**Sobre o público-alvo.** Neste momento, a disciplina foi pensada e será conduzida para alunos do final do curso de Ciência da Computação da UFCG. Isso significa que o público-alvo já é maduro em relação aos conceitos e ferramental de desenvolvimento de software.
+**Sobre o público-alvo.** Neste momento, a disciplina foi pensada e será conduzida para alunos do final do curso de Ciência da Computação da UFCG. Isso significa que o público-alvo já é maduro em relação aos conceitos e ferramental de desenvolvimento de software. Formalmente, estamos falando de IA e Engenharia de Software como pré-requisitos.
 
 **Sobre as notas de aula.** i) foram escritas por mim em sua totalidade. Não utilizei auxílio de nenhum modelo, embora não veja problema nesse auxílio. Estou deixando isso claro para que você tenha ciência de que, se houver erro aqui ou achar o material ruim, a culpa é minha mesmo; e ii) as notas de aula são um guia para a discussão em sala de aula e servem muito pouco como conteúdo para estudo.
 
@@ -61,7 +61,7 @@ Modelos de linguagem têm sido usados nos mais diversos contextos. O nosso objet
 2. **Como usar.** De forma produtiva e crítica, como um engenheiro de software. Isso significa não somente focar na produtividade, mas também levantar preocupações com o que é gerado pelos modelos, criar mecanismos para controlar a qualidade e a padronização do código, e experimentar mecanismos para compreensão e evolução de código, entre outras preocupações.
 3. **Qual o impacto do uso desses modelos?** O impacto é amplo e profundo. Por isso vamos discutir o papel do desenvolvedor nesse contexto, riscos, qualidade, produtividade, custos, ética, entre outras preocupações importantes.
 
-Os objetivos de aprendizagem completos da disciplina — geral e específicos — estão detalhados na página de <a class="external" href="https://joaoarthurbm.github.io/dev-ia/objetivos/">Objetivos</a>.
+Os objetivos de aprendizagem da disciplina estão detalhados na página de <a class="external" href="https://joaoarthurbm.github.io/dev-ia/objetivos/">Objetivos</a>.
 
 ---
 
@@ -81,7 +81,7 @@ Não é uma disciplina para discutir qual ambiente de desenvolvimento assistido 
 
 Engenharia de Software é sobre produto, pessoas e processo. Nesta disciplina eu foco no produto, nas práticas relacionadas ao desenvolvimento de software. Por isso ela não se chama Engenharia de Software com Agentes.
 
-A disciplina tem um viés prático, mas também vamos ler com profundidade referências importantes da área e ouvir com atenção pessoas influentes, do mundo acadêmico e do mundo corporativo. As fases do curso — *contexto*, *harness* e *ciclo de desenvolvimento* — bem como o método de trabalho e os critérios de avaliação estão detalhados na página do <a class="external" href="https://joaoarthurbm.github.io/dev-ia/curso/">Curso</a>.
+A disciplina tem um viés prático, mas também vamos ler com profundidade referências importantes da área e ouvir com atenção pessoas influentes, do mundo acadêmico e do mundo corporativo. As fases do curso (*contexto*, *harness* e *ciclo de desenvolvimento*), bem como o método de trabalho e os critérios de avaliação estão detalhados na página do <a class="external" href="https://joaoarthurbm.github.io/dev-ia/curso/">Curso</a>.
 
 ---
 
@@ -130,9 +130,9 @@ Calma. Ciência como resposta.
 
 [Some thoughts on LLMs and Software Development](https://martinfowler.com/articles/202508-ai-thoughts.html), de Martin Fowler, traz algumas provocações que vamos revisitar ao longo do curso:
 
-* "Alucinação não é bug, é o produto" — toda saída de LLM é alucinação, e algumas são úteis.
+* "Alucinação não é bug, é o produto". Toda saída de LLM é alucinação, e algumas são úteis.
 * "A engenharia de software acaba de conhecer a incerteza" — a analogia com a engenharia estrutural e o fim do determinismo que sempre caracterizou a área.
-* "Sim, é uma bolha — e essa não é a pergunta importante" — o paralelo com as ferrovias e a bolha da internet.
+* "Sim, é uma bolha, mas essa não é a pergunta importante" — o paralelo com as ferrovias e a bolha da internet.
 * "Ninguém sabe o futuro da programação, e desconfie de quem diz que sabe" — sobre juniors, seniors, e a pergunta que ele recusa responder.
 
 ---

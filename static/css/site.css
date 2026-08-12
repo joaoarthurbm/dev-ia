@@ -78,6 +78,21 @@
 
 #tldr ul li strong,
 #container main strong {
-  color: #0a579f;
-  font-weight: 800;
+  color: #06356e;
+  font-weight: 700;
+}
+
+#container main article a,
+#container main section a {
+  color: #0b5fc4;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+#container main article a:hover,
+#container main section a:hover {
+  color: #06356e;
+  text-decoration-thickness: 2px;
 }
