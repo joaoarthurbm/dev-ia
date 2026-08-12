@@ -1,0 +1,11 @@
++++
+title = "Cronograma"
+date = "2026-01-01"
+menu = "main"
+weight = "35"
+meta = "false"
++++
+
+***
+
+O cronograma da disciplina está disponível na planilha: <a class="external" href="https://docs.google.com/spreadsheets/d/e/2PACX-1vT03bNljzmWaFXs4mcNeWQPeilFyJIuEw5aDLu3sSJnLAgzYYwJ7P7GVghA13Taq8Wucgcod__dFbwG/pubhtml" target="_blank">Cronograma - Dev-IA</a>.

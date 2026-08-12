@@ -1,0 +1,83 @@
+#container header ul li a {
+  color: #1980e6;
+  font-family: "Ruda", sans-serif;
+  font-weight: 700;
+}
+
+#container header ul li a:hover {
+  color: #0a5bb0;
+  text-decoration: underline;
+}
+
+#container header ul li a i {
+  margin-right: 0.25em;
+}
+
+#container header p em a {
+  color: #1980e6;
+  font-family: "Ruda", sans-serif;
+  font-weight: 700;
+}
+
+#container header p em a:hover {
+  color: #0a5bb0;
+  text-decoration: underline;
+}
+
+#about .profile-picture {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  float: right;
+  margin: 0.4em 0 1em 1.5em;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+}
+
+@media only screen and (max-width: 480px) {
+  #about .profile-picture {
+    float: none;
+    display: block;
+    margin: 0 auto 1.5em auto;
+  }
+}
+
+#tldr {
+  margin: 1.5em 0;
+  padding: 1.4em 1.6em;
+  background: #f2f4f8;
+  border-left: 4px solid #1980e6;
+  border-radius: 8px;
+}
+
+#tldr h2 {
+  margin: 0 0 0.6em;
+  color: #0a579f;
+  font-size: 1.3rem;
+}
+
+#tldr ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#tldr ul li {
+  margin: 0.6em 0;
+  padding-left: 1.4em;
+  position: relative;
+  line-height: 1.5;
+}
+
+#tldr ul li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: #1980e6;
+  font-weight: 700;
+}
+
+#tldr ul li strong,
+#container main strong {
+  color: #0a579f;
+  font-weight: 800;
+}

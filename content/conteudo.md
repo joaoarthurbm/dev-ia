@@ -8,17 +8,6 @@ meta = "false"
 
 ***
 
-### Fundamentos
+### Em construção
 
-* [Introdução a agentes]()
-* [IA Generativa]()
-* [Engenharia de prompt]()
-
-### Desenvolvimento de Software com IA
-
-* [Agentes no ciclo de desenvolvimento]()
-* [Automação e integração (]()
-
-### Projetos
-
-* [Projeto final]()
+Esta seção está em construção. Em breve, o material de apoio de cada aula da disciplina estará disponível aqui.

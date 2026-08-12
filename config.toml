@@ -1,6 +1,6 @@
 baseurl = "https://joaoarthurbm.github.io/dev-ia"
 title = "Desenvolvimento de Software com Agentes e IA Generativa"
-copyright = "Copyright &copy; 2026 - João Arthur Brunet. Licença de uso: versão para uso pessoal, sendo proibida sua redistribuição ou modificação."
+copyright = "Copyright &copy; 2026 - joaoarthurbm.github.io. Licença de uso: versão para uso pessoal, sendo proibida sua redistribuição ou modificação."
 canonifyurls = true
 theme = "kiera"
 themesDir = "themes"
@@ -13,15 +13,24 @@ pygmentsCodeFences = true
 
 [author]
     name = "João Arthur Brunet"
-    github = "http://joaoarthurbm.github.io"
+    github = "https://github.com/joaoarthurbm/dev-ia"
     gitlab = ""
     linkedin = ""
     facebook = ""
-    twitter = "joaobrunet"
-    instagram = "joaoarthurbm"
+    lattes = "7892247821251194"
 
 [params]
-    tagline = "João Arthur Brunet <br> Computação @ UFCG"
+    tagline = "[joaoarthurbm.github.io](https://joaoarthurbm.github.io) <br> Computação @ UFCG"
+
+    [params.Assets]
+        customCSS = ["css/site.css"]
+
+[[menu.main]]
+    name = "Home"
+    url = "/"
+    identifier = "home"
+    weight = -100
+    pre = "fa-home"
 
 [markup]
   [markup.goldmark]
