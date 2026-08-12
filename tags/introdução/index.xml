@@ -1,0 +1,128 @@
+
+   <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+     <channel>
+       <title>introdução on Desenvolvimento de Software com Agentes e IA Generativa</title>
+       <link>https://joaoarthurbm.github.io/dev-ia/tags/introdu%C3%A7%C3%A3o/</link>
+       <description>Recent content in introdução on Desenvolvimento de Software com Agentes e IA Generativa</description>
+       <generator>Hugo -- gohugo.io</generator>
+       <copyright>Copyright &amp;copy; 2026 - joaoarthurbm.github.io. Licença de uso: versão para uso pessoal, sendo proibida sua redistribuição ou modificação.</copyright>
+       <lastBuildDate>Wed, 12 Aug 2026 00:00:00 -0300</lastBuildDate>
+       
+           <atom:link href="https://joaoarthurbm.github.io/dev-ia/tags/introdu%C3%A7%C3%A3o/index.xml" rel="self" type="application/rss+xml" />
+       
+       
+       <item>
+         <title>Apresentação da Disciplina</title>
+         <link>https://joaoarthurbm.github.io/dev-ia/posts/apresentacao-da-disciplina/</link>
+         <pubDate>Wed, 12 Aug 2026 00:00:00 -0300</pubDate>
+         
+         <guid>https://joaoarthurbm.github.io/dev-ia/posts/apresentacao-da-disciplina/</guid>
+         <description>&lt;hr&gt;
+&lt;p&gt;Ao final dessa aula, o aluno deve ser capaz de entender do que (e do que não) se trata a disciplina, e entender o &lt;em&gt;modus operandi&lt;/em&gt; da disciplina, incluindo atividades e avaliações.&lt;/p&gt;
+&lt;h2 id=&#34;preâmbulo&#34;&gt;Preâmbulo&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Sobre o público-alvo.&lt;/strong&gt; Neste momento, a disciplina foi pensada e será conduzida para alunos do final do curso de Ciência da Computação da UFCG. Isso significa que o público-alvo já é maduro em relação aos conceitos e ferramental de desenvolvimento de software.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Sobre as notas de aula.&lt;/strong&gt; i) foram escritas por mim em sua totalidade. Não utilizei auxílio de nenhum modelo, embora não veja problema nesse auxílio. Estou deixando isso claro para que você tenha ciência de que, se houver erro aqui ou achar o material ruim, a culpa é minha mesmo; e ii) as notas de aula são um guia para a discussão em sala de aula e servem muito pouco como conteúdo para estudo.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Sobre mim.&lt;/strong&gt; Eu não sou especialista em IA. Meu background é em desenvolvimento de software, sobretudo arquitetura e design. Por que então estou lecionando essa disciplina? Talvez o que me credencie a tocar essa disciplina seja o que tenho feito nos últimos 10 anos: pesquisando sobre a aplicação de modelos em práticas de engenharia de software e desenvolvendo projetos de inovação com foco no uso de inteligência artificial e modelos de linguagem para apoiar atividades de desenvolvimento, testes, manutenção e análise do comportamento de desenvolvedores.&lt;/p&gt;
+&lt;p&gt;Alguns exemplos do que tenho feito ao longo dos últimos anos envolvendo aplicação de IA:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Período Paleolítico (Classificação)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Do developers discuss design?&lt;/em&gt; Nos primórdios, algoritmos de predição e classificação. Exemplo: estudei discussões de design em projetos do GitHub e, para isso, precisei treinar modelos de classificação para levantar um dataset mais amplo do que o que é factível manualmente.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Idade Média (NLP, Transformers)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Análise de risco em obras públicas;&lt;/li&gt;
+&lt;li&gt;Análise de contratos de compras de medicamentos;&lt;/li&gt;
+&lt;li&gt;Avaliação de métodos de similaridade textual no contexto de investigação policial;&lt;/li&gt;
+&lt;li&gt;Avaliação do modelo T5 na detecção de bug reports similares.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Idade Moderna (LLM)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Can LLMs Turn Design Discussions into Architectural Tests? An Empirical Study with Codestral.&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Language Models as Architectural Gatekeepers: Automating Conformance Checking from Natural Language.&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Uma investigação sobre como LLaMA-2 13B revisa código-fonte com ênfase em code smells.&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Benchmark Data Contamination in Underrepresented Languages: A Comprehensive Analysis Using Brazilian Data.&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;HuNeBR: A Multitask Benchmark to Evaluate LLMs&#39; Understanding of Northeastern Brazilian Portuguese Humor.&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Evaluating Semantic Caching in Practice: A Study on a LLM-Driven Distributed Application in a Brazilian EdTech.&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Who Is Who in Judo? Role-Aware Detection in Match Video.&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;JudgeBench-BR: A Replication and Adaptation of a Multi-Domain Benchmark for Evaluating LLM Judges in Brazilian Portuguese.&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;…&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Idade Contemporânea (Agentes)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Detecção automática de &lt;em&gt;code smells&lt;/em&gt; em Clojure;&lt;/li&gt;
+&lt;li&gt;Refatoração automática de &lt;em&gt;code smells&lt;/em&gt; em Clojure.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Não é sobre mim. Esse histórico importa porque representa a evolução de como tratamos ML como meio para tarefas de engenharia de software. Muita gente entrou nessa jornada em pontos diferentes. E muito sistema em produção também.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;do-que-se-trata-a-disciplina&#34;&gt;Do que se trata a disciplina&lt;/h2&gt;
+&lt;p&gt;Modelos de linguagem têm sido usados nos mais diversos contextos. O nosso objetivo nessa disciplina é focar em três questões importantes no contexto específico de tarefas de Engenharia de Software:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Como estão sendo usados?&lt;/strong&gt; Isso inclui não somente discussão sobre ferramental, mas também sobre metodologias e padrões de uso. Vamos discutir exemplos da indústria e estudos empíricos.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Como usar.&lt;/strong&gt; De forma produtiva e crítica, como um engenheiro de software. Isso significa não somente focar na produtividade, mas também levantar preocupações com o que é gerado pelos modelos, criar mecanismos para controlar a qualidade e a padronização do código, e experimentar mecanismos para compreensão e evolução de código, entre outras preocupações.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Qual o impacto do uso desses modelos?&lt;/strong&gt; O impacto é amplo e profundo. Por isso vamos discutir o papel do desenvolvedor nesse contexto, riscos, qualidade, produtividade, custos, ética, entre outras preocupações importantes.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Os objetivos de aprendizagem completos da disciplina — geral e específicos — estão detalhados na página de &lt;a class=&#34;external&#34; href=&#34;https://joaoarthurbm.github.io/dev-ia/objetivos/&#34;&gt;Objetivos&lt;/a&gt;.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;do-que-não-se-trata-a-disciplina&#34;&gt;Do que não se trata a disciplina&lt;/h2&gt;
+&lt;p&gt;Não é uma disciplina de &lt;em&gt;vibe coding&lt;/em&gt;. Como bem coloca &lt;a href=&#34;https://karpathy.bearblog.dev/sequoia-ascent-2026/&#34;&gt;este texto&lt;/a&gt;, &lt;strong&gt;&amp;ldquo;agentic engineering&amp;rdquo; não é o mesmo que &amp;ldquo;vibe coding&amp;rdquo;&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Não é uma disciplina de Inteligência Artificial.&lt;/p&gt;
+&lt;p&gt;Não é uma disciplina para ensinar você detalhadamente sobre o funcionamento das tecnologias que estão sendo aplicadas. Por exemplo, eu vou apresentar o OpenCode e vamos experimentar com ele. Mas os detalhes finos de uso do ferramental não fazem parte do escopo da disciplina. Nós não vamos estudar uma tecnologia específica, mas o conceito que essas tecnologias implementam. Isso não significa que o curso é teórico, mas significa que não vou agir como tutorial de ferramenta.&lt;/p&gt;
+&lt;p&gt;Não é uma disciplina para discutir qual ambiente de desenvolvimento assistido por IA (e.g. Codex, OpenCode, Claude, Cursor, Co-pilot) é melhor. Também não vou discutir se o ambiente em IDE é melhor que CLI.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;modus-operandi-da-disciplina&#34;&gt;Modus operandi da disciplina&lt;/h2&gt;
+&lt;p&gt;Engenharia de Software é sobre produto, pessoas e processo. Nesta disciplina eu foco no produto, nas práticas relacionadas ao desenvolvimento de software. Por isso ela não se chama Engenharia de Software com Agentes.&lt;/p&gt;
+&lt;p&gt;A disciplina tem um viés prático, mas também vamos ler com profundidade referências importantes da área e ouvir com atenção pessoas influentes, do mundo acadêmico e do mundo corporativo. As fases do curso — &lt;em&gt;contexto&lt;/em&gt;, &lt;em&gt;harness&lt;/em&gt; e &lt;em&gt;ciclo de desenvolvimento&lt;/em&gt; — bem como o método de trabalho e os critérios de avaliação estão detalhados na página do &lt;a class=&#34;external&#34; href=&#34;https://joaoarthurbm.github.io/dev-ia/curso/&#34;&gt;Curso&lt;/a&gt;.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;discussão-inicial-o-tom-que-vamos-adotar&#34;&gt;Discussão inicial: o tom que vamos adotar&lt;/h2&gt;
+&lt;figure style=&#34;align: center; margin-left:5%; width: 90%&#34;&gt;
+    &lt;img src=&#34;manchetes-ia.png&#34;&gt;
+    &lt;figcaption align=&#34;center&#34;&gt;
+        Manchetes recentes sobre o impacto da IA no trabalho de desenvolvedores
+    &lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;O clima em torno de IA e desenvolvimento de software oscila bastante, e rápido:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;2025 &amp;ldquo;90% do código será escrito por IA em meses&amp;rdquo; (Amodei/Anthropic)&lt;/li&gt;
+&lt;li&gt;2025 &amp;ldquo;IA substituirá engenheiros de software&amp;rdquo; (Altman/OpenAI)&lt;/li&gt;
+&lt;li&gt;2025 &amp;ldquo;IA fará o trabalho de engenheiros intermediários&amp;rdquo; (Zuckerberg/Meta)&lt;/li&gt;
+&lt;li&gt;2025 &amp;ldquo;Haverá menos pessoas fazendo trabalhos automatizados&amp;rdquo; (Jassy/Amazon)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;2026&lt;/strong&gt; &amp;ldquo;As empresas que mais usam IA são as que mais contratam&amp;rdquo; (Altman)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;2026&lt;/strong&gt; &amp;ldquo;Não há evidência de perdas de emprego causadas por IA&amp;rdquo; (Torsten Sløk, economista-chefe da Apollo)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Calma. Ciência como resposta.&lt;/p&gt;
+&lt;h3 id=&#34;o-que-os-pesquisadores-e-a-indústria-séria-têm-dito&#34;&gt;O que os pesquisadores e a indústria (séria) têm dito?&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://spawn-queue.acm.org/doi/10.1145/3807961&#34;&gt;The AI-Native Developer | Queue&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A IA está deslocando o desenvolvedor de &amp;ldquo;quem escreve código&amp;rdquo; para &amp;ldquo;quem orquestra e verifica&amp;rdquo;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://queue.acm.org/detail.cfm?id=3807963&#34;&gt;Eight Myths on Software Engineering and GenAI - ACM Queue&lt;/a&gt; desmonta, entre outros, os seguintes mitos:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Desenvolvedores passam a maior parte do tempo escrevendo código.&lt;/li&gt;
+&lt;li&gt;Escrever código é o gargalo.&lt;/li&gt;
+&lt;li&gt;Linhas de código geradas por IA são uma boa métrica.&lt;/li&gt;
+&lt;li&gt;IA ajuda igualmente em toda tarefa e todo desenvolvedor.&lt;/li&gt;
+&lt;li&gt;IA transforma todo mundo em desenvolvedor 10x.&lt;/li&gt;
+&lt;li&gt;Cabe a cada desenvolvedor individualmente fazer a IA funcionar.&lt;/li&gt;
+&lt;li&gt;Ferramenta boa é adotada automaticamente.&lt;/li&gt;
+&lt;li&gt;Empresas grandes podem ter a velocidade de uma startup com IA.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&#34;https://stackoverflow.blog/2025/12/29/developers-remain-willing-but-reluctant-to-use-ai-the-2025-developer-survey-results-are-here/&#34;&gt;Developers remain willing but reluctant to use AI: The 2025 Developer Survey results are here - Stack Overflow&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;84% dos devs usam IA, mas a confiança no output está na maior baixa histórica.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/pdf/2510.00762&#34;&gt;AI Where It Matters: Where, Why, and How Developers Want AI Support in Daily Work&lt;/a&gt; — survey com 860 desenvolvedores da Microsoft sobre onde, de fato, o desenvolvedor quer IA.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://martinfowler.com/articles/202508-ai-thoughts.html&#34;&gt;Some thoughts on LLMs and Software Development&lt;/a&gt;, de Martin Fowler, traz algumas provocações que vamos revisitar ao longo do curso:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&amp;ldquo;Alucinação não é bug, é o produto&amp;rdquo; — toda saída de LLM é alucinação, e algumas são úteis.&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;A engenharia de software acaba de conhecer a incerteza&amp;rdquo; — a analogia com a engenharia estrutural e o fim do determinismo que sempre caracterizou a área.&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Sim, é uma bolha — e essa não é a pergunta importante&amp;rdquo; — o paralelo com as ferrovias e a bolha da internet.&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Ninguém sabe o futuro da programação, e desconfie de quem diz que sabe&amp;rdquo; — sobre juniors, seniors, e a pergunta que ele recusa responder.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;próxima-aula&#34;&gt;Próxima aula&lt;/h2&gt;
+&lt;p&gt;No próximo encontro vou apresentar uma visão geral sobre desenvolvimento de software com agentes e IA generativa. Para isso, vou relembrar o que é LLM, agentes e as atividades de desenvolvimento que vamos focar, entre elas, entendimento, implementação, avaliação, implantação e operação.&lt;/p&gt;
+</description>
+       </item>
+       
+     </channel>
+   </rss>
