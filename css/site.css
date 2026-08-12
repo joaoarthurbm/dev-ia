@@ -1,3 +1,15 @@
+@media only screen and (max-width: 800px) {
+  #container nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 0.5em;
+  }
+
+  #container nav ul li {
+    margin: 0 0.6em;
+  }
+}
+
 #container header ul li a {
   color: #1980e6;
   font-family: "Ruda", sans-serif;
