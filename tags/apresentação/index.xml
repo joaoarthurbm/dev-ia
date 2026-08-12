@@ -20,7 +20,7 @@
          <description>&lt;hr&gt;
 &lt;p&gt;Ao final dessa aula, o aluno deve ser capaz de entender do que (e do que não) se trata a disciplina, e entender o &lt;em&gt;modus operandi&lt;/em&gt; da disciplina, incluindo atividades e avaliações.&lt;/p&gt;
 &lt;h2 id=&#34;preâmbulo&#34;&gt;Preâmbulo&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Sobre o público-alvo.&lt;/strong&gt; Neste momento, a disciplina foi pensada e será conduzida para alunos do final do curso de Ciência da Computação da UFCG. Isso significa que o público-alvo já é maduro em relação aos conceitos e ferramental de desenvolvimento de software.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Sobre o público-alvo.&lt;/strong&gt; Neste momento, a disciplina foi pensada e será conduzida para alunos do final do curso de Ciência da Computação da UFCG. Isso significa que o público-alvo já é maduro em relação aos conceitos e ferramental de desenvolvimento de software. Formalmente, estamos falando de IA e Engenharia de Software como pré-requisitos.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Sobre as notas de aula.&lt;/strong&gt; i) foram escritas por mim em sua totalidade. Não utilizei auxílio de nenhum modelo, embora não veja problema nesse auxílio. Estou deixando isso claro para que você tenha ciência de que, se houver erro aqui ou achar o material ruim, a culpa é minha mesmo; e ii) as notas de aula são um guia para a discussão em sala de aula e servem muito pouco como conteúdo para estudo.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Sobre mim.&lt;/strong&gt; Eu não sou especialista em IA. Meu background é em desenvolvimento de software, sobretudo arquitetura e design. Por que então estou lecionando essa disciplina? Talvez o que me credencie a tocar essa disciplina seja o que tenho feito nos últimos 10 anos: pesquisando sobre a aplicação de modelos em práticas de engenharia de software e desenvolvendo projetos de inovação com foco no uso de inteligência artificial e modelos de linguagem para apoiar atividades de desenvolvimento, testes, manutenção e análise do comportamento de desenvolvedores.&lt;/p&gt;
 &lt;p&gt;Alguns exemplos do que tenho feito ao longo dos últimos anos envolvendo aplicação de IA:&lt;/p&gt;
@@ -61,7 +61,7 @@
 &lt;li&gt;&lt;strong&gt;Como usar.&lt;/strong&gt; De forma produtiva e crítica, como um engenheiro de software. Isso significa não somente focar na produtividade, mas também levantar preocupações com o que é gerado pelos modelos, criar mecanismos para controlar a qualidade e a padronização do código, e experimentar mecanismos para compreensão e evolução de código, entre outras preocupações.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Qual o impacto do uso desses modelos?&lt;/strong&gt; O impacto é amplo e profundo. Por isso vamos discutir o papel do desenvolvedor nesse contexto, riscos, qualidade, produtividade, custos, ética, entre outras preocupações importantes.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;Os objetivos de aprendizagem completos da disciplina — geral e específicos — estão detalhados na página de &lt;a class=&#34;external&#34; href=&#34;https://joaoarthurbm.github.io/dev-ia/objetivos/&#34;&gt;Objetivos&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Os objetivos de aprendizagem da disciplina estão detalhados na página de &lt;a class=&#34;external&#34; href=&#34;https://joaoarthurbm.github.io/dev-ia/objetivos/&#34;&gt;Objetivos&lt;/a&gt;.&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;do-que-não-se-trata-a-disciplina&#34;&gt;Do que não se trata a disciplina&lt;/h2&gt;
 &lt;p&gt;Não é uma disciplina de &lt;em&gt;vibe coding&lt;/em&gt;. Como bem coloca &lt;a href=&#34;https://karpathy.bearblog.dev/sequoia-ascent-2026/&#34;&gt;este texto&lt;/a&gt;, &lt;strong&gt;&amp;ldquo;agentic engineering&amp;rdquo; não é o mesmo que &amp;ldquo;vibe coding&amp;rdquo;&lt;/strong&gt;.&lt;/p&gt;
@@ -71,7 +71,7 @@
 &lt;hr&gt;
 &lt;h2 id=&#34;modus-operandi-da-disciplina&#34;&gt;Modus operandi da disciplina&lt;/h2&gt;
 &lt;p&gt;Engenharia de Software é sobre produto, pessoas e processo. Nesta disciplina eu foco no produto, nas práticas relacionadas ao desenvolvimento de software. Por isso ela não se chama Engenharia de Software com Agentes.&lt;/p&gt;
-&lt;p&gt;A disciplina tem um viés prático, mas também vamos ler com profundidade referências importantes da área e ouvir com atenção pessoas influentes, do mundo acadêmico e do mundo corporativo. As fases do curso — &lt;em&gt;contexto&lt;/em&gt;, &lt;em&gt;harness&lt;/em&gt; e &lt;em&gt;ciclo de desenvolvimento&lt;/em&gt; — bem como o método de trabalho e os critérios de avaliação estão detalhados na página do &lt;a class=&#34;external&#34; href=&#34;https://joaoarthurbm.github.io/dev-ia/curso/&#34;&gt;Curso&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;A disciplina tem um viés prático, mas também vamos ler com profundidade referências importantes da área e ouvir com atenção pessoas influentes, do mundo acadêmico e do mundo corporativo. As fases do curso (&lt;em&gt;contexto&lt;/em&gt;, &lt;em&gt;harness&lt;/em&gt; e &lt;em&gt;ciclo de desenvolvimento&lt;/em&gt;), bem como o método de trabalho e os critérios de avaliação estão detalhados na página do &lt;a class=&#34;external&#34; href=&#34;https://joaoarthurbm.github.io/dev-ia/curso/&#34;&gt;Curso&lt;/a&gt;.&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;discussão-inicial-o-tom-que-vamos-adotar&#34;&gt;Discussão inicial: o tom que vamos adotar&lt;/h2&gt;
 &lt;figure style=&#34;align: center; margin-left:5%; width: 90%&#34;&gt;
@@ -113,9 +113,9 @@
 &lt;p&gt;&lt;a href=&#34;https://arxiv.org/pdf/2510.00762&#34;&gt;AI Where It Matters: Where, Why, and How Developers Want AI Support in Daily Work&lt;/a&gt; — survey com 860 desenvolvedores da Microsoft sobre onde, de fato, o desenvolvedor quer IA.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://martinfowler.com/articles/202508-ai-thoughts.html&#34;&gt;Some thoughts on LLMs and Software Development&lt;/a&gt;, de Martin Fowler, traz algumas provocações que vamos revisitar ao longo do curso:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&amp;ldquo;Alucinação não é bug, é o produto&amp;rdquo; — toda saída de LLM é alucinação, e algumas são úteis.&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Alucinação não é bug, é o produto&amp;rdquo;. Toda saída de LLM é alucinação, e algumas são úteis.&lt;/li&gt;
 &lt;li&gt;&amp;ldquo;A engenharia de software acaba de conhecer a incerteza&amp;rdquo; — a analogia com a engenharia estrutural e o fim do determinismo que sempre caracterizou a área.&lt;/li&gt;
-&lt;li&gt;&amp;ldquo;Sim, é uma bolha — e essa não é a pergunta importante&amp;rdquo; — o paralelo com as ferrovias e a bolha da internet.&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Sim, é uma bolha, mas essa não é a pergunta importante&amp;rdquo; — o paralelo com as ferrovias e a bolha da internet.&lt;/li&gt;
 &lt;li&gt;&amp;ldquo;Ninguém sabe o futuro da programação, e desconfie de quem diz que sabe&amp;rdquo; — sobre juniors, seniors, e a pergunta que ele recusa responder.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
