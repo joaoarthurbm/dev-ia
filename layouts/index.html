@@ -24,7 +24,7 @@
           {{ range $index, $page := first 40 (where .Site.RegularPages "Section" "in" .Site.Params.mainSections) }}
           <li {{if eq $index 0}}class="first"{{end}}>
             <h1><a href="{{ .Permalink }}" title="{{ .Title }}">{{ .Title }}</a></h1> 
-            {{ partial "aside" . }}
+            {{ partial "aside_compact" . }}
             <p>{{ .Summary }}</p>
             {{ if .Truncated }}
             <a href="{{ .RelPermalink }}">{{ T "readMore" }}</a>
