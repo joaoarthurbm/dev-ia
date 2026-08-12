@@ -96,3 +96,33 @@
   color: #06356e;
   text-decoration-thickness: 2px;
 }
+
+.cta-slides {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  margin-top: 0.5em;
+  padding: 0.5em 1.1em;
+  background: #eaf3ff;
+  border: 1px solid #1980e6;
+  border-radius: 999px;
+  color: #06356e !important;
+  font-weight: 700;
+  font-size: 1.15rem;
+  text-decoration: none !important;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.cta-slides i {
+  color: #1980e6;
+  transition: color 0.15s ease;
+}
+
+.cta-slides:hover {
+  background: #1980e6;
+  color: #ffffff !important;
+}
+
+.cta-slides:hover i {
+  color: #ffffff;
+}
