@@ -220,8 +220,7 @@
   z-index: 1;
 }
 
-#container main section#home .post-card aside,
-#container main section#home .post-card .read-more {
+#container main section#home .post-card-links {
   position: relative;
   z-index: 2;
 }
@@ -249,6 +248,14 @@
   text-decoration: underline;
 }
 
+#container main section#home .post-card time.post-date {
+  display: block;
+  margin: 0 0 0.6em;
+  color: #909090;
+  font-family: "Ruda", sans-serif;
+  font-size: 0.85em;
+}
+
 #container main section#home .post-card p {
   margin: 0.6em 0 0.8em;
   color: #333333;
@@ -256,14 +263,9 @@
   text-decoration: none;
 }
 
-#container main section#home .post-card .read-more {
-  display: inline-block;
-  font-weight: 700;
-  color: #1980e6;
-  text-decoration: none;
-}
-
-#container main section#home .post-card .read-more:hover {
-  color: #06356e;
-  text-decoration: underline;
+#container main section#home .post-card-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6em;
+  margin-top: 0.6em;
 }
