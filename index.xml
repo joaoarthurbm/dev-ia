@@ -12,134 +12,13 @@
        
        
        <item>
-         <title>Curso</title>
-         <link>https://joaoarthurbm.github.io/dev-ia/curso/</link>
+         <title>Aulas</title>
+         <link>https://joaoarthurbm.github.io/dev-ia/aulas/</link>
          <pubDate>Thu, 01 Jan 2026 00:00:00 +0000</pubDate>
          
-         <guid>https://joaoarthurbm.github.io/dev-ia/curso/</guid>
+         <guid>https://joaoarthurbm.github.io/dev-ia/aulas/</guid>
          <description>&lt;hr&gt;
-&lt;p&gt;Engenharia de Software é sobre produto, pessoas e processo. Nesta disciplina eu foco no produto, nas práticas relacionadas ao desenvolvimento de software. A disciplina tem um viés prático, mas também vamos ler com profundidade referências importantes da área e ouvir com atenção pessoas influentes, do mundo acadêmico e do mundo coorporativo.&lt;/p&gt;
-&lt;h1 id=&#34;fases&#34;&gt;Fases&lt;/h1&gt;
-&lt;p&gt;Para atingir os nossos &lt;a class=&#34;external&#34; href=&#34;https://joaoarthurbm.github.io/dev-ia/objetivos/&#34;&gt;Objetivos de Aprendizagem&lt;/a&gt;, o curso é organizado em 3 fases bem claras: &lt;em&gt;contexto&lt;/em&gt;, &lt;em&gt;harness&lt;/em&gt; e &lt;em&gt;ciclo de desenvolvimento&lt;/em&gt;.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;No &lt;strong&gt;contexto&lt;/strong&gt;, vamos falar sobre agentes, modelos, modelos generativos e agentes com modelos generativos, além de relembrar o ciclo de desenvolvimento de software. Também vamos ver o que a pesquisa em Engenharia de Software tem dito a respeito da área e discutir artigos e posicionamentos influentes.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Em &lt;strong&gt;harness&lt;/strong&gt;, vamos nos aprofundar no que transforma modelos que só geram texto em agentes que executam tarefas: ambiente de execução, loop, gestão de contexto, memória, skills, ferramentas, MCP, tratamento de erros, &lt;em&gt;guardrails&lt;/em&gt;, entre outros.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;No &lt;strong&gt;ciclo de desenvolvimento&lt;/strong&gt;, exploramos na prática, com agentes, cada uma das etapas do ciclo de desenvolvimento. Vamos utilizar agentes para entender, projetar, implementar, avaliar, implantar e operar.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h1 id=&#34;método&#34;&gt;Método&lt;/h1&gt;
-&lt;p&gt;Vamos ler muito, experimentar muito e discutir muito! As leituras e discussões vão envolver artigo científicos e opinativos sobre o tema.&lt;/p&gt;
-&lt;p&gt;Vamos ter encontros com devs do Nubank, QuintoAndar, VTEX, entre outras empresas importantes de tecnologia. Nosso objetivo é ver como as coisas de fato estão sendo feitas na prática.&lt;/p&gt;
-&lt;p&gt;Temos dois tipos de atividade avaliativa:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Semanais (50%)&lt;/strong&gt;: majoritariamente práticas, com discussão de resultados. Vamos focar todos no mesmo projeto escolhido por mim para podermos comparar e discutir em sala de aula;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Projeto (50%)&lt;/strong&gt;: no último mês, individual e escolhido por você, com resultado concreto (software executando) e um relatório discutindo os conceitos vistos na disciplina.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-       </item>
-       
-       <item>
-         <title>Objetivos</title>
-         <link>https://joaoarthurbm.github.io/dev-ia/objetivos/</link>
-         <pubDate>Thu, 01 Jan 2026 00:00:00 +0000</pubDate>
-         
-         <guid>https://joaoarthurbm.github.io/dev-ia/objetivos/</guid>
-         <description>&lt;hr&gt;
-&lt;p&gt;&lt;strong&gt;Geral.&lt;/strong&gt; Ao final deste curso o aluno será capaz de utilizar, avaliar criticamente e integrar modelos de linguagem de grande porte (LLMs) e agentes de Inteligência Artificial (IA) como ferramentas de apoio às principais práticas do desenvolvimento de software, incluindo entendimento, projeto, implementação, avaliação, implantação e operação, entre outras, com base tanto em evidências científicas quanto em práticas correntes de mercado.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Específicos.&lt;/strong&gt; Ao final da disciplina, o aluno deverá ser capaz de:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Explicar e debater conceitos-chave no desenvolvimento de software com agentes, quais sejam, LLMs, Agentes, MCP, ferramentas, skills, e desenvolvimento orientado a especificação (spec-driven development);&lt;/li&gt;
-&lt;li&gt;Descrever o que a pesquisa e a indústria em Engenharia de Software tem investigado e evidenciado sobre o uso de LLMs e agentes de IA no desenvolvimento de software;&lt;/li&gt;
-&lt;li&gt;Descrever práticas, ferramentas e posicionamentos adotados por desenvolvedores e organizações de referência no uso de LLMs e agentes de IA;&lt;/li&gt;
-&lt;li&gt;Especificar Agentes e skills;&lt;/li&gt;
-&lt;li&gt;Implementar Servidores MCP;&lt;/li&gt;
-&lt;li&gt;Utilizar agentes de IA na prática em tarefas reais de desenvolvimento de software;&lt;/li&gt;
-&lt;li&gt;Aplicar Desenvolvimento orientado à especificações (Spec-Driven Development) usando LLMs, agentes e MCP para diversas tarefas de engenharia de software, sobretudo as relacionadas ao produto, incluindo desenvolvimento, testes, documentação, refatoração, entendimento, entre outras;&lt;/li&gt;
-&lt;li&gt;Atuar com postura de engenheiro de software ao usar LLMs e agentes, indo além da produtividade para levantar preocupações sobre o código gerado, propor e aplicar mecanismos de controle de qualidade e padronização, e experimentar mecanismos para compreensão e evolução do código;&lt;/li&gt;
-&lt;li&gt;Compreender e discutir o impacto dos LLMs na prática contemporânea de desenvolvimento de software, sobretudo em questões como o papel do desenvolvedor, riscos, qualidade, produtividade, ética, entre outras preocupações importantes.&lt;/li&gt;
-&lt;/ol&gt;
-</description>
-       </item>
-       
-       <item>
-         <title>Conteúdo</title>
-         <link>https://joaoarthurbm.github.io/dev-ia/conteudo/</link>
-         <pubDate>Thu, 01 Jan 2026 00:00:00 +0000</pubDate>
-         
-         <guid>https://joaoarthurbm.github.io/dev-ia/conteudo/</guid>
-         <description>&lt;hr&gt;
-&lt;h3 id=&#34;em-construção&#34;&gt;Em construção&lt;/h3&gt;
-&lt;p&gt;Esta seção está em construção. Em breve, o material de apoio de cada aula da disciplina estará disponível aqui.&lt;/p&gt;
-</description>
-       </item>
-       
-       <item>
-         <title>Cronograma</title>
-         <link>https://joaoarthurbm.github.io/dev-ia/cronograma/</link>
-         <pubDate>Thu, 01 Jan 2026 00:00:00 +0000</pubDate>
-         
-         <guid>https://joaoarthurbm.github.io/dev-ia/cronograma/</guid>
-         <description>&lt;hr&gt;
-&lt;p&gt;O cronograma da disciplina está disponível na planilha: &lt;a class=&#34;external&#34; href=&#34;https://docs.google.com/spreadsheets/d/e/2PACX-1vT03bNljzmWaFXs4mcNeWQPeilFyJIuEw5aDLu3sSJnLAgzYYwJ7P7GVghA13Taq8Wucgcod__dFbwG/pubhtml&#34; target=&#34;_blank&#34;&gt;Cronograma - Dev-IA&lt;/a&gt;.&lt;/p&gt;
-</description>
-       </item>
-       
-       <item>
-         <title>Bibliografia</title>
-         <link>https://joaoarthurbm.github.io/dev-ia/bibliografia/</link>
-         <pubDate>Thu, 01 Jan 2026 00:00:00 +0000</pubDate>
-         
-         <guid>https://joaoarthurbm.github.io/dev-ia/bibliografia/</guid>
-         <description>&lt;hr&gt;
-&lt;p&gt;Lista de referências bibliográficas da disciplina.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Em construção.&lt;/em&gt;&lt;/p&gt;
-</description>
-       </item>
-       
-       <item>
-         <title>Contribua</title>
-         <link>https://joaoarthurbm.github.io/dev-ia/contribua/</link>
-         <pubDate>Thu, 01 Jan 2026 00:00:00 +0000</pubDate>
-         
-         <guid>https://joaoarthurbm.github.io/dev-ia/contribua/</guid>
-         <description>&lt;hr&gt;
-&lt;p&gt;Você pode contribuir com o material da disciplina: correções, sugestões, novos conteúdos, figuras e exemplos.&lt;/p&gt;
-&lt;h2 id=&#34;como-contribuir&#34;&gt;Como contribuir&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;Leia o &lt;a href=&#34;https://github.com/joaoarthurbm/dev-ia&#34;&gt;README&lt;/a&gt; para entender a estrutura do repositório;&lt;/li&gt;
-&lt;li&gt;Crie um &lt;em&gt;fork&lt;/em&gt; do repositório;&lt;/li&gt;
-&lt;li&gt;Produza o conteúdo seguindo o &lt;a href=&#34;https://joaoarthurbm.github.io/dev-ia/dev-ia/contribua/#como-criar-um-post&#34;&gt;guia de posts&lt;/a&gt;;&lt;/li&gt;
-&lt;li&gt;Envie um &lt;em&gt;Pull Request&lt;/em&gt; com o arquivo &lt;code&gt;.md&lt;/code&gt; e as figuras, se houver.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&#34;como-criar-um-post&#34;&gt;Como criar um post&lt;/h2&gt;
-&lt;p&gt;Um post é um arquivo &lt;code&gt;.md&lt;/code&gt; dentro da pasta &lt;code&gt;content/posts&lt;/code&gt;. Veja o modelo abaixo:&lt;/p&gt;
-&lt;pre&gt;
-+++
-title = &#34;Título do post&#34;
-date = 2026-01-01
-tags = []
-categories = []
-+++
-
-Conteúdo do post em markdown.
-&lt;/pre&gt;
-&lt;p&gt;Se o post tiver figuras, crie um diretório com o mesmo nome do arquivo dentro de &lt;code&gt;content/posts&lt;/code&gt; e referencie as imagens a partir dele. Por exemplo, para o post &lt;code&gt;minha-aula.md&lt;/code&gt;, crie &lt;code&gt;content/posts/minha-aula/&lt;/code&gt; e use &lt;code&gt;minha-aula/figura.png&lt;/code&gt; no markdown.&lt;/p&gt;
-&lt;h2 id=&#34;validação-local&#34;&gt;Validação local&lt;/h2&gt;
-&lt;p&gt;Para gerar o site localmente:&lt;/p&gt;
-&lt;pre&gt;
-hugo server
-&lt;/pre&gt;
-&lt;p&gt;E acesse o endereço indicado no final da saída (normalmente http://localhost:1313/dev-ia/).&lt;/p&gt;
+&lt;p&gt;Cada post abaixo é o material de apoio para uma aula específica da disciplina. Isso inclui as notas de aula e os slides. O cronograma completo está disponível na planilha: &lt;a class=&#34;external&#34; href=&#34;https://docs.google.com/spreadsheets/d/e/2PACX-1vT03bNljzmWaFXs4mcNeWQPeilFyJIuEw5aDLu3sSJnLAgzYYwJ7P7GVghA13Taq8Wucgcod__dFbwG/pubhtml&#34; target=&#34;_blank&#34;&gt;Cronograma - Dev-IA&lt;/a&gt;.&lt;/p&gt;
 </description>
        </item>
        
