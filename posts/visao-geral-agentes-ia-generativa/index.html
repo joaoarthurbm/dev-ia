@@ -1,0 +1,607 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <title>Desenvolvimento de Software com Agentes e IA Generativa</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="The HTML5 Herald" />
+  <meta name="author" content="João Arthur Brunet" /><meta name="generator" content="Hugo 0.75.1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/v4-shims.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  <link rel="stylesheet" type="text/css" href="https://joaoarthurbm.github.io/dev-ia/css/styles.css" /><link rel='stylesheet' href='https://joaoarthurbm.github.io/dev-ia/css/site.css'><script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+  });
+  MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+
+  MathJax.Hub.Config({
+  
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+  });
+</script>
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-151903059-1"></script>
+<script>
+      window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+            gtag('config', 'UA-151903059-1');
+        </script>
+
+
+</head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="https://joaoarthurbm.github.io/dev-ia/">Desenvolvimento de Software com Agentes e IA Generativa</a>
+            </h1>
+
+      <ul id="social-media">
+        
+        
+         
+        <li><a href="https://github.com/joaoarthurbm/dev-ia"><i class="fab fa-github fa-lg" aria-hidden="true"></i> repo</a></li>
+           
+        <li><a href="http://lattes.cnpq.br/7892247821251194"><i class="fas fa-graduation-cap fa-lg" aria-hidden="true"></i> lattes</a></li>
+        
+      </ul>
+      
+      <p><em><a href="https://joaoarthurbm.github.io">joaoarthurbm.github.io</a> <br> Computação @ UFCG</em></p>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="" href="https://joaoarthurbm.github.io/dev-ia/">
+                <i class="fa-li fa fa-home fa-lg"></i><span>Home</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="https://joaoarthurbm.github.io/dev-ia/aulas/">
+                <i class="fa-li fa  fa-lg"></i><span>Aulas</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+    <main>
+
+
+
+<article>
+
+    <h1>Visão Geral de Desenvolvimento de Software com Agentes e IA Generativa</h1>
+
+    
+        <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2026-08-14T00:00:00-03:00">Aug 14, 2026</time>
+        </li>
+
+        <li>16 minutos de leitura</li>
+
+
+        
+
+
+        
+
+
+
+        
+
+
+    </ul>
+</aside>
+
+    
+
+    
+    <details id="toc" open>
+        <summary>Sumário</summary>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#contexto">Contexto</a></li>
+    <li><a href="#engenharia-de-software">Engenharia de Software</a></li>
+    <li><a href="#llms">LLMs</a>
+      <ul>
+        <li><a href="#breve-histórico-do-uso-de-llms-no-contexto-de-tarefas-de-es">Breve histórico do uso de LLMs no contexto de tarefas de ES</a></li>
+      </ul>
+    </li>
+    <li><a href="#desenvolvimento-com-agentes-visão-geral">Desenvolvimento com Agentes: Visão Geral</a>
+      <ul>
+        <li><a href="#na-prática">Na prática</a></li>
+        <li><a href="#ai-coding-agents">AI Coding Agents</a></li>
+      </ul>
+    </li>
+    <li><a href="#resumo">Resumo</a></li>
+    <li><a href="#discussão">Discussão</a></li>
+    <li><a href="#atividade">Atividade</a></li>
+    <li><a href="#referências">Referências</a></li>
+  </ul>
+</nav>
+    </details>
+    
+
+    <hr>
+<p>Ao final dessa aula, o aluno deve ser capaz de explicar conceitos fundamentais que constituem a base de conhecimento necessária para a disciplina: visão geral de Engenharia de Software, LLMs, Agentes, <em>AI Coding Agents</em>, <em>Agent Runtimes</em>, tools, skills, entre outros.</p>
+<h2 id="contexto">Contexto</h2>
+<p><strong>Histórico.</strong> Modelos de classificação e preditivos → Transformers → LLMs → AI Coding Agents.</p>
+<h2 id="engenharia-de-software">Engenharia de Software</h2>
+<p>Engenharia de Software é uma disciplina muito ampla. Envolve produto, pessoas e processo. Estamos focando aqui nas atividades relacionadas ao produto. Por isso, o nome da disciplina é Desenvolvimento de Software com Agentes, e não Engenharia de Software apoiada por agentes.</p>
+<p>Princípios de engenharia no desenvolvimento de software seguem um tripé: tempo, custo e qualidade.</p>
+<p>O ciclo que iremos adotar: <em>entender, projetar, desenvolver, avaliar/validar, implantar e operar.</em></p>
+<p>LLMs estão sendo aplicados em cada uma dessas atividades. De certa maneira, vamos tocar em todas elas, mas nosso foco principal estará no desenvolvimento e na avaliação.</p>
+<h2 id="llms">LLMs</h2>
+<figure style="align: center; margin-left:5%; width: 90%">
+    <img src="hierarquia-ia-ml-dl-llm.png">
+    <figcaption align="center">
+        Raschka, Sebastian. Build a large language model (from scratch). Simon and Schuster, 2024.
+    </figcaption>
+</figure>
+<p>Modelos de Linguagem de Grande Escala (LLMs, <em>Large Language Models</em>) são modelos de redes neurais profundas, geralmente baseados na arquitetura Transformer, treinados em grandes volumes de dados textuais para compreender, gerar e transformar linguagem natural. <em>Large</em> aqui tem relação com o tamanho do modelo em número de parâmetros e com o tamanho do conjunto de dados de treinamento.</p>
+<blockquote>
+<p>&ldquo;LLMs são modelos de redes neurais profundas derivados da arquitetura de transformers que inauguraram uma nova era para o processamento de linguagem natural (NLP)&rdquo; [1].</p>
+</blockquote>
+<p>Antes, os modelos eram particularmente bons em classificação, agrupamento e predição.</p>
+<p>Um ponto chave aqui é a quantidade de parâmetros e o treinamento em um <strong>vasto conjunto de dados</strong>. São modelos treinados em centenas de bilhões ou trilhões de tokens extraídos de diversas fontes textuais:</p>
+<ul>
+<li>BERT (2018): cerca de 3,3 bilhões de palavras.</li>
+<li>GPT-3 (2020): aproximadamente 300 bilhões de tokens.</li>
+<li>Llama 2 (2023): cerca de 2 trilhões de tokens.</li>
+<li>Llama 3 (2024): aproximadamente 15 trilhões de tokens.</li>
+</ul>
+<p>A versão em inglês da <em>Wikipedia</em> tem alguns bilhões de palavras. Um LLM moderno pode ser treinado com uma quantidade de texto equivalente a dezenas ou centenas de Wikipédias.</p>
+<p>Isso aumenta muito a capacidade de capturar <strong>padrões, contexto e detalhes linguísticos</strong>. Além disso, faz com que esses modelos sejam <strong>mais proficientes em um espectro maior de tarefas</strong> comparados aos modelos anteriores, que eram particularmente bons para tarefas específicas, por exemplo, tradução, sumarização, análise de sentimento etc.</p>
+<p><strong>Relação com a área.</strong> IA envolve muito mais do que <em>machine learning</em>, como algoritmos genéticos, lógica fuzzy, sistemas especialistas etc. <em>Machine learning</em> diz respeito ao desenvolvimento de algoritmos capazes de aprender padrões a partir de dados para realizar predições ou tomar decisões, sem que todas as regras para essas tarefas sejam explicitamente programadas. Em muitas abordagens tradicionais de <em>machine learning</em>, o desenvolvimento do modelo envolve <strong>engenharia de atributos</strong> (<em>feature engineering</em>), na qual especialistas definem, transformam ou selecionam atributos relevantes dos dados. <em>Deep learning</em> é um subconjunto de <em>machine learning</em> baseado em redes neurais com múltiplas camadas, capazes de <strong>aprender automaticamente representações e atributos relevantes diretamente dos dados</strong>, reduzindo a necessidade de engenharia manual de atributos.</p>
+<h3 id="breve-histórico-do-uso-de-llms-no-contexto-de-tarefas-de-es">Breve histórico do uso de LLMs no contexto de tarefas de ES</h3>
+<p>Assistentes de código sugerindo predominantemente através de <strong>interação com chat</strong>, mas não agindo de maneira autônoma:</p>
+<ul>
+<li><em>Grounded Copilot: How Programmers Interact with Code-Generating Models.</em> OOPSLA 2023.</li>
+<li><em>ChatGPT in Action: Analyzing Its Use in Software Development.</em> Proceedings of the 21st International Conference on Mining Software Repositories (MSR &lsquo;24).</li>
+<li><em>Beyond Code Generation: An Observational Study of ChatGPT Usage in Software Engineering Practice.</em> Julho de 2024.</li>
+<li><em>Towards an understanding of large language models in software engineering tasks.</em> Empirical Software Engineering, 2025.</li>
+<li><em>Why Do Software Practitioners Use ChatGPT for Software Development Tasks?</em> Proceedings of the 33rd ACM International Conference on the Foundations of Software Engineering (FSE Companion &lsquo;25).</li>
+</ul>
+<p>Algumas observações importantes sobre o início dessa era:</p>
+<p><strong>1. Modos principais de interação</strong></p>
+<ul>
+<li><strong>Natureza bimodal.</strong> As interações com assistentes de IA (como o Copilot) ocorrem principalmente em dois modos: <strong>aceleração</strong> (autocomplete inteligente) e <strong>exploração</strong>.</li>
+</ul>
+<p><strong>2. Propósitos de uso no dia a dia</strong></p>
+<ul>
+<li><strong>Consulta a especialista.</strong> IA como um &ldquo;colega virtual&rdquo; para fornecer orientações de alto nível em vez de apenas código pronto.</li>
+<li><strong>Manipulação de artefatos.</strong> Inclui gerar código do zero, refatorar trechos existentes, fazer <em>brainstorming</em> de ideias (como user stories) e automatizar tarefas secundárias repetitivas.</li>
+<li><strong>Aprendizado e treinamento.</strong> Desenvolvedores usam LLMs para aprender novos conceitos através de estratégias como &ldquo;aprendizado por detalhamento&rdquo; (<em>drill-down</em>) ou &ldquo;aprendizado por exemplo&rdquo;.</li>
+</ul>
+<p><strong>3. Eficiência e desempenho por tarefa</strong></p>
+<ul>
+<li><strong>Tarefas mais eficientes.</strong> A colaboração com a IA é mais produtiva em tarefas de <strong>gestão e otimização de desenvolvimento</strong> e <strong>implementação de novas funcionalidades</strong> (resolvidas com menos prompts).</li>
+<li><strong>Tarefas menos eficientes.</strong> A IA apresenta maior dificuldade e inconsistência em <strong>configuração de ambiente</strong>, <strong>geração de documentação</strong> e <strong>gestão de qualidade de código</strong>.</li>
+<li><strong>Sintaxe vs. semântica.</strong> Atualmente, LLMs se saem melhor em tarefas que exigem compreensão de <strong>sintaxe</strong> (resumo e reparo de código), mas falham mais em tarefas que exigem compreensão de <strong>semântica</strong> profunda (geração complexa e detecção de vulnerabilidades).</li>
+</ul>
+<p><strong>4. Validação e confiança</strong></p>
+<ul>
+<li><strong>Padrões de validação.</strong> No modo rápido, a validação é feita por &ldquo;reconhecimento de padrões&rdquo; visual. No modo lento, envolve execução de testes, verificação linha a linha e consulta a documentações oficiais.</li>
+<li><strong>Ceticismo necessário.</strong> Cerca de um terço dos desenvolvedores mantém baixo nível de confiança na IA devido à <strong>falta de fontes/referências</strong> e à tendência da ferramenta de &ldquo;alucinar&rdquo; (inventar informações com alta confiança).</li>
+<li><strong>Dificuldade de debug.</strong> Códigos gerados por IA são frequentemente mais difíceis de depurar do que códigos escritos pelo próprio desenvolvedor, pois o autor não possui o modelo mental completo da solução.</li>
+</ul>
+<p><strong>5. Barreiras e motivações</strong></p>
+<ul>
+<li><strong>Motivações.</strong> Aumento de produtividade (72%), redução de tempo (70%) e esforço (57%), além de auxiliar na resolução de conflitos técnicos entre a equipe.</li>
+<li><strong>Barreiras organizacionais.</strong> Políticas de empresa contra o uso de LLMs e preocupações com a privacidade de dados proprietários impedem o uso pleno (muitos desenvolvedores evitam passar o contexto necessário por medo de violar regras).</li>
+<li><strong>Limitações técnicas.</strong> Precisão pobre em tarefas complexas, frustração com sugestões longas que quebram o fluxo de pensamento e base de conhecimento datada.</li>
+</ul>
+<p><strong>Não estamos mais nesse momento.</strong> O uso do chat foi perdendo espaço para o uso integrado e agêntico. <strong>Na minha opinião</strong>, a evolução do harness (CLI + loop + tools + MCP + guardrails + skills&hellip;) foi o salto mais importante no contexto de ES depois do surgimento dos modelos.</p>
+<p>Por que?</p>
+<ul>
+<li>Permitiu acelerar o processo de edição e validação;</li>
+<li>Integrou-se ao ambiente de desenvolvimento;</li>
+<li>Permitiu conectar agentes com recursos fundamentais durante o desenvolvimento;</li>
+<li>Permitiu expandir a capacidade de operação dos agentes para ferramentas e APIs específicas do contexto do programador/produto/empresa;</li>
+<li>Permitiu avaliar e padronizar melhor a saída.</li>
+</ul>
+<p>Há alguns anos:</p>
+<blockquote>
+<p>&ldquo;Como escrever um prompt melhor?&rdquo;</p>
+</blockquote>
+<p>Hoje:</p>
+<blockquote>
+<p>&ldquo;Como construir um sistema que permita ao modelo iterar até encontrar uma solução correta?&rdquo;</p>
+</blockquote>
+<h2 id="desenvolvimento-com-agentes-visão-geral">Desenvolvimento com Agentes: Visão Geral</h2>
+<figure style="align: center; margin-left:5%; width: 90%">
+    <img src="agente-github-issue.png">
+    <figcaption align="center">
+        Agentes de codificação já assumem issues automaticamente em repositórios reais no GitHub.
+    </figcaption>
+</figure>
+<p>O conceito de agentes é antigo. No nosso contexto, estamos falando de agentes construídos sobre LLMs, que apareceram depois da ascensão de ferramentas como o ChatGPT, a partir de 2022. <em>AI Coding Agents</em>, a partir de 2025.</p>
+<table>
+<thead>
+<tr>
+<th>Período</th>
+<th>Definição predominante</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IA clássica (1950-2000)</td>
+<td>Sistema que percebe o ambiente e age sobre ele.</td>
+</tr>
+<tr>
+<td>2016</td>
+<td>Agentes de aprendizado por reforço.</td>
+</tr>
+<tr>
+<td>2020</td>
+<td>Large Language Models (GPT-3).</td>
+</tr>
+<tr>
+<td>2022</td>
+<td>LLMs conversacionais (ChatGPT).</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>LLM Agents / Autonomous Agents (AutoGPT, BabyAGI).</td>
+</tr>
+<tr>
+<td>2023+</td>
+<td>ReAct e Function Calling (uso de ferramentas).</td>
+</tr>
+<tr>
+<td>2025</td>
+<td>AI Coding Agents (Claude Code, Codex, OpenCode, &hellip;).</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Um agente de software é uma entidade computacional autônoma que observa seu ambiente, mantém estado interno, planeja ações e <strong>utiliza ferramentas</strong> para atingir objetivos definidos por usuários ou por outros agentes.</p>
+</blockquote>
+<p>As decisões são baseadas em sua <strong>função</strong> (<em>role</em>) e <strong>meta</strong> (<em>goal</em>), sendo ambas definidas pelo usuário.</p>
+<p>Agente é um prompt com esteroides? <strong>Não.</strong> Agente envolve: i) múltiplos prompts; ii) múltiplas chamadas a um LLM; iii) manutenção de memória; iv) planejamento e <strong>execução</strong> de múltiplas ferramentas; v) loop/iteração etc.</p>
+<p>Talvez, de maneira mais simples, podemos dizer que agentes são:</p>
+<blockquote>
+<p>LLM + um prompt sofisticado + um loop de execução + ferramentas</p>
+</blockquote>
+<p>Por exemplo, um agente de programação (<strong>AI coding agent</strong>) pode ser abstraído para:</p>
+<pre><code>while not done:
+    observar ambiente
+    montar prompt
+    invocar LLM
+    executar ferramenta
+    atualizar estado
+</code></pre><hr>
+<h3 id="na-prática">Na prática</h3>
+<p>Na prática, boa parte de um agente é definida no arquivo <code>agent.md</code> (<a href="https://github.com/search?q=+backend-agent.md&amp;type=repositories">exemplos</a>). Digo boa parte porque o agente é muito mais do que a persona e como ele deve agir, que são o foco do <code>agent.md</code>. Envolve o loop, a execução de ferramentas, entre outras atividades. <a href="https://github.blog/ai-and-ml/github-copilot/how-to-write-a-great-agents-md-lessons-from-over-2500-repositories/">Este material</a> tem excelentes diretrizes para criar arquivos que definem agentes de maneira apropriada. Você pode, inclusive, utilizar um LLM para apoiar a escrita de um bom <code>agent.md</code>. Veja um exemplo do próprio material:</p>
+<blockquote>
+<p><em>Create a test agent for this repository. It should:</em></p>
+<ul>
+<li><em>Have the persona of a QA software engineer.</em></li>
+<li><em>Write tests for this codebase.</em></li>
+<li><em>Run tests and analyze results.</em></li>
+<li><em>Write to &ldquo;/tests/&rdquo; directory only.</em></li>
+<li><em>Never modify source code or remove failing tests.</em></li>
+<li><em>Include specific examples of good test structure.</em></li>
+</ul>
+</blockquote>
+<p>Para o desenvolvimento, é importante que você crie agentes como <code>@docs-agent</code>, <code>@test-agent</code>, <code>@lint-agent</code>, <code>@api-agent</code>, <code>@dev-deploy-agent</code>, entre outros.</p>
+<p><strong>Um exemplo concreto</strong> (<a href="https://github.blog/ai-and-ml/github-copilot/how-to-write-a-great-agents-md-lessons-from-over-2500-repositories/">link</a>):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown">---
+name: docs_agent
+description: Expert technical writer for this project
+---
+
+You are an expert technical writer for this project.
+
+<span style="color:#75715e">## Your role
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">-</span> You are fluent in Markdown and can read TypeScript code
+<span style="color:#66d9ef">-</span> You write for a developer audience, focusing on clarity and practical examples
+<span style="color:#66d9ef">-</span> Your task: read code from <span style="color:#e6db74">`src/`</span> and generate or update documentation in <span style="color:#e6db74">`docs/`</span>
+
+<span style="color:#75715e">## Project knowledge
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">-</span> **Tech Stack:** React 18, TypeScript, Vite, Tailwind CSS
+<span style="color:#66d9ef">-</span> **File Structure:**
+  <span style="color:#66d9ef">-</span> <span style="color:#e6db74">`src/`</span> – Application source code (you READ from here)
+  <span style="color:#66d9ef">-</span> <span style="color:#e6db74">`docs/`</span> – All documentation (you WRITE to here)
+  <span style="color:#66d9ef">-</span> <span style="color:#e6db74">`tests/`</span> – Unit, Integration, and Playwright tests
+
+<span style="color:#75715e">## Commands you can use
+</span><span style="color:#75715e"></span>Build docs: <span style="color:#e6db74">`npm run docs:build`</span> (checks for broken links)
+Lint markdown: <span style="color:#e6db74">`npx markdownlint docs/`</span> (validates your work)
+
+<span style="color:#75715e">## Documentation practices
+</span><span style="color:#75715e"></span>Be concise, specific, and value dense
+Write so that a new developer to this codebase can understand your writing, don&#39;t assume your audience are experts in the topic/area you are writing about.
+
+<span style="color:#75715e">## Boundaries
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">-</span> ✅ <span style="font-weight:bold">**Always do:**</span> Write new files to <span style="color:#e6db74">`docs/`</span>, follow the style examples, run markdownlint
+<span style="color:#66d9ef">-</span> ⚠️ <span style="font-weight:bold">**Ask first:**</span> Before modifying existing documents in a major way
+<span style="color:#66d9ef">-</span> 🚫 <span style="font-weight:bold">**Never do:**</span> Modify code in <span style="color:#e6db74">`src/`</span>, edit config files, commit secrets
+</code></pre></div><p>Note que não há formato definido. O importante é que você tenha seções bem demarcadas e que coloque o que é essencial, sobretudo limites, comandos que podem ser executados, o papel desempenhado pelo agente, entre outros aspectos importantes. Nós vamos discutir isso profundamente em uma aula específica.</p>
+<hr>
+<p><strong>Desafio.</strong> Procure definições em markdown de agentes em projetos relevantes no GitHub. Foque em descrições de <code>*-agent.md</code> específicas para práticas de engenharia de software.</p>
+<hr>
+<blockquote>
+<p>E o <a href="https://agents.md">agents.md</a>? Do que se trata?</p>
+</blockquote>
+<p>É um arquivo Markdown colocado na raiz do repositório contendo instruções para agentes de programação:</p>
+<ul>
+<li>como compilar;</li>
+<li>como executar testes;</li>
+<li>convenções de código;</li>
+<li>arquitetura do sistema;</li>
+<li>restrições;</li>
+<li>workflows de desenvolvimento.</li>
+</ul>
+<p>A ideia é que ele seja para agentes o que o README é para humanos. Os agentes que você definir via <code>.md</code> (por exemplo, <code>docs-agent.md</code>) vão utilizar o <a href="https://agents.md">agents.md</a> para ter clareza das diretrizes gerais do projeto.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>AGENTS.md</code></th>
+<th><code>.opencode/agents/meu-agente.md</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>O que é</strong></td>
+<td>Contexto do projeto</td>
+<td>Definição de um agente</td>
+</tr>
+<tr>
+<td><strong>Para quê</strong></td>
+<td>Explicar o codebase à IA</td>
+<td>Criar um agente especializado</td>
+</tr>
+<tr>
+<td><strong>Onde fica</strong></td>
+<td>Raiz do repo</td>
+<td><code>.opencode/agents/</code></td>
+</tr>
+<tr>
+<td><strong>Commitar?</strong></td>
+<td>Sim, é do projeto</td>
+<td>Depende (pode ser pessoal)</td>
+</tr>
+<tr>
+<td><strong>Quem lê</strong></td>
+<td>Toda sessão automaticamente</td>
+<td>Só quando você invoca aquele agente</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<blockquote>
+<p>Mas e o loop?</p>
+</blockquote>
+<p>Como disse, o agente é mais do que a descrição que está no <code>agent.md</code>. Ele envolve o loop de execução. Esse loop é controlado pela <em>runtime</em> do sistema que você está utilizando. No nosso caso, vamos usar o OpenCode.</p>
+<h3 id="ai-coding-agents">AI Coding Agents</h3>
+<p>Importante: estamos falando de algo muito recente. Os <em>co-pilots</em>/assistentes de código foram lançados a partir de 2021. As ferramentas no estilo CLI no ambiente de terminal surgiram em 2025.</p>
+<table>
+<thead>
+<tr>
+<th>Ferramenta</th>
+<th>Lançamento</th>
+<th>Observação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/features/copilot">GitHub Copilot</a></td>
+<td>Junho/2021</td>
+<td>Primeiro grande assistente de código baseado em IA.</td>
+</tr>
+<tr>
+<td><a href="https://www.cursor.com/">Cursor</a></td>
+<td>2023</td>
+<td>IDE derivada do VS Code com IA integrada.</td>
+</tr>
+<tr>
+<td><a href="https://aider.chat/">Aider</a></td>
+<td>2023</td>
+<td>Agente em terminal focado em edição de código via chat.</td>
+</tr>
+<tr>
+<td><a href="https://www.continue.dev/">Continue.dev</a></td>
+<td>2023</td>
+<td>Extensão open source para IDEs.</td>
+</tr>
+<tr>
+<td><a href="https://www.anthropic.com/claude-code">Claude Code</a></td>
+<td>Fevereiro/2025</td>
+<td>CLI agent da Anthropic.</td>
+</tr>
+<tr>
+<td><a href="https://openai.com/codex/">OpenAI Codex CLI</a></td>
+<td>2025</td>
+<td>Agente de terminal da OpenAI.</td>
+</tr>
+<tr>
+<td><a href="https://opencode.ai/">OpenCode</a></td>
+<td>Final de 2025</td>
+<td>Agente open source em terminal.</td>
+</tr>
+</tbody>
+</table>
+<p>Note que estamos falando especificamente dos agentes focados em desenvolvimento. Claro, há sistemas que aplicam o conceito para muitos outros contextos. O framework <a href="https://crewai.com/">Crew AI</a> é uma excelente referência para criar agentes para contextos diversos.</p>
+<p>Preciso fazer uma distinção importante aqui: uma coisa é desenvolver sistemas agênticos, outra é utilizar agentes para desenvolver sistemas. Nosso foco é nesse segundo ponto.</p>
+<p>Em particular, na disciplina, vamos focar no <a href="https://opencode.ai/">OpenCode</a>, que é uma implementação <em>open source</em> recente do conceito de <em>AI Coding Agent</em>. Aqui está uma <a href="https://github.com/flatlogic/awesome-ai-software-development-agents">lista de alguns <em>AI Coding Agents</em> mais populares</a>.</p>
+<p>Mas antes de falarmos com mais detalhes sobre o OpenCode, é importante entender de onde vem a ideia e, sobretudo, a arquitetura que ele (e outros tantos) implementam.</p>
+<h4 id="swe-agent-a-inspiração">Swe-agent: a inspiração</h4>
+<p><em>YANG, John et al. Swe-agent: Agent-computer interfaces enable automated software engineering. Advances in Neural Information Processing Systems, v. 37, p. 50528-50652, 2024.</em></p>
+<p>O SWE-Agent foi um dos primeiros trabalhos a demonstrar de forma sistemática a aplicação de agentes baseados em LLM para tarefas de engenharia de software e influenciou a geração atual de <em>AI Coding Agents</em>. O artigo pode ser visto como precursor e influenciador dos <em>AI Coding Agents</em> modernos, como OpenCode, Claude Code e Codex CLI.</p>
+<p>O trabalho traz duas contribuições muito relevantes para os agentes atuais: <strong>a noção de ACI</strong> (<em>agent-computer interface</em>) e uma <strong>arquitetura de referência</strong> para o desenvolvimento de agentes.</p>
+<h5 id="agent-computer-interface">Agent-computer interface</h5>
+<p>Um nome bonito para criar interfaces mais estruturadas que permitem ao agente operar sobre um ambiente computacional complexo por meio de comandos e ferramentas. A ideia aqui é desenvolver APIs mais adequadas para os modelos. Isso porque <strong>o desempenho de um agente de codificação não depende só da qualidade do LLM, mas também de como você desenha as ferramentas/comandos que o agente usa para interagir com o ambiente</strong> (arquivos, terminal, editor). Os autores mostraram que um conjunto bem desenhado de comandos simplificados (visualização de arquivo, busca, edição com validação de sintaxe etc.) melhorava drasticamente a taxa de sucesso no benchmark SWE-bench, comparado a dar ao modelo acesso bruto a um terminal Linux.</p>
+<p>Essa ideia de que o design da interface entre o agente e o computador é tão importante quanto o modelo é hoje quase um lugar-comum entre quem constrói agentes de código, mas o SWE-agent foi um dos primeiros a formalizar e demonstrar empiricamente isso.</p>
+<p>O trabalho aponta princípios importantes para a construção de ferramentas:</p>
+<blockquote>
+<ol>
+<li>
+<p>Actions should be simple and easy to understand for agents. Many bash commands have documentation that includes dozens of options. Simple commands with a few options and concise documentation are easier for agents to use, reducing the need for demonstrations or fine-tuning.</p>
+</li>
+<li>
+<p>Actions should be compact and efficient. Important operations (e.g., file navigation, editing) should be consolidated into as few actions as possible. Efficient actions help agents make meaningful progress towards a goal in a single step. A poor design would therefore have many simple actions that must be composed across multiple turns for a higher order operation to take effect.</p>
+</li>
+<li>
+<p>Environment feedback should be informative but concise. High quality feedback should provide the agent with substantive information about the current environment state (and the effect of the agent&rsquo;s recent actions) without unnecessary details. For instance, when editing a file, updating the agent about revised content is helpful.</p>
+</li>
+<li>
+<p>Guardrails mitigate error propagation and hasten recovery. Like humans, LMs make mistakes when editing or searching and can struggle to recover from these errors. Building in guardrails, such as a code syntax checker that automatically detects mistakes, can help agents recognize and quickly correct errors.</p>
+</li>
+</ol>
+</blockquote>
+<p>Um exemplo concreto:</p>
+<figure style="align: center; margin-left:5%; width: 90%">
+    <img src="swe-agent-aci-exemplo.png">
+    <figcaption align="center">
+        Figura retirada do artigo (YANG et al., 2024).
+    </figcaption>
+</figure>
+<p>Mais aspectos relevantes:</p>
+<blockquote>
+<p>&ldquo;We draw inspiration from the field of HCI, where user studies elicit insights about how compatible different interfaces are with respect to human intuition and performance.&rdquo;</p>
+</blockquote>
+<blockquote>
+<p>&ldquo;Our interface encourages efficient searches by suppressing verbose results.&rdquo;</p>
+</blockquote>
+<blockquote>
+<p>Similar to how humans can use tools like syntax highlighting to help them notice format errors when editing files in an IDE, we integrate a code linter into the edit function to alert the agent of mistakes it may have introduced when editing a file.</p>
+</blockquote>
+<h5 id="a-arquitetura">A arquitetura</h5>
+<figure style="align: center; margin-left:5%; width: 90%">
+    <img src="swe-agent-arquitetura.png">
+    <figcaption align="center">
+        Arquitetura de referência do SWE-agent (YANG et al., 2024).
+    </figcaption>
+</figure>
+<h4 id="opencode">OpenCode</h4>
+<blockquote>
+<p>&ldquo;OpenCode is an open source agent that helps you write code in your terminal, IDE, or desktop.&rdquo;</p>
+</blockquote>
+<p>OpenCode é uma <em>runtime</em> que <strong>orquestra agentes especializados</strong>, os quais combinam instruções, <strong>skills e ferramentas</strong> para resolver tarefas de engenharia de software de forma autônoma.</p>
+<figure style="align: center; margin-left:5%; width: 90%">
+    <img src="opencode-arquitetura.png">
+    <figcaption align="center">
+        OpenCode Runtime orquestrando agentes especializados (backend, segurança, revisão), cada um com seu conjunto de skills e tools. Figura gerada com auxílio do ChatGPT.
+    </figcaption>
+</figure>
+<p>Novos conceitos, né? Vamos discutir o que são <em>tools</em> e o que são <em>skills</em>.</p>
+<h5 id="tools">Tools</h5>
+<blockquote>
+<p>Uma <em>tool</em> é um recurso que permite ao agente executar uma ação concreta fora do modelo de linguagem. <em>Tools</em> conectam o(s) agente(s) ao mundo externo.</p>
+</blockquote>
+<p>LLM não faz commit, não cria arquivos, não consulta banco de dados, não acessa API, não executa testes. LLM apenas gera texto. Para o restante, ele invoca <em>tools</em>.</p>
+<p>Exemplos de <em>tools</em>: acesso ao terminal, ao sistema de arquivos, ao Git, à web/navegador, à execução de código e a APIs/MCP.</p>
+<h5 id="skills">Skills</h5>
+<blockquote>
+<p>Uma <em>skill</em> é um módulo reutilizável que encapsula conhecimento, procedimentos e boas práticas para orientar um agente na execução de uma tarefa específica.</p>
+</blockquote>
+<p><em>Skill</em> não é agente. O agente &ldquo;possui&rdquo; <em>skills</em> para desempenhar uma tarefa. Tipicamente, <em>skills</em> são carregadas automaticamente pelos agentes, que as procuram em um lugar específico (<code>/skills</code> no OpenCode). O médico não carrega todos os protocolos o tempo todo. Portanto, não é ideal estabelecer as <em>skills</em> em modo <em>hardcoded</em>.</p>
+<p>Às vezes o agente sempre utiliza determinadas <em>skills</em>. É o que chamamos de acoplamento explícito. Exemplo:</p>
+<pre><code>Você é um agente de revisão.
+
+Sempre utilize:
+
+- review-codesmells
+- review-security
+</code></pre><p><strong>Especificando skills.</strong> <em>Skills</em> são especificadas em <code>.md</code>. Exemplo concreto: <a href="https://github.com/anthropics/skills/blob/main/skills/pdf/SKILL.md">pdf skill</a>.</p>
+<p>Excelentes referências:</p>
+<ul>
+<li><a href="https://agentskills.io/home">agentskills.io</a></li>
+<li><a href="https://github.com/mattpocock/skills">github.com/mattpocock/skills</a></li>
+<li><a href="https://dev.to/aws/the-most-popular-ai-coding-skills-right-now-4183">The Most Popular AI Coding Skills Right Now</a></li>
+</ul>
+<p>E por que não colocar tudo no prompt? <strong>Reuso.</strong></p>
+<h2 id="resumo">Resumo</h2>
+<figure style="align: center; margin-left:5%; width: 90%">
+    <img src="ecossistema-agentes.png">
+    <figcaption align="center">
+        O ecossistema de AI Coding Agents: ferramentas de coding, frameworks agentic e agentes genéricos convergem sobre runtimes/agent OS, que por sua vez rodam sobre os modelos de fundação. Figura gerada com auxílio do ChatGPT.
+    </figcaption>
+</figure>
+<figure style="align: center; margin-left:5%; width: 90%">
+    <img src="agent-md-skills-tools.png">
+    <figcaption align="center">
+        Cada coisa em seu lugar: do AGENT.md ao agente, que decide qual skill usar; a skill traz procedimentos e boas práticas; as tools executam ações concretas no ambiente. Figura gerada com auxílio do GPT.
+    </figcaption>
+</figure>
+<h2 id="discussão">Discussão</h2>
+<p><em>Em construção.</em></p>
+<h2 id="atividade">Atividade</h2>
+<p><em>Em construção.</em></p>
+<h2 id="referências">Referências</h2>
+<ul>
+<li>YANG, John et al. Swe-agent: Agent-computer interfaces enable automated software engineering. <em>Advances in Neural Information Processing Systems</em>, v. 37, p. 50528-50652, 2024.</li>
+<li>Bosch, J., Olsson, H. H., &amp; Crnkovic, I. (2021). Engineering ai systems: A research agenda. <em>Artificial intelligence paradigms for smart cyber-physical systems</em>, 1-19.</li>
+<li>Biswas, A., &amp; Talukdar, W. (2025). <em>Building Agentic AI Systems: Create intelligent, autonomous AI agents that can reason, plan, and adapt</em>. Packt Publishing Ltd.</li>
+<li><em>Grounded Copilot: How Programmers Interact with Code-Generating Models.</em> OOPSLA 2023.</li>
+<li><em>ChatGPT in Action: Analyzing Its Use in Software Development.</em> Proceedings of the 21st International Conference on Mining Software Repositories (MSR &lsquo;24).</li>
+<li><em>Beyond Code Generation: An Observational Study of ChatGPT Usage in Software Engineering Practice.</em> Julho de 2024.</li>
+<li><em>Towards an understanding of large language models in software engineering tasks.</em> Empirical Software Engineering, 2025.</li>
+<li><em>Why Do Software Practitioners Use ChatGPT for Software Development Tasks?</em> Proceedings of the 33rd ACM International Conference on the Foundations of Software Engineering (FSE Companion &lsquo;25).</li>
+<li>YAO, Shunyu et al. React: Synergizing reasoning and acting in language models. <em>arXiv preprint arXiv:2210.03629</em>, 2022.</li>
+<li>JIMENEZ, Carlos E. et al. Swe-bench: Can language models resolve real-world github issues? <em>International Conference on Learning Representations</em>, 2024. p. 54107-54157.</li>
+</ul>
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        <li>
+            <a href="https://joaoarthurbm.github.io/dev-ia/posts/apresentacao-da-disciplina/"><i class="fa fa-chevron-circle-left"></i> Apresentação da Disciplina</a>
+        </li>
+        
+        
+    </ul>
+</section>
+    
+
+
+
+
+
+</main>
+    <footer>
+    <h6><a href="http://joaoarthurbm.github.io">Copyright © 2026 - joaoarthurbm.github.io. Licença de uso: versão para uso pessoal, sendo proibida sua redistribuição ou modificação.</a></h6>
+    </footer>
+</div>
+<script src="https://joaoarthurbm.github.io/dev-ia/js/scripts.js"></script>
+
+</body>
+
+</html>
+
