@@ -101,7 +101,7 @@
 &lt;/blockquote&gt;
 &lt;p&gt;Hoje:&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&amp;ldquo;Como construir um sistema que permita ao modelo iterar até encontrar uma solução correta?&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;&amp;ldquo;Como criar as condições (e interagir) para que um agente desenvolva a solução?&amp;rdquo;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;desenvolvimento-com-agentes-visão-geral&#34;&gt;Desenvolvimento com Agentes: Visão Geral&lt;/h2&gt;
 &lt;figure style=&#34;align: center; margin-left:5%; width: 90%&#34;&gt;
