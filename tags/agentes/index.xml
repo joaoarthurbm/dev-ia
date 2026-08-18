@@ -421,10 +421,10 @@ Sempre utilize:
         Cada coisa em seu lugar: do AGENT.md ao agente, que decide qual skill usar; a skill traz procedimentos e boas práticas; as tools executam ações concretas no ambiente. Figura gerada com auxílio do GPT.
     &lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;h2 id=&#34;discussão&#34;&gt;Discussão&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;Em construção.&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&#34;atividade&#34;&gt;Atividade&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;Em construção.&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;discussão-opinião&#34;&gt;Discussão (Opinião)&lt;/h2&gt;
+&lt;p&gt;Ferramentas mudam, conceitos e princípios ficam. Cada vez mais importante: capacidade de abstração, decomposição de problemas, especificação clara e concisa, background sólido em CC, requisitos não-funcionais etc.&lt;/p&gt;
+&lt;p&gt;Engenharia é ainda mais relevante. Requisitos não-funcionais estão além da fronteira de IA.&lt;/p&gt;
+&lt;p&gt;Há um cuidado a ser tomado para continuarmos aprendendo. Isso significa, na prática, automatizar passos, não o todo.&lt;/p&gt;
 &lt;h2 id=&#34;referências&#34;&gt;Referências&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;YANG, John et al. Swe-agent: Agent-computer interfaces enable automated software engineering. &lt;em&gt;Advances in Neural Information Processing Systems&lt;/em&gt;, v. 37, p. 50528-50652, 2024.&lt;/li&gt;
