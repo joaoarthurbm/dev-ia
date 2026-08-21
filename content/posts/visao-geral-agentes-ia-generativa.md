@@ -6,7 +6,8 @@ categories = ["contexto"]
 ppt = "https://docs.google.com/presentation/d/1-8Md6yNYgbNgTKDA4Nr-HczpSmlbqn01ATY94SrmA-g/edit?usp=sharing"
 youtube = ""
 +++
-
+***
+**Disclaimer.**  As notas de aula foram escritas por mim em sua totalidade. Não utilizei auxílio de nenhum modelo, embora não veja problema nesse auxílio. Estou deixando isso claro para que você tenha ciência de que, se houver erro aqui ou achar o material ruim, a culpa é minha mesmo. Vale destacar também que as notas de aula são um guia para a discussão em sala de aula e servem muito pouco como conteúdo para estudo.
 ***
 
 Ao final dessa aula, o aluno deve ser capaz de explicar conceitos fundamentais que constituem a base de conhecimento necessária para a disciplina: visão geral de Engenharia de Software, LLMs, Agentes, *AI Coding Agents*, *Agent Runtimes*, tools, skills, entre outros.
