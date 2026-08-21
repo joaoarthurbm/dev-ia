@@ -1,0 +1,23 @@
+{{ define "main" }}
+
+{{ partial "article" . }}
+
+<section id="home">
+        <ul>
+          {{ range $index, $page := first 40 (sort (where .Site.RegularPages "Section" "in" .Site.Params.mainSections) "Date" "asc") }}
+          <li class="post-card{{if eq $index 0}} first{{end}}">
+            <h2><a class="stretched-link" href="{{ .Permalink }}" title="{{ .Title }}">{{ .Title }}</a></h2>
+            <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+            <p>{{ .Summary }}</p>
+            <div class="post-card-links">
+              <a href="{{ .RelPermalink }}" class="cta-slides cta-slides--sm"><i class="fas fa-book-open" aria-hidden="true"></i> notas da aula</a>
+              {{ if .Params.ppt }}
+              <a href="{{ .Params.ppt }}" class="cta-slides cta-slides--sm"><i class="fas fa-chalkboard-teacher" aria-hidden="true"></i> slides da aula</a>
+              {{ end }}
+            </div>
+          </li>
+          {{ end }}
+        </ul>
+</section>
+
+{{ end }}

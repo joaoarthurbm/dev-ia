@@ -1,0 +1,18 @@
+<article>
+
+    <h1>{{ .Title }}</h1>
+
+    {{ if not .Params.meta }}
+        {{ partial "aside" . }}
+    {{ end }}
+
+    {{ if and (eq .Section "posts") .TableOfContents }}
+    <details id="toc" open>
+        <summary>Sumário</summary>
+        {{ .TableOfContents }}
+    </details>
+    {{ end }}
+
+    {{.Content}}
+
+</article>

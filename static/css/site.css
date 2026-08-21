@@ -1,3 +1,15 @@
+@media only screen and (max-width: 800px) {
+  #container nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 0.5em;
+  }
+
+  #container nav ul li {
+    margin: 0 0.6em;
+  }
+}
+
 #container header ul li a {
   color: #1980e6;
   font-family: "Ruda", sans-serif;
@@ -130,4 +142,130 @@
 .cta-slides--sm {
   padding: 0.3em 0.8em;
   font-size: 0.85rem;
+}
+
+#toc {
+  margin: 1.5em 0;
+  padding: 0.9em 1.4em;
+  background: #f2f4f8;
+  border: 1px solid #dde3ec;
+  border-radius: 8px;
+}
+
+#toc summary {
+  cursor: pointer;
+  font-weight: 700;
+  font-family: "Ruda", sans-serif;
+  color: #06356e;
+}
+
+#toc summary::marker {
+  color: #1980e6;
+}
+
+#toc nav#TableOfContents {
+  margin-top: 0.8em;
+}
+
+#toc nav#TableOfContents ul {
+  display: block;
+  justify-content: normal;
+  padding-left: 0;
+  margin: 0;
+  list-style: none;
+}
+
+#toc nav#TableOfContents ul ul {
+  padding-left: 1.2em;
+  margin: 0.2em 0;
+}
+
+#toc nav#TableOfContents li {
+  margin: 0.4em 0;
+}
+
+#toc nav#TableOfContents a {
+  color: #0b5fc4;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+#toc nav#TableOfContents a:hover {
+  color: #06356e;
+  text-decoration: underline;
+}
+
+#container main section#home ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#container main section#home .post-card {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid #e2e6ec;
+  border-radius: 12px;
+  padding: 1.4em 1.6em;
+  margin: 0 0 1.4em;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+  transition: box-shadow 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+#container main section#home .post-card .stretched-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+#container main section#home .post-card-links {
+  position: relative;
+  z-index: 2;
+}
+
+#container main section#home .post-card:hover {
+  border-color: #1980e6;
+  box-shadow: 0 8px 20px rgba(20, 60, 110, 0.14);
+  transform: translateY(-2px);
+}
+
+#container main section#home .post-card h2 {
+  margin: 0 0 0.3em;
+  font-size: 1.5rem;
+}
+
+#container main section#home .post-card h2 a {
+  color: #0a3d7a;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+#container main section#home .post-card:hover h2 a,
+#container main section#home .post-card h2 a:hover {
+  color: #1980e6;
+  text-decoration: underline;
+}
+
+#container main section#home .post-card time.post-date {
+  display: block;
+  margin: 0 0 0.6em;
+  color: #909090;
+  font-family: "Ruda", sans-serif;
+  font-size: 0.85em;
+}
+
+#container main section#home .post-card p {
+  margin: 0.6em 0 0.8em;
+  color: #333333;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+#container main section#home .post-card-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6em;
+  margin-top: 0.6em;
 }
