@@ -18,9 +18,9 @@
          
          <guid>https://joaoarthurbm.github.io/dev-ia/posts/modelos-e-agentes-ciclo-desenvolvimento/</guid>
          <description>&lt;hr&gt;
-&lt;p&gt;&lt;strong&gt;Disclaimer.&lt;/strong&gt;  As notas de aula foram escritas por mim em sua totalidade. Não utilizei auxílio de nenhum modelo, embora não veja problema nesse auxílio. Estou deixando isso claro para que você tenha ciência de que, se houver erro aqui ou achar o material ruim, a culpa é minha mesmo. Vale destacar também que as notas de aula são um guia para a discussão em sala de aula e servem muito pouco como conteúdo para estudo.&lt;/p&gt;
-&lt;hr&gt;
 &lt;p&gt;Ao final dessa aula, o aluno deve ser capaz de entender como agentes e modelos generativos têm sido usados em práticas de desenvolvimento de software, incluindo entendimento, projeto, implementação, avaliação, implantação e operação; discutir o paralelo entre os relatos de experiência da prática e os estudos científicos; e ter uma visão geral das características do ferramental utilizado.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;Disclaimer.&lt;/strong&gt;  As notas de aula foram escritas por mim em sua totalidade. Não utilizei auxílio de nenhum modelo, embora não veja problema nesse auxílio. Estou deixando isso claro para que você tenha ciência de que, se houver erro aqui ou achar o material ruim, a culpa é minha mesmo. Vale destacar também que as notas de aula são um guia para a discussão em sala de aula e servem muito pouco como conteúdo para estudo.&lt;/p&gt;
 &lt;h2 id=&#34;contexto&#34;&gt;Contexto&lt;/h2&gt;
 &lt;p&gt;Hoje há uma quantidade muito grande de modelos que prometem desempenho em diversas atividades. Como dissemos no passado, não é objetivo da disciplina investigar a fundo o desempenho desses modelos e compará-los.&lt;/p&gt;
 &lt;p&gt;Há tentativas de comparar os modelos de forma sistemática, mas cuidado: benchmarks não são verdade absoluta e precisam ser lidos/entendidos de forma criteriosa. De toda forma, é importante monitorarmos iniciativas como o &lt;a href=&#34;https://www.swebench.com/&#34;&gt;SWE-bench&lt;/a&gt;, o &lt;a href=&#34;https://artificialanalysis.ai/agents/coding-agents&#34;&gt;Artificial Analysis (coding agents)&lt;/a&gt; e o &lt;a href=&#34;https://livecodebench.github.io/&#34;&gt;LiveCodeBench&lt;/a&gt;.&lt;/p&gt;
@@ -252,9 +252,9 @@
          
          <guid>https://joaoarthurbm.github.io/dev-ia/posts/visao-geral-agentes-ia-generativa/</guid>
          <description>&lt;hr&gt;
-&lt;p&gt;&lt;strong&gt;Disclaimer.&lt;/strong&gt;  As notas de aula foram escritas por mim em sua totalidade. Não utilizei auxílio de nenhum modelo, embora não veja problema nesse auxílio. Estou deixando isso claro para que você tenha ciência de que, se houver erro aqui ou achar o material ruim, a culpa é minha mesmo. Vale destacar também que as notas de aula são um guia para a discussão em sala de aula e servem muito pouco como conteúdo para estudo.&lt;/p&gt;
-&lt;hr&gt;
 &lt;p&gt;Ao final dessa aula, o aluno deve ser capaz de explicar conceitos fundamentais que constituem a base de conhecimento necessária para a disciplina: visão geral de Engenharia de Software, LLMs, Agentes, &lt;em&gt;AI Coding Agents&lt;/em&gt;, &lt;em&gt;Agent Runtimes&lt;/em&gt;, tools, skills, entre outros.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;Disclaimer.&lt;/strong&gt;  As notas de aula foram escritas por mim em sua totalidade. Não utilizei auxílio de nenhum modelo, embora não veja problema nesse auxílio. Estou deixando isso claro para que você tenha ciência de que, se houver erro aqui ou achar o material ruim, a culpa é minha mesmo. Vale destacar também que as notas de aula são um guia para a discussão em sala de aula e servem muito pouco como conteúdo para estudo.&lt;/p&gt;
 &lt;h2 id=&#34;contexto&#34;&gt;Contexto&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;Histórico.&lt;/strong&gt; Modelos de classificação e preditivos → Transformers → LLMs → AI Coding Agents.&lt;/p&gt;
 &lt;h2 id=&#34;engenharia-de-software&#34;&gt;Engenharia de Software&lt;/h2&gt;

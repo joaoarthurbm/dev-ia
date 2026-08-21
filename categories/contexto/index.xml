@@ -18,9 +18,9 @@
          
          <guid>https://joaoarthurbm.github.io/dev-ia/posts/visao-geral-agentes-ia-generativa/</guid>
          <description>&lt;hr&gt;
-&lt;p&gt;&lt;strong&gt;Disclaimer.&lt;/strong&gt;  As notas de aula foram escritas por mim em sua totalidade. Não utilizei auxílio de nenhum modelo, embora não veja problema nesse auxílio. Estou deixando isso claro para que você tenha ciência de que, se houver erro aqui ou achar o material ruim, a culpa é minha mesmo. Vale destacar também que as notas de aula são um guia para a discussão em sala de aula e servem muito pouco como conteúdo para estudo.&lt;/p&gt;
-&lt;hr&gt;
 &lt;p&gt;Ao final dessa aula, o aluno deve ser capaz de explicar conceitos fundamentais que constituem a base de conhecimento necessária para a disciplina: visão geral de Engenharia de Software, LLMs, Agentes, &lt;em&gt;AI Coding Agents&lt;/em&gt;, &lt;em&gt;Agent Runtimes&lt;/em&gt;, tools, skills, entre outros.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;Disclaimer.&lt;/strong&gt;  As notas de aula foram escritas por mim em sua totalidade. Não utilizei auxílio de nenhum modelo, embora não veja problema nesse auxílio. Estou deixando isso claro para que você tenha ciência de que, se houver erro aqui ou achar o material ruim, a culpa é minha mesmo. Vale destacar também que as notas de aula são um guia para a discussão em sala de aula e servem muito pouco como conteúdo para estudo.&lt;/p&gt;
 &lt;h2 id=&#34;contexto&#34;&gt;Contexto&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;Histórico.&lt;/strong&gt; Modelos de classificação e preditivos → Transformers → LLMs → AI Coding Agents.&lt;/p&gt;
 &lt;h2 id=&#34;engenharia-de-software&#34;&gt;Engenharia de Software&lt;/h2&gt;
