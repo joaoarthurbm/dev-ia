@@ -3,7 +3,7 @@ title = "Modelos e Agentes no Ciclo de Desenvolvimento de Software"
 date = 2026-08-21
 tags = ["agentes", "benchmarks", "engenharia-de-software"]
 categories = ["ciclo-de-desenvolvimento"]
-ppt = ""
+ppt = "https://docs.google.com/presentation/d/1_fdTLbxhSoRUW2i8DguWi9HHLfXvxYAlHw-IaCK3jlA/edit?usp=sharing"
 youtube = ""
 +++
 
