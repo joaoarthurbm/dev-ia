@@ -6,7 +6,7 @@
        <description>Recent content in Tags on Desenvolvimento de Software com Agentes e IA Generativa</description>
        <generator>Hugo -- gohugo.io</generator>
        <copyright>Copyright &amp;copy; 2026 - joaoarthurbm.github.io. Licença de uso: versão para uso pessoal, sendo proibida sua redistribuição ou modificação.</copyright>
-       <lastBuildDate>Fri, 14 Aug 2026 00:00:00 -0300</lastBuildDate>
+       <lastBuildDate>Fri, 21 Aug 2026 00:00:00 -0300</lastBuildDate>
        
            <atom:link href="https://joaoarthurbm.github.io/dev-ia/tags/index.xml" rel="self" type="application/rss+xml" />
        
@@ -14,9 +14,27 @@
        <item>
          <title>agentes</title>
          <link>https://joaoarthurbm.github.io/dev-ia/tags/agentes/</link>
-         <pubDate>Fri, 14 Aug 2026 00:00:00 -0300</pubDate>
+         <pubDate>Fri, 21 Aug 2026 00:00:00 -0300</pubDate>
          
          <guid>https://joaoarthurbm.github.io/dev-ia/tags/agentes/</guid>
+         <description></description>
+       </item>
+       
+       <item>
+         <title>benchmarks</title>
+         <link>https://joaoarthurbm.github.io/dev-ia/tags/benchmarks/</link>
+         <pubDate>Fri, 21 Aug 2026 00:00:00 -0300</pubDate>
+         
+         <guid>https://joaoarthurbm.github.io/dev-ia/tags/benchmarks/</guid>
+         <description></description>
+       </item>
+       
+       <item>
+         <title>engenharia-de-software</title>
+         <link>https://joaoarthurbm.github.io/dev-ia/tags/engenharia-de-software/</link>
+         <pubDate>Fri, 21 Aug 2026 00:00:00 -0300</pubDate>
+         
+         <guid>https://joaoarthurbm.github.io/dev-ia/tags/engenharia-de-software/</guid>
          <description></description>
        </item>
        
