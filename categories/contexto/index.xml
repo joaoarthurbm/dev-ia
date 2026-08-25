@@ -6,10 +6,161 @@
        <description>Recent content in contexto on Desenvolvimento de Software com Agentes e IA Generativa</description>
        <generator>Hugo -- gohugo.io</generator>
        <copyright>Copyright &amp;copy; 2026 - joaoarthurbm.github.io. Licença de uso: versão para uso pessoal, sendo proibida sua redistribuição ou modificação.</copyright>
-       <lastBuildDate>Fri, 14 Aug 2026 00:00:00 -0300</lastBuildDate>
+       <lastBuildDate>Sat, 22 Aug 2026 00:00:00 -0300</lastBuildDate>
        
            <atom:link href="https://joaoarthurbm.github.io/dev-ia/categories/contexto/index.xml" rel="self" type="application/rss+xml" />
        
+       
+       <item>
+         <title>Anatomia dos Agentes</title>
+         <link>https://joaoarthurbm.github.io/dev-ia/posts/anatomia-dos-agentes/</link>
+         <pubDate>Sat, 22 Aug 2026 00:00:00 -0300</pubDate>
+         
+         <guid>https://joaoarthurbm.github.io/dev-ia/posts/anatomia-dos-agentes/</guid>
+         <description>&lt;hr&gt;
+&lt;p&gt;Ao final dessa aula, o aluno deve ser capaz de explicar o funcionamento interno de agentes; explicar o conceito de &lt;em&gt;&lt;strong&gt;Agent-computer interface&lt;/strong&gt;&lt;/em&gt;;
+; explicar o papel de guardrails e avaliação como componente do loop do agente; identificar os componentes da anatomia (loop, contexto, tools, skills, guardrails) em uma execução real de um &lt;em&gt;AI coding agent&lt;/em&gt; e implementar um protótipo simples de agente (loop simples de percepção-decisão-ação) para consolidar o entendimento mecânico do loop.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;Disclaimer.&lt;/strong&gt;  As notas de aula foram escritas por mim em sua totalidade. Não utilizei auxílio de nenhum modelo, embora não veja problema nesse auxílio. Estou deixando isso claro para que você tenha ciência de que, se houver erro aqui ou achar o material ruim, a culpa é minha mesmo. Vale destacar também que as notas de aula são um guia para a discussão em sala de aula e servem muito pouco como conteúdo para estudo.&lt;/p&gt;
+&lt;h1 id=&#34;ai-coding-agents&#34;&gt;AI Coding Agents&lt;/h1&gt;
+&lt;p&gt;O conceito de agentes é antigo. Não nasceu agora. Tem havido uma sobreposição semântica no termo, isto é, tem se interpretado ultimamente agentes como  “LLM based agents”.&lt;/p&gt;
+&lt;p&gt;De maneira simplória, agente é um loop com tomadas de decisões baseadas em um conjunto de critérios. O que mudou não foi a existência do loop, foi &lt;strong&gt;quem preenche o espaço da decisão dentro dele&lt;/strong&gt;. Antes, alguém definia uma heurística, agora a decisão é terceirizada para uma chamada a um LLM a cada iteração do loop.&lt;/p&gt;
+&lt;p&gt;LLMs não são agentes. LLMs geram texto.  Eles são um componente da decisão que o agente (loop) consulta. Eles estão intrinsecamente relacionados ao raciocínio, não às ações.&lt;/p&gt;
+&lt;p&gt;O LLM &lt;strong&gt;propõe&lt;/strong&gt; a ação; quem &lt;strong&gt;executa,&lt;/strong&gt; quem de fato mexe no sistema de arquivos, roda o subprocesso, chama a API é o agente (harness/loop).&lt;/p&gt;
+&lt;p&gt;Antes, LLMs tinham resultados expressivos em tarefas relacionadas ao entendimento de linguagem natural e tomada de decisão interativa, mas habilidades como raciocínio (chain-of-thought) e planejamento de ações eram estudadas de forma separada.&lt;/p&gt;
+&lt;p&gt;Depois o estudo &amp;ldquo;ReAct: Synergizing Reasoning and Acting in Language Models&amp;rdquo;, ICLR 2023)  formalizou o padrão Thought → Action → Observation.&lt;/p&gt;
+&lt;p&gt;Estudaremos a fundo essa abordagem na aula de prompting. O que precisamos saber agora é que a combinação do LLM (raciocínio) com chamadas de ferramentas é o que dá origem ao loop do agente.&lt;/p&gt;
+&lt;p&gt;O CoT verbalizado ajuda o modelo a decompor a tarefa.&lt;/p&gt;
+&lt;p&gt;Chamar uma ferramenta, fazer uma chamada de API, buscar etc. É esse repertório de ações que dá forma concreta ao &amp;ldquo;Action&amp;rdquo; do ReAct.&lt;/p&gt;
+&lt;p&gt;Depois de agir, o agente reavalia onde está. Usa o que observou para decidir entre responder de vez ou formular o próximo Thought.&lt;/p&gt;
+&lt;p&gt;Um AI Coding Agent é um agente especializado em desenvolvimento de software.&lt;/p&gt;
+&lt;h1 id=&#34;anatomia-de-um-agente-exemplo-concreto&#34;&gt;Anatomia de um agente: exemplo concreto&lt;/h1&gt;
+&lt;p&gt;O vocabulário que está por vir: loop, contexto, tools e guardrails/avaliação.&lt;/p&gt;
+&lt;p&gt;O cenário abaixo é pequeno de propósito: um repositório com uma função &lt;code&gt;apply_discount&lt;/code&gt; que tem um bug, e um teste que falha por causa dele. O prompt usado está abaixo. Depois vamos discutir porque esse pode não ser um bom prompt. Por ora, vamos com ele.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-jsx&#34; data-lang=&#34;jsx&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;**&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;conserte o teste que está falhando em test_inventory.py&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;**&lt;/span&gt;. 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;o-trace&#34;&gt;O trace&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Thought:&lt;/strong&gt; Preciso entender a tarefa antes de agir. O teste test_inventory.py está
+falhando — vou ler o código-fonte e o teste para ver o que está em jogo.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Action:&lt;/strong&gt; read(&lt;a href=&#34;http://inventory.py/&#34;&gt;inventory.py&lt;/a&gt;)
+&lt;strong&gt;Action:&lt;/strong&gt; read(test_inventory.py)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Observation:&lt;/strong&gt;
+def apply_discount(price, percent):
+&amp;ldquo;&amp;ldquo;&amp;ldquo;Aplica um desconto percentual ao preço.&amp;rdquo;&amp;rdquo;&amp;rdquo;
+return price - percent&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;from inventory import apply_discount
+
+def test_apply_discount():
+    assert apply_discount(200, 10) == 180
+&lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;Thought:&lt;/strong&gt; Já tenho o código e o teste, mas ainda não sei o estado atual da
+execução. Antes de mexer em qualquer coisa, vou rodar o teste para confirmar
+a falha e ver a mensagem de erro exata.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Action:&lt;/strong&gt; execute(pytest test_inventory.py -v)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Observation:&lt;/strong&gt;
+FAILED test_inventory.py::test_apply_discount
+assert 190 == 180&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;where 190 = apply_discount(200, 10)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;Thought:&lt;/strong&gt; O teste espera 180, e a função devolveu 190 fazendo price - percent
+(200 - 10 = 190). O docstring diz &amp;ldquo;desconto percentual&amp;rdquo; — isso sugere que
+percent deveria ser tratado como fração de 100, não subtraído diretamente.
+A fórmula correta é price * (1 - percent / 100): 200 * 0.9 = 180, que bate
+com o esperado. Vou aplicar essa correção.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Action:&lt;/strong&gt; edit(&lt;a href=&#34;http://inventory.py/&#34;&gt;inventory.py&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Observation:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;return price - percent&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;return price * (1 - percent / 100)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;Thought:&lt;/strong&gt; Apliquei a correção com base numa hipótese, não numa certeza. Preciso
+rodar o teste de novo para confirmar que a hipótese estava certa antes de
+considerar a tarefa concluída.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Action:&lt;/strong&gt; execute(pytest test_inventory.py -v)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Observation:&lt;/strong&gt;
+test_inventory.py::test_apply_discount PASSED
+1 passed in 0.01s&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;Thought:&lt;/strong&gt; O teste passou. Não há mais falhas conhecidas — a tarefa está concluída.&lt;/p&gt;
+&lt;h2 id=&#34;o-ponto-de-partida&#34;&gt;O ponto de partida&lt;/h2&gt;
+&lt;p&gt;O agente recebe a instrução do usuário.&lt;/p&gt;
+&lt;p&gt;Antes de decidir qualquer coisa, o agente ainda não sabe o que está no repositório. Então a primeira ação é reunir informação.&lt;/p&gt;
+&lt;h3 id=&#34;tool-calling&#34;&gt;Tool Calling&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;read inventory.py
+read test_inventory.py
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;python&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;apply_discount&lt;/span&gt;(price, percent):
+    &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&amp;#34;Aplica um desconto percentual ao preço.&amp;#34;&amp;#34;&amp;#34;&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; price &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; percent
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;python&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; inventory &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; apply_discount
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;test_apply_discount&lt;/span&gt;():
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;assert&lt;/span&gt; apply_discount(&lt;span style=&#34;color:#ae81ff&#34;&gt;200&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;180&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Duas chamadas de ferramenta. Vamos abrir um parênteses aqui para tratar especificamente disso.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Mas como isso é (pode ser) feito?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Padronização do texto + parsing.&lt;/em&gt; o prompt ensina o modelo a escrever &lt;code&gt;Action: nome[argumento]&lt;/code&gt;, e quem está por fora fica caçando esse padrão no texto com regex.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Pedir em formato JSON.&lt;/em&gt; Um meio-termo: pede-se ao modelo que responda em JSON seguindo um formato descrito no próprio prompt. Melhora o parsing, mas ainda não há garantia.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Tool calling nativo.&lt;/em&gt; O provedor do modelo treina o próprio modelo pra emitir a chamada como um tipo de saída estruturado, validado contra um schema que o desenvolvedor declara antes (nome, tipos, quais argumentos são obrigatórios). Quem recebe não faz mais parsing de texto solto, recebe algo já tipado e checado. É isso assim que os agentes funcionam hoje.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Como projetar uma interface para um consumidor que não lê documentação, não é determinístico, e é sensível a tudo que está no contexto ao seu redor?  Projetando interfaces para os mesmos: &lt;strong&gt;Agent-Computer Interface.&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;O conteúdo desses dois arquivos agora faz parte do contexto do agente.&lt;/p&gt;
+&lt;p&gt;O contexto não é um dado que o modelo possui, precisa ser ativamente montado, turno a turno.&lt;/p&gt;
+&lt;p&gt;Refs&lt;/p&gt;
+&lt;p&gt;YANG, John et al. Swe-agent: Agent-computer interfaces enable automated software engineering. &lt;strong&gt;Advances in Neural Information Processing Systems, 2024.&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;a-primeira-volta-do-loop-agir-e-observar-a-falha&#34;&gt;A primeira volta do loop: agir e observar a falha&lt;/h2&gt;
+&lt;p&gt;Com os arquivos lidos, o agente decide que o próximo passo natural é confirmar o problema rodando o teste. Isso já é uma decisão, ainda que pequena: a escolha de investigar antes de agir sobre a causa.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;execute: pytest test_inventory.py
+&lt;/code&gt;&lt;/pre&gt;&lt;pre&gt;&lt;code&gt;FAILED test_inventory.py::test_apply_discount - assert 190 == 180
+E       assert 190 == 180
+E        +  where 190 = apply_discount(200, 10)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Essa saída de erro é o segundo tipo de contexto que aparece no exemplo, e é diferente do primeiro: não veio de um arquivo estático, veio do &lt;em&gt;resultado de uma ação do próprio agente&lt;/em&gt;. É exatamente esse ciclo: &lt;strong&gt;agir&lt;/strong&gt;, &lt;strong&gt;observar&lt;/strong&gt; o resultado, e &lt;strong&gt;usar&lt;/strong&gt; esse resultado para decidir a próxima ação.. Sem essa realimentação, o agente teria apenas um palpite sobre o código.&lt;/p&gt;
+&lt;h2 id=&#34;thought-o-passo-que-normalmente-não-aparece&#34;&gt;Thought: O passo que normalmente não aparece&lt;/h2&gt;
+&lt;p&gt;Entre observar &lt;code&gt;190 == 180&lt;/code&gt; e decidir editar o arquivo, há um raciocínio: &amp;ldquo;&lt;code&gt;percent&lt;/code&gt; está sendo subtraído do preço em vez de aplicado como uma fração&amp;rdquo;. Esse passo não gera nenhuma chamada de ferramenta. Ele faz parte do “thought”. Normalmente as ferramentas escondem isso, mas aqui o que foi gerado pelo log no nosso exemplo:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-jsx&#34; data-lang=&#34;jsx&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;**&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;Thought&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:**&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;O&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;teste&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;espera&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;180&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;e&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;função&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;devolveu&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;190&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;fazendo&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;price&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;percent&lt;/span&gt;
+(&lt;span style=&#34;color:#ae81ff&#34;&gt;200&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;190&lt;/span&gt;).
+
+&lt;span style=&#34;color:#a6e22e&#34;&gt;O&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;docstring&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;diz&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;desconto percentual&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;—&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;isso&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sugere&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;que&lt;/span&gt;
+&lt;span style=&#34;color:#a6e22e&#34;&gt;percent&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;deveria&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;ser&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;tratado&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;como&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;fração&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;de&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;100&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;não&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;subtraído&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;diretamente&lt;/span&gt;.
+
+&lt;span style=&#34;color:#a6e22e&#34;&gt;A&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;fórmula&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;correta&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;é&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;price&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; (&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;percent&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;100&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;200&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0.9&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;180&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;que&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;bate&lt;/span&gt;
+&lt;span style=&#34;color:#a6e22e&#34;&gt;com&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;o&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;esperado&lt;/span&gt;.
+
+&lt;span style=&#34;color:#a6e22e&#34;&gt;Vou&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;aplicar&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;essa&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;correção&lt;/span&gt;.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Isso aqui é o LLM processando o contexto acumulado (a função, a documentação, o teste, o erro) e decidindo o que fazer a seguir.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;O docstring diz &amp;ldquo;aplica um desconto &lt;strong&gt;percentual&lt;/strong&gt;&amp;rdquo;. O LLM viu esse padrão de código milhares de vezes no treinamento. Isso não é raciocínio matemático, é reconhecimento de padrão: &amp;ldquo;desconto percentual&amp;rdquo; quase sempre vira &lt;code&gt;price * (1 - percent/100)&lt;/code&gt; em código real.&lt;/p&gt;
+&lt;p&gt;O teste dá &lt;strong&gt;um único par entrada/saída.&lt;/strong&gt; Isso não especifica a fórmula, só restringe o espaço de fórmulas possíveis. Muitas soluções passariam nesse teste. O agente escolheu a que casa com o padrão textual do passo anterior.&lt;/p&gt;
+&lt;h2 id=&#34;segunda-volta-do-loop-agir-sobre-a-causa&#34;&gt;Segunda volta do loop: agir sobre a causa&lt;/h2&gt;
+&lt;p&gt;Com o diagnóstico feito, o agente edita o arquivo:&lt;/p&gt;
+&lt;p&gt;diff&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-diff&#34; data-lang=&#34;diff&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;- return price - percent
+&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;+ return price * (1 - percent / 100)
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Essa é a ação central da tarefa, mas note que ela só foi possível porque as duas voltas anteriores do loop (ler, depois rodar e observar a falha) já tinham montado o contexto necessário. Se o agente tivesse editado o arquivo na primeira iteração, sem rodar o teste antes, estaria decidindo às cegas.&lt;/p&gt;
+&lt;h2 id=&#34;o-guardrail-como-o-agente-sabe-que-terminou&#34;&gt;O guardrail: como o agente sabe que terminou&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;execute: pytest test_inventory.py
+&lt;/code&gt;&lt;/pre&gt;&lt;pre&gt;&lt;code&gt;test_inventory.py::test_apply_discount PASSED
+1 passed in 0.01s
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Agente decide parar porque um critério verificável (o teste passou) foi satisfeito. Esse é o papel de guardrails e avaliação dentro do loop: não é uma etapa de qualidade de código feita depois, por um humano ou por outra ferramenta. É o mecanismo que o agente usa, em tempo real, para decidir entre continuar, tentar de novo, ou parar. Tirem esse passo do exemplo e o agente não tem como saber se &lt;code&gt;price * (1 - percent / 100)&lt;/code&gt; era a correção certa ou apenas mais uma tentativa.&lt;/p&gt;
+&lt;h1 id=&#34;generalizando&#34;&gt;Generalizando&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-jsx&#34; data-lang=&#34;jsx&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;contexto&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [&lt;span style=&#34;color:#a6e22e&#34;&gt;tarefa&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;inicial&lt;/span&gt;]
+&lt;span style=&#34;color:#a6e22e&#34;&gt;enquanto&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;não&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;terminou&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;thought&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;action&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;LLM&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;contexto&lt;/span&gt;)
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;se&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;action&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;parar&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;terminou&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;verdadeiro&lt;/span&gt;
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;senão&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;observation&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;executar&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;action&lt;/span&gt;)
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;contexto&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;contexto&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; [&lt;span style=&#34;color:#a6e22e&#34;&gt;thought&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;action&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;observation&lt;/span&gt;]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;referências&#34;&gt;Referências&lt;/h1&gt;
+&lt;p&gt;ReAct: Synergizing Reasoning and Acting in Language Models&amp;quot;, ICLR 2023)&lt;/p&gt;
+</description>
+       </item>
        
        <item>
          <title>Visão Geral de Desenvolvimento de Software com Agentes e IA Generativa</title>

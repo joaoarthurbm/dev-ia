@@ -6,7 +6,7 @@
        <description>Recent content in Tags on Desenvolvimento de Software com Agentes e IA Generativa</description>
        <generator>Hugo -- gohugo.io</generator>
        <copyright>Copyright &amp;copy; 2026 - joaoarthurbm.github.io. Licença de uso: versão para uso pessoal, sendo proibida sua redistribuição ou modificação.</copyright>
-       <lastBuildDate>Fri, 21 Aug 2026 00:00:00 -0300</lastBuildDate>
+       <lastBuildDate>Sat, 22 Aug 2026 00:00:00 -0300</lastBuildDate>
        
            <atom:link href="https://joaoarthurbm.github.io/dev-ia/tags/index.xml" rel="self" type="application/rss+xml" />
        
@@ -14,9 +14,18 @@
        <item>
          <title>agentes</title>
          <link>https://joaoarthurbm.github.io/dev-ia/tags/agentes/</link>
-         <pubDate>Fri, 21 Aug 2026 00:00:00 -0300</pubDate>
+         <pubDate>Sat, 22 Aug 2026 00:00:00 -0300</pubDate>
          
          <guid>https://joaoarthurbm.github.io/dev-ia/tags/agentes/</guid>
+         <description></description>
+       </item>
+       
+       <item>
+         <title>ai coding agents</title>
+         <link>https://joaoarthurbm.github.io/dev-ia/tags/ai-coding-agents/</link>
+         <pubDate>Sat, 22 Aug 2026 00:00:00 -0300</pubDate>
+         
+         <guid>https://joaoarthurbm.github.io/dev-ia/tags/ai-coding-agents/</guid>
          <description></description>
        </item>
        
