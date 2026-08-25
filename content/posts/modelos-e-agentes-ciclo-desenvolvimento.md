@@ -238,6 +238,8 @@ CI/CD assistido, infraestrutura como código gerada por IA, observabilidade, SRE
 
 **O que a pesquisa mostra.** *"From Assistance to Agency: Rethinking Autonomy and Control in CI/CD Pipelines"* (Barnes, Ghaleb e Hassan, AIware 2026) distingue autoridade de *data-plane* (ações localizadas: gerar patch, reexecutar teste) de autoridade de *control-plane* (mudar política de deploy, gates de aprovação). Hoje, os agentes ficam quase inteiramente confinados ao data-plane. Um segundo achado, *"Verifier-First Evaluation of Agentic LLMs for Infrastructure-as-Code Generation"* (2026), é mais incômodo: um artefato de infraestrutura pode ser sintaticamente válido e, ainda assim, **violar política de segurança.**
 
+*"Making Deployments Safe at Meta: Health Checks for Continuous Change-Safety"* https://atscaleconference.com/making-deployments-safe-at-meta/ e https://arxiv.org/abs/2608.20513
+
 Autonomia real hoje é limitada. O risco em implantação é semântico, não sintático, e por isso é complexo para verificadores superficiais.
 
 **O que muda.** De "executar o deploy" para "definir os limites de decisão autônoma do agente".
