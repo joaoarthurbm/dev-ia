@@ -154,10 +154,10 @@ Como projetar uma interface para um consumidor que não lê documentação, não
 
 
 É tudo sobre os princípios:
-    * Actions should be simple and easy to understand for agents.
-    * Actions should be compact and efficient.
-    * Environment feedback should be informative but concise.
-    * Guardrails mitigate error propagation and hasten recovery
+- *Actions should be simple and easy to understand for agents.*
+- *Actions should be compact and efficient.*
+- *Environment feedback should be informative but concise.*
+- *Guardrails mitigate error propagation and hasten recovery.*
 
 ---
 
