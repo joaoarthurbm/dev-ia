@@ -139,7 +139,7 @@ E        +  where 190 = apply_discount(200, 10)
 &lt;span style=&#34;color:#a6e22e&#34;&gt;com&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;o&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;esperado&lt;/span&gt;.
 
 &lt;span style=&#34;color:#a6e22e&#34;&gt;Vou&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;aplicar&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;essa&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;correção&lt;/span&gt;.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt; aqui é o LLM processando o contexto acumulado (a função, a documentação, o teste, o erro) e decidindo o que fazer a seguir.&lt;/strong&gt;strong&amp;gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt; Isso aqui é o LLM processando o contexto acumulado (a função, a documentação, o teste, o erro) e decidindo o que fazer a seguir.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;O docstring diz &amp;ldquo;aplica um desconto &lt;strong&gt;percentual&lt;/strong&gt;&amp;rdquo;. O LLM viu esse padrão de código milhares de vezes no treinamento. Isso não é raciocínio matemático, é reconhecimento de padrão: &amp;ldquo;desconto percentual&amp;rdquo; quase sempre vira &lt;code&gt;price * (1 - percent/100)&lt;/code&gt; em código real.&lt;/p&gt;
 &lt;p&gt;O teste dá &lt;strong&gt;um único par entrada/saída.&lt;/strong&gt; Isso não especifica a fórmula, só restringe o espaço de fórmulas possíveis. Muitas soluções passariam nesse teste. O agente escolheu a que casa com o padrão textual do passo anterior.&lt;/p&gt;
 &lt;h2 id=&#34;segunda-volta-do-loop-agir-sobre-a-causa&#34;&gt;Segunda volta do loop: agir sobre a causa&lt;/h2&gt;
