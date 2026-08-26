@@ -270,7 +270,7 @@ E        +  where 190 = apply_discount(200, 10)
 <span style="color:#a6e22e">com</span> <span style="color:#a6e22e">o</span> <span style="color:#a6e22e">esperado</span>.
 
 <span style="color:#a6e22e">Vou</span> <span style="color:#a6e22e">aplicar</span> <span style="color:#a6e22e">essa</span> <span style="color:#a6e22e">correção</span>.
-</code></pre></div><p><strong>Isso aqui é o LLM processando o contexto acumulado (a função, a documentação, o teste, o erro) e decidindo o que fazer a seguir.</strong></p>
+</code></pre></div><p><strong> aqui é o LLM processando o contexto acumulado (a função, a documentação, o teste, o erro) e decidindo o que fazer a seguir.</strong>strong&gt;</p>
 <p>O docstring diz &ldquo;aplica um desconto <strong>percentual</strong>&rdquo;. O LLM viu esse padrão de código milhares de vezes no treinamento. Isso não é raciocínio matemático, é reconhecimento de padrão: &ldquo;desconto percentual&rdquo; quase sempre vira <code>price * (1 - percent/100)</code> em código real.</p>
 <p>O teste dá <strong>um único par entrada/saída.</strong> Isso não especifica a fórmula, só restringe o espaço de fórmulas possíveis. Muitas soluções passariam nesse teste. O agente escolheu a que casa com o padrão textual do passo anterior.</p>
 <h2 id="segunda-volta-do-loop-agir-sobre-a-causa">Segunda volta do loop: agir sobre a causa</h2>
