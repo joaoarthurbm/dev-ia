@@ -241,11 +241,13 @@ read test_inventory.py
 <li><em>Tool calling nativo.</em> O provedor do modelo treina o próprio modelo pra emitir a chamada como um tipo de saída estruturado, validado contra um schema que o desenvolvedor declara antes (nome, tipos, quais argumentos são obrigatórios). Quem recebe não faz mais parsing de texto solto, recebe algo já tipado e checado. É isso assim que os agentes funcionam hoje.</li>
 </ul>
 <p>Como projetar uma interface para um consumidor que não lê documentação, não é determinístico, e é sensível a tudo que está no contexto ao seu redor?  Projetando interfaces para os mesmos: <strong>Agent-Computer Interface.</strong></p>
-<p>É tudo sobre os princípios:
-* Actions should be simple and easy to understand for agents.
-* Actions should be compact and efficient.
-* Environment feedback should be informative but concise.
-* Guardrails mitigate error propagation and hasten recovery</p>
+<p>É tudo sobre os princípios:</p>
+<ul>
+<li><em>Actions should be simple and easy to understand for agents.</em></li>
+<li><em>Actions should be compact and efficient.</em></li>
+<li><em>Environment feedback should be informative but concise.</em></li>
+<li><em>Guardrails mitigate error propagation and hasten recovery.</em></li>
+</ul>
 <hr>
 <p>O conteúdo desses dois arquivos agora faz parte do contexto do agente.</p>
 <p>O contexto não é um dado que o modelo possui, precisa ser ativamente montado, turno a turno.</p>
