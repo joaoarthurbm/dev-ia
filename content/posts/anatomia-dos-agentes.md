@@ -152,6 +152,13 @@ Mas como isso é (pode ser) feito?
 
 Como projetar uma interface para um consumidor que não lê documentação, não é determinístico, e é sensível a tudo que está no contexto ao seu redor?  Projetando interfaces para os mesmos: **Agent-Computer Interface.**
 
+
+É tudo sobre os princípios:
+    - Actions should be simple and easy to understand for agents.
+    - Actions should be compact and efficient.
+    - Environment feedback should be informative but concise.
+    - Guardrails mitigate error propagation and hasten recovery
+
 ---
 
 O conteúdo desses dois arquivos agora faz parte do contexto do agente. 
