@@ -111,10 +111,10 @@ read test_inventory.py
 &lt;/ul&gt;
 &lt;p&gt;Como projetar uma interface para um consumidor que não lê documentação, não é determinístico, e é sensível a tudo que está no contexto ao seu redor?  Projetando interfaces para os mesmos: &lt;strong&gt;Agent-Computer Interface.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;É tudo sobre os princípios:
-- Actions should be simple and easy to understand for agents.
-- Actions should be compact and efficient.
-- Environment feedback should be informative but concise.
-- Guardrails mitigate error propagation and hasten recovery&lt;/p&gt;
+* Actions should be simple and easy to understand for agents.
+* Actions should be compact and efficient.
+* Environment feedback should be informative but concise.
+* Guardrails mitigate error propagation and hasten recovery&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;O conteúdo desses dois arquivos agora faz parte do contexto do agente.&lt;/p&gt;
 &lt;p&gt;O contexto não é um dado que o modelo possui, precisa ser ativamente montado, turno a turno.&lt;/p&gt;
