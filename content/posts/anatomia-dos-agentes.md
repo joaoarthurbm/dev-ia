@@ -154,10 +154,10 @@ Como projetar uma interface para um consumidor que não lê documentação, não
 
 
 É tudo sobre os princípios:
-    - Actions should be simple and easy to understand for agents.
-    - Actions should be compact and efficient.
-    - Environment feedback should be informative but concise.
-    - Guardrails mitigate error propagation and hasten recovery
+    * Actions should be simple and easy to understand for agents.
+    * Actions should be compact and efficient.
+    * Environment feedback should be informative but concise.
+    * Guardrails mitigate error propagation and hasten recovery
 
 ---
 
@@ -202,7 +202,7 @@ com o esperado.
 Vou aplicar essa correção.
 ```
 
-**Isso aqui é o LLM processando o contexto acumulado (a função, a documentação, o teste, o erro) e decidindo o que fazer a seguir.** 
+<strong> Isso aqui é o LLM processando o contexto acumulado (a função, a documentação, o teste, o erro) e decidindo o que fazer a seguir.</strong>
 
 O docstring diz "aplica um desconto **percentual**". O LLM viu esse padrão de código milhares de vezes no treinamento. Isso não é raciocínio matemático, é reconhecimento de padrão: "desconto percentual" quase sempre vira `price * (1 - percent/100)` em código real.
 
