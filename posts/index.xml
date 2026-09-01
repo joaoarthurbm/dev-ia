@@ -6,10 +6,393 @@
        <description>Recent content in Posts on Desenvolvimento de Software com Agentes e IA Generativa</description>
        <generator>Hugo -- gohugo.io</generator>
        <copyright>Copyright &amp;copy; 2026 - joaoarthurbm.github.io. Licença de uso: versão para uso pessoal, sendo proibida sua redistribuição ou modificação.</copyright>
-       <lastBuildDate>Sat, 22 Aug 2026 00:00:00 -0300</lastBuildDate>
+       <lastBuildDate>Tue, 01 Sep 2026 00:00:00 -0300</lastBuildDate>
        
            <atom:link href="https://joaoarthurbm.github.io/dev-ia/posts/index.xml" rel="self" type="application/rss+xml" />
        
+       
+       <item>
+         <title>MCP: o Protocolo que Padroniza a Interface entre Agentes e Sistemas</title>
+         <link>https://joaoarthurbm.github.io/dev-ia/posts/mcp/</link>
+         <pubDate>Tue, 01 Sep 2026 00:00:00 -0300</pubDate>
+         
+         <guid>https://joaoarthurbm.github.io/dev-ia/posts/mcp/</guid>
+         <description>&lt;hr&gt;
+&lt;p&gt;Ao final dessa aula, o aluno deve ser capaz de definir o que é o MCP; entender e explicar dois problemas que ele resolve (interface para agentes e integração N×M); implementar um servidor MCP; conhecer boas práticas na implementação de tools; e avaliar a qualidade de um servidor MCP.&lt;/p&gt;
+&lt;h2 id=&#34;preâmbulo&#34;&gt;Preâmbulo&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Sobre as notas de aula.&lt;/strong&gt; Conteúdo escrito por mim em sua totalidade. Tabelas e figura foram geradas com auxílio do Claude. Estou deixando isso claro para que você tenha ciência de que, se houver erro aqui ou achar o material ruim, a culpa é minha mesmo. As notas de aula são um guia para a discussão em sala de aula e servem muito pouco como conteúdo para estudo.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Eu não traduzi &lt;em&gt;tools&lt;/em&gt;.&lt;/strong&gt; &lt;em&gt;Tool&lt;/em&gt; é um termo técnico do ecossistema de agentes com uma semântica bem definida. Se eu traduzisse para &amp;ldquo;ferramenta&amp;rdquo;, poderia confundir dependendo do contexto, porque é mais amplo.&lt;/p&gt;
+&lt;h2 id=&#34;contexto&#34;&gt;Contexto&lt;/h2&gt;
+&lt;p&gt;Agentes invocando &lt;em&gt;tools&lt;/em&gt; representou um grande avanço na área.&lt;/p&gt;
+&lt;p&gt;Mas como isso é (pode ser) feito?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Padronização do texto + parsing.&lt;/em&gt; O prompt ensina o modelo a escrever &lt;code&gt;Action: nome[argumento]&lt;/code&gt;, e quem está por fora fica caçando esse padrão no texto com regex.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Pedir em formato JSON.&lt;/em&gt; Um meio-termo: pede-se ao modelo que responda em JSON seguindo um formato descrito no próprio prompt. Melhora o parsing, mas ainda não há garantia.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Tool calling nativo.&lt;/em&gt; O provedor do modelo treina o próprio modelo para emitir a chamada como um tipo de saída estruturado, validado contra um schema que o desenvolvedor declara antes (nome, tipos, quais argumentos são obrigatórios). Quem recebe não faz mais parsing de texto solto, recebe algo já tipado e checado. É assim que os agentes funcionam hoje.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Como projetar uma interface para um consumidor que não lê documentação, não é determinístico, e é sensível a tudo que está no contexto ao seu redor? Projetando interfaces para os mesmos: &lt;strong&gt;Agent-Computer Interface.&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;relembrando-aci&#34;&gt;Relembrando ACI&lt;/h3&gt;
+&lt;figure style=&#34;align: center; margin-left:5%; width: 90%&#34;&gt;
+    &lt;img src=&#34;swe-agent-aci-diagrama.png&#34;&gt;
+    &lt;figcaption align=&#34;center&#34;&gt;
+        Figura retirada do artigo SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering.
+    &lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure style=&#34;align: center; margin-left:5%; width: 90%&#34;&gt;
+    &lt;img src=&#34;swe-agent-edit-linting.png&#34;&gt;
+    &lt;figcaption align=&#34;center&#34;&gt;
+        Figura retirada do artigo SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering.
+    &lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Podemos enxergar ACI como um princípio de design: escrever APIs que sejam adequadas para os agentes consumirem.&lt;/p&gt;
+&lt;p&gt;É tudo sobre os princípios:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Actions should be simple and easy to understand for agents.&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Actions should be compact and efficient.&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Environment feedback should be informative but concise.&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Guardrails mitigate error propagation and hasten recovery.&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Escrever para o agente ler é uma habilidade de engenharia.&lt;/p&gt;
+&lt;p&gt;MCP é um protocolo que padroniza descoberta e invocação de &lt;em&gt;tools&lt;/em&gt; entre agente e sistema. Uma implementação do princípio de ACI.&lt;/p&gt;
+&lt;figure style=&#34;align: center; margin-left:5%; width: 90%&#34;&gt;
+    &lt;img src=&#34;mcp-protocolo-modelcontextprotocol.png&#34;&gt;
+    &lt;figcaption align=&#34;center&#34;&gt;
+        Fonte: &lt;a class=&#34;external&#34; href=&#34;https://modelcontextprotocol.io/docs/2026-07-28/getting-started/intro&#34;&gt;modelcontextprotocol.io&lt;/a&gt;.
+    &lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Implementar servidor MCP é aplicar ACI na prática.&lt;/p&gt;
+&lt;p&gt;MCP Server: expõe &lt;em&gt;tools&lt;/em&gt;, dados e prompts que podem ser utilizados pelo agente.&lt;/p&gt;
+&lt;p&gt;Três primitivas:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Tools:&lt;/strong&gt; ação, algo que o agente executa.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Resources:&lt;/strong&gt; dado, algo que o agente lê (sem efeito colateral).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Prompts:&lt;/strong&gt; template, uma interação reutilizável que o servidor sugere, para o host oferecer ao agente ou ao usuário.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;pergunta&#34;&gt;Pergunta&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Não basta passar a documentação da API para o modelo?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Contexto: doc inteira consome muito e degrada desempenho (&lt;em&gt;Lost in the Middle&lt;/em&gt;, &lt;em&gt;Context Rot&lt;/em&gt;).&lt;/li&gt;
+&lt;li&gt;Confiabilidade: chamada gerada livre a cada vez, erro silencioso.&lt;/li&gt;
+&lt;li&gt;Reuso: aprendizado via contexto não persiste entre sessões.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Interoperabilidade: N×M virou N+M. Um protocolo comum para todos os provedores.&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Segurança: acesso amplo via documentação e credenciais versus escopo controlado por servidor.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;visão-geral&#34;&gt;Visão Geral&lt;/h3&gt;
+&lt;figure style=&#34;align: center; margin-left:5%; width: 90%&#34;&gt;
+    &lt;img src=&#34;mcp-arquitetura-exemplo.png&#34;&gt;
+    &lt;figcaption align=&#34;center&#34;&gt;
+        Figura gerada com auxílio do ChatGPT.
+    &lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h2 id=&#34;mcp-um-exemplo-prático&#34;&gt;MCP: um exemplo prático&lt;/h2&gt;
+&lt;h3 id=&#34;preâmbulo-1&#34;&gt;Preâmbulo&lt;/h3&gt;
+&lt;p&gt;Repositório do exemplo: &lt;a href=&#34;https://github.com/dev-ia-ufcg/material/tree/main/mcp&#34;&gt;github.com/dev-ia-ufcg/material/tree/main/mcp&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;SDK: &lt;a href=&#34;https://modelcontextprotocol.io/docs/2026-07-28/sdk&#34;&gt;modelcontextprotocol.io/docs/2026-07-28/sdk&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;visão-geral-do-código&#34;&gt;Visão Geral do Código&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Arquivo&lt;/th&gt;
+&lt;th&gt;O que faz&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;python/server.py&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Servidor MCP expondo 1 tool, 1 resource, 1 prompt&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;python/client.py&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Cliente programático com logging de todo o tráfego JSON-RPC&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;python/trace-completo.txt&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Trace pré-capturado (fallback garantido)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Primitivo&lt;/th&gt;
+&lt;th&gt;Nome&lt;/th&gt;
+&lt;th&gt;O que faz&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Tool&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;aplicar_desconto&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;Ação.&lt;/strong&gt; O LLM decide chamar para aplicar um cupom e calcular novo valor.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Resource&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;loja://regras/cupons&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;Documento&lt;/strong&gt; read-only. A tabela de cupons e regras de desconto da loja.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Prompt&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;resumir_pedido&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Template que o servidor gera para o LLM usar.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;setup&#34;&gt;Setup&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;cd python
+python3 -m venv .venv
+./.venv/bin/pip install mcp
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;mcp-server&#34;&gt;MCP Server&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;@server.tool&lt;/span&gt;()
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;aplicar_desconto&lt;/span&gt;(id_pedido: str, cupom: str) &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; str:
+    &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&amp;#34;Aplica um cupom de desconto a um pedido e devolve o novo valor a pagar.&amp;#34;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Anotação para definir uma tool.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Docstring&lt;/em&gt; como &lt;em&gt;description&lt;/em&gt; para o agente.&lt;/p&gt;
+&lt;p&gt;Parâmetros viram &lt;code&gt;inputSchema&lt;/code&gt; automaticamente.&lt;/p&gt;
+&lt;p&gt;Se der erro, levanta &lt;code&gt;ToolError&lt;/code&gt; e o servidor retorna &lt;code&gt;isError: true&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;resource&#34;&gt;Resource&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;@server.resource&lt;/span&gt;(
+    &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;loja://regras/cupons&amp;#34;&lt;/span&gt;,
+    title&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Regras de descontos e cupons&amp;#34;&lt;/span&gt;,
+    description&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Documento de somente leitura com a tabela de cupons e regras de desconto da loja.&amp;#34;&lt;/span&gt;,
+    mime_type&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;application/json&amp;#34;&lt;/span&gt;,
+)
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;regras_cupons&lt;/span&gt;() &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; str:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; json&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;dumps(CUPONS, ensure_ascii&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;False, indent&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Resource é um &lt;strong&gt;endpoint de dados read-only&lt;/strong&gt;, identificado por URI.&lt;/p&gt;
+&lt;p&gt;Um arquivo de config, um PDF, uma imagem que o servidor expõe.&lt;/p&gt;
+&lt;p&gt;O cliente pode pedir a qualquer momento. Não depende de decisão do LLM.&lt;/p&gt;
+&lt;p&gt;Retorna JSON com todos os pedidos.&lt;/p&gt;
+&lt;p&gt;Diferença entre tool e resource:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;Diferença fundamental: Tool o LLM &lt;em&gt;escolhe&lt;/em&gt; chamar. Resource o host/cliente &lt;em&gt;puxa&lt;/em&gt; quando precisa.&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Tools: &lt;em&gt;model-controlled&lt;/em&gt;, o próprio modelo decide quando invocar, dentro do loop do agente.&lt;/li&gt;
+&lt;li&gt;Resources: &lt;em&gt;application-controlled&lt;/em&gt;, o host ou o usuário decide quando ler e anexar, o modelo não busca sozinho.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Exemplo concreto, dois cenários que mostram a diferença:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Cenário A, usuário decide: o painel tem um botão &amp;ldquo;anexar recurso&amp;rdquo;, lista os resources do servidor loja-demo, o atendente clica em &amp;ldquo;Lista de pedidos&amp;rdquo; antes de perguntar algo ao agente.&lt;/li&gt;
+&lt;li&gt;Cenário B, host (por exemplo, Claude Code) decide sozinho: o código do painel tem uma regra fixa, tipo &amp;ldquo;toda conversa nova já começa com pedidos://todos anexado&amp;rdquo;, nenhum clique do atendente.&lt;/li&gt;
+&lt;li&gt;Nos dois casos, quem decide não é o modelo. Ele não chama &lt;code&gt;resources/read&lt;/code&gt; por iniciativa própria, do jeito que chamaria &lt;code&gt;consultar_pedido&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Contraste direto com tools, usando o mesmo exemplo:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Tool: o atendente pergunta &amp;ldquo;qual o status do pedido 1001&amp;rdquo;, o modelo decide sozinho chamar &lt;code&gt;consultar_pedido&lt;/code&gt;, dentro do loop.&lt;/li&gt;
+&lt;li&gt;Resource: o modelo nunca decide sozinho ler &lt;code&gt;pedidos://todos&lt;/code&gt;. Alguém fora do loop, painel ou atendente, decide isso antes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Definições importantes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Host = o cliente (o &lt;code&gt;client.py&lt;/code&gt; que escrevemos, ou no mundo real o OpenCode / Claude Desktop / Cursor / Copilot).&lt;/li&gt;
+&lt;li&gt;Usuário = a pessoa que opera o host.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;prompt&#34;&gt;Prompt&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;@server.prompt&lt;/span&gt;(
+    title&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Resumir pedido para o cliente&amp;#34;&lt;/span&gt;,
+    description&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Gera um template de mensagem resumindo um pedido para o cliente.&amp;#34;&lt;/span&gt;,
+)
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;resumir_pedido&lt;/span&gt;(id_pedido: str) &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; str:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;Prompt não executa nada. Retorna &lt;strong&gt;um template&lt;/strong&gt; de mensagem.&lt;/li&gt;
+&lt;li&gt;O servidor diz ao LLM: &amp;ldquo;quando for resumir o pedido X, use essa instrução&amp;rdquo;.&lt;/li&gt;
+&lt;li&gt;O resultado tem &lt;code&gt;role: &amp;quot;user&amp;quot;&lt;/code&gt; com o texto pronto.&lt;/li&gt;
+&lt;li&gt;É como se o servidor injetasse um &lt;em&gt;system prompt&lt;/em&gt; sob demanda.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;Prompt é o mecanismo mais sutil: o servidor não executa, não retorna dados. Ele &lt;em&gt;guia&lt;/em&gt; o LLM.&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;cliente&#34;&gt;Cliente&lt;/h3&gt;
+&lt;p&gt;Cada bloco &lt;code&gt;print&lt;/code&gt; + &lt;code&gt;await&lt;/code&gt; corresponde a uma etapa do protocolo:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Linha&lt;/th&gt;
+&lt;th&gt;Método&lt;/th&gt;
+&lt;th&gt;O que faz&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;72&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;session.initialize()&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Handshake&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;75&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;session.list_tools()&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Descobre tools disponíveis&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;78&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;session.call_tool(...)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Chama tool com sucesso (cupom 10OFF)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;81&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;session.call_tool(...)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Chama tool com erro (cupom inválido)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;84&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;session.list_resources()&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Descobre resources disponíveis&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;87&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;session.read_resource(...)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Lê o resource &lt;code&gt;loja://regras/cupons&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;90&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;session.list_prompts()&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Descobre prompts disponíveis&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;93&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;session.get_prompt(...)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Obtém template do prompt&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;No OpenCode: &lt;a href=&#34;https://opencode.ai/docs/mcp-servers/&#34;&gt;documentação de MCP servers&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;o-trace&#34;&gt;O trace&lt;/h3&gt;
+&lt;h4 id=&#34;tool&#34;&gt;Tool&lt;/h4&gt;
+&lt;p&gt;&amp;ldquo;Tools are a new kind of software which reflects a contract between deterministic systems and non-deterministic agents.&amp;rdquo;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;//&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;Request&lt;/span&gt;
+{ &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;method&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;tools/call&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;params&amp;#34;&lt;/span&gt;: { &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;aplicar_desconto&amp;#34;&lt;/span&gt;,
+    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;arguments&amp;#34;&lt;/span&gt;: {&lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;id_pedido&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;1001&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;cupom&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;10OFF&amp;#34;&lt;/span&gt;} } }
+&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;//&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;Response&lt;/span&gt;
+{ &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;result&amp;#34;&lt;/span&gt;: { &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;content&amp;#34;&lt;/span&gt;: [{&lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;text&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Cupom 10OFF aplicado... Valor original R$ 349.90 -&amp;gt; novo valor R$ 314.91&amp;#34;&lt;/span&gt;}],
+    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;isError&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;false&lt;/span&gt; } }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;Tool: o LLM manda argumentos, o servidor &lt;strong&gt;executa a ação&lt;/strong&gt; (calcula o desconto) e devolve o resultado. Tem &lt;code&gt;isError&lt;/code&gt;, pode falhar. É uma operação.&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;resource-1&#34;&gt;Resource&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;//&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;Request&lt;/span&gt;
+{ &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;method&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;resources/read&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;params&amp;#34;&lt;/span&gt;: { &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;uri&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;loja://regras/cupons&amp;#34;&lt;/span&gt; } }
+&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;//&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;Response&lt;/span&gt;
+{ &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;result&amp;#34;&lt;/span&gt;: { &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;contents&amp;#34;&lt;/span&gt;: [{&lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;mimeType&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;application/json&amp;#34;&lt;/span&gt;,
+    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;text&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;{ \&amp;#34;10OFF\&amp;#34;: { \&amp;#34;tipo\&amp;#34;: \&amp;#34;percentual\&amp;#34;, ... } }&amp;#34;&lt;/span&gt; }] } }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;Resource: sem argumentos complexos, só a URI. O servidor devolve o &lt;strong&gt;documento&lt;/strong&gt; com a tabela de cupons. Não calcula nada, não tem &lt;code&gt;isError&lt;/code&gt;.&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;prompt-1&#34;&gt;Prompt&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;//&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;Request&lt;/span&gt;
+{ &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;method&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;prompts/get&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;params&amp;#34;&lt;/span&gt;: { &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;resumir_pedido&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;arguments&amp;#34;&lt;/span&gt;: {&lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;id_pedido&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;1001&amp;#34;&lt;/span&gt;} } }
+&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;//&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;Response&lt;/span&gt;
+{ &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;result&amp;#34;&lt;/span&gt;: { &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;messages&amp;#34;&lt;/span&gt;: [{&lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;role&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;user&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;content&amp;#34;&lt;/span&gt;: {&lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;text&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Resuma o pedido 1001...&amp;#34;&lt;/span&gt;}&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;]&lt;/span&gt;} &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;}&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;Prompt: retorna uma mensagem com &lt;code&gt;role: &#39;user&#39;&lt;/code&gt;. O servidor está dizendo ao LLM o que fazer.&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;generalizando&#34;&gt;Generalizando&lt;/h2&gt;
+&lt;p&gt;Exemplos de MCP servers populares:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Filesystem:&lt;/strong&gt; tools para ler/escrever arquivos + resources para abrir documentos.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;GitHub:&lt;/strong&gt; tools para issues, PRs, repos.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;PostgreSQL:&lt;/strong&gt; tools para queries, resources para schema/documentação.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Slack:&lt;/strong&gt; tools para enviar mensagens.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Qualquer um de vocês pode/deve criar um servidor MCP seguindo exatamente esse padrão.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;discussão-12&#34;&gt;Discussão (1/2)&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Por que estamos vendo MCP?&lt;/strong&gt; Porque somos desenvolvedores que vamos potencialmente melhorar a vida dos agentes ao usarem os sistemas que operamos/desenvolvemos. É preciso escrever código para agentes lerem.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Problema.&lt;/strong&gt; Uma tool por endpoint.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Segurança.&lt;/strong&gt; O servidor controla o que o LLM pode acessar.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Descoberta.&lt;/strong&gt; O LLM não precisa &amp;ldquo;saber&amp;rdquo; o que o servidor faz. Ele descobre via &lt;code&gt;list_tools&lt;/code&gt;, &lt;code&gt;list_resources&lt;/code&gt; e &lt;code&gt;list_prompts&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Padronização.&lt;/strong&gt; Antes do MCP, cada ferramenta tinha sua integração. MCP unifica tudo num protocolo único.&lt;/p&gt;
+&lt;h2 id=&#34;discussão-22&#34;&gt;Discussão (2/2)&lt;/h2&gt;
+&lt;figure style=&#34;align: center; margin-left:5%; width: 90%&#34;&gt;
+    &lt;img src=&#34;anthropic-writing-tools-for-agents.png&#34;&gt;
+    &lt;figcaption align=&#34;center&#34;&gt;
+        Fonte: &lt;a class=&#34;external&#34; href=&#34;https://www.anthropic.com/engineering/writing-tools-for-agents&#34;&gt;Writing effective tools for agents, with agents&lt;/a&gt; (Engineering at Anthropic).
+    &lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;&amp;ldquo;Tools are a new kind of software which reflects a contract between deterministic systems and non-deterministic agents.&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;&amp;ldquo;Instead of writing tools and &lt;a href=&#34;https://modelcontextprotocol.io/&#34;&gt;MCP servers&lt;/a&gt; the way we&amp;rsquo;d write functions and APIs for other developers or systems, we need to design them for agents.&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://platform.claude.com/cookbook/tool-evaluation-tool-evaluation&#34;&gt;Avalie seu servidor/suas tools&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Evite avaliações muito simplistas. Avaliações boas tipicamente envolvem chamadas a múltiplas tools.&lt;/p&gt;
+&lt;p&gt;Alguns bons exemplos de tasks:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&amp;ldquo;Schedule a meeting with Jane next week to discuss our latest Acme Corp project. Attach the notes from our last project planning meeting and reserve a conference room.&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Customer ID 9182 reported that they were charged three times for a single purchase attempt. Find all relevant log entries and determine if any other customers were affected by the same issue.&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Customer Sarah Chen just submitted a cancellation request. Prepare a retention offer. Determine: (1) why they&amp;rsquo;re leaving, (2) what retention offer would be most compelling, and (3) any risk factors we should be aware of before making an offer.&amp;rdquo;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Alguns exemplos ruins de tasks:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&amp;ldquo;Schedule a meeting with &lt;a href=&#34;mailto:jane@acme.corp&#34;&gt;jane@acme.corp&lt;/a&gt; next week.&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Search the payment logs for &lt;code&gt;purchase_complete&lt;/code&gt; and &lt;code&gt;customer_id=9182&lt;/code&gt;.&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Find the cancellation request by Customer ID 45892.&amp;rdquo;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;princípios&#34;&gt;Princípios&lt;/h3&gt;
+&lt;h4 id=&#34;implementando-as-tools-certas&#34;&gt;Implementando as tools certas&lt;/h4&gt;
+&lt;p&gt;Mais tools não significa melhores resultados. Não implementar uma tool por endpoint.&lt;/p&gt;
+&lt;p&gt;LLMs possuem limitação de contexto. Retornar todos os contatos para depois procurar não é ideal. &lt;code&gt;search_contacts&lt;/code&gt; é melhor do que &lt;code&gt;list_all&lt;/code&gt; e &lt;code&gt;get(id)&lt;/code&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Tools can consolidate functionality, handling potentially &lt;em&gt;multiple&lt;/em&gt; discrete operations (or API calls) under the hood.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Exemplos:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&amp;ldquo;Instead of implementing a &lt;code&gt;list_users&lt;/code&gt;, &lt;code&gt;list_events&lt;/code&gt;, and &lt;code&gt;create_event&lt;/code&gt; tools, consider implementing a &lt;code&gt;schedule_event&lt;/code&gt; tool which finds availability and schedules an event.&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Instead of implementing a &lt;code&gt;read_logs&lt;/code&gt; tool, consider implementing a &lt;code&gt;search_logs&lt;/code&gt; tool which only returns relevant log lines and some surrounding context.&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Instead of implementing &lt;code&gt;get_customer_by_id&lt;/code&gt;, &lt;code&gt;list_transactions&lt;/code&gt;, and &lt;code&gt;list_notes&lt;/code&gt; tools, implement a &lt;code&gt;get_customer_context&lt;/code&gt; tool which compiles all of a customer&amp;rsquo;s recent &amp;amp; relevant information all at once.&amp;rdquo;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Too many tools or overlapping tools can also distract agents from pursuing efficient strategies.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;nomeando-suas-tools&#34;&gt;Nomeando suas tools&lt;/h4&gt;
+&lt;p&gt;Lembre-se que os agentes são conectados a múltiplos servidores, então &lt;strong&gt;agrupe tools/resources relacionados com prefixo definido&lt;/strong&gt; (por exemplo, &lt;code&gt;asana_search&lt;/code&gt;, &lt;code&gt;jira_search&lt;/code&gt;).&lt;/p&gt;
+&lt;h4 id=&#34;retornando-contexto&#34;&gt;Retornando contexto&lt;/h4&gt;
+&lt;p&gt;Tools têm que retornar somente contexto relevante para os modelos.&lt;/p&gt;
+&lt;p&gt;Tools devem priorizar a relevância contextual em vez da flexibilidade e evitar identificadores técnicos de baixo nível.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;We&amp;rsquo;ve found that merely resolving arbitrary alphanumeric UUIDs to more semantically meaningful and interpretable language (or even a 0-indexed ID scheme) significantly improves Claude&amp;rsquo;s precision in retrieval tasks by reducing hallucinations.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Uma boa técnica é deixar o agente escolher o nível de detalhe.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You can enable both by exposing a simple &lt;code&gt;response_format&lt;/code&gt; enum parameter in your tool, allowing your agent to control whether tools return &lt;code&gt;&amp;quot;concise&amp;quot;&lt;/code&gt; or &lt;code&gt;&amp;quot;detailed&amp;quot;&lt;/code&gt; responses.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-typescript&#34; data-lang=&#34;typescript&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;enum&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;ResponseFormat&lt;/span&gt; {
+   &lt;span style=&#34;color:#a6e22e&#34;&gt;DETAILED&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;detailed&amp;#34;&lt;/span&gt;,
+   &lt;span style=&#34;color:#a6e22e&#34;&gt;CONCISE&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;concise&amp;#34;&lt;/span&gt;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;otimizando-contexto&#34;&gt;Otimizando contexto&lt;/h4&gt;
+&lt;p&gt;Otimizar a quantidade de contexto é muito importante.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;We suggest implementing some combination of pagination, range selection, filtering, and/or truncation with sensible default parameter values for any tool responses that could use up lots of context.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Claude Code usa 25k tokens atualmente.&lt;/p&gt;
+&lt;p&gt;Se decidir truncar, avise ao modelo: &amp;ldquo;The results are truncated. Showing first 3 results. To refine results, you can&amp;hellip;&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;Mensagens de erro com exemplos é melhor do que JSON encapsulando erros.&lt;/p&gt;
+&lt;h4 id=&#34;engenharia-de-prompting-para-as-descrições-de-tools-e-specs&#34;&gt;Engenharia de prompting para as descrições de tools e specs&lt;/h4&gt;
+&lt;p&gt;Talvez o mais importante.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;O Claude Sonnet 3.5 alcançou desempenho de estado da arte na avaliação SWE-bench Verified depois que fizemos refinamentos precisos nas descrições das tools, reduzindo drasticamente as taxas de erro e melhorando a conclusão das tarefas.&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Como elas são carregadas no contexto dos agentes, podem orientar os mesmos a serem mais eficazes ao chamar tools.&lt;/p&gt;
+&lt;p&gt;Escreva como se fosse orientar um dev júnior.&lt;/p&gt;
+&lt;p&gt;Considere deixar explícito o contexto que é tipicamente implícito. Por exemplo, formato de queries, definições particulares do seu contexto, relacionamento entre recursos, input e output esperados etc.&lt;/p&gt;
+&lt;p&gt;Fuja da ambiguidade. &lt;code&gt;user_id&lt;/code&gt; ao invés de &lt;code&gt;user&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;resumo-de-boas-práticas&#34;&gt;Resumo de boas práticas&lt;/h3&gt;
+&lt;p&gt;Fonte: &lt;a href=&#34;https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools#best-practices-for-tool-definitions&#34;&gt;Best practices for tool definitions&lt;/a&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Provide extremely detailed descriptions.&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Prioritize descriptions, but consider using &lt;code&gt;input_examples&lt;/code&gt; for complex tools.&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Consolidate related operations into fewer tools.&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Use meaningful namespacing in tool names.&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Design tool responses to return only high-signal information.&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;próximas-aulas&#34;&gt;Próximas aulas&lt;/h2&gt;
+&lt;p&gt;Prompting e engenharia de contexto.&lt;/p&gt;
+&lt;h2 id=&#34;referências&#34;&gt;Referências&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://modelcontextprotocol.io/&#34;&gt;Model Context Protocol&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.anthropic.com/engineering/writing-tools-for-agents&#34;&gt;Writing effective tools for agents, with agents&lt;/a&gt; (Engineering at Anthropic)&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+       </item>
        
        <item>
          <title>Anatomia dos Agentes</title>

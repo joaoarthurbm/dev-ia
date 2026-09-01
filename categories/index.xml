@@ -6,10 +6,19 @@
        <description>Recent content in Categories on Desenvolvimento de Software com Agentes e IA Generativa</description>
        <generator>Hugo -- gohugo.io</generator>
        <copyright>Copyright &amp;copy; 2026 - joaoarthurbm.github.io. Licença de uso: versão para uso pessoal, sendo proibida sua redistribuição ou modificação.</copyright>
-       <lastBuildDate>Sat, 22 Aug 2026 00:00:00 -0300</lastBuildDate>
+       <lastBuildDate>Tue, 01 Sep 2026 00:00:00 -0300</lastBuildDate>
        
            <atom:link href="https://joaoarthurbm.github.io/dev-ia/categories/index.xml" rel="self" type="application/rss+xml" />
        
+       
+       <item>
+         <title>harness</title>
+         <link>https://joaoarthurbm.github.io/dev-ia/categories/harness/</link>
+         <pubDate>Tue, 01 Sep 2026 00:00:00 -0300</pubDate>
+         
+         <guid>https://joaoarthurbm.github.io/dev-ia/categories/harness/</guid>
+         <description></description>
+       </item>
        
        <item>
          <title>contexto</title>

@@ -1,0 +1,576 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <title>Desenvolvimento de Software com Agentes e IA Generativa</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="The HTML5 Herald" />
+  <meta name="author" content="João Arthur Brunet" /><meta name="generator" content="Hugo 0.75.1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/v4-shims.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  <link rel="stylesheet" type="text/css" href="https://joaoarthurbm.github.io/dev-ia/css/styles.css" /><link rel='stylesheet' href='https://joaoarthurbm.github.io/dev-ia/css/site.css'><script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+  });
+  MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+
+  MathJax.Hub.Config({
+  
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+  });
+</script>
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-151903059-1"></script>
+<script>
+      window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+            gtag('config', 'UA-151903059-1');
+        </script>
+
+
+</head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="https://joaoarthurbm.github.io/dev-ia/">Desenvolvimento de Software com Agentes e IA Generativa</a>
+            </h1>
+
+      <ul id="social-media">
+        
+        
+         
+        <li><a href="https://github.com/joaoarthurbm/dev-ia"><i class="fab fa-github fa-lg" aria-hidden="true"></i> repo</a></li>
+           
+        <li><a href="http://lattes.cnpq.br/7892247821251194"><i class="fas fa-graduation-cap fa-lg" aria-hidden="true"></i> lattes</a></li>
+        
+      </ul>
+      
+      <p><em><a href="https://joaoarthurbm.github.io">joaoarthurbm.github.io</a> <br> Computação @ UFCG</em></p>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="" href="https://joaoarthurbm.github.io/dev-ia/">
+                <i class="fa-li fa fa-home fa-lg"></i><span>Home</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="https://joaoarthurbm.github.io/dev-ia/aulas/">
+                <i class="fa-li fa  fa-lg"></i><span>Aulas</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+    <main>
+
+
+
+<article>
+
+    <h1>MCP: o Protocolo que Padroniza a Interface entre Agentes e Sistemas</h1>
+
+    
+        <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2026-09-01T00:00:00-03:00">Sep 1, 2026</time>
+        </li>
+
+        <li>11 minutos de leitura</li>
+
+
+        
+
+
+        
+
+
+
+        
+
+
+    </ul>
+</aside>
+
+    
+
+    
+    <details id="toc" open>
+        <summary>Sumário</summary>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#preâmbulo">Preâmbulo</a></li>
+    <li><a href="#contexto">Contexto</a>
+      <ul>
+        <li><a href="#relembrando-aci">Relembrando ACI</a></li>
+      </ul>
+    </li>
+    <li><a href="#pergunta">Pergunta</a>
+      <ul>
+        <li><a href="#visão-geral">Visão Geral</a></li>
+      </ul>
+    </li>
+    <li><a href="#mcp-um-exemplo-prático">MCP: um exemplo prático</a>
+      <ul>
+        <li><a href="#preâmbulo-1">Preâmbulo</a></li>
+        <li><a href="#visão-geral-do-código">Visão Geral do Código</a></li>
+        <li><a href="#setup">Setup</a></li>
+        <li><a href="#mcp-server">MCP Server</a></li>
+        <li><a href="#resource">Resource</a></li>
+        <li><a href="#prompt">Prompt</a></li>
+        <li><a href="#cliente">Cliente</a></li>
+        <li><a href="#o-trace">O trace</a></li>
+      </ul>
+    </li>
+    <li><a href="#generalizando">Generalizando</a></li>
+    <li><a href="#discussão-12">Discussão (1/2)</a></li>
+    <li><a href="#discussão-22">Discussão (2/2)</a>
+      <ul>
+        <li><a href="#princípios">Princípios</a></li>
+        <li><a href="#resumo-de-boas-práticas">Resumo de boas práticas</a></li>
+      </ul>
+    </li>
+    <li><a href="#próximas-aulas">Próximas aulas</a></li>
+    <li><a href="#referências">Referências</a></li>
+  </ul>
+</nav>
+    </details>
+    
+
+    <hr>
+<p>Ao final dessa aula, o aluno deve ser capaz de definir o que é o MCP; entender e explicar dois problemas que ele resolve (interface para agentes e integração N×M); implementar um servidor MCP; conhecer boas práticas na implementação de tools; e avaliar a qualidade de um servidor MCP.</p>
+<h2 id="preâmbulo">Preâmbulo</h2>
+<p><strong>Sobre as notas de aula.</strong> Conteúdo escrito por mim em sua totalidade. Tabelas e figura foram geradas com auxílio do Claude. Estou deixando isso claro para que você tenha ciência de que, se houver erro aqui ou achar o material ruim, a culpa é minha mesmo. As notas de aula são um guia para a discussão em sala de aula e servem muito pouco como conteúdo para estudo.</p>
+<p><strong>Eu não traduzi <em>tools</em>.</strong> <em>Tool</em> é um termo técnico do ecossistema de agentes com uma semântica bem definida. Se eu traduzisse para &ldquo;ferramenta&rdquo;, poderia confundir dependendo do contexto, porque é mais amplo.</p>
+<h2 id="contexto">Contexto</h2>
+<p>Agentes invocando <em>tools</em> representou um grande avanço na área.</p>
+<p>Mas como isso é (pode ser) feito?</p>
+<ul>
+<li><em>Padronização do texto + parsing.</em> O prompt ensina o modelo a escrever <code>Action: nome[argumento]</code>, e quem está por fora fica caçando esse padrão no texto com regex.</li>
+<li><em>Pedir em formato JSON.</em> Um meio-termo: pede-se ao modelo que responda em JSON seguindo um formato descrito no próprio prompt. Melhora o parsing, mas ainda não há garantia.</li>
+<li><em>Tool calling nativo.</em> O provedor do modelo treina o próprio modelo para emitir a chamada como um tipo de saída estruturado, validado contra um schema que o desenvolvedor declara antes (nome, tipos, quais argumentos são obrigatórios). Quem recebe não faz mais parsing de texto solto, recebe algo já tipado e checado. É assim que os agentes funcionam hoje.</li>
+</ul>
+<p>Como projetar uma interface para um consumidor que não lê documentação, não é determinístico, e é sensível a tudo que está no contexto ao seu redor? Projetando interfaces para os mesmos: <strong>Agent-Computer Interface.</strong></p>
+<h3 id="relembrando-aci">Relembrando ACI</h3>
+<figure style="align: center; margin-left:5%; width: 90%">
+    <img src="swe-agent-aci-diagrama.png">
+    <figcaption align="center">
+        Figura retirada do artigo SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering.
+    </figcaption>
+</figure>
+<figure style="align: center; margin-left:5%; width: 90%">
+    <img src="swe-agent-edit-linting.png">
+    <figcaption align="center">
+        Figura retirada do artigo SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering.
+    </figcaption>
+</figure>
+<p>Podemos enxergar ACI como um princípio de design: escrever APIs que sejam adequadas para os agentes consumirem.</p>
+<p>É tudo sobre os princípios:</p>
+<ul>
+<li><em>Actions should be simple and easy to understand for agents.</em></li>
+<li><em>Actions should be compact and efficient.</em></li>
+<li><em>Environment feedback should be informative but concise.</em></li>
+<li><em>Guardrails mitigate error propagation and hasten recovery.</em></li>
+</ul>
+<p>Escrever para o agente ler é uma habilidade de engenharia.</p>
+<p>MCP é um protocolo que padroniza descoberta e invocação de <em>tools</em> entre agente e sistema. Uma implementação do princípio de ACI.</p>
+<figure style="align: center; margin-left:5%; width: 90%">
+    <img src="mcp-protocolo-modelcontextprotocol.png">
+    <figcaption align="center">
+        Fonte: <a class="external" href="https://modelcontextprotocol.io/docs/2026-07-28/getting-started/intro">modelcontextprotocol.io</a>.
+    </figcaption>
+</figure>
+<p>Implementar servidor MCP é aplicar ACI na prática.</p>
+<p>MCP Server: expõe <em>tools</em>, dados e prompts que podem ser utilizados pelo agente.</p>
+<p>Três primitivas:</p>
+<ul>
+<li><strong>Tools:</strong> ação, algo que o agente executa.</li>
+<li><strong>Resources:</strong> dado, algo que o agente lê (sem efeito colateral).</li>
+<li><strong>Prompts:</strong> template, uma interação reutilizável que o servidor sugere, para o host oferecer ao agente ou ao usuário.</li>
+</ul>
+<h2 id="pergunta">Pergunta</h2>
+<blockquote>
+<p>Não basta passar a documentação da API para o modelo?</p>
+</blockquote>
+<ul>
+<li>Contexto: doc inteira consome muito e degrada desempenho (<em>Lost in the Middle</em>, <em>Context Rot</em>).</li>
+<li>Confiabilidade: chamada gerada livre a cada vez, erro silencioso.</li>
+<li>Reuso: aprendizado via contexto não persiste entre sessões.</li>
+<li><strong>Interoperabilidade: N×M virou N+M. Um protocolo comum para todos os provedores.</strong></li>
+<li>Segurança: acesso amplo via documentação e credenciais versus escopo controlado por servidor.</li>
+</ul>
+<h3 id="visão-geral">Visão Geral</h3>
+<figure style="align: center; margin-left:5%; width: 90%">
+    <img src="mcp-arquitetura-exemplo.png">
+    <figcaption align="center">
+        Figura gerada com auxílio do ChatGPT.
+    </figcaption>
+</figure>
+<h2 id="mcp-um-exemplo-prático">MCP: um exemplo prático</h2>
+<h3 id="preâmbulo-1">Preâmbulo</h3>
+<p>Repositório do exemplo: <a href="https://github.com/dev-ia-ufcg/material/tree/main/mcp">github.com/dev-ia-ufcg/material/tree/main/mcp</a>.</p>
+<p>SDK: <a href="https://modelcontextprotocol.io/docs/2026-07-28/sdk">modelcontextprotocol.io/docs/2026-07-28/sdk</a>.</p>
+<h3 id="visão-geral-do-código">Visão Geral do Código</h3>
+<table>
+<thead>
+<tr>
+<th>Arquivo</th>
+<th>O que faz</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>python/server.py</code></td>
+<td>Servidor MCP expondo 1 tool, 1 resource, 1 prompt</td>
+</tr>
+<tr>
+<td><code>python/client.py</code></td>
+<td>Cliente programático com logging de todo o tráfego JSON-RPC</td>
+</tr>
+<tr>
+<td><code>python/trace-completo.txt</code></td>
+<td>Trace pré-capturado (fallback garantido)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Primitivo</th>
+<th>Nome</th>
+<th>O que faz</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Tool</strong></td>
+<td><code>aplicar_desconto</code></td>
+<td><strong>Ação.</strong> O LLM decide chamar para aplicar um cupom e calcular novo valor.</td>
+</tr>
+<tr>
+<td><strong>Resource</strong></td>
+<td><code>loja://regras/cupons</code></td>
+<td><strong>Documento</strong> read-only. A tabela de cupons e regras de desconto da loja.</td>
+</tr>
+<tr>
+<td><strong>Prompt</strong></td>
+<td><code>resumir_pedido</code></td>
+<td>Template que o servidor gera para o LLM usar.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="setup">Setup</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd python
+python3 -m venv .venv
+./.venv/bin/pip install mcp
+</code></pre></div><h3 id="mcp-server">MCP Server</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#a6e22e">@server.tool</span>()
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">aplicar_desconto</span>(id_pedido: str, cupom: str) <span style="color:#f92672">-&gt;</span> str:
+    <span style="color:#e6db74">&#34;&#34;&#34;Aplica um cupom de desconto a um pedido e devolve o novo valor a pagar.&#34;&#34;&#34;</span>
+</code></pre></div><p>Anotação para definir uma tool.</p>
+<p><em>Docstring</em> como <em>description</em> para o agente.</p>
+<p>Parâmetros viram <code>inputSchema</code> automaticamente.</p>
+<p>Se der erro, levanta <code>ToolError</code> e o servidor retorna <code>isError: true</code>.</p>
+<h3 id="resource">Resource</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#a6e22e">@server.resource</span>(
+    <span style="color:#e6db74">&#34;loja://regras/cupons&#34;</span>,
+    title<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Regras de descontos e cupons&#34;</span>,
+    description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Documento de somente leitura com a tabela de cupons e regras de desconto da loja.&#34;</span>,
+    mime_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;application/json&#34;</span>,
+)
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">regras_cupons</span>() <span style="color:#f92672">-&gt;</span> str:
+    <span style="color:#66d9ef">return</span> json<span style="color:#f92672">.</span>dumps(CUPONS, ensure_ascii<span style="color:#f92672">=</span>False, indent<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</code></pre></div><p>Resource é um <strong>endpoint de dados read-only</strong>, identificado por URI.</p>
+<p>Um arquivo de config, um PDF, uma imagem que o servidor expõe.</p>
+<p>O cliente pode pedir a qualquer momento. Não depende de decisão do LLM.</p>
+<p>Retorna JSON com todos os pedidos.</p>
+<p>Diferença entre tool e resource:</p>
+<blockquote>
+<p>&ldquo;Diferença fundamental: Tool o LLM <em>escolhe</em> chamar. Resource o host/cliente <em>puxa</em> quando precisa.&rdquo;</p>
+</blockquote>
+<ul>
+<li>Tools: <em>model-controlled</em>, o próprio modelo decide quando invocar, dentro do loop do agente.</li>
+<li>Resources: <em>application-controlled</em>, o host ou o usuário decide quando ler e anexar, o modelo não busca sozinho.</li>
+</ul>
+<p><strong>Exemplo concreto, dois cenários que mostram a diferença:</strong></p>
+<ul>
+<li>Cenário A, usuário decide: o painel tem um botão &ldquo;anexar recurso&rdquo;, lista os resources do servidor loja-demo, o atendente clica em &ldquo;Lista de pedidos&rdquo; antes de perguntar algo ao agente.</li>
+<li>Cenário B, host (por exemplo, Claude Code) decide sozinho: o código do painel tem uma regra fixa, tipo &ldquo;toda conversa nova já começa com pedidos://todos anexado&rdquo;, nenhum clique do atendente.</li>
+<li>Nos dois casos, quem decide não é o modelo. Ele não chama <code>resources/read</code> por iniciativa própria, do jeito que chamaria <code>consultar_pedido</code>.</li>
+</ul>
+<p><strong>Contraste direto com tools, usando o mesmo exemplo:</strong></p>
+<ul>
+<li>Tool: o atendente pergunta &ldquo;qual o status do pedido 1001&rdquo;, o modelo decide sozinho chamar <code>consultar_pedido</code>, dentro do loop.</li>
+<li>Resource: o modelo nunca decide sozinho ler <code>pedidos://todos</code>. Alguém fora do loop, painel ou atendente, decide isso antes.</li>
+</ul>
+<p>Definições importantes:</p>
+<ul>
+<li>Host = o cliente (o <code>client.py</code> que escrevemos, ou no mundo real o OpenCode / Claude Desktop / Cursor / Copilot).</li>
+<li>Usuário = a pessoa que opera o host.</li>
+</ul>
+<h3 id="prompt">Prompt</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#a6e22e">@server.prompt</span>(
+    title<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Resumir pedido para o cliente&#34;</span>,
+    description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Gera um template de mensagem resumindo um pedido para o cliente.&#34;</span>,
+)
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">resumir_pedido</span>(id_pedido: str) <span style="color:#f92672">-&gt;</span> str:
+</code></pre></div><ul>
+<li>Prompt não executa nada. Retorna <strong>um template</strong> de mensagem.</li>
+<li>O servidor diz ao LLM: &ldquo;quando for resumir o pedido X, use essa instrução&rdquo;.</li>
+<li>O resultado tem <code>role: &quot;user&quot;</code> com o texto pronto.</li>
+<li>É como se o servidor injetasse um <em>system prompt</em> sob demanda.</li>
+</ul>
+<blockquote>
+<p>&ldquo;Prompt é o mecanismo mais sutil: o servidor não executa, não retorna dados. Ele <em>guia</em> o LLM.&rdquo;</p>
+</blockquote>
+<h3 id="cliente">Cliente</h3>
+<p>Cada bloco <code>print</code> + <code>await</code> corresponde a uma etapa do protocolo:</p>
+<table>
+<thead>
+<tr>
+<th>Linha</th>
+<th>Método</th>
+<th>O que faz</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>72</td>
+<td><code>session.initialize()</code></td>
+<td>Handshake</td>
+</tr>
+<tr>
+<td>75</td>
+<td><code>session.list_tools()</code></td>
+<td>Descobre tools disponíveis</td>
+</tr>
+<tr>
+<td>78</td>
+<td><code>session.call_tool(...)</code></td>
+<td>Chama tool com sucesso (cupom 10OFF)</td>
+</tr>
+<tr>
+<td>81</td>
+<td><code>session.call_tool(...)</code></td>
+<td>Chama tool com erro (cupom inválido)</td>
+</tr>
+<tr>
+<td>84</td>
+<td><code>session.list_resources()</code></td>
+<td>Descobre resources disponíveis</td>
+</tr>
+<tr>
+<td>87</td>
+<td><code>session.read_resource(...)</code></td>
+<td>Lê o resource <code>loja://regras/cupons</code></td>
+</tr>
+<tr>
+<td>90</td>
+<td><code>session.list_prompts()</code></td>
+<td>Descobre prompts disponíveis</td>
+</tr>
+<tr>
+<td>93</td>
+<td><code>session.get_prompt(...)</code></td>
+<td>Obtém template do prompt</td>
+</tr>
+</tbody>
+</table>
+<p>No OpenCode: <a href="https://opencode.ai/docs/mcp-servers/">documentação de MCP servers</a>.</p>
+<h3 id="o-trace">O trace</h3>
+<h4 id="tool">Tool</h4>
+<p>&ldquo;Tools are a new kind of software which reflects a contract between deterministic systems and non-deterministic agents.&rdquo;</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">Request</span>
+{ <span style="color:#f92672">&#34;method&#34;</span>: <span style="color:#e6db74">&#34;tools/call&#34;</span>, <span style="color:#f92672">&#34;params&#34;</span>: { <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;aplicar_desconto&#34;</span>,
+    <span style="color:#f92672">&#34;arguments&#34;</span>: {<span style="color:#f92672">&#34;id_pedido&#34;</span>: <span style="color:#e6db74">&#34;1001&#34;</span>, <span style="color:#f92672">&#34;cupom&#34;</span>: <span style="color:#e6db74">&#34;10OFF&#34;</span>} } }
+<span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">Response</span>
+{ <span style="color:#f92672">&#34;result&#34;</span>: { <span style="color:#f92672">&#34;content&#34;</span>: [{<span style="color:#f92672">&#34;text&#34;</span>: <span style="color:#e6db74">&#34;Cupom 10OFF aplicado... Valor original R$ 349.90 -&gt; novo valor R$ 314.91&#34;</span>}],
+    <span style="color:#f92672">&#34;isError&#34;</span>: <span style="color:#66d9ef">false</span> } }
+</code></pre></div><blockquote>
+<p>&ldquo;Tool: o LLM manda argumentos, o servidor <strong>executa a ação</strong> (calcula o desconto) e devolve o resultado. Tem <code>isError</code>, pode falhar. É uma operação.&rdquo;</p>
+</blockquote>
+<h4 id="resource-1">Resource</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">Request</span>
+{ <span style="color:#f92672">&#34;method&#34;</span>: <span style="color:#e6db74">&#34;resources/read&#34;</span>, <span style="color:#f92672">&#34;params&#34;</span>: { <span style="color:#f92672">&#34;uri&#34;</span>: <span style="color:#e6db74">&#34;loja://regras/cupons&#34;</span> } }
+<span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">Response</span>
+{ <span style="color:#f92672">&#34;result&#34;</span>: { <span style="color:#f92672">&#34;contents&#34;</span>: [{<span style="color:#f92672">&#34;mimeType&#34;</span>: <span style="color:#e6db74">&#34;application/json&#34;</span>,
+    <span style="color:#f92672">&#34;text&#34;</span>: <span style="color:#e6db74">&#34;{ \&#34;10OFF\&#34;: { \&#34;tipo\&#34;: \&#34;percentual\&#34;, ... } }&#34;</span> }] } }
+</code></pre></div><blockquote>
+<p>&ldquo;Resource: sem argumentos complexos, só a URI. O servidor devolve o <strong>documento</strong> com a tabela de cupons. Não calcula nada, não tem <code>isError</code>.&rdquo;</p>
+</blockquote>
+<h4 id="prompt-1">Prompt</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">Request</span>
+{ <span style="color:#f92672">&#34;method&#34;</span>: <span style="color:#e6db74">&#34;prompts/get&#34;</span>, <span style="color:#f92672">&#34;params&#34;</span>: { <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;resumir_pedido&#34;</span>, <span style="color:#f92672">&#34;arguments&#34;</span>: {<span style="color:#f92672">&#34;id_pedido&#34;</span>: <span style="color:#e6db74">&#34;1001&#34;</span>} } }
+<span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">Response</span>
+{ <span style="color:#f92672">&#34;result&#34;</span>: { <span style="color:#f92672">&#34;messages&#34;</span>: [{<span style="color:#f92672">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#f92672">&#34;content&#34;</span>: {<span style="color:#f92672">&#34;text&#34;</span>: <span style="color:#e6db74">&#34;Resuma o pedido 1001...&#34;</span>}<span style="color:#960050;background-color:#1e0010">]</span>} <span style="color:#960050;background-color:#1e0010">}</span> <span style="color:#960050;background-color:#1e0010">}</span>
+</code></pre></div><blockquote>
+<p>&ldquo;Prompt: retorna uma mensagem com <code>role: 'user'</code>. O servidor está dizendo ao LLM o que fazer.&rdquo;</p>
+</blockquote>
+<h2 id="generalizando">Generalizando</h2>
+<p>Exemplos de MCP servers populares:</p>
+<ul>
+<li><strong>Filesystem:</strong> tools para ler/escrever arquivos + resources para abrir documentos.</li>
+<li><strong>GitHub:</strong> tools para issues, PRs, repos.</li>
+<li><strong>PostgreSQL:</strong> tools para queries, resources para schema/documentação.</li>
+<li><strong>Slack:</strong> tools para enviar mensagens.</li>
+</ul>
+<blockquote>
+<p>Qualquer um de vocês pode/deve criar um servidor MCP seguindo exatamente esse padrão.</p>
+</blockquote>
+<h2 id="discussão-12">Discussão (1/2)</h2>
+<p><strong>Por que estamos vendo MCP?</strong> Porque somos desenvolvedores que vamos potencialmente melhorar a vida dos agentes ao usarem os sistemas que operamos/desenvolvemos. É preciso escrever código para agentes lerem.</p>
+<p><strong>Problema.</strong> Uma tool por endpoint.</p>
+<p><strong>Segurança.</strong> O servidor controla o que o LLM pode acessar.</p>
+<p><strong>Descoberta.</strong> O LLM não precisa &ldquo;saber&rdquo; o que o servidor faz. Ele descobre via <code>list_tools</code>, <code>list_resources</code> e <code>list_prompts</code>.</p>
+<p><strong>Padronização.</strong> Antes do MCP, cada ferramenta tinha sua integração. MCP unifica tudo num protocolo único.</p>
+<h2 id="discussão-22">Discussão (2/2)</h2>
+<figure style="align: center; margin-left:5%; width: 90%">
+    <img src="anthropic-writing-tools-for-agents.png">
+    <figcaption align="center">
+        Fonte: <a class="external" href="https://www.anthropic.com/engineering/writing-tools-for-agents">Writing effective tools for agents, with agents</a> (Engineering at Anthropic).
+    </figcaption>
+</figure>
+<p>&ldquo;Tools are a new kind of software which reflects a contract between deterministic systems and non-deterministic agents.&rdquo;</p>
+<p>&ldquo;Instead of writing tools and <a href="https://modelcontextprotocol.io/">MCP servers</a> the way we&rsquo;d write functions and APIs for other developers or systems, we need to design them for agents.&rdquo;</p>
+<p><a href="https://platform.claude.com/cookbook/tool-evaluation-tool-evaluation">Avalie seu servidor/suas tools</a>.</p>
+<p>Evite avaliações muito simplistas. Avaliações boas tipicamente envolvem chamadas a múltiplas tools.</p>
+<p>Alguns bons exemplos de tasks:</p>
+<ul>
+<li>&ldquo;Schedule a meeting with Jane next week to discuss our latest Acme Corp project. Attach the notes from our last project planning meeting and reserve a conference room.&rdquo;</li>
+<li>&ldquo;Customer ID 9182 reported that they were charged three times for a single purchase attempt. Find all relevant log entries and determine if any other customers were affected by the same issue.&rdquo;</li>
+<li>&ldquo;Customer Sarah Chen just submitted a cancellation request. Prepare a retention offer. Determine: (1) why they&rsquo;re leaving, (2) what retention offer would be most compelling, and (3) any risk factors we should be aware of before making an offer.&rdquo;</li>
+</ul>
+<p>Alguns exemplos ruins de tasks:</p>
+<ul>
+<li>&ldquo;Schedule a meeting with <a href="mailto:jane@acme.corp">jane@acme.corp</a> next week.&rdquo;</li>
+<li>&ldquo;Search the payment logs for <code>purchase_complete</code> and <code>customer_id=9182</code>.&rdquo;</li>
+<li>&ldquo;Find the cancellation request by Customer ID 45892.&rdquo;</li>
+</ul>
+<h3 id="princípios">Princípios</h3>
+<h4 id="implementando-as-tools-certas">Implementando as tools certas</h4>
+<p>Mais tools não significa melhores resultados. Não implementar uma tool por endpoint.</p>
+<p>LLMs possuem limitação de contexto. Retornar todos os contatos para depois procurar não é ideal. <code>search_contacts</code> é melhor do que <code>list_all</code> e <code>get(id)</code>.</p>
+<blockquote>
+<p>Tools can consolidate functionality, handling potentially <em>multiple</em> discrete operations (or API calls) under the hood.</p>
+</blockquote>
+<p>Exemplos:</p>
+<ul>
+<li>&ldquo;Instead of implementing a <code>list_users</code>, <code>list_events</code>, and <code>create_event</code> tools, consider implementing a <code>schedule_event</code> tool which finds availability and schedules an event.&rdquo;</li>
+<li>&ldquo;Instead of implementing a <code>read_logs</code> tool, consider implementing a <code>search_logs</code> tool which only returns relevant log lines and some surrounding context.&rdquo;</li>
+<li>&ldquo;Instead of implementing <code>get_customer_by_id</code>, <code>list_transactions</code>, and <code>list_notes</code> tools, implement a <code>get_customer_context</code> tool which compiles all of a customer&rsquo;s recent &amp; relevant information all at once.&rdquo;</li>
+</ul>
+<blockquote>
+<p>Too many tools or overlapping tools can also distract agents from pursuing efficient strategies.</p>
+</blockquote>
+<h4 id="nomeando-suas-tools">Nomeando suas tools</h4>
+<p>Lembre-se que os agentes são conectados a múltiplos servidores, então <strong>agrupe tools/resources relacionados com prefixo definido</strong> (por exemplo, <code>asana_search</code>, <code>jira_search</code>).</p>
+<h4 id="retornando-contexto">Retornando contexto</h4>
+<p>Tools têm que retornar somente contexto relevante para os modelos.</p>
+<p>Tools devem priorizar a relevância contextual em vez da flexibilidade e evitar identificadores técnicos de baixo nível.</p>
+<blockquote>
+<p>We&rsquo;ve found that merely resolving arbitrary alphanumeric UUIDs to more semantically meaningful and interpretable language (or even a 0-indexed ID scheme) significantly improves Claude&rsquo;s precision in retrieval tasks by reducing hallucinations.</p>
+</blockquote>
+<p>Uma boa técnica é deixar o agente escolher o nível de detalhe.</p>
+<blockquote>
+<p>You can enable both by exposing a simple <code>response_format</code> enum parameter in your tool, allowing your agent to control whether tools return <code>&quot;concise&quot;</code> or <code>&quot;detailed&quot;</code> responses.</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">enum</span> <span style="color:#a6e22e">ResponseFormat</span> {
+   <span style="color:#a6e22e">DETAILED</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;detailed&#34;</span>,
+   <span style="color:#a6e22e">CONCISE</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;concise&#34;</span>
+}
+</code></pre></div><h4 id="otimizando-contexto">Otimizando contexto</h4>
+<p>Otimizar a quantidade de contexto é muito importante.</p>
+<blockquote>
+<p>We suggest implementing some combination of pagination, range selection, filtering, and/or truncation with sensible default parameter values for any tool responses that could use up lots of context.</p>
+</blockquote>
+<p>Claude Code usa 25k tokens atualmente.</p>
+<p>Se decidir truncar, avise ao modelo: &ldquo;The results are truncated. Showing first 3 results. To refine results, you can&hellip;&rdquo;</p>
+<p>Mensagens de erro com exemplos é melhor do que JSON encapsulando erros.</p>
+<h4 id="engenharia-de-prompting-para-as-descrições-de-tools-e-specs">Engenharia de prompting para as descrições de tools e specs</h4>
+<p>Talvez o mais importante.</p>
+<blockquote>
+<p>&ldquo;O Claude Sonnet 3.5 alcançou desempenho de estado da arte na avaliação SWE-bench Verified depois que fizemos refinamentos precisos nas descrições das tools, reduzindo drasticamente as taxas de erro e melhorando a conclusão das tarefas.&rdquo;</p>
+</blockquote>
+<p>Como elas são carregadas no contexto dos agentes, podem orientar os mesmos a serem mais eficazes ao chamar tools.</p>
+<p>Escreva como se fosse orientar um dev júnior.</p>
+<p>Considere deixar explícito o contexto que é tipicamente implícito. Por exemplo, formato de queries, definições particulares do seu contexto, relacionamento entre recursos, input e output esperados etc.</p>
+<p>Fuja da ambiguidade. <code>user_id</code> ao invés de <code>user</code>.</p>
+<h3 id="resumo-de-boas-práticas">Resumo de boas práticas</h3>
+<p>Fonte: <a href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools#best-practices-for-tool-definitions">Best practices for tool definitions</a>.</p>
+<ul>
+<li><strong>Provide extremely detailed descriptions.</strong></li>
+<li><strong>Prioritize descriptions, but consider using <code>input_examples</code> for complex tools.</strong></li>
+<li><strong>Consolidate related operations into fewer tools.</strong></li>
+<li><strong>Use meaningful namespacing in tool names.</strong></li>
+<li><strong>Design tool responses to return only high-signal information.</strong></li>
+</ul>
+<h2 id="próximas-aulas">Próximas aulas</h2>
+<p>Prompting e engenharia de contexto.</p>
+<h2 id="referências">Referências</h2>
+<ul>
+<li><a href="https://modelcontextprotocol.io/">Model Context Protocol</a></li>
+<li><a href="https://www.anthropic.com/engineering/writing-tools-for-agents">Writing effective tools for agents, with agents</a> (Engineering at Anthropic)</li>
+</ul>
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        <li>
+            <a href="https://joaoarthurbm.github.io/dev-ia/posts/anatomia-dos-agentes/"><i class="fa fa-chevron-circle-left"></i> Anatomia dos Agentes</a>
+        </li>
+        
+        
+    </ul>
+</section>
+    
+
+
+
+
+
+</main>
+    <footer>
+    <h6><a href="http://joaoarthurbm.github.io">Copyright © 2026 - joaoarthurbm.github.io. Licença de uso: versão para uso pessoal, sendo proibida sua redistribuição ou modificação.</a></h6>
+    </footer>
+</div>
+<script src="https://joaoarthurbm.github.io/dev-ia/js/scripts.js"></script>
+
+</body>
+
+</html>
+
