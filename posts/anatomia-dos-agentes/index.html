@@ -295,11 +295,14 @@ E        +  where 190 = apply_discount(200, 10)
     <span style="color:#a6e22e">senão</span><span style="color:#f92672">:</span>
         <span style="color:#a6e22e">observation</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">executar</span>(<span style="color:#a6e22e">action</span>)
         <span style="color:#a6e22e">contexto</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">contexto</span> <span style="color:#f92672">+</span> [<span style="color:#a6e22e">thought</span>, <span style="color:#a6e22e">action</span>, <span style="color:#a6e22e">observation</span>]
-</code></pre></div><h1 id="no-opencode">No OpenCode</h1>
+</code></pre></div><h1 id="na-prática">Na prática</h1>
 <p>Na prática, não implementamos o loop do agente. Configuramos o agente em markdown e o <code>agent harness</code> executa o loop de raciocínio e ação.</p>
-<p>No opencode, o agente principal é chamado de <em>build agent</em>. Por default, ele interage com o usuário e decide chamar os outros agentes de acordo com os pedidos.</p>
+<p>No opencode, por exemplo, o agente principal é chamado de <em>build agent</em>. Por default, ele interage com o usuário e decide chamar os outros agentes de acordo com os pedidos.</p>
 <p>É possível trocar o <em>build agent</em> via conf ou na própria TUI, usando TAB ou @meu-agente&hellip;</p>
 <p>Aqui está a descrição em markdown do <em>build agent</em> do OpenCode: <a href="https://github.com/anomalyco/opencode/blob/dev/packages/opencode/src/session/prompt/anthropic.txt">opencode.md</a></p>
+<p>Vamos dedicar uma aula exclusiva para especificação de agentes específicos
+para o contexto de atividades de engenharia de software.</p>
+<p>Teaser: <a href="https://github.com/github/awesome-copilot/tree/main/agents">awesome-agents</a></p>
 <h1 id="referências">Referências</h1>
 <p>ReAct: Synergizing Reasoning and Acting in Language Models&quot;, ICLR 2023)</p>
 
