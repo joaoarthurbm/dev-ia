@@ -1,13 +1,106 @@
+/* ---- Navegação principal ---- */
+#container nav {
+  border-bottom: solid 3px #dde3ec;
+  padding-bottom: 0;
+}
+
+#container nav ul {
+  justify-content: flex-start;
+  gap: 0.4em;
+}
+
+#container nav ul li {
+  margin: 0;
+}
+
+#container nav ul li a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  padding: 0.55em 1.15em;
+  border-radius: 10px 10px 0 0;
+  font-family: "Ruda", sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0a3d7a;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+#container nav ul li a .fa-li {
+  position: static;
+  width: auto;
+  margin: 0;
+}
+
+#container nav ul li a:hover {
+  background: #eaf3ff;
+  color: #06356e;
+}
+
+#container nav ul li a.active {
+  background: #1980e6;
+  color: #ffffff;
+  border-bottom: 3px solid #06356e;
+}
+
 @media only screen and (max-width: 800px) {
   #container nav ul {
     flex-wrap: wrap;
     justify-content: center;
-    row-gap: 0.5em;
+    row-gap: 0.4em;
   }
 
   #container nav ul li {
-    margin: 0 0.6em;
+    margin: 0 0.2em;
   }
+}
+
+/* ---- Chamada para a seção Aulas (home) ---- */
+#container main a#aulas-cta {
+  display: block;
+  margin: 1.8em 0;
+  padding: 1.5em 1.7em;
+  background: linear-gradient(135deg, #1980e6 0%, #0a3d7a 100%);
+  border-radius: 12px;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  box-shadow: 0 8px 22px rgba(20, 60, 110, 0.22);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+#container main a#aulas-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(20, 60, 110, 0.3);
+}
+
+#aulas-cta .aulas-cta-text {
+  display: block;
+  font-family: "Ruda", sans-serif;
+  font-weight: 700;
+  font-size: 1.35rem;
+  line-height: 1.35;
+}
+
+#aulas-cta .aulas-cta-text i {
+  margin-right: 0.35em;
+}
+
+#aulas-cta .aulas-cta-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  margin-top: 1em;
+  padding: 0.5em 1.15em;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 999px;
+  font-family: "Ruda", sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+#aulas-cta:hover .aulas-cta-action {
+  background: rgba(255, 255, 255, 0.28);
 }
 
 #container header ul li a {
@@ -268,4 +361,68 @@
   flex-wrap: wrap;
   gap: 0.6em;
   margin-top: 0.6em;
+}
+
+/* ---- Cronograma (tabela da planilha) ---- */
+#cronograma .cronograma-tabela {
+  width: 100%;
+  border-collapse: collapse;
+  border-bottom: none;
+  margin-top: 0.5em;
+  font-size: 1rem;
+}
+
+#cronograma .cronograma-tabela thead th {
+  background: #06356e;
+  color: #ffffff;
+  font-family: "Ruda", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  text-align: left;
+  padding: 0.6em 0.8em;
+}
+
+#cronograma .cronograma-tabela td {
+  padding: 0.55em 0.8em;
+  border-bottom: 1px solid #e2e6ec;
+  vertical-align: top;
+  line-height: 1.4;
+}
+
+#cronograma .cronograma-tabela tr.semana-nova td {
+  border-top: 2px solid #cdd6e2;
+}
+
+#cronograma .cronograma-tabela .col-semana {
+  width: 4.5em;
+  text-align: center;
+  white-space: nowrap;
+}
+
+#cronograma .cronograma-tabela td.col-semana {
+  font-family: "Ruda", sans-serif;
+  font-weight: 700;
+  color: #06356e;
+}
+
+#cronograma .sheet-embed-fallback {
+  margin-top: 1em;
+  font-size: 0.95rem;
+}
+
+@media only screen and (max-width: 800px) {
+  #cronograma .cronograma-tabela {
+    font-size: 0.9rem;
+  }
+
+  #cronograma .cronograma-tabela thead th,
+  #cronograma .cronograma-tabela td {
+    padding: 0.5em 0.5em;
+  }
+
+  #cronograma .cronograma-tabela .col-semana {
+    width: 2.6em;
+  }
 }

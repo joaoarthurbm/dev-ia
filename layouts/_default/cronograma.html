@@ -1,0 +1,39 @@
+{{ define "main" }}
+
+{{ partial "article" . }}
+
+<section id="cronograma">
+        {{ $csv := "https://docs.google.com/spreadsheets/d/e/2PACX-1vT03bNljzmWaFXs4mcNeWQPeilFyJIuEw5aDLu3sSJnLAgzYYwJ7P7GVghA13Taq8Wucgcod__dFbwG/pub?output=csv" }}
+        {{ $rows := getCSV "," $csv }}
+        {{ with $rows }}
+        <table class="cronograma-tabela">
+          <thead>
+            <tr>
+              <th class="col-semana">Semana</th>
+              <th class="col-tema">Tema</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{ $.Scratch.Set "prevSemana" "" }}
+            {{ range $i, $r := . }}
+              {{ if and (gt $i 0) (ge (len $r) 4) }}
+                {{ $semana := trim (index $r 1) " \r\n\t" }}
+                {{ $tema := trim (replaceRE `[ \t]*[\r\n]+[ \t]*` " · " (index $r 3)) " ·\r\n\t" }}
+                {{ if $tema }}
+                  {{ $novaSemana := ne $semana ($.Scratch.Get "prevSemana") }}
+                  <tr{{ if $novaSemana }} class="semana-nova"{{ end }}>
+                    <td class="col-semana">{{ if $novaSemana }}{{ $semana }}{{ end }}</td>
+                    <td class="col-tema">{{ $tema }}</td>
+                  </tr>
+                  {{ $.Scratch.Set "prevSemana" $semana }}
+                {{ end }}
+              {{ end }}
+            {{ end }}
+          </tbody>
+        </table>
+        {{ else }}
+        <p class="sheet-embed-fallback">Não foi possível carregar o cronograma agora. <a class="external" href="https://docs.google.com/spreadsheets/d/e/2PACX-1vT03bNljzmWaFXs4mcNeWQPeilFyJIuEw5aDLu3sSJnLAgzYYwJ7P7GVghA13Taq8Wucgcod__dFbwG/pubhtml" target="_blank" rel="noopener">Abrir a planilha</a>.</p>
+        {{ end }}
+</section>
+
+{{ end }}
