@@ -247,6 +247,18 @@ enquanto não terminou:
         contexto = contexto + [thought, action, observation]
 ```
 
+# No OpenCode
+
+Na prática, não implementamos o loop do agente. Configuramos o agente em markdown e o `agent harness` executa o loop de raciocínio e ação.
+
+No opencode, o agente principal é chamado de *build agent*. Por default, ele interage com o usuário e decide chamar os outros agentes de acordo com os pedidos.
+
+É possível trocar o *build agent* via conf ou na própria TUI, usando TAB ou @meu-agente...
+
+Aqui está a descrição em markdown do *build agent* do OpenCode: [opencode.md]( https://github.com/anomalyco/opencode/blob/dev/packages/opencode/src/session/prompt/anthropic.txt)
+
+
+
 # Referências
 
 ReAct: Synergizing Reasoning and Acting in Language Models", ICLR 2023)
