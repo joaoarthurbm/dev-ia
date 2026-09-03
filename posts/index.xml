@@ -547,7 +547,12 @@ E        +  where 190 = apply_discount(200, 10)
     &lt;span style=&#34;color:#a6e22e&#34;&gt;senão&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;
         &lt;span style=&#34;color:#a6e22e&#34;&gt;observation&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;executar&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;action&lt;/span&gt;)
         &lt;span style=&#34;color:#a6e22e&#34;&gt;contexto&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;contexto&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; [&lt;span style=&#34;color:#a6e22e&#34;&gt;thought&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;action&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;observation&lt;/span&gt;]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;referências&#34;&gt;Referências&lt;/h1&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;no-opencode&#34;&gt;No OpenCode&lt;/h1&gt;
+&lt;p&gt;Na prática, não implementamos o loop do agente. Configuramos o agente em markdown e o &lt;code&gt;agent harness&lt;/code&gt; executa o loop de raciocínio e ação.&lt;/p&gt;
+&lt;p&gt;No opencode, o agente principal é chamado de &lt;em&gt;build agent&lt;/em&gt;. Por default, ele interage com o usuário e decide chamar os outros agentes de acordo com os pedidos.&lt;/p&gt;
+&lt;p&gt;É possível trocar o &lt;em&gt;build agent&lt;/em&gt; via conf ou na própria TUI, usando TAB ou @meu-agente&amp;hellip;&lt;/p&gt;
+&lt;p&gt;Aqui está a descrição em markdown do &lt;em&gt;build agent&lt;/em&gt; do OpenCode: &lt;a href=&#34;https://github.com/anomalyco/opencode/blob/dev/packages/opencode/src/session/prompt/anthropic.txt&#34;&gt;opencode.md&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;referências&#34;&gt;Referências&lt;/h1&gt;
 &lt;p&gt;ReAct: Synergizing Reasoning and Acting in Language Models&amp;quot;, ICLR 2023)&lt;/p&gt;
 </description>
        </item>
