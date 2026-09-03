@@ -8,7 +8,7 @@ youtube = ""
 +++
 ***
 Ao final dessa aula, o aluno deve ser capaz de explicar o funcionamento interno de agentes; explicar o conceito de ***Agent-computer interface***;
-; explicar o papel de guardrails e avaliação como componente do loop do agente; identificar os componentes da anatomia (loop, contexto, tools, skills, guardrails) em uma execução real de um *AI coding agent* e implementar um protótipo simples de agente (loop simples de percepção-decisão-ação) para consolidar o entendimento mecânico do loop.
+; identificar os componentes da anatomia (loop, contexto, tools, skills, guardrails) em uma execução real de um *AI coding agent* e implementar um protótipo simples de agente.
 ***
 
 **Disclaimer.**  As notas de aula foram escritas por mim em sua totalidade. Não utilizei auxílio de nenhum modelo, embora não veja problema nesse auxílio. Estou deixando isso claro para que você tenha ciência de que, se houver erro aqui ou achar o material ruim, a culpa é minha mesmo. Vale destacar também que as notas de aula são um guia para a discussão em sala de aula e servem muito pouco como conteúdo para estudo.
