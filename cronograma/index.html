@@ -1,0 +1,993 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <title>Desenvolvimento de Software com Agentes e IA Generativa</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="The HTML5 Herald" />
+  <meta name="author" content="João Arthur Brunet" /><meta name="generator" content="Hugo 0.75.1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/v4-shims.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  <link rel="stylesheet" type="text/css" href="https://joaoarthurbm.github.io/dev-ia/css/styles.css" /><link rel='stylesheet' href='https://joaoarthurbm.github.io/dev-ia/css/site.css'><script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+  });
+  MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+
+  MathJax.Hub.Config({
+  
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+  });
+</script>
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-151903059-1"></script>
+<script>
+      window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+            gtag('config', 'UA-151903059-1');
+        </script>
+
+
+</head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="https://joaoarthurbm.github.io/dev-ia/">Desenvolvimento de Software com Agentes e IA Generativa</a>
+            </h1>
+
+      <ul id="social-media">
+        
+        
+         
+        <li><a href="https://github.com/joaoarthurbm/dev-ia"><i class="fab fa-github fa-lg" aria-hidden="true"></i> repo</a></li>
+           
+        <li><a href="http://lattes.cnpq.br/7892247821251194"><i class="fas fa-graduation-cap fa-lg" aria-hidden="true"></i> lattes</a></li>
+        
+      </ul>
+      
+      <p><em><a href="https://joaoarthurbm.github.io">joaoarthurbm.github.io</a> <br> Computação @ UFCG</em></p>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="" href="https://joaoarthurbm.github.io/dev-ia/">
+                <i class="fa-li fa fa-home fa-lg"></i><span>Home</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="https://joaoarthurbm.github.io/dev-ia/aulas/">
+                <i class="fa-li fa  fa-lg"></i><span>Aulas</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="active" href="https://joaoarthurbm.github.io/dev-ia/cronograma/">
+                <i class="fa-li fa  fa-lg"></i><span>Cronograma</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+    <main>
+
+
+
+<article>
+
+    <h1>Cronograma</h1>
+
+    
+
+    
+
+    <hr>
+<p>Semana e tema de cada encontro da disciplina. Para datas e atividades avaliativas, veja a <a class="external" href="https://docs.google.com/spreadsheets/d/e/2PACX-1vT03bNljzmWaFXs4mcNeWQPeilFyJIuEw5aDLu3sSJnLAgzYYwJ7P7GVghA13Taq8Wucgcod__dFbwG/pubhtml" target="_blank">planilha completa</a>.</p>
+
+
+</article>
+
+
+<section id="cronograma">
+        
+        
+        
+        <table class="cronograma-tabela">
+          <thead>
+            <tr>
+              <th class="col-semana">Semana</th>
+              <th class="col-tema">Tema</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+            
+              
+            
+              
+                
+                
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr class="semana-nova">
+                    <td class="col-semana">1</td>
+                    <td class="col-tema">Apresentação da disciplina; discussão inicial</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr>
+                    <td class="col-semana"></td>
+                    <td class="col-tema">Contexto: Histórico &#43; Visão geral do desenvolvimento de software com Agentes e IA Generativa</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+              
+            
+              
+                
+                
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr class="semana-nova">
+                    <td class="col-semana">2</td>
+                    <td class="col-tema">Contexto: Visão geral de DevAI (entender, implementar)</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr>
+                    <td class="col-semana"></td>
+                    <td class="col-tema">Contexto: Visão geral de DevAI (avaliar, implantar e operar)</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+              
+            
+              
+                
+                
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr class="semana-nova">
+                    <td class="col-semana">3</td>
+                    <td class="col-tema">AI coding Agents (loop &#43; tools &#43; guardrails &#43; contexto)</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr>
+                    <td class="col-semana"></td>
+                    <td class="col-tema">MCP &#43; tools</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+              
+            
+              
+                
+                
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr class="semana-nova">
+                    <td class="col-semana">4</td>
+                    <td class="col-tema">Prompting</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr>
+                    <td class="col-semana"></td>
+                    <td class="col-tema">Engenharia de Contexto</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+              
+            
+              
+                
+                
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr class="semana-nova">
+                    <td class="col-semana">5</td>
+                    <td class="col-tema">Spec-driven development (SDD) e RePPIT</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr>
+                    <td class="col-semana"></td>
+                    <td class="col-tema">Skills</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr class="semana-nova">
+                    <td class="col-semana">6</td>
+                    <td class="col-tema">Organizando o repositório: AGENTS.md · Seminário da indústria: Jonhnny Weslley - NexHealth</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr>
+                    <td class="col-semana"></td>
+                    <td class="col-tema">Opencode na prática (Pedro - VTEX)</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+              
+            
+              
+                
+                
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr class="semana-nova">
+                    <td class="col-semana">7</td>
+                    <td class="col-tema">Na prática: entendendo</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr>
+                    <td class="col-semana"></td>
+                    <td class="col-tema">Seminário da indústria: Henrique (Quinto Andar)</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+              
+            
+              
+                
+                
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr class="semana-nova">
+                    <td class="col-semana">8</td>
+                    <td class="col-tema">Discussão: entendendo</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr>
+                    <td class="col-semana"></td>
+                    <td class="col-tema">Na prática: projetando</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr class="semana-nova">
+                    <td class="col-semana">9</td>
+                    <td class="col-tema">Seminário da indústria: Thiago Santos</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr>
+                    <td class="col-semana"></td>
+                    <td class="col-tema">Discussão: projetando</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr class="semana-nova">
+                    <td class="col-semana">10</td>
+                    <td class="col-tema">Na prática: avaliando</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr>
+                    <td class="col-semana"></td>
+                    <td class="col-tema">Na prática: implementando</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr>
+                    <td class="col-semana"></td>
+                    <td class="col-tema">Seminário da indústria: Andrielly (Nubank)</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+              
+            
+              
+                
+                
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr class="semana-nova">
+                    <td class="col-semana">11</td>
+                    <td class="col-tema">Discussão: implementando</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr class="semana-nova">
+                    <td class="col-semana">12</td>
+                    <td class="col-tema">Na prática: implantando e operando</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr>
+                    <td class="col-semana"></td>
+                    <td class="col-tema">Seminário da indústria: Gabriel (VTEX)</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr>
+                    <td class="col-semana"></td>
+                    <td class="col-tema">Na prática: avaliando</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr>
+                    <td class="col-semana"></td>
+                    <td class="col-tema">Seminário da indústria: Oliveiros Neto</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr class="semana-nova">
+                    <td class="col-semana">13</td>
+                    <td class="col-tema">Discussão: Implantando e Operando</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr>
+                    <td class="col-semana"></td>
+                    <td class="col-tema">Seminário da indústria: Andrielly (Nubank)</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr>
+                    <td class="col-semana"></td>
+                    <td class="col-tema">Discussão: avaliando</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr>
+                    <td class="col-semana"></td>
+                    <td class="col-tema">Na prática: implantando e operando</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr class="semana-nova">
+                    <td class="col-semana">14</td>
+                    <td class="col-tema">Seminário: Issue-to-PR pipelines and triggers (Slack, Linear, GitHub)</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr>
+                    <td class="col-semana"></td>
+                    <td class="col-tema">Seminário da indústria: Gabriel (VTEX)</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr>
+                    <td class="col-semana"></td>
+                    <td class="col-tema">Discussão: implantando e operando</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr class="semana-nova">
+                    <td class="col-semana">15</td>
+                    <td class="col-tema">Acompanhamento de Projeto</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr>
+                    <td class="col-semana"></td>
+                    <td class="col-tema">Projeto</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr>
+                    <td class="col-semana"></td>
+                    <td class="col-tema">Seminário da Indústria: Tokenomics - Pedro (VTEX)</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr>
+                    <td class="col-semana"></td>
+                    <td class="col-tema">Definição de projetos</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr class="semana-nova">
+                    <td class="col-semana">16</td>
+                    <td class="col-tema">Projeto</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr>
+                    <td class="col-semana"></td>
+                    <td class="col-tema">Projeto</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr>
+                    <td class="col-semana"></td>
+                    <td class="col-tema">Acompanhamento de Projeto</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr>
+                    <td class="col-semana"></td>
+                    <td class="col-tema">Acompanhamento de Projeto</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr class="semana-nova">
+                    <td class="col-semana">17</td>
+                    <td class="col-tema">Projeto</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr>
+                    <td class="col-semana"></td>
+                    <td class="col-tema">Acompanhamento de Projeto</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr>
+                    <td class="col-semana"></td>
+                    <td class="col-tema">Acompanhamento de Projeto</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr class="semana-nova">
+                    <td class="col-semana">18</td>
+                    <td class="col-tema">Projeto</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr>
+                    <td class="col-semana"></td>
+                    <td class="col-tema">Projeto</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr>
+                    <td class="col-semana"></td>
+                    <td class="col-tema">Acompanhamento de Projeto</td>
+                  </tr>
+                  
+                
+              
+            
+              
+                
+                
+                
+              
+            
+              
+                
+                
+                
+                  
+                  <tr>
+                    <td class="col-semana"></td>
+                    <td class="col-tema">Entrega Projeto</td>
+                  </tr>
+                  
+                
+              
+            
+          </tbody>
+        </table>
+        
+</section>
+
+
+
+</main>
+    <footer>
+    <h6><a href="http://joaoarthurbm.github.io">Copyright © 2026 - joaoarthurbm.github.io. Licença de uso: versão para uso pessoal, sendo proibida sua redistribuição ou modificação.</a></h6>
+    </footer>
+</div>
+<script src="https://joaoarthurbm.github.io/dev-ia/js/scripts.js"></script>
+
+</body>
+
+</html>
+
