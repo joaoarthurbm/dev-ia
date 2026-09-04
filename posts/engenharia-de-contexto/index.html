@@ -115,6 +115,9 @@
 
         
 
+        <aside><i class="fab fa-youtube fa-lg" aria-hidden="true"> </i> <a href="https://docs.google.com/presentation/d/1mOL0Snb1VcHUHq_x5DJBlLCpjSPEXHyFg3iHBfqRb5w/edit?usp=sharing"> <font color="#1980e6"> <b>vídeo aula</b></font></a></aside>
+        
+
 
 
         
@@ -135,10 +138,10 @@
     <li><a href="#lost-in-the-middle">Lost in the middle</a></li>
     <li><a href="#4-modos-de-falha">4 Modos de falha</a>
       <ul>
-        <li><a href="#context-poisoning-when-a-hallucination-makes-it-into-the-contexthttpswwwdbreunigcom20250622how-contexts-fail-and-how-to-fix-themhtmlcontext-poisoning"><a href="https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html#context-poisoning">Context Poisoning: When a hallucination makes it into the context</a></a></li>
-        <li><a href="#context-distraction-when-the-context-overwhelms-the-traininghttpswwwdbreunigcom20250622how-contexts-fail-and-how-to-fix-themhtmlcontext-distraction"><a href="https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html#context-distraction">Context Distraction: When the context overwhelms the training</a></a></li>
-        <li><a href="#context-confusion-when-superfluous-context-influences-the-responsehttpswwwdbreunigcom20250622how-contexts-fail-and-how-to-fix-themhtmlcontext-confusion"><a href="https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html#context-confusion">Context Confusion: When superfluous context influences the response</a></a></li>
-        <li><a href="#context-clash-when-parts-of-the-context-disagreehttpswwwdbreunigcom20250622how-contexts-fail-and-how-to-fix-themhtmlcontext-clash"><a href="https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html#context-clash">Context Clash: When parts of the context disagree</a></a></li>
+        <li><a href="#context-poisoning-when-a-hallucination-makes-it-into-the-context">Context Poisoning: When a hallucination makes it into the context</a></li>
+        <li><a href="#context-distraction-when-the-context-overwhelms-the-training">Context Distraction: When the context overwhelms the training</a></li>
+        <li><a href="#context-confusion-when-superfluous-context-influences-the-response">Context Confusion: When superfluous context influences the response</a></li>
+        <li><a href="#context-clash-when-parts-of-the-context-disagree">Context Clash: When parts of the context disagree</a></li>
       </ul>
     </li>
   </ul>
@@ -155,7 +158,7 @@
   </ul>
 
   <ul>
-    <li><a href="#howthreeycstartupsbuilttheircompanieswithclaudecode-linkhttpsclaudecomblogbuilding-companies-with-claude-code"><strong>How three YC startups built their companies with Claude Code (<a href="https://claude.com/blog/building-companies-with-claude-code">link</a>)</strong></a></li>
+    <li><a href="#how-three-yc-startups-built-their-companies-with-claude-code">How three YC startups built their companies with Claude Code</a></li>
     <li><a href="#humanlayer">HumanLayer</a>
       <ul>
         <li><a href="#the-nayve-way"><strong>The nayve way</strong></a></li>
@@ -290,18 +293,18 @@
 </ul>
 <h2 id="4-modos-de-falha">4 Modos de falha</h2>
 <p>Drew Breunig. <em>How Long Contexts Fail</em>. Drew Breunig, 22 jun. 2025. <a href="https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html?utm_source=chatgpt.com">https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html</a></p>
-<h3 id="context-poisoning-when-a-hallucination-makes-it-into-the-contexthttpswwwdbreunigcom20250622how-contexts-fail-and-how-to-fix-themhtmlcontext-poisoning"><a href="https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html#context-poisoning">Context Poisoning: When a hallucination makes it into the context</a></h3>
+<h3 id="context-poisoning-when-a-hallucination-makes-it-into-the-context">Context Poisoning: When a hallucination makes it into the context</h3>
 <p><a href="https://storage.googleapis.com/deepmind-media/gemini/gemini_v2_5_report.pdf">Gemini 2.5 technical report</a></p>
 <blockquote>
 <p>An especially egregious form of this issue can take place with “context poisoning” – where many parts of the context (goals, summary) are “poisoned” with misinformation about the game state, which can often take a very long time to undo. As a result, the model can become fixated on achieving impossible or irrelevant goals.</p>
 </blockquote>
-<h3 id="context-distraction-when-the-context-overwhelms-the-traininghttpswwwdbreunigcom20250622how-contexts-fail-and-how-to-fix-themhtmlcontext-distraction"><a href="https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html#context-distraction">Context Distraction: When the context overwhelms the training</a></h3>
+<h3 id="context-distraction-when-the-context-overwhelms-the-training">Context Distraction: When the context overwhelms the training</h3>
 <p>O modelo desenvolve hiperfoco no contexto.</p>
 <blockquote>
 <p>It was observed that as the context grew significantly beyond 100k tokens, the agent showed a tendency toward favoring repeating actions from its vast history rather than synthesizing novel plans.</p>
 </blockquote>
 <p>Ao invés de usar a capacidade adquirida no treinamento, passou a utilizar muito o contexto.</p>
-<h3 id="context-confusion-when-superfluous-context-influences-the-responsehttpswwwdbreunigcom20250622how-contexts-fail-and-how-to-fix-themhtmlcontext-confusion"><a href="https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html#context-confusion">Context Confusion: When superfluous context influences the response</a></h3>
+<h3 id="context-confusion-when-superfluous-context-influences-the-response">Context Confusion: When superfluous context influences the response</h3>
 <p>Se você colocar algo no contexto, o modelo vai levar em consideração, mesmo que essa informação seja irrelevante. Alguns modelos já estão melhorando em ignorar ou descartar informação irrelevante, mas ainda é comum ver informação ruim distrair modelos.</p>
 <p><strong>Less is more: Optimizing function calling for llm execution on edge devices.&quot; <em>2025 Design, Automation &amp; Test in Europe Conference (DATE)</em>. IEEE, 2025.</strong></p>
 <blockquote>
@@ -311,7 +314,7 @@
 <blockquote>
 <p>In simpler terms, we discover that when LLMs take a wrong turn in a conversation, they get lost and do not recover.</p>
 </blockquote>
-<h3 id="context-clash-when-parts-of-the-context-disagreehttpswwwdbreunigcom20250622how-contexts-fail-and-how-to-fix-themhtmlcontext-clash"><a href="https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html#context-clash">Context Clash: When parts of the context disagree</a></h3>
+<h3 id="context-clash-when-parts-of-the-context-disagree">Context Clash: When parts of the context disagree</h3>
 <p>Parece um pouco com context confusion, mas a informação aqui não é irrelevante é conflitante com algo que já está no contexto.</p>
 <h4 id="exemplo">Exemplo</h4>
 <p>O <strong>system prompt</strong> instrui:</p>
@@ -374,7 +377,8 @@
 <p><strong>Revisar um PR grande com mudanças em múltiplos módulos seria um bom cadidato a ser paralelizado?</strong></p>
 <h1 id="engenharia-de-contexto-na-prática">Engenharia de Contexto na prática</h1>
 <p>Relembrando: técnicas de engenharia de contexto podem ser aplicadas pra quem está desenvolvendo agentes e para quem está desenvolvendo COM agentes. Vamos focar no segundo caso.</p>
-<h2 id="howthreeycstartupsbuilttheircompanieswithclaudecode-linkhttpsclaudecomblogbuilding-companies-with-claude-code"><strong>How three YC startups built their companies with Claude Code (<a href="https://claude.com/blog/building-companies-with-claude-code">link</a>)</strong></h2>
+<h2 id="how-three-yc-startups-built-their-companies-with-claude-code">How three YC startups built their companies with Claude Code</h2>
+<p>Relato completo: <a href="https://claude.com/blog/building-companies-with-claude-code">https://claude.com/blog/building-companies-with-claude-code</a></p>
 <p>Tratar o contexto como <strong>um artefato de engenharia</strong>.</p>
 <p>Sistematizaram práticas de <em>context engineering</em>.</p>
 <ul>
