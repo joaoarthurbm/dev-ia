@@ -4,7 +4,7 @@ date = 2026-08-28
 tags = ["contexto", "context-engineering", "agentes"]
 categories = ["harness"]
 ppt = ""
-youtube = ""
+youtube = "https://docs.google.com/presentation/d/1mOL0Snb1VcHUHq_x5DJBlLCpjSPEXHyFg3iHBfqRb5w/edit?usp=sharing"
 +++
 
 ***
@@ -125,23 +125,21 @@ Experimento:
 
 Drew Breunig. *How Long Contexts Fail*. Drew Breunig, 22 jun. 2025. [https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html](https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html?utm_source=chatgpt.com)
 
-### [Context Poisoning: When a hallucination makes it into the context](https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html#context-poisoning)
+### Context Poisoning: When a hallucination makes it into the context
 
 [Gemini 2.5 technical report](https://storage.googleapis.com/deepmind-media/gemini/gemini_v2_5_report.pdf) 
 
 > An especially egregious form of this issue can take place with “context poisoning” – where many parts of the context (goals, summary) are “poisoned” with misinformation about the game state, which can often take a very long time to undo. As a result, the model can become fixated on achieving impossible or irrelevant goals.
-> 
 
-### [Context Distraction: When the context overwhelms the training](https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html#context-distraction)
+### Context Distraction: When the context overwhelms the training
 
 O modelo desenvolve hiperfoco no contexto. 
 
 > It was observed that as the context grew significantly beyond 100k tokens, the agent showed a tendency toward favoring repeating actions from its vast history rather than synthesizing novel plans.
-> 
 
 Ao invés de usar a capacidade adquirida no treinamento, passou a utilizar muito o contexto.
 
-### [Context Confusion: When superfluous context influences the response](https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html#context-confusion)
+### Context Confusion: When superfluous context influences the response
 
 Se você colocar algo no contexto, o modelo vai levar em consideração, mesmo que essa informação seja irrelevante. Alguns modelos já estão melhorando em ignorar ou descartar informação irrelevante, mas ainda é comum ver informação ruim distrair modelos.
 
@@ -151,14 +149,11 @@ Se você colocar algo no contexto, o modelo vai levar em consideração, mesmo q
 > 
 
 **Laban, Philippe, et al. "Llms get lost in multi-turn conversation." *International Conference on Learning Representations*. Vol. 2026. 2026.**
-
-> 
-> 
-> 
+ 
 > In simpler terms, we discover that when LLMs take a wrong turn in a conversation, they get lost and do not recover.
-> 
 
-### [Context Clash: When parts of the context disagree](https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html#context-clash)
+
+### Context Clash: When parts of the context disagree
 
 Parece um pouco com context confusion, mas a informação aqui não é irrelevante é conflitante com algo que já está no contexto.
 
@@ -257,7 +252,9 @@ Que tipo de tarefa é mais adequada a esse princípio? Que tipo de tarefa não �
 
 Relembrando: técnicas de engenharia de contexto podem ser aplicadas pra quem está desenvolvendo agentes e para quem está desenvolvendo COM agentes. Vamos focar no segundo caso.
 
-## **How three YC startups built their companies with Claude Code ([link](https://claude.com/blog/building-companies-with-claude-code))**
+## How three YC startups built their companies with Claude Code
+
+Relato completo: https://claude.com/blog/building-companies-with-claude-code
 
 Tratar o contexto como **um artefato de engenharia**. 
 
