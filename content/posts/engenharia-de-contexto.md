@@ -3,8 +3,8 @@ title = "Engenharia de Contexto"
 date = 2026-08-28
 tags = ["contexto", "context-engineering", "agentes"]
 categories = ["harness"]
-ppt = ""
-youtube = "https://docs.google.com/presentation/d/1mOL0Snb1VcHUHq_x5DJBlLCpjSPEXHyFg3iHBfqRb5w/edit?usp=sharing"
+ppt = "https://docs.google.com/presentation/d/1mOL0Snb1VcHUHq_x5DJBlLCpjSPEXHyFg3iHBfqRb5w/edit?usp=sharing"
+youtube = ""
 +++
 
 ***
