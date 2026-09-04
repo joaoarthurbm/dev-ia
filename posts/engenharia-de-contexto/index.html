@@ -1,0 +1,505 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <title>Desenvolvimento de Software com Agentes e IA Generativa</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="The HTML5 Herald" />
+  <meta name="author" content="João Arthur Brunet" /><meta name="generator" content="Hugo 0.75.1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/v4-shims.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  <link rel="stylesheet" type="text/css" href="https://joaoarthurbm.github.io/dev-ia/css/styles.css" /><link rel='stylesheet' href='https://joaoarthurbm.github.io/dev-ia/css/site.css'><script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+  });
+  MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+
+  MathJax.Hub.Config({
+  
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+  });
+</script>
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-151903059-1"></script>
+<script>
+      window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+            gtag('config', 'UA-151903059-1');
+        </script>
+
+
+</head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="https://joaoarthurbm.github.io/dev-ia/">Desenvolvimento de Software com Agentes e IA Generativa</a>
+            </h1>
+
+      <ul id="social-media">
+        
+        
+         
+        <li><a href="https://github.com/joaoarthurbm/dev-ia"><i class="fab fa-github fa-lg" aria-hidden="true"></i> repo</a></li>
+           
+        <li><a href="http://lattes.cnpq.br/7892247821251194"><i class="fas fa-graduation-cap fa-lg" aria-hidden="true"></i> lattes</a></li>
+        
+      </ul>
+      
+      <p><em><a href="https://joaoarthurbm.github.io">joaoarthurbm.github.io</a> <br> Computação @ UFCG</em></p>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="" href="https://joaoarthurbm.github.io/dev-ia/">
+                <i class="fa-li fa fa-home fa-lg"></i><span>Home</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="https://joaoarthurbm.github.io/dev-ia/aulas/">
+                <i class="fa-li fa  fa-lg"></i><span>Aulas</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+    <main>
+
+
+
+<article>
+
+    <h1>Engenharia de Contexto</h1>
+
+    
+        <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2026-08-28T00:00:00-03:00">Aug 28, 2026</time>
+        </li>
+
+        <li>10 minutos de leitura</li>
+
+
+        
+
+
+        
+
+
+
+        
+
+
+    </ul>
+</aside>
+
+    
+
+    
+    <details id="toc" open>
+        <summary>Sumário</summary>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#o-mecanismo-de-atenção-não-escala">O mecanismo de atenção não escala</a></li>
+    <li><a href="#context-rot">Context rot</a></li>
+    <li><a href="#lost-in-the-middle">Lost in the middle</a></li>
+    <li><a href="#4-modos-de-falha">4 Modos de falha</a>
+      <ul>
+        <li><a href="#context-poisoning-when-a-hallucination-makes-it-into-the-contexthttpswwwdbreunigcom20250622how-contexts-fail-and-how-to-fix-themhtmlcontext-poisoning"><a href="https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html#context-poisoning">Context Poisoning: When a hallucination makes it into the context</a></a></li>
+        <li><a href="#context-distraction-when-the-context-overwhelms-the-traininghttpswwwdbreunigcom20250622how-contexts-fail-and-how-to-fix-themhtmlcontext-distraction"><a href="https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html#context-distraction">Context Distraction: When the context overwhelms the training</a></a></li>
+        <li><a href="#context-confusion-when-superfluous-context-influences-the-responsehttpswwwdbreunigcom20250622how-contexts-fail-and-how-to-fix-themhtmlcontext-confusion"><a href="https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html#context-confusion">Context Confusion: When superfluous context influences the response</a></a></li>
+        <li><a href="#context-clash-when-parts-of-the-context-disagreehttpswwwdbreunigcom20250622how-contexts-fail-and-how-to-fix-themhtmlcontext-clash"><a href="https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html#context-clash">Context Clash: When parts of the context disagree</a></a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#the-anatomy-of-effective-context"><strong>The anatomy of effective context</strong></a>
+      <ul>
+        <li><a href="#write">Write</a></li>
+        <li><a href="#select">Select</a></li>
+        <li><a href="#compress">Compress</a></li>
+        <li><a href="#isolate">Isolate</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#howthreeycstartupsbuilttheircompanieswithclaudecode-linkhttpsclaudecomblogbuilding-companies-with-claude-code"><strong>How three YC startups built their companies with Claude Code (<a href="https://claude.com/blog/building-companies-with-claude-code">link</a>)</strong></a></li>
+    <li><a href="#humanlayer">HumanLayer</a>
+      <ul>
+        <li><a href="#the-nayve-way"><strong>The nayve way</strong></a></li>
+        <li><a href="#slightly-smarter-intentional-compaction"><strong>Slightly Smarter: Intentional Compaction</strong></a></li>
+      </ul>
+    </li>
+    <li><a href="#o-que-consome-o-contexto"><strong>O que consome o contexto?</strong></a></li>
+    <li><a href="#compactar">Compactar</a>
+      <ul>
+        <li><a href="#um-caso-curioso-extremo-repomirror">Um caso curioso (extremo): repomirror</a></li>
+        <li><a href="#frequent-intentional-compactation">Frequent Intentional Compactation</a></li>
+      </ul>
+    </li>
+    <li><a href="#outros-casos">Outros casos</a></li>
+  </ul>
+</nav>
+    </details>
+    
+
+    <hr>
+<p>Ao final dessa aula, o aluno deve ser capaz de entender o conceito de janela de contexto e suas limitações, além de entender e implementar técnicas de engenharia de contexto.</p>
+<hr>
+<h1 id="preâmbulo">Preâmbulo</h1>
+<p><strong>Sobre as notas de aulas:</strong> i) Conteúdo escrito por mim em sua totalidade. Tabelas e figura foram geradas com auxílio do Claude. Estou deixando isso claro para que você tenha ciência de que se houver erro aqui ou achar o material ruim, a culpa é minha mesmo;  e ii) as notas de aula são um guia para a discussão em sala de aula e servem muito pouco como conteúdo para estudo.</p>
+<h1 id="introdução">Introdução</h1>
+<p>Contexto é tudo, mas nem tudo cabe no contexto.</p>
+<p><a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents">https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents</a></p>
+<blockquote>
+<p>Contexto refere-se ao conjunto de tokens incluídos durante a amostragem de um modelo de linguagem de grande escala (LLM).</p>
+</blockquote>
+<ul>
+<li>Prompt</li>
+<li>Tools: as definições das ferramentas disponíveis, incluindo nome, descrição e parâmetros</li>
+<li>MCP: o contexto trazido por servidores externos conectados via Model Context Protocol</li>
+<li>Histórico de mensagens: toda a troca entre usuário e agente ao longo da sessão, incluindo chamadas de ferramentas e seus resultados</li>
+<li>Dados externos: documentos, resultados de busca, conteúdo de arquivos e qualquer outra informação recuperada durante a execução</li>
+</ul>
+<figure style="align: center; margin-left:5%; width: 90%">
+    <img src="image.png">
+    <figcaption align="center">
+        Fonte: <a class="external" href="https://martinfowler.com/articles/exploring-gen-ai/context-engineering-coding-agents.html">https://martinfowler.com/articles/exploring-gen-ai/context-engineering-coding-agents.html</a>.
+    </figcaption>
+</figure>
+<figure style="align: center; margin-left:5%; width: 90%">
+    <img src="faa261102e46c7f090a2402a49000ffae18c5dd6-2292x1290.webp">
+</figure>
+<figure style="align: center; margin-left:5%; width: 90%">
+    <img src="image%201.png">
+    <figcaption align="center">
+        Fonte: <a class="external" href="https://rephrase-it.com/blog/how-to-apply-anthropics-context-guide">https://rephrase-it.com/blog/how-to-apply-anthropics-context-guide</a>.
+    </figcaption>
+</figure>
+<blockquote>
+<p>Janela de contexto é o <strong>limite máximo de tokens que um LLM consegue considerar de uma vez</strong> ao gerar uma resposta.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Família / empresa</th>
+<th>Modelo</th>
+<th>Janela de contexto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>OpenAI</strong></td>
+<td>GPT-5.4</td>
+<td><strong>1,05 M tokens</strong></td>
+</tr>
+<tr>
+<td><strong>Anthropic</strong></td>
+<td>Claude Sonnet 4.6</td>
+<td><strong>1 M tokens</strong></td>
+</tr>
+<tr>
+<td><strong>Meta</strong></td>
+<td>Llama 4 Scout</td>
+<td><strong>10 M tokens</strong></td>
+</tr>
+<tr>
+<td><strong>Google</strong></td>
+<td>Gemini 2.5 Pro</td>
+<td><strong>1,05 M tokens</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Um agente pode ter uma janela de 1 milhão de tokens, mas não necessariamente colocar 1 milhão de tokens nela a cada chamada. O <em>agent harness</em> normalmente constrói o contexto dinamicamente.</p>
+<p><strong>Quanto maior a janela, não significa necessariamente que o modelo utilize igualmente bem tudo que está dentro dela</strong>.</p>
+<p>A capacidade de recuperar e raciocinar sobre informações espalhadas por centenas de milhares de tokens continua sendo uma questão de desempenho.</p>
+<h1 id="os-problemas">Os Problemas</h1>
+<p>A janela é finita. Mas não seria só aumentar a janela de contexto?</p>
+<h2 id="o-mecanismo-de-atenção-não-escala">O mecanismo de atenção não escala</h2>
+<p>Relações n² entre tokens.</p>
+<blockquote>
+<p>Cada token tem que &ldquo;prestar atenção&rdquo; em todos os outros para decidir quais são os relevantes.</p>
+</blockquote>
+<h2 id="context-rot">Context rot</h2>
+<figure style="align: center; margin-left:5%; width: 90%">
+    <img src="image%202.png">
+    <figcaption align="center">
+        Fonte: <a class="external" href="https://www.trychroma.com/research/context-rot">https://www.trychroma.com/research/context-rot</a>.
+    </figcaption>
+</figure>
+<p>Modelos não tratam todos os tokens da janela igualmente. Mesmo em tarefas simples de recuperação, o desempenho degrada, de forma não uniforme (nem linear), à medida que o input cresce, testado em 18 modelos diferentes.</p>
+<p>O modelo continua capaz em contextos longos, mas com precisão reduzida para recuperação de informação e raciocínio de longo alcance, quando comparado ao seu desempenho em contextos curtos.</p>
+<figure style="align: center; margin-left:5%; width: 90%">
+    <img src="image%203.png">
+</figure>
+<h2 id="lost-in-the-middle">Lost in the middle</h2>
+<figure style="align: center; margin-left:5%; width: 90%">
+    <img src="image%204.png">
+    <figcaption align="center">
+        Fonte: <a class="external" href="https://aclanthology.org/2024.tacl-1.9/">Lost in the Middle: How Language Models Use Long Contexts</a> (Liu et al., TACL 2024).
+    </figcaption>
+</figure>
+<p>A posição do documento no contexto impacta no resultado.</p>
+<blockquote>
+<p>We observe that performance is often highest when relevant information occurs at the beginning or end of the input context, and significantly degrades when models must access relevant information in the middle of long contexts, even for explicitly long-context models.</p>
+</blockquote>
+<p>Experimento:</p>
+<ul>
+<li><strong>Deram ao LLM vários documentos;</strong></li>
+<li><strong>Apenas um documento continha a resposta</strong> para uma pergunta;</li>
+<li><strong>Moveram o documento relevante</strong> para diferentes posições: começo, meio e fim do contexto.</li>
+<li>Mediram a <strong>acurácia</strong> da resposta.</li>
+</ul>
+<p><strong>Curva U: alta acurácia nas pontas, vale no meio.</strong></p>
+<ul>
+<li>Início: o modelo tende a dar bastante peso às informações iniciais, especialmente instruções e contexto de alto nível.</li>
+<li>Meio: informações podem ser &ldquo;perdidas&rdquo; entre muitas outras.</li>
+<li>Fim: &ldquo;O que acabei de ver provavelmente é relevante para o que vou responder agora.&rdquo;</li>
+</ul>
+<h2 id="4-modos-de-falha">4 Modos de falha</h2>
+<p>Drew Breunig. <em>How Long Contexts Fail</em>. Drew Breunig, 22 jun. 2025. <a href="https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html?utm_source=chatgpt.com">https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html</a></p>
+<h3 id="context-poisoning-when-a-hallucination-makes-it-into-the-contexthttpswwwdbreunigcom20250622how-contexts-fail-and-how-to-fix-themhtmlcontext-poisoning"><a href="https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html#context-poisoning">Context Poisoning: When a hallucination makes it into the context</a></h3>
+<p><a href="https://storage.googleapis.com/deepmind-media/gemini/gemini_v2_5_report.pdf">Gemini 2.5 technical report</a></p>
+<blockquote>
+<p>An especially egregious form of this issue can take place with “context poisoning” – where many parts of the context (goals, summary) are “poisoned” with misinformation about the game state, which can often take a very long time to undo. As a result, the model can become fixated on achieving impossible or irrelevant goals.</p>
+</blockquote>
+<h3 id="context-distraction-when-the-context-overwhelms-the-traininghttpswwwdbreunigcom20250622how-contexts-fail-and-how-to-fix-themhtmlcontext-distraction"><a href="https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html#context-distraction">Context Distraction: When the context overwhelms the training</a></h3>
+<p>O modelo desenvolve hiperfoco no contexto.</p>
+<blockquote>
+<p>It was observed that as the context grew significantly beyond 100k tokens, the agent showed a tendency toward favoring repeating actions from its vast history rather than synthesizing novel plans.</p>
+</blockquote>
+<p>Ao invés de usar a capacidade adquirida no treinamento, passou a utilizar muito o contexto.</p>
+<h3 id="context-confusion-when-superfluous-context-influences-the-responsehttpswwwdbreunigcom20250622how-contexts-fail-and-how-to-fix-themhtmlcontext-confusion"><a href="https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html#context-confusion">Context Confusion: When superfluous context influences the response</a></h3>
+<p>Se você colocar algo no contexto, o modelo vai levar em consideração, mesmo que essa informação seja irrelevante. Alguns modelos já estão melhorando em ignorar ou descartar informação irrelevante, mas ainda é comum ver informação ruim distrair modelos.</p>
+<p><strong>Less is more: Optimizing function calling for llm execution on edge devices.&quot; <em>2025 Design, Automation &amp; Test in Europe Conference (DATE)</em>. IEEE, 2025.</strong></p>
+<blockquote>
+<p>When the team gave a quantized (compressed) Llama 3.1 8b a query with all 46 tools it failed, even though the context was well within the 16k context window. But when they only gave the model 19 tools, it succeeded.</p>
+</blockquote>
+<p><strong>Laban, Philippe, et al. &ldquo;Llms get lost in multi-turn conversation.&rdquo; <em>International Conference on Learning Representations</em>. Vol. 2026. 2026.</strong></p>
+<blockquote>
+<p>In simpler terms, we discover that when LLMs take a wrong turn in a conversation, they get lost and do not recover.</p>
+</blockquote>
+<h3 id="context-clash-when-parts-of-the-context-disagreehttpswwwdbreunigcom20250622how-contexts-fail-and-how-to-fix-themhtmlcontext-clash"><a href="https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html#context-clash">Context Clash: When parts of the context disagree</a></h3>
+<p>Parece um pouco com context confusion, mas a informação aqui não é irrelevante é conflitante com algo que já está no contexto.</p>
+<h4 id="exemplo">Exemplo</h4>
+<p>O <strong>system prompt</strong> instrui:</p>
+<blockquote>
+<p>“Sempre use <strong>aspas simples</strong> e <strong>indentação de 2 espaços</strong>.”</p>
+</blockquote>
+<p>O <strong>RAG</strong> recupera um arquivo antigo do repositório que recomenda:</p>
+<blockquote>
+<p>“Use <strong>aspas duplas</strong> e <strong>indentação de 4 espaços</strong>.”</p>
+</blockquote>
+<h4 id="outro-exemplo">Outro exemplo</h4>
+<p>Um agente de suporte tem no contexto a política de reembolso atual (via tool call a um sistema interno) e um trecho de e-mail antigo do cliente citando uma política antiga diferente.</p>
+<p><strong>O contexto contém instruções conflitantes.</strong> O agente agora precisa decidir qual seguir, e o resultado observável costuma ser inconsistência.</p>
+<h1 id="solução-engenharia-de-contexto">Solução: Engenharia de Contexto</h1>
+<blockquote>
+<p>The <strong>engineering</strong> problem at hand is optimizing the utility of tokens.</p>
+</blockquote>
+<blockquote>
+<p>Encontrar o menor conjunto possível de tokens de alto sinal que maximiza a probabilidade do resultado desejado.</p>
+</blockquote>
+<p>Isso vale tanto para quem vai construir agentes/harness quanto para quem vai usar agentes e precisa fazer isso de maneira adequada e que não impacte no desempenho, que é o nosso caso.</p>
+<p>Vou discutir o nosso caso, mas falar um pouco sobre quem vai construir agentes também.</p>
+<h2 id="the-anatomy-of-effective-context"><strong>The anatomy of effective context</strong></h2>
+<p>As técnicas do LangChain:  <a href="https://www.langchain.com/blog/context-engineering-for-agents:">https://www.langchain.com/blog/context-engineering-for-agents:</a> <strong>write, select, compress, and isolate.</strong></p>
+<p>Formas de evitar e lidar com contextos longos. Não são conflitantes.</p>
+<figure style="align: center; margin-left:5%; width: 90%">
+    <img src="image%205.png">
+</figure>
+<h3 id="write">Write</h3>
+<p>Manter artefatos fora do agente para ele consultar: <code>AGENTS.md</code> , <code>CLAUDE.md</code> <code>NOTES.md</code> de sessão, specs  etc.</p>
+<p>Paralelo com essa ideia: <a href="https://research.memgpt.ai/:">https://research.memgpt.ai/:</a> <strong>Towards LLMs as Operating Systems - Teach LLMs to manage their own memory for unbounded context!</strong></p>
+<p><strong>O próprio agente faz isso. structured note-taking</strong>.</p>
+<blockquote>
+<p>The agent regularly writes notes persisted to memory outside of the context window. These notes get pulled back into the context window at later times. <code>NOTES.md</code> <code>SCRATCHPAD.md</code></p>
+</blockquote>
+<blockquote>
+<p>Mas quando o agente consulta, não vai pro contexto e preenche ele do mesmo jeito?</p>
+</blockquote>
+<p>Sim, mas…</p>
+<ol>
+<li>A informação só entra quando é necessária;</li>
+<li>A informação que gerou algo por ser muito maior que o processo destilado no NOTES.md, por exemplo.</li>
+<li>Sobrevive ao término das sessões.</li>
+<li>Pode ser combinado com técnicas de descarte e compressão.</li>
+</ol>
+<h3 id="select">Select</h3>
+<p>Trazer somente o que é relevante e no momento certo.</p>
+<p>Ao invés de trazer tudo (RAG tradicional), <em>just-in-time retrieval.</em></p>
+<p>Exemplo: ao invés de ler todos os documentos de um diretório, decidir antes qual ler.</p>
+<p>Parelelo com &ldquo;Lost in the Middle&rdquo;: selecionar menos e melhor evita literalmente o vale de desempenho no meio do contexto.</p>
+<h3 id="compress">Compress</h3>
+<p>Reduzir o contexto quando se aproxima do limite.</p>
+<p>Técnica: <em>compaction.</em></p>
+<p>“Anota o resumo para a gente reiniciar essa conversa amanhã (outra sessão), por favor” :)</p>
+<p>Tradeoff: toda compressão tem custo de cache, comprimir tem preço em latência e economia.</p>
+<h3 id="isolate">Isolate</h3>
+<p>Arquiteturas de sub-agentes. Dividir contexto entre múltiplos agentes ou sub-processos, cada um com sua própria janela.</p>
+<p>Tradeoff: Isolar contexto melhora Confusion e Distraction, mas pode gerar decisões conflitantes entre sub-agentes que não compartilham estado.</p>
+<p>Que tipo de tarefa é mais adequada a esse princípio? Que tipo de tarefa não é?</p>
+<p><strong>Revisar um PR grande com mudanças em múltiplos módulos seria um bom cadidato a ser paralelizado?</strong></p>
+<h1 id="engenharia-de-contexto-na-prática">Engenharia de Contexto na prática</h1>
+<p>Relembrando: técnicas de engenharia de contexto podem ser aplicadas pra quem está desenvolvendo agentes e para quem está desenvolvendo COM agentes. Vamos focar no segundo caso.</p>
+<h2 id="howthreeycstartupsbuilttheircompanieswithclaudecode-linkhttpsclaudecomblogbuilding-companies-with-claude-code"><strong>How three YC startups built their companies with Claude Code (<a href="https://claude.com/blog/building-companies-with-claude-code">link</a>)</strong></h2>
+<p>Tratar o contexto como <strong>um artefato de engenharia</strong>.</p>
+<p>Sistematizaram práticas de <em>context engineering</em>.</p>
+<ul>
+<li><strong>Separate research, planning, and implementation into discrete sessions</strong></li>
+<li><strong>Be deliberate about context management</strong></li>
+<li><strong>Monitor and interrupt the chain of thought</strong></li>
+</ul>
+<p>Insighs</p>
+<ul>
+<li>colocar conhecimento do projeto em arquivos persistentes;</li>
+<li>separar contexto geral de contexto específico da tarefa;</li>
+<li>criar <strong>skills</strong> para procedimentos recorrentes;</li>
+<li>utilizar subagentes para tarefas específicas;</li>
+<li>fazer o agente investigar o código antes de modificar;</li>
+<li>transformar decisões tomadas durante o desenvolvimento em conhecimento reutilizável.</li>
+</ul>
+<p>Lembra?</p>
+<p>Movimento de:</p>
+<blockquote>
+<p><strong>&ldquo;Como escrever um prompt melhor?&quot;</strong></p>
+</blockquote>
+<p>para:</p>
+<blockquote>
+<p><strong>&ldquo;Como construir e manter o contexto que o agente precisa para trabalhar?&quot;</strong></p>
+</blockquote>
+<h2 id="humanlayer">HumanLayer</h2>
+<p>Relato completo: <a href="https://www.humanlayer.dev/blog/advanced-context-engineering">https://www.humanlayer.dev/blog/advanced-context-engineering</a></p>
+<p>A infra que usam: <a href="https://github.com/humanlayer/humanlayer/tree/main/.claude">https://github.com/humanlayer/humanlayer/tree/main/.claude</a></p>
+<h3 id="the-nayve-way"><strong>The nayve way</strong></h3>
+<p>Vai lá, filhão.</p>
+<h3 id="slightly-smarter-intentional-compaction"><strong>Slightly Smarter: Intentional Compaction</strong></h3>
+<p>“Resume, vamos começar em outro.”</p>
+<blockquote>
+<p><em>&ldquo;Write everything we did so far to progress.md, ensure to note the end goal, the approach we&rsquo;re taking, the steps we&rsquo;ve done so far, and the current failure we&rsquo;re working on&rdquo;</em></p>
+</blockquote>
+<figure style="align: center; margin-left:5%; width: 90%">
+    <img src="image%206.png">
+</figure>
+<h2 id="o-que-consome-o-contexto"><strong>O que consome o contexto?</strong></h2>
+<ul>
+<li>Busca por arquivos</li>
+<li>Compreensão do fluxo de execução do código</li>
+<li>Edits</li>
+<li>Logs de testes/build</li>
+<li>Grandes blocos de JSON gerados pelas ferramentas</li>
+</ul>
+<h2 id="compactar">Compactar</h2>
+<p><strong>Solução é compactar</strong> essas informações em artefatos estruturados. Bom exemplo:</p>
+<figure style="align: center; margin-left:5%; width: 90%">
+    <img src="output.png">
+</figure>
+<h3 id="um-caso-curioso-extremo-repomirror">Um caso curioso (extremo): repomirror</h3>
+<p>link: <a href="https://github.com/repomirrorhq/repomirror/blob/main/repomirror.md">https://github.com/repomirrorhq/repomirror/blob/main/repomirror.md</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown"> while :; do cat [<span style="color:#f92672">prompt.md</span>](<span style="color:#a6e22e">http://prompt.md/</span>) | amp; done
+</code></pre></div><p>O estado vai sendo alterado a cada iteração e persistido no github, scratchpad, todo.md, logs, testes, bd, filesystem etc.</p>
+<blockquote>
+<p>We came back in the morning to an <a href="https://github.com/repomirrorhq/better-use">almost fully functional port</a> of Browser Use to TypeScript.</p>
+</blockquote>
+<h3 id="frequent-intentional-compactation">Frequent Intentional Compactation</h3>
+<blockquote>
+<p>Essentially, this means designing your ENTIRE WORKFLOW around context management, and keeping utilization in the 40%-60% range (depends on complexity of the problem ).</p>
+</blockquote>
+<p>Framework RPI: <em>Research, Plan, and Implement.</em></p>
+<p>Vamos discutir essa e outras técnicas similares na aula de especificação de agentes. Mas é importante que você saiba que as boas práticas de desenvolver com agentes passa por ter algo nessa linha.</p>
+<p>Lembra que vivo dizendo “é tudo sobre os princípios/fundamentos/conceitos” ? Isso aqui é engenharia bem feita. Fazíamos antes dos agentes, fazemos agora e vamos fazer sempre.</p>
+<h2 id="outros-casos">Outros casos</h2>
+<p><a href="https://alabeduarte.com/context-engineering-with-claude-code-my-evolving-workflow/">https://alabeduarte.com/context-engineering-with-claude-code-my-evolving-workflow/</a></p>
+<p><a href="https://martinfowler.com/articles/exploring-gen-ai/context-engineering-coding-agents.html">https://martinfowler.com/articles/exploring-gen-ai/context-engineering-coding-agents.html</a></p>
+<p><a href="https://www.reddit.com/r/ClaudeAI/comments/1ockyib/i_shipped_a_production_ios_app_with_claude_code/">https://www.reddit.com/r/ClaudeAI/comments/1ockyib/i_shipped_a_production_ios_app_with_claude_code/</a></p>
+<p>https://x.com/vartekxx/article/2074864291568664646</p>
+<h1 id="refs">Refs</h1>
+<ul>
+<li><a href="https://app.notion.com/p/Notas-de-Aula-Engenharia-de-Contexto-3cf3a7edc4f780428789e247b91fa2fd?pvs=21">AnthropicAI Effective context engineering for AI agents</a></li>
+<li><a href="https://app.notion.com/p/Notas-de-Aula-Engenharia-de-Contexto-3cf3a7edc4f780428789e247b91fa2fd?pvs=21">Exploring Gen AI: Context Engineering for Coding Agents (Martin Fowler)</a></li>
+<li><a href="https://app.notion.com/p/Notas-de-Aula-Engenharia-de-Contexto-3cf3a7edc4f780428789e247b91fa2fd?pvs=21">How to Apply Anthropic&rsquo;s Context Guide (Rephrase It)</a></li>
+<li><a href="https://app.notion.com/p/Notas-de-Aula-Engenharia-de-Contexto-3cf3a7edc4f780428789e247b91fa2fd?pvs=21">Context Rot (Chroma Research)</a></li>
+<li><a href="https://app.notion.com/p/Notas-de-Aula-Engenharia-de-Contexto-3cf3a7edc4f780428789e247b91fa2fd?pvs=21">Lost in the Middle: How Language Models Use Long Contexts (Liu et al., TACL 2024)</a></li>
+<li><a href="https://app.notion.com/p/Notas-de-Aula-Engenharia-de-Contexto-3cf3a7edc4f780428789e247b91fa2fd?pvs=21">How Contexts Fail and How to Fix Them (Drew Breunig)</a></li>
+<li><a href="https://app.notion.com/p/Notas-de-Aula-Engenharia-de-Contexto-3cf3a7edc4f780428789e247b91fa2fd?pvs=21">Gemini 2.5 Technical Report (Context Poisoning)</a></li>
+<li><em>Less is more: Optimizing function calling for llm execution on edge devices.</em> (DATE Conference, IEEE, 2025)</li>
+<li><em>LLMs get lost in multi-turn conversation.</em> (Laban, Philippe, et al. - ICLR 2026)</li>
+<li><a href="https://app.notion.com/p/Notas-de-Aula-Engenharia-de-Contexto-3cf3a7edc4f780428789e247b91fa2fd?pvs=21">LangChain Accounts Context Engineering</a></li>
+<li><a href="https://app.notion.com/p/Notas-de-Aula-Engenharia-de-Contexto-3cf3a7edc4f780428789e247b91fa2fd?pvs=21">MemGPT: Towards LLMs as Operating Systems</a></li>
+<li><a href="https://app.notion.com/p/Notas-de-Aula-Engenharia-de-Contexto-3cf3a7edc4f780428789e247b91fa2fd?pvs=21">How three YC startups built their companies with Claude Code</a></li>
+<li><a href="https://app.notion.com/p/Notas-de-Aula-Engenharia-de-Contexto-3cf3a7edc4f780428789e247b91fa2fd?pvs=21">Dex Advanced Context Engineering for Coding Agents (HumanLayer)</a></li>
+<li><a href="https://app.notion.com/p/Notas-de-Aula-Engenharia-de-Contexto-3cf3a7edc4f780428789e247b91fa2fd?pvs=21">GitHub: humanlayer/.claude</a></li>
+<li><a href="https://app.notion.com/p/Notas-de-Aula-Engenharia-de-Contexto-3cf3a7edc4f780428789e247b91fa2fd?pvs=21">GitHub: repomirror/repomirror.md</a></li>
+<li><a href="https://app.notion.com/p/Notas-de-Aula-Engenharia-de-Contexto-3cf3a7edc4f780428789e247b91fa2fd?pvs=21">Browser Use to TypeScript Port (Repomirror Commit)</a></li>
+<li><a href="https://app.notion.com/p/Notas-de-Aula-Engenharia-de-Contexto-3cf3a7edc4f780428789e247b91fa2fd?pvs=21">Context Engineering: How I&rsquo;ve Been Using Claude Code in My Daily Workflow</a></li>
+<li><a href="https://app.notion.com/p/Notas-de-Aula-Engenharia-de-Contexto-3cf3a7edc4f780428789e247b91fa2fd?pvs=21">I shipped a production iOS app with Claude Code - 843 commits (twikwik)</a></li>
+<li><a href="https://app.notion.com/p/Notas-de-Aula-Engenharia-de-Contexto-3cf3a7edc4f780428789e247b91fa2fd?pvs=21">Context Engineering: the Karpathy-Cherny method (vartekx)</a></li>
+</ul>
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        <li>
+            <a href="https://joaoarthurbm.github.io/dev-ia/posts/anatomia-dos-agentes/"><i class="fa fa-chevron-circle-left"></i> Anatomia dos Agentes</a>
+        </li>
+        
+        
+        <li>
+            <a href="https://joaoarthurbm.github.io/dev-ia/posts/mcp/">MCP: o Protocolo que Padroniza a Interface entre Agentes e Sistemas <i class="fa fa-chevron-circle-right"></i> </a>
+        </li>
+        
+    </ul>
+</section>
+    
+
+
+
+
+
+</main>
+    <footer>
+    <h6><a href="http://joaoarthurbm.github.io">Copyright © 2026 - joaoarthurbm.github.io. Licença de uso: versão para uso pessoal, sendo proibida sua redistribuição ou modificação.</a></h6>
+    </footer>
+</div>
+<script src="https://joaoarthurbm.github.io/dev-ia/js/scripts.js"></script>
+
+</body>
+
+</html>
+
