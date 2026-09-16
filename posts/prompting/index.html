@@ -1,0 +1,387 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <title>Desenvolvimento de Software com Agentes e IA Generativa</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="The HTML5 Herald" />
+  <meta name="author" content="João Arthur Brunet" /><meta name="generator" content="Hugo 0.75.1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/v4-shims.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  <link rel="stylesheet" type="text/css" href="https://joaoarthurbm.github.io/dev-ia/css/styles.css" /><link rel='stylesheet' href='https://joaoarthurbm.github.io/dev-ia/css/site.css'><script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+  });
+  MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+
+  MathJax.Hub.Config({
+  
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+  });
+</script>
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-151903059-1"></script>
+<script>
+      window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+            gtag('config', 'UA-151903059-1');
+        </script>
+
+
+</head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="https://joaoarthurbm.github.io/dev-ia/">Desenvolvimento de Software com Agentes e IA Generativa</a>
+            </h1>
+
+      <ul id="social-media">
+        
+        
+         
+        <li><a href="https://github.com/joaoarthurbm/dev-ia"><i class="fab fa-github fa-lg" aria-hidden="true"></i> repo</a></li>
+           
+        <li><a href="http://lattes.cnpq.br/7892247821251194"><i class="fas fa-graduation-cap fa-lg" aria-hidden="true"></i> lattes</a></li>
+        
+      </ul>
+      
+      <p><em><a href="https://joaoarthurbm.github.io">joaoarthurbm.github.io</a> <br> Computação @ UFCG</em></p>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="" href="https://joaoarthurbm.github.io/dev-ia/">
+                <i class="fa-li fa fa-home fa-lg"></i><span>Home</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="https://joaoarthurbm.github.io/dev-ia/aulas/">
+                <i class="fa-li fa  fa-lg"></i><span>Aulas</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+    <main>
+
+
+
+<article>
+
+    <h1>Prompting</h1>
+
+    
+        <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2026-08-28T00:00:00-03:00">Aug 28, 2026</time>
+        </li>
+
+        <li>7 minutos de leitura</li>
+
+
+        
+
+        <aside><a href="https://docs.google.com/presentation/d/1aaQdQAV4OZ6xnqF2WDyF1D92mMXxCVjbVLy7khU2WF0/edit?usp=sharing" class="cta-slides"><i class="fas fa-chalkboard-teacher fa-lg" aria-hidden="true"></i> slides da aula</a></aside>
+        
+
+
+        
+
+
+
+        
+
+
+    </ul>
+</aside>
+
+    
+
+    
+    <details id="toc" open>
+        <summary>Sumário</summary>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#importante">Importante</a></li>
+    <li><a href="#contrato--contraste">Contrato + Contraste</a></li>
+    <li><a href="#técnicas-mais-avançadas">Técnicas mais avançadas</a></li>
+    <li><a href="#diretrizes">Diretrizes</a></li>
+    <li><a href="#mais-a-frente">Mais a frente</a></li>
+  </ul>
+</nav>
+    </details>
+    
+
+    <hr>
+<p>Ao final dessa aula, o aluno deve ser capaz de entender e implementar técnicas eficientes de prompting.</p>
+<hr>
+<h1 id="preâmbulo">Preâmbulo</h1>
+<p><strong>Sobre as notas de aulas:</strong> i) Conteúdo escrito por mim em sua totalidade. Tabelas e figuras foram geradas com auxílio do Claude. Estou deixando isso claro para que você tenha ciência de que se houver erro aqui ou achar o material ruim, a culpa é minha mesmo;  e ii) as notas de aula são um guia para a discussão em sala de aula e servem muito pouco como conteúdo para estudo.</p>
+<h1 id="disclaimer">Disclaimer</h1>
+<blockquote>
+<p>Há um movimento natural de shift do prompting manual para formas mais estruturadas de especificação, engenharia de contexto e configuração do agente.</p>
+</blockquote>
+<p>Contudo, muitas das técnicas e frameworks atuais (SDD, RePPIT, RPI etc) preservam princípios fundamentais do <em>prompt engineering</em>.</p>
+<p>Quando você escreve uma spec para um agente, você ainda está, em última instância, escrevendo instruções para um modelo.</p>
+<p>Hoje vamos aprender a andar para depois correr.</p>
+<blockquote>
+<p>It&rsquo;s all about the principles.</p>
+</blockquote>
+<p>O jeito que a gente instrui os agentes pode mudar, os princípios se mantém.</p>
+<h1 id="o-modo-como-vamos-ver-isso-hoje">O modo como vamos ver isso hoje</h1>
+<ul>
+<li>Prompt ruim, resultado ruim</li>
+<li>Melhoria no prompt, melhoria no resultado</li>
+</ul>
+<p>Com esse esquema, meu objetivo é ir apresentando os conceitos importantes, como zero/few-shots, Chain of Thought, entre outros.</p>
+<h1 id="definições">Definições</h1>
+<ul>
+<li>Prompt se divide em system prompt, user prompt e a tarefa específica.</li>
+</ul>
+<p>Exemplo de System Prompt</p>
+<pre><code>Você é um assistente de engenharia de software especializado em Python.
+
+## Comportamento
+- Responda de forma concisa e direta, sem preâmbulos.
+- Antes de editar código, leia os arquivos envolvidos para entender as convenções.
+- Nunca adicione comentários ao código, a menos que solicitado.
+- Sempre rode os testes após implementar uma feature.
+
+## Restrições
+- Não comita o código sem permissão explícita.
+- Não modifique arquivos fora do escopo da tarefa.
+- Não exponha segredos ou chaves de API.
+
+## Formato de resposta
+- Para perguntas: responda em no máximo 3 frases.
+- Para código: use code blocks com a linguagem correta.
+</code></pre><h1 id="zero-shot">Zero-shot</h1>
+<p>Prompt ruim: &ldquo;Escreva uma função que valida se um voucher pode ser usado no checkout.&rdquo;</p>
+<p>Prompt bom:</p>
+<pre><code>&lt;role&gt;
+Engenheiro no módulo de descontos do Saleor. Convenção da equipe: lançar exceção de domínio, não retornar bool.
+&lt;/role&gt;
+&lt;task&gt;
+Implemente validate_voucher(voucher, total_price, quantity, customer_email, channel, customer) -&gt; None
+&lt;/task&gt;
+&lt;constraints&gt;
+- Valor mínimo gasto
+- Quantidade mínima de itens
+- Uso único por cliente, se apply_once_per_customer
+- Exclusivo para staff, se only_for_staff
+&lt;/constraints&gt;
+</code></pre><h1 id="kfew-shot">k/few-shot</h1>
+<p>Pedindo com exemplos.</p>
+<p>Prompt ruim: &ldquo;Escreva uma função Python que calcula o desconto de frete dado um voucher e o preço do frete.&rdquo;</p>
+<p>Saída ruim:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_shipping_voucher_discount</span>(voucher, shipping_price, channel):
+    discount <span style="color:#f92672">=</span> voucher<span style="color:#f92672">.</span>get_discount_amount_for(shipping_price, channel)
+    <span style="color:#66d9ef">if</span> discount <span style="color:#f92672">&gt;</span> shipping_price:
+        <span style="color:#66d9ef">return</span> shipping_price
+    <span style="color:#66d9ef">return</span> discount
+</code></pre></div><p>Prompt bom:</p>
+<pre><code># Role
+Engenheiro no módulo de descontos do Saleor.
+
+
+# Exemplo
+def get_products_voucher_discount(voucher: &quot;Voucher&quot;, prices: Iterable[Money], channel: Channel) -&gt; Money:
+    &quot;&quot;&quot;Calculate discount value for a voucher of product or category type.&quot;&quot;&quot;
+    ...
+
+# Task
+No mesmo estilo do exemplo acima, implemente:
+get_shipping_voucher_discount(voucher: &quot;Voucher&quot;, shipping_price: Money, channel: Channel) -&gt; Money
+</code></pre><p>Saída boa:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_shipping_voucher_discount</span>(
+    voucher: <span style="color:#e6db74">&#34;Voucher&#34;</span>, shipping_price: Money, channel: Channel
+) <span style="color:#f92672">-&gt;</span> Money:
+    <span style="color:#e6db74">&#34;&#34;&#34;Calculate discount value for a shipping voucher.&#34;&#34;&#34;</span>
+    discount <span style="color:#f92672">=</span> voucher<span style="color:#f92672">.</span>get_discount_amount_for(shipping_price, channel)
+    <span style="color:#66d9ef">return</span> min(discount, shipping_price)
+</code></pre></div><p>Aqui usamos o few-shot para mostrar o estilo. Como disse anteriormente, hoje usamos o contexto para instruir o modelo sobre questões
+como essa.</p>
+<p>Perceba o uso de marcadores. Para o claude, inclusive, funciona muito bem tags html.</p>
+<p>Markdown como <em>lingua franca</em>.</p>
+<h1 id="chain-of-thought">Chain of thought</h1>
+<p>O conceito de ensinar o raciocínio, não a resposta.</p>
+<ul>
+<li>Regra real: percentual incide sobre o valor restante, nunca fica negativo; tarefa <code>applyPromotions</code>.</li>
+</ul>
+<p>Prompt ruim: &ldquo;Escreva uma função em TypeScript que aplica uma lista de promoções (percentual ou valor fixo) a um item e retorna o valor final.&rdquo;</p>
+<p>Saída ruim:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">applyPromotions</span>(<span style="color:#a6e22e">originalAmount</span>: <span style="color:#66d9ef">number</span>, <span style="color:#a6e22e">promotions</span>: <span style="color:#66d9ef">Promotion</span>[])<span style="color:#f92672">:</span> <span style="color:#66d9ef">number</span> {
+  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">total</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">originalAmount</span>;
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">promo</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">promotions</span>) {
+    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">promo</span>.<span style="color:#66d9ef">type</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;percentage&#34;</span>) {
+      <span style="color:#a6e22e">total</span> <span style="color:#f92672">-=</span> <span style="color:#a6e22e">originalAmount</span> <span style="color:#f92672">*</span> (<span style="color:#a6e22e">promo</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">100</span>); <span style="color:#75715e">// usa o valor original, não o restante
+</span><span style="color:#75715e"></span>    } <span style="color:#66d9ef">else</span> {
+      <span style="color:#a6e22e">total</span> <span style="color:#f92672">-=</span> <span style="color:#a6e22e">promo</span>.<span style="color:#a6e22e">value</span>;
+    }
+  }
+  <span style="color:#66d9ef">return</span> Math.<span style="color:#a6e22e">max</span>(<span style="color:#a6e22e">total</span>, <span style="color:#ae81ff">0</span>);
+}
+</code></pre></div><p>R$ 200 com duas promoções de 10% daria R$162, não R$160.</p>
+<p>Prompt bom:</p>
+<pre><code>&lt;context&gt;
+Promoções são aplicadas em cascata sobre um item de carrinho.
+&lt;/context&gt;
+&lt;reasoning_steps&gt;
+1. Liste as regras de negócio de promoções em cascata.
+2. Confira cada regra contra &quot;o valor nunca fica negativo&quot;.
+3. Só depois implemente.
+&lt;/reasoning_steps&gt;
+&lt;task&gt;
+Implemente applyPromotions(originalAmount, promotions), um comentário por regra.
+&lt;/task&gt;
+</code></pre><p>Saída boa:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">applyPromotions</span>(<span style="color:#a6e22e">originalAmount</span>: <span style="color:#66d9ef">number</span>, <span style="color:#a6e22e">promotions</span>: <span style="color:#66d9ef">Promotion</span>[])<span style="color:#f92672">:</span> <span style="color:#66d9ef">number</span> {
+  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">remaining</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">originalAmount</span>;
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">promo</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">promotions</span>) {
+    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">promo</span>.<span style="color:#66d9ef">type</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;percentage&#34;</span>) {
+      <span style="color:#a6e22e">remaining</span> <span style="color:#f92672">-=</span> <span style="color:#a6e22e">remaining</span> <span style="color:#f92672">*</span> (<span style="color:#a6e22e">promo</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">100</span>); <span style="color:#75715e">// regra 1: incide sobre o valor restante
+</span><span style="color:#75715e"></span>    } <span style="color:#66d9ef">else</span> {
+      <span style="color:#a6e22e">remaining</span> <span style="color:#f92672">-=</span> <span style="color:#a6e22e">promo</span>.<span style="color:#a6e22e">value</span>;
+    }
+    <span style="color:#a6e22e">remaining</span> <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">max</span>(<span style="color:#a6e22e">remaining</span>, <span style="color:#ae81ff">0</span>); <span style="color:#75715e">// regra 2: nunca negativo
+</span><span style="color:#75715e"></span>  }
+  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">remaining</span>;
+}
+</code></pre></div><h2 id="importante">Importante</h2>
+<p>O CoT foi um dos comportamentos que foram descobertos depois dos modelos serem lancados e deu tão certo que os provedores passaram a treinar modelos com eles.</p>
+<p>&ldquo;Chain-of-Thought Prompting Elicits Reasoning in Large Language Models&rdquo; (NeurIPS 2022) [1]. Pesquisadores descobriram que, via prompting, os modelos melhoravam muito em tarefas de raciocínio se fossem instruídos a mostrar os passos intermediários antes da resposta final.</p>
+<p>&ldquo;Large Language Models are Zero-Shot Reasoners&rdquo; (NeurIPS 2022) [2] mostrou que nem precisa de exemplo, só pedir &ldquo;vamos pensar passo a passo&rdquo; já melhora. Isso é tipicamente chamado de zero-shot CoT.</p>
+<p>Pedir para incluir o &ldquo;reasoning&rdquo; ajuda bastante para futuras i(n)terações.</p>
+<p>A OpenAI afirma explicitamente que treinou o modelo com reinforcement learning para usar e aperfeiçoar sua chain of thought, aprendendo estratégias como decompor problemas, detectar/corrigir erros e tentar abordagens alternativas [3].</p>
+<p>Outro relato &ldquo;DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning&rdquo; [4].</p>
+<h2 id="contrato--contraste">Contrato + Contraste</h2>
+<ul>
+<li>Regra real: ordem de aplicação (buyget antes de standard, decrescente dentro do tipo).</li>
+</ul>
+<p>Prompt ruim: &ldquo;Refatore essa função de aplicar promoções para ficar mais legível, separe em funções menores.&rdquo;</p>
+<p>Saída ruim:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">sortPromotions</span>(<span style="color:#a6e22e">promotions</span>: <span style="color:#66d9ef">Promotion</span>[])<span style="color:#f92672">:</span> <span style="color:#a6e22e">Promotion</span>[] {
+  <span style="color:#66d9ef">return</span> [...<span style="color:#a6e22e">promotions</span>].<span style="color:#a6e22e">sort</span>((<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">code</span>.<span style="color:#a6e22e">localeCompare</span>(<span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">code</span>)); <span style="color:#75715e">// muda a ordem de aplicação
+</span><span style="color:#75715e"></span>}
+</code></pre></div><ul>
+<li>O bug passa despercebido sem teste que combine múltiplas promoções.</li>
+</ul>
+<p>Prompt bom:</p>
+<pre><code>&lt;constraints&gt;
+A ordem de aplicação (buyget antes de standard, decrescente dentro do tipo) é comportamento, não pode mudar.
+&lt;/constraints&gt;
+&lt;example label=&quot;aceitável&quot;&gt;
+... extrai nomes e formatação, não toca a ordenação ...
+&lt;/example&gt;
+&lt;example label=&quot;não fazer&quot;&gt;
+... reordena por código alfabético ...
+&lt;/example&gt;
+&lt;task&gt;
+Refatore para ficar mais legível, mantendo o contrato acima.
+&lt;/task&gt;
+</code></pre><h2 id="técnicas-mais-avançadas">Técnicas mais avançadas</h2>
+<p>Self-consistence. 3 CoTs. Paper google [5].</p>
+<p>Tree of thoughts. Paper google e princeton [6]. Na prática: [7].</p>
+<p>Skeleton of Thought (Esqueleto de Pensamento). É mais para otimizar tempo, não qualidade [8].</p>
+<p>ReAct [9].</p>
+<h2 id="diretrizes">Diretrizes</h2>
+<blockquote>
+<p>&ldquo;Como eu pediria para um dev sem experiência/contexto?&rdquo;</p>
+</blockquote>
+<p>Markdown é a lingua franca.</p>
+<p>Mostre. Se ele ficou consufo, o modelo ficará. Essa é a golden rule da Anthropic.</p>
+<p>Seja claro. Direto.
+- Sobre formato de saída, sobre possíveis passos, restrições, guardrails etc.</p>
+<p>Adicione contexto.</p>
+<p>Adicione exemplos (<code>&lt;example&gt; &lt;/example&gt;</code>)</p>
+<p>Coloque arquivos longos no início. (Lost in the Middle)</p>
+<p>Dê tempo (inclusive é técnica de otimização time/inference scaling): &ldquo;Read everything and Think hard before answering&rdquo;</p>
+<p>Decomponha em tarefas menores.</p>
+<p>Ref: [11]</p>
+<h2 id="mais-a-frente">Mais a frente</h2>
+<p>Planeje! Itere! Valide!</p>
+<p>As técnicas e diretrizes são a base para os frameworks que estão sendo adotados: SDD, RPI, RePPIT, etc.</p>
+<p>De novo:</p>
+<blockquote>
+<p>Há um movimento natural de shift do prompting manual para formas mais estruturadas de especificação, engenharia de contexto e configuração do agente.</p>
+</blockquote>
+<p>É isso que vamos ver em detalhes nos próximos capítulos.</p>
+<h1 id="referências">Referências</h1>
+<p>[1] Wei et al. &ldquo;Chain-of-Thought Prompting Elicits Reasoning in Large Language Models&rdquo; (NeurIPS 2022). <a href="https://arxiv.org/abs/2201.11903">https://arxiv.org/abs/2201.11903</a></p>
+<p>[2] Kojima et al. &ldquo;Large Language Models are Zero-Shot Reasoners&rdquo; (NeurIPS 2022). <a href="https://arxiv.org/abs/2205.11916">https://arxiv.org/abs/2205.11916</a></p>
+<p>[3] OpenAI. &ldquo;Learning to reason with LLMs&rdquo;. <a href="https://openai.com/index/learning-to-reason-with-llms">https://openai.com/index/learning-to-reason-with-llms</a></p>
+<p>[4] DeepSeek-AI. &ldquo;DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning&rdquo;. <a href="https://arxiv.org/abs/2501.12948">https://arxiv.org/abs/2501.12948</a></p>
+<p>[5] Wang et al. &ldquo;Self-Consistency Improves Chain of Thought Reasoning in Language Models&rdquo;. <a href="https://arxiv.org/abs/2203.11171">https://arxiv.org/abs/2203.11171</a></p>
+<p>[6] Yao et al. &ldquo;Tree of Thoughts: Deliberate Problem Solving with Large Language Models&rdquo; (Princeton e Google DeepMind). <a href="https://arxiv.org/abs/2305.10601">https://arxiv.org/abs/2305.10601</a></p>
+<p>[7] Implementação prática de Tree of Thoughts prompting. <a href="https://github.com/dave1010/tree-of-thought-prompting">https://github.com/dave1010/tree-of-thought-prompting</a></p>
+<p>[8] Ning et al. &ldquo;Skeleton-of-Thought: Prompting LLMs for Efficient Parallel Generation&rdquo;. <a href="https://arxiv.org/abs/2307.15337">https://arxiv.org/abs/2307.15337</a></p>
+<p>[9] ReAct — técnica de prompting. <a href="https://www.promptingguide.ai/techniques/react">https://www.promptingguide.ai/techniques/react</a></p>
+<p>[10] Prompt Engineering Guide — Techniques. <a href="https://www.promptingguide.ai/techniques">https://www.promptingguide.ai/techniques</a></p>
+<p>[11] Claude — Prompt engineering best practices. <a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices">https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices</a></p>
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        <li>
+            <a href="https://joaoarthurbm.github.io/dev-ia/posts/anatomia-dos-agentes/"><i class="fa fa-chevron-circle-left"></i> Anatomia dos Agentes</a>
+        </li>
+        
+        
+        <li>
+            <a href="https://joaoarthurbm.github.io/dev-ia/posts/engenharia-de-contexto/">Engenharia de Contexto <i class="fa fa-chevron-circle-right"></i> </a>
+        </li>
+        
+    </ul>
+</section>
+    
+
+
+
+
+
+</main>
+    <footer>
+    <h6><a href="http://joaoarthurbm.github.io">Copyright © 2026 - joaoarthurbm.github.io. Licença de uso: versão para uso pessoal, sendo proibida sua redistribuição ou modificação.</a></h6>
+    </footer>
+</div>
+<script src="https://joaoarthurbm.github.io/dev-ia/js/scripts.js"></script>
+
+</body>
+
+</html>
+

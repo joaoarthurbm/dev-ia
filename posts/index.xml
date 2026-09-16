@@ -697,6 +697,221 @@ python3 -m venv .venv
        </item>
        
        <item>
+         <title>Prompting</title>
+         <link>https://joaoarthurbm.github.io/dev-ia/posts/prompting/</link>
+         <pubDate>Fri, 28 Aug 2026 00:00:00 -0300</pubDate>
+         
+         <guid>https://joaoarthurbm.github.io/dev-ia/posts/prompting/</guid>
+         <description>&lt;hr&gt;
+&lt;p&gt;Ao final dessa aula, o aluno deve ser capaz de entender e implementar técnicas eficientes de prompting.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;preâmbulo&#34;&gt;Preâmbulo&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;Sobre as notas de aulas:&lt;/strong&gt; i) Conteúdo escrito por mim em sua totalidade. Tabelas e figuras foram geradas com auxílio do Claude. Estou deixando isso claro para que você tenha ciência de que se houver erro aqui ou achar o material ruim, a culpa é minha mesmo;  e ii) as notas de aula são um guia para a discussão em sala de aula e servem muito pouco como conteúdo para estudo.&lt;/p&gt;
+&lt;h1 id=&#34;disclaimer&#34;&gt;Disclaimer&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Há um movimento natural de shift do prompting manual para formas mais estruturadas de especificação, engenharia de contexto e configuração do agente.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Contudo, muitas das técnicas e frameworks atuais (SDD, RePPIT, RPI etc) preservam princípios fundamentais do &lt;em&gt;prompt engineering&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Quando você escreve uma spec para um agente, você ainda está, em última instância, escrevendo instruções para um modelo.&lt;/p&gt;
+&lt;p&gt;Hoje vamos aprender a andar para depois correr.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;It&amp;rsquo;s all about the principles.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;O jeito que a gente instrui os agentes pode mudar, os princípios se mantém.&lt;/p&gt;
+&lt;h1 id=&#34;o-modo-como-vamos-ver-isso-hoje&#34;&gt;O modo como vamos ver isso hoje&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Prompt ruim, resultado ruim&lt;/li&gt;
+&lt;li&gt;Melhoria no prompt, melhoria no resultado&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Com esse esquema, meu objetivo é ir apresentando os conceitos importantes, como zero/few-shots, Chain of Thought, entre outros.&lt;/p&gt;
+&lt;h1 id=&#34;definições&#34;&gt;Definições&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Prompt se divide em system prompt, user prompt e a tarefa específica.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Exemplo de System Prompt&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Você é um assistente de engenharia de software especializado em Python.
+
+## Comportamento
+- Responda de forma concisa e direta, sem preâmbulos.
+- Antes de editar código, leia os arquivos envolvidos para entender as convenções.
+- Nunca adicione comentários ao código, a menos que solicitado.
+- Sempre rode os testes após implementar uma feature.
+
+## Restrições
+- Não comita o código sem permissão explícita.
+- Não modifique arquivos fora do escopo da tarefa.
+- Não exponha segredos ou chaves de API.
+
+## Formato de resposta
+- Para perguntas: responda em no máximo 3 frases.
+- Para código: use code blocks com a linguagem correta.
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;zero-shot&#34;&gt;Zero-shot&lt;/h1&gt;
+&lt;p&gt;Prompt ruim: &amp;ldquo;Escreva uma função que valida se um voucher pode ser usado no checkout.&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;Prompt bom:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;role&amp;gt;
+Engenheiro no módulo de descontos do Saleor. Convenção da equipe: lançar exceção de domínio, não retornar bool.
+&amp;lt;/role&amp;gt;
+&amp;lt;task&amp;gt;
+Implemente validate_voucher(voucher, total_price, quantity, customer_email, channel, customer) -&amp;gt; None
+&amp;lt;/task&amp;gt;
+&amp;lt;constraints&amp;gt;
+- Valor mínimo gasto
+- Quantidade mínima de itens
+- Uso único por cliente, se apply_once_per_customer
+- Exclusivo para staff, se only_for_staff
+&amp;lt;/constraints&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;kfew-shot&#34;&gt;k/few-shot&lt;/h1&gt;
+&lt;p&gt;Pedindo com exemplos.&lt;/p&gt;
+&lt;p&gt;Prompt ruim: &amp;ldquo;Escreva uma função Python que calcula o desconto de frete dado um voucher e o preço do frete.&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;Saída ruim:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;get_shipping_voucher_discount&lt;/span&gt;(voucher, shipping_price, channel):
+    discount &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; voucher&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;get_discount_amount_for(shipping_price, channel)
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; discount &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; shipping_price:
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; shipping_price
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; discount
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Prompt bom:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# Role
+Engenheiro no módulo de descontos do Saleor.
+
+
+# Exemplo
+def get_products_voucher_discount(voucher: &amp;quot;Voucher&amp;quot;, prices: Iterable[Money], channel: Channel) -&amp;gt; Money:
+    &amp;quot;&amp;quot;&amp;quot;Calculate discount value for a voucher of product or category type.&amp;quot;&amp;quot;&amp;quot;
+    ...
+
+# Task
+No mesmo estilo do exemplo acima, implemente:
+get_shipping_voucher_discount(voucher: &amp;quot;Voucher&amp;quot;, shipping_price: Money, channel: Channel) -&amp;gt; Money
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Saída boa:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;get_shipping_voucher_discount&lt;/span&gt;(
+    voucher: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Voucher&amp;#34;&lt;/span&gt;, shipping_price: Money, channel: Channel
+) &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; Money:
+    &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&amp;#34;Calculate discount value for a shipping voucher.&amp;#34;&amp;#34;&amp;#34;&lt;/span&gt;
+    discount &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; voucher&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;get_discount_amount_for(shipping_price, channel)
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; min(discount, shipping_price)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Aqui usamos o few-shot para mostrar o estilo. Como disse anteriormente, hoje usamos o contexto para instruir o modelo sobre questões
+como essa.&lt;/p&gt;
+&lt;p&gt;Perceba o uso de marcadores. Para o claude, inclusive, funciona muito bem tags html.&lt;/p&gt;
+&lt;p&gt;Markdown como &lt;em&gt;lingua franca&lt;/em&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;chain-of-thought&#34;&gt;Chain of thought&lt;/h1&gt;
+&lt;p&gt;O conceito de ensinar o raciocínio, não a resposta.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Regra real: percentual incide sobre o valor restante, nunca fica negativo; tarefa &lt;code&gt;applyPromotions&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Prompt ruim: &amp;ldquo;Escreva uma função em TypeScript que aplica uma lista de promoções (percentual ou valor fixo) a um item e retorna o valor final.&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;Saída ruim:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-typescript&#34; data-lang=&#34;typescript&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;applyPromotions&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;originalAmount&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;number&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;promotions&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;Promotion&lt;/span&gt;[])&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;number&lt;/span&gt; {
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;total&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;originalAmount&lt;/span&gt;;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;promo&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;of&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;promotions&lt;/span&gt;) {
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;promo&lt;/span&gt;.&lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;===&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;percentage&amp;#34;&lt;/span&gt;) {
+      &lt;span style=&#34;color:#a6e22e&#34;&gt;total&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;originalAmount&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;promo&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;value&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;100&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// usa o valor original, não o restante
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    } &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; {
+      &lt;span style=&#34;color:#a6e22e&#34;&gt;total&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;promo&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;value&lt;/span&gt;;
+    }
+  }
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; Math.&lt;span style=&#34;color:#a6e22e&#34;&gt;max&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;total&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;R$ 200 com duas promoções de 10% daria R$162, não R$160.&lt;/p&gt;
+&lt;p&gt;Prompt bom:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;context&amp;gt;
+Promoções são aplicadas em cascata sobre um item de carrinho.
+&amp;lt;/context&amp;gt;
+&amp;lt;reasoning_steps&amp;gt;
+1. Liste as regras de negócio de promoções em cascata.
+2. Confira cada regra contra &amp;quot;o valor nunca fica negativo&amp;quot;.
+3. Só depois implemente.
+&amp;lt;/reasoning_steps&amp;gt;
+&amp;lt;task&amp;gt;
+Implemente applyPromotions(originalAmount, promotions), um comentário por regra.
+&amp;lt;/task&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Saída boa:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-typescript&#34; data-lang=&#34;typescript&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;applyPromotions&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;originalAmount&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;number&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;promotions&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;Promotion&lt;/span&gt;[])&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;number&lt;/span&gt; {
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;remaining&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;originalAmount&lt;/span&gt;;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;promo&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;of&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;promotions&lt;/span&gt;) {
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;promo&lt;/span&gt;.&lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;===&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;percentage&amp;#34;&lt;/span&gt;) {
+      &lt;span style=&#34;color:#a6e22e&#34;&gt;remaining&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;remaining&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;promo&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;value&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;100&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// regra 1: incide sobre o valor restante
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    } &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; {
+      &lt;span style=&#34;color:#a6e22e&#34;&gt;remaining&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;promo&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;value&lt;/span&gt;;
+    }
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;remaining&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Math.&lt;span style=&#34;color:#a6e22e&#34;&gt;max&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;remaining&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// regra 2: nunca negativo
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;  }
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;remaining&lt;/span&gt;;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;importante&#34;&gt;Importante&lt;/h2&gt;
+&lt;p&gt;O CoT foi um dos comportamentos que foram descobertos depois dos modelos serem lancados e deu tão certo que os provedores passaram a treinar modelos com eles.&lt;/p&gt;
+&lt;p&gt;&amp;ldquo;Chain-of-Thought Prompting Elicits Reasoning in Large Language Models&amp;rdquo; (NeurIPS 2022) [1]. Pesquisadores descobriram que, via prompting, os modelos melhoravam muito em tarefas de raciocínio se fossem instruídos a mostrar os passos intermediários antes da resposta final.&lt;/p&gt;
+&lt;p&gt;&amp;ldquo;Large Language Models are Zero-Shot Reasoners&amp;rdquo; (NeurIPS 2022) [2] mostrou que nem precisa de exemplo, só pedir &amp;ldquo;vamos pensar passo a passo&amp;rdquo; já melhora. Isso é tipicamente chamado de zero-shot CoT.&lt;/p&gt;
+&lt;p&gt;Pedir para incluir o &amp;ldquo;reasoning&amp;rdquo; ajuda bastante para futuras i(n)terações.&lt;/p&gt;
+&lt;p&gt;A OpenAI afirma explicitamente que treinou o modelo com reinforcement learning para usar e aperfeiçoar sua chain of thought, aprendendo estratégias como decompor problemas, detectar/corrigir erros e tentar abordagens alternativas [3].&lt;/p&gt;
+&lt;p&gt;Outro relato &amp;ldquo;DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning&amp;rdquo; [4].&lt;/p&gt;
+&lt;h2 id=&#34;contrato--contraste&#34;&gt;Contrato + Contraste&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Regra real: ordem de aplicação (buyget antes de standard, decrescente dentro do tipo).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Prompt ruim: &amp;ldquo;Refatore essa função de aplicar promoções para ficar mais legível, separe em funções menores.&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;Saída ruim:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-typescript&#34; data-lang=&#34;typescript&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sortPromotions&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;promotions&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;Promotion&lt;/span&gt;[])&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Promotion&lt;/span&gt;[] {
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; [...&lt;span style=&#34;color:#a6e22e&#34;&gt;promotions&lt;/span&gt;].&lt;span style=&#34;color:#a6e22e&#34;&gt;sort&lt;/span&gt;((&lt;span style=&#34;color:#a6e22e&#34;&gt;a&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;a&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;code&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;localeCompare&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;code&lt;/span&gt;)); &lt;span style=&#34;color:#75715e&#34;&gt;// muda a ordem de aplicação
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;O bug passa despercebido sem teste que combine múltiplas promoções.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Prompt bom:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;constraints&amp;gt;
+A ordem de aplicação (buyget antes de standard, decrescente dentro do tipo) é comportamento, não pode mudar.
+&amp;lt;/constraints&amp;gt;
+&amp;lt;example label=&amp;quot;aceitável&amp;quot;&amp;gt;
+... extrai nomes e formatação, não toca a ordenação ...
+&amp;lt;/example&amp;gt;
+&amp;lt;example label=&amp;quot;não fazer&amp;quot;&amp;gt;
+... reordena por código alfabético ...
+&amp;lt;/example&amp;gt;
+&amp;lt;task&amp;gt;
+Refatore para ficar mais legível, mantendo o contrato acima.
+&amp;lt;/task&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;técnicas-mais-avançadas&#34;&gt;Técnicas mais avançadas&lt;/h2&gt;
+&lt;p&gt;Self-consistence. 3 CoTs. Paper google [5].&lt;/p&gt;
+&lt;p&gt;Tree of thoughts. Paper google e princeton [6]. Na prática: [7].&lt;/p&gt;
+&lt;p&gt;Skeleton of Thought (Esqueleto de Pensamento). É mais para otimizar tempo, não qualidade [8].&lt;/p&gt;
+&lt;p&gt;ReAct [9].&lt;/p&gt;
+&lt;h2 id=&#34;diretrizes&#34;&gt;Diretrizes&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;Como eu pediria para um dev sem experiência/contexto?&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Markdown é a lingua franca.&lt;/p&gt;
+&lt;p&gt;Mostre. Se ele ficou consufo, o modelo ficará. Essa é a golden rule da Anthropic.&lt;/p&gt;
+&lt;p&gt;Seja claro. Direto.
+- Sobre formato de saída, sobre possíveis passos, restrições, guardrails etc.&lt;/p&gt;
+&lt;p&gt;Adicione contexto.&lt;/p&gt;
+&lt;p&gt;Adicione exemplos (&lt;code&gt;&amp;lt;example&amp;gt; &amp;lt;/example&amp;gt;&lt;/code&gt;)&lt;/p&gt;
+&lt;p&gt;Coloque arquivos longos no início. (Lost in the Middle)&lt;/p&gt;
+&lt;p&gt;Dê tempo (inclusive é técnica de otimização time/inference scaling): &amp;ldquo;Read everything and Think hard before answering&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;Decomponha em tarefas menores.&lt;/p&gt;
+&lt;p&gt;Ref: [11]&lt;/p&gt;
+&lt;h2 id=&#34;mais-a-frente&#34;&gt;Mais a frente&lt;/h2&gt;
+&lt;p&gt;Planeje! Itere! Valide!&lt;/p&gt;
+&lt;p&gt;As técnicas e diretrizes são a base para os frameworks que estão sendo adotados: SDD, RPI, RePPIT, etc.&lt;/p&gt;
+&lt;p&gt;De novo:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Há um movimento natural de shift do prompting manual para formas mais estruturadas de especificação, engenharia de contexto e configuração do agente.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;É isso que vamos ver em detalhes nos próximos capítulos.&lt;/p&gt;
+&lt;h1 id=&#34;referências&#34;&gt;Referências&lt;/h1&gt;
+&lt;p&gt;[1] Wei et al. &amp;ldquo;Chain-of-Thought Prompting Elicits Reasoning in Large Language Models&amp;rdquo; (NeurIPS 2022). &lt;a href=&#34;https://arxiv.org/abs/2201.11903&#34;&gt;https://arxiv.org/abs/2201.11903&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[2] Kojima et al. &amp;ldquo;Large Language Models are Zero-Shot Reasoners&amp;rdquo; (NeurIPS 2022). &lt;a href=&#34;https://arxiv.org/abs/2205.11916&#34;&gt;https://arxiv.org/abs/2205.11916&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[3] OpenAI. &amp;ldquo;Learning to reason with LLMs&amp;rdquo;. &lt;a href=&#34;https://openai.com/index/learning-to-reason-with-llms&#34;&gt;https://openai.com/index/learning-to-reason-with-llms&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[4] DeepSeek-AI. &amp;ldquo;DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning&amp;rdquo;. &lt;a href=&#34;https://arxiv.org/abs/2501.12948&#34;&gt;https://arxiv.org/abs/2501.12948&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[5] Wang et al. &amp;ldquo;Self-Consistency Improves Chain of Thought Reasoning in Language Models&amp;rdquo;. &lt;a href=&#34;https://arxiv.org/abs/2203.11171&#34;&gt;https://arxiv.org/abs/2203.11171&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[6] Yao et al. &amp;ldquo;Tree of Thoughts: Deliberate Problem Solving with Large Language Models&amp;rdquo; (Princeton e Google DeepMind). &lt;a href=&#34;https://arxiv.org/abs/2305.10601&#34;&gt;https://arxiv.org/abs/2305.10601&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[7] Implementação prática de Tree of Thoughts prompting. &lt;a href=&#34;https://github.com/dave1010/tree-of-thought-prompting&#34;&gt;https://github.com/dave1010/tree-of-thought-prompting&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[8] Ning et al. &amp;ldquo;Skeleton-of-Thought: Prompting LLMs for Efficient Parallel Generation&amp;rdquo;. &lt;a href=&#34;https://arxiv.org/abs/2307.15337&#34;&gt;https://arxiv.org/abs/2307.15337&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[9] ReAct — técnica de prompting. &lt;a href=&#34;https://www.promptingguide.ai/techniques/react&#34;&gt;https://www.promptingguide.ai/techniques/react&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[10] Prompt Engineering Guide — Techniques. &lt;a href=&#34;https://www.promptingguide.ai/techniques&#34;&gt;https://www.promptingguide.ai/techniques&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[11] Claude — Prompt engineering best practices. &lt;a href=&#34;https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices&#34;&gt;https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices&lt;/a&gt;&lt;/p&gt;
+</description>
+       </item>
+       
+       <item>
          <title>Anatomia dos Agentes</title>
          <link>https://joaoarthurbm.github.io/dev-ia/posts/anatomia-dos-agentes/</link>
          <pubDate>Sat, 22 Aug 2026 00:00:00 -0300</pubDate>
