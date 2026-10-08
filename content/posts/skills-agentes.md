@@ -11,6 +11,8 @@ youtube = ""
 
 Ao final dessa aula, o aluno deve ser capaz de explicar e especificar skills e agentes, além de diferenciar os dois.
 
+***
+
 # Contexto
 
 Quando (e como) eu ensino algo ao agente? Quando eu crio outro agente?
