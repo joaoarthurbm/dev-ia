@@ -704,6 +704,7 @@ python3 -m venv .venv
          <guid>https://joaoarthurbm.github.io/dev-ia/posts/skills-agentes/</guid>
          <description>&lt;hr&gt;
 &lt;p&gt;Ao final dessa aula, o aluno deve ser capaz de explicar e especificar skills e agentes, além de diferenciar os dois.&lt;/p&gt;
+&lt;hr&gt;
 &lt;h1 id=&#34;contexto&#34;&gt;Contexto&lt;/h1&gt;
 &lt;p&gt;Quando (e como) eu ensino algo ao agente? Quando eu crio outro agente?&lt;/p&gt;
 &lt;p&gt;Nós acabamos de passar por prompting e engenharia de contexto. Ali aprendemos e utilizamos algumas técnicas para direcionar o agente a fazer o que queremos e como queremos. Além disso, vimos que muitas vezes a quantidade de informação relevante para o trabalho pode não caber na janela de contexto, por isso, vimos que é importante escrever essa informação em algum documento (tipicamente markdown) para ser utilizado em momento oportuno.&lt;/p&gt;
