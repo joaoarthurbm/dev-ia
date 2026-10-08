@@ -1,0 +1,339 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <title>Desenvolvimento de Software com Agentes e IA Generativa</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="The HTML5 Herald" />
+  <meta name="author" content="João Arthur Brunet" /><meta name="generator" content="Hugo 0.75.1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/v4-shims.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  <link rel="stylesheet" type="text/css" href="https://joaoarthurbm.github.io/dev-ia/css/styles.css" /><link rel='stylesheet' href='https://joaoarthurbm.github.io/dev-ia/css/site.css'><script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+  });
+  MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+
+  MathJax.Hub.Config({
+  
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+  });
+</script>
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-151903059-1"></script>
+<script>
+      window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+            gtag('config', 'UA-151903059-1');
+        </script>
+
+
+</head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="https://joaoarthurbm.github.io/dev-ia/">Desenvolvimento de Software com Agentes e IA Generativa</a>
+            </h1>
+
+      <ul id="social-media">
+        
+        
+         
+        <li><a href="https://github.com/joaoarthurbm/dev-ia"><i class="fab fa-github fa-lg" aria-hidden="true"></i> repo</a></li>
+           
+        <li><a href="http://lattes.cnpq.br/7892247821251194"><i class="fas fa-graduation-cap fa-lg" aria-hidden="true"></i> lattes</a></li>
+        
+      </ul>
+      
+      <p><em><a href="https://joaoarthurbm.github.io">joaoarthurbm.github.io</a> <br> Computação @ UFCG</em></p>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="" href="https://joaoarthurbm.github.io/dev-ia/">
+                <i class="fa-li fa fa-home fa-lg"></i><span>Home</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="https://joaoarthurbm.github.io/dev-ia/aulas/">
+                <i class="fa-li fa  fa-lg"></i><span>Aulas</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+    <main>
+
+
+
+<article>
+
+    <h1>Skills e Especificação de Agentes</h1>
+
+    
+        <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2026-08-14T00:00:00-03:00">Aug 14, 2026</time>
+        </li>
+
+        <li>7 minutos de leitura</li>
+
+
+        
+
+
+        
+
+
+
+        
+
+
+    </ul>
+</aside>
+
+    
+
+    
+    <details id="toc" open>
+        <summary>Sumário</summary>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#os-problemas">Os problemas</a></li>
+    <li><a href="#falta-de-alinhamento">Falta de alinhamento</a>
+      <ul>
+        <li><a href="#diferença-com-e-sem-skill-alinhamento">Diferença com e sem skill (alinhamento!)</a></li>
+      </ul>
+    </li>
+    <li><a href="#reuso">Reuso</a></li>
+    <li><a href="#formato">Formato</a></li>
+    <li><a href="#conteúdo">Conteúdo</a></li>
+  </ul>
+</nav>
+    </details>
+    
+
+    <hr>
+<p>Ao final dessa aula, o aluno deve ser capaz de explicar e especificar skills e agentes, além de diferenciar os dois.</p>
+<h1 id="contexto">Contexto</h1>
+<p>Quando (e como) eu ensino algo ao agente? Quando eu crio outro agente?</p>
+<p>Nós acabamos de passar por prompting e engenharia de contexto. Ali aprendemos e utilizamos algumas técnicas para direcionar o agente a fazer o que queremos e como queremos. Além disso, vimos que muitas vezes a quantidade de informação relevante para o trabalho pode não caber na janela de contexto, por isso, vimos que é importante escrever essa informação em algum documento (tipicamente markdown) para ser utilizado em momento oportuno.</p>
+<p>Até aqui você escreveu, com ajuda dele, documentos markdown para o agente, como sessões de entendimento (grill-me) e planos de implementação (to-spec). Em todos, quem decidia quando o documento seria usado era você. Hoje vamos tratar de dois arquivos em que essa decisão muda de lugar. Os dois são markdown com <em>frontmatter</em>, e por isso parecem a mesma coisa, mas não são.</p>
+<h1 id="o-primeiro-skill">O primeiro: skill</h1>
+<p>Setup:</p>
+<ul>
+<li>Vamos trabalhar em cima do projeto humanize (<a href="https://github.com/python-humanize/humanize">link</a>).</li>
+<li>Vamos usar uma skill chamada release-notes, que já criei e está <a href="https://github.com/dev-ia-ufcg/material/tree/main/skills-agentes/release-notes">aqui</a>.</li>
+</ul>
+<p><code>&quot;Gere as release notes da próxima versão.&quot;</code></p>
+<p>Faltou algo. Ou muito, né? Precisamos definir muito mais detalhes para aumentar a chance do resultado gerado ser o que esperamos.</p>
+<p>O modelo sabe escrever release notes. Não sabe escrever da forma como as regras deste projeto requer.</p>
+<p>Podemos colocar isso no prompt toda vez. Mas isso é algo que vai ser necessário toda vez que precisarmos gerar release notes. Já vimos que há um movimento natural de elementos do prompt para arquivos markdown. Onde podemos colocar esses detalhes? <strong>Skills.</strong></p>
+<p>Podemos colocar também no agents.md. Mas isso é assunto para depois. Por que não agents.md agora? Vale a pena só citar que o agents.md é carregado a cada sessão independente de pedido. A skill é sob demanda da tarefa.</p>
+<p>O que é? Skill é conhecimento descrito de maneira estruturada em um markdown para ser reutilizado. Uma pessoa possui várias habilidades, mas não usa todas ao mesmo tempo. Em determinados contextos, eu toco cavaquinho, em outros, leciono essa disciplina, em outros faço pão. São habilidades que eu tenho e que eu as uso a depender do contexto.</p>
+<p>Assim funciona para um agente. Ele pode ter habilidades de revisor de código, de testador, de especialista em cloud entre outras, mas só as usa quando preciso e dentro do contexto que for preciso. Isso é importante entender sobre skill: é carregada dinamicamente (ou explicitamente pelo usuário com @) para uma determinada tarefa.</p>
+<p>Se eu pedir para o agente descrito acima revisar alguma coisa, ele muito provavelmente vai carregar a skill que eu escrevi para revisar do jeito que eu especifiquei.</p>
+<p>Lembra do grill-me? Aquilo é uma skill. Dá uma olhada no markdown dela <a href="https://github.com/mattpocock/skills/blob/main/skills/productivity/grilling/SKILL.md">aqui</a>.</p>
+<h2 id="os-problemas">Os problemas</h2>
+<p>Em termos simples, SKILL resolve dois grandes problemas: falta de alinhamento e duplicação de trabalho.</p>
+<h2 id="falta-de-alinhamento">Falta de alinhamento</h2>
+<p><em>&lt;demonstração prática em sala de aula&gt;</em></p>
+<p>&ldquo;Gere as release notes da próxima versão e salve o conteúdo em no-skill-release-notes.md&rdquo;</p>
+<p>Vamos ver o trace.</p>
+<pre><code>Searched for 1 pattern, ran 3 shell commands
+
+gh is authenticated. Let me check if there's already a draft release on GitHub for the next version, and pull PR labels for the commits since 4.16.0.
+
+  Searched for 1 pattern, ran 5 shell commands
+
+Based on the commits merged since the 4.16.0 tag (2026-06-30), here are the release notes for the next version, 4.17.0 (minor bump, since Added/Changed-labelled PRs are included per release-drafter.yml's semver rules):
+</code></pre><p>Vamos olhar o que foi gerado em <strong>no-skill-release-notes.md</strong>.</p>
+<p>Agora vamos ver e usar a skill que criei para ver o resultado.</p>
+<ul>
+<li>Vamos ver onde fica e o que tem no diretório da skill.</li>
+<li>Vamos executar o mesmo pedido agora.</li>
+<li>Note a skill sendo carregada automaticamente. O agente entendeu que para essa tarefa, deve usar a skill. Não precisei chamar explicitamente.</li>
+<li>Note que as ações do modelo são direcionadas pelo que está descrito na skill.</li>
+</ul>
+<figure style="align: center; margin-left:5%; width: 90%">
+    <img src="loading.png">
+</figure>
+<h3 id="diferença-com-e-sem-skill-alinhamento">Diferença com e sem skill (alinhamento!)</h3>
+<p>Vamos ver o que o próprio modelo diz:</p>
+<blockquote>
+<p>&ldquo;draft-release-note.md parece ser a saída real do bot release-drafter do GitHub, que categoriza PRs pelas labels atribuídas nelas (ex: label &ldquo;bug&rdquo; → Fixed), não pelo texto do assunto do commit. Meu arquivo seguiu estritamente as regras textuais de formato.md do skill, que mapeia por palavras do assunto (&ldquo;Return&rdquo;, &ldquo;Use&rdquo;, &ldquo;Support&rdquo; → Changed/Added) e exclui mudanças só de doctest.</p>
+<p>Ou seja: a divergência não é erro de um lado, são <strong>critérios diferentes</strong> (labels do GitHub vs. heurística por texto do commit). Quer que eu ajuste o meu rascunho para seguir as labels reais das PRs (preciso consultar o GitHub), ou mantenho conforme a regra do skill?&rdquo;</p>
+</blockquote>
+<h2 id="reuso">Reuso</h2>
+<p>Skill é conhecimento escrito para não termos que escrever no prompt toda vez que precisarmos dele.</p>
+<h2 id="formato">Formato</h2>
+<pre><code>./release-notes/formato.md
+./release-notes/scripts/commits.py
+./release-notes/SKILL.md
+</code></pre><p>A língua-franca é markdown, mas sem formato pré-definido.</p>
+<p>Vamos ver algumas e discutir o que e como vale a pena descrever.</p>
+<h2 id="conteúdo">Conteúdo</h2>
+<p><strong>1. Nome, descrição e ferramentas (<code>allowed-tools</code>) para o agente.</strong></p>
+<p>O agente usa isso para decidir se vai carregar a skill.</p>
+<blockquote>
+<p>name: release-notes</p>
+<p>description: Gera o rascunho das release notes da próxima versão a partir dos commits desde a última tag, no formato do projeto. Use quando o usuário pedir release notes, changelog ou notas da próxima versão.</p>
+</blockquote>
+<p><strong>2. Convenções e decisões.</strong></p>
+<p>Incluir decisões da equipe sobre formatos, exclusões, saídas etc. Não ensine o que ele já faz bem sozinho.</p>
+<p><strong>3. KISS.</strong></p>
+<p>Mantenha a concisão e simplicidade.</p>
+<p>Use arquivos externos de apoio.</p>
+<p>Mantenha coesão. Uma coisa é bem feita.</p>
+<p><strong>4. Inclua determinismo quando necessário.</strong></p>
+<p>Se houver algum passo que você quer garantir que aconteça e de forma determinística, use scripts.</p>
+<p><strong>5. Precisa mesmo de uma skill?</strong></p>
+<p>Meça com e sem a skill para ver o efeito.</p>
+<p><strong>6. Controle o agente.</strong></p>
+<p>Se ele não puder carregar a skill automaticamente, use <code>disable-model-invocation: true</code>.</p>
+<h1 id="o-segundo-agentes">O segundo: agentes</h1>
+<p>Você pode definir agentes especializados.</p>
+<p>Quando carregados, possuem papel, <strong>ferramentas</strong>, modelo e <strong>contexto</strong> próprios.</p>
+<p>O agente roda em uma janela separada e devolve só o resumo. Aqui está a diferença para a skill. A skill entra no contexto do agente que já está trabalhando, e o agente delegado trabalha no dele.</p>
+<p>Onde? <code>.claude/agents/</code></p>
+<p><em>&lt;demonstração em sala de aula&gt;</em></p>
+<p>Vamos analisar o <code>release-auditor.md</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown">---
+name: release-auditor
+description: Confere um rascunho de release notes contra o
+  histórico de commits. Use depois de gerar as notas.
+tools: Read, Grep, Glob
+model: haiku
+---
+
+(corpo: o system prompt do agente)
+</code></pre></div><p>Só <code>name</code> e <code>description</code> são obrigatórios. Existem outros campos (<code>skills</code>, <code>maxTurns</code>, <code>permissionMode</code> e etc.</p>
+<p>O agente não vê a conversa. Ele recebe o corpo do arquivo, a mensagem de delegação que o agente principal escreve, as instruções do repositório e pouco mais. Tudo o que ele precisa saber tem de estar no corpo ou na mensagem.</p>
+<p>O auditor só lê, então recebe <code>Read, Grep, Glob</code>. Se ele precisasse de Bash, restringir a comandos específicos não é possível pelo campo <code>tools</code>: listar Bash com um especificador em <code>disallowedTools</code> remove a ferramenta inteira. Por isso desenhamos o script da skill para deixar o histórico em arquivo.</p>
+<p>O campo <code>skills</code> do agente injeta o conteúdo completo de cada skill no início da execução.</p>
+<h1 id="diretrizes-para-especificar-agentes">Diretrizes para Especificar Agentes</h1>
+<ul>
+<li>Uma responsabilidade por agente.</li>
+<li>Ferramentas mínimas.</li>
+<li>Descrição escrita para a decisão de delegar.</li>
+<li>Corpo escrito para quem não viu a conversa.</li>
+<li>Formato de retorno definido.</li>
+<li>Modelo escolhido pelo trabalho.</li>
+<li>Arquivo versionado no repositório, para o time melhorar junto.</li>
+</ul>
+<h1 id="paralelo">Paralelo</h1>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Skill</th>
+<th>Agente</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Onde entra</td>
+<td>Contexto principal, sob demanda</td>
+<td>Contexto próprio</td>
+</tr>
+<tr>
+<td>O que carrega</td>
+<td>Instruções</td>
+<td>Papel, ferramentas, modelo</td>
+</tr>
+<tr>
+<td>Quem executa</td>
+<td>O agente que já trabalha</td>
+<td>Outra instância</td>
+</tr>
+<tr>
+<td>O que volta</td>
+<td>Nada separado, tudo na conversa</td>
+<td>Um resumo</td>
+</tr>
+<tr>
+<td>Custo</td>
+<td>Ocupa o contexto depois de carregada</td>
+<td>Começa do zero e gasta tokens próprios</td>
+</tr>
+</tbody>
+</table>
+<h1 id="quando-eu-ensino-algo-ao-agente-e-quando-eu-crio-outro-agente">Quando eu ensino algo ao agente e quando eu crio outro agente?</h1>
+<p>Ensino por skill quando falta conhecimento e o trabalho pode acontecer na conversa. Crio outro agente quando o problema é volume, restrição ou isolamento.</p>
+<p><strong>Agente cria unidade separada de trabalho.</strong></p>
+<h1 id="algumas-boas-referências">Algumas boas referências</h1>
+<p>Para agentes: <a href="https://github.com/github/awesome-copilot/tree/main/agents">awesome agents</a> e <a href="https://opencode.ai/docs/pt-br/agents/">criando agentes no opencode</a>.</p>
+<p>Para skills:</p>
+<ul>
+<li>@mattpocockuk</li>
+<li>@poteto</li>
+<li>@dexhorthy</li>
+<li>@emilkowalski</li>
+</ul>
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        <li>
+            <a href="https://joaoarthurbm.github.io/dev-ia/posts/visao-geral-agentes-ia-generativa/"><i class="fa fa-chevron-circle-left"></i> Visão Geral de Desenvolvimento de Software com Agentes e IA Generativa</a>
+        </li>
+        
+        
+        <li>
+            <a href="https://joaoarthurbm.github.io/dev-ia/posts/modelos-e-agentes-ciclo-desenvolvimento/">Modelos e Agentes no Ciclo de Desenvolvimento de Software <i class="fa fa-chevron-circle-right"></i> </a>
+        </li>
+        
+    </ul>
+</section>
+    
+
+
+
+
+
+</main>
+    <footer>
+    <h6><a href="http://joaoarthurbm.github.io">Copyright © 2026 - joaoarthurbm.github.io. Licença de uso: versão para uso pessoal, sendo proibida sua redistribuição ou modificação.</a></h6>
+    </footer>
+</div>
+<script src="https://joaoarthurbm.github.io/dev-ia/js/scripts.js"></script>
+
+</body>
+
+</html>
+

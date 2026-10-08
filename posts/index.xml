@@ -1313,6 +1313,172 @@ para o contexto de atividades de engenharia de software.&lt;/p&gt;
        </item>
        
        <item>
+         <title>Skills e Especificação de Agentes</title>
+         <link>https://joaoarthurbm.github.io/dev-ia/posts/skills-agentes/</link>
+         <pubDate>Fri, 14 Aug 2026 00:00:00 -0300</pubDate>
+         
+         <guid>https://joaoarthurbm.github.io/dev-ia/posts/skills-agentes/</guid>
+         <description>&lt;hr&gt;
+&lt;p&gt;Ao final dessa aula, o aluno deve ser capaz de explicar e especificar skills e agentes, além de diferenciar os dois.&lt;/p&gt;
+&lt;h1 id=&#34;contexto&#34;&gt;Contexto&lt;/h1&gt;
+&lt;p&gt;Quando (e como) eu ensino algo ao agente? Quando eu crio outro agente?&lt;/p&gt;
+&lt;p&gt;Nós acabamos de passar por prompting e engenharia de contexto. Ali aprendemos e utilizamos algumas técnicas para direcionar o agente a fazer o que queremos e como queremos. Além disso, vimos que muitas vezes a quantidade de informação relevante para o trabalho pode não caber na janela de contexto, por isso, vimos que é importante escrever essa informação em algum documento (tipicamente markdown) para ser utilizado em momento oportuno.&lt;/p&gt;
+&lt;p&gt;Até aqui você escreveu, com ajuda dele, documentos markdown para o agente, como sessões de entendimento (grill-me) e planos de implementação (to-spec). Em todos, quem decidia quando o documento seria usado era você. Hoje vamos tratar de dois arquivos em que essa decisão muda de lugar. Os dois são markdown com &lt;em&gt;frontmatter&lt;/em&gt;, e por isso parecem a mesma coisa, mas não são.&lt;/p&gt;
+&lt;h1 id=&#34;o-primeiro-skill&#34;&gt;O primeiro: skill&lt;/h1&gt;
+&lt;p&gt;Setup:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Vamos trabalhar em cima do projeto humanize (&lt;a href=&#34;https://github.com/python-humanize/humanize&#34;&gt;link&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Vamos usar uma skill chamada release-notes, que já criei e está &lt;a href=&#34;https://github.com/dev-ia-ufcg/material/tree/main/skills-agentes/release-notes&#34;&gt;aqui&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;&amp;quot;Gere as release notes da próxima versão.&amp;quot;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Faltou algo. Ou muito, né? Precisamos definir muito mais detalhes para aumentar a chance do resultado gerado ser o que esperamos.&lt;/p&gt;
+&lt;p&gt;O modelo sabe escrever release notes. Não sabe escrever da forma como as regras deste projeto requer.&lt;/p&gt;
+&lt;p&gt;Podemos colocar isso no prompt toda vez. Mas isso é algo que vai ser necessário toda vez que precisarmos gerar release notes. Já vimos que há um movimento natural de elementos do prompt para arquivos markdown. Onde podemos colocar esses detalhes? &lt;strong&gt;Skills.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Podemos colocar também no agents.md. Mas isso é assunto para depois. Por que não agents.md agora? Vale a pena só citar que o agents.md é carregado a cada sessão independente de pedido. A skill é sob demanda da tarefa.&lt;/p&gt;
+&lt;p&gt;O que é? Skill é conhecimento descrito de maneira estruturada em um markdown para ser reutilizado. Uma pessoa possui várias habilidades, mas não usa todas ao mesmo tempo. Em determinados contextos, eu toco cavaquinho, em outros, leciono essa disciplina, em outros faço pão. São habilidades que eu tenho e que eu as uso a depender do contexto.&lt;/p&gt;
+&lt;p&gt;Assim funciona para um agente. Ele pode ter habilidades de revisor de código, de testador, de especialista em cloud entre outras, mas só as usa quando preciso e dentro do contexto que for preciso. Isso é importante entender sobre skill: é carregada dinamicamente (ou explicitamente pelo usuário com @) para uma determinada tarefa.&lt;/p&gt;
+&lt;p&gt;Se eu pedir para o agente descrito acima revisar alguma coisa, ele muito provavelmente vai carregar a skill que eu escrevi para revisar do jeito que eu especifiquei.&lt;/p&gt;
+&lt;p&gt;Lembra do grill-me? Aquilo é uma skill. Dá uma olhada no markdown dela &lt;a href=&#34;https://github.com/mattpocock/skills/blob/main/skills/productivity/grilling/SKILL.md&#34;&gt;aqui&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;os-problemas&#34;&gt;Os problemas&lt;/h2&gt;
+&lt;p&gt;Em termos simples, SKILL resolve dois grandes problemas: falta de alinhamento e duplicação de trabalho.&lt;/p&gt;
+&lt;h2 id=&#34;falta-de-alinhamento&#34;&gt;Falta de alinhamento&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;&amp;lt;demonstração prática em sala de aula&amp;gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&amp;ldquo;Gere as release notes da próxima versão e salve o conteúdo em no-skill-release-notes.md&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;Vamos ver o trace.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Searched for 1 pattern, ran 3 shell commands
+
+gh is authenticated. Let me check if there&#39;s already a draft release on GitHub for the next version, and pull PR labels for the commits since 4.16.0.
+
+  Searched for 1 pattern, ran 5 shell commands
+
+Based on the commits merged since the 4.16.0 tag (2026-06-30), here are the release notes for the next version, 4.17.0 (minor bump, since Added/Changed-labelled PRs are included per release-drafter.yml&#39;s semver rules):
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Vamos olhar o que foi gerado em &lt;strong&gt;no-skill-release-notes.md&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Agora vamos ver e usar a skill que criei para ver o resultado.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Vamos ver onde fica e o que tem no diretório da skill.&lt;/li&gt;
+&lt;li&gt;Vamos executar o mesmo pedido agora.&lt;/li&gt;
+&lt;li&gt;Note a skill sendo carregada automaticamente. O agente entendeu que para essa tarefa, deve usar a skill. Não precisei chamar explicitamente.&lt;/li&gt;
+&lt;li&gt;Note que as ações do modelo são direcionadas pelo que está descrito na skill.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure style=&#34;align: center; margin-left:5%; width: 90%&#34;&gt;
+    &lt;img src=&#34;loading.png&#34;&gt;
+&lt;/figure&gt;
+&lt;h3 id=&#34;diferença-com-e-sem-skill-alinhamento&#34;&gt;Diferença com e sem skill (alinhamento!)&lt;/h3&gt;
+&lt;p&gt;Vamos ver o que o próprio modelo diz:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;draft-release-note.md parece ser a saída real do bot release-drafter do GitHub, que categoriza PRs pelas labels atribuídas nelas (ex: label &amp;ldquo;bug&amp;rdquo; → Fixed), não pelo texto do assunto do commit. Meu arquivo seguiu estritamente as regras textuais de formato.md do skill, que mapeia por palavras do assunto (&amp;ldquo;Return&amp;rdquo;, &amp;ldquo;Use&amp;rdquo;, &amp;ldquo;Support&amp;rdquo; → Changed/Added) e exclui mudanças só de doctest.&lt;/p&gt;
+&lt;p&gt;Ou seja: a divergência não é erro de um lado, são &lt;strong&gt;critérios diferentes&lt;/strong&gt; (labels do GitHub vs. heurística por texto do commit). Quer que eu ajuste o meu rascunho para seguir as labels reais das PRs (preciso consultar o GitHub), ou mantenho conforme a regra do skill?&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;reuso&#34;&gt;Reuso&lt;/h2&gt;
+&lt;p&gt;Skill é conhecimento escrito para não termos que escrever no prompt toda vez que precisarmos dele.&lt;/p&gt;
+&lt;h2 id=&#34;formato&#34;&gt;Formato&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;./release-notes/formato.md
+./release-notes/scripts/commits.py
+./release-notes/SKILL.md
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;A língua-franca é markdown, mas sem formato pré-definido.&lt;/p&gt;
+&lt;p&gt;Vamos ver algumas e discutir o que e como vale a pena descrever.&lt;/p&gt;
+&lt;h2 id=&#34;conteúdo&#34;&gt;Conteúdo&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;1. Nome, descrição e ferramentas (&lt;code&gt;allowed-tools&lt;/code&gt;) para o agente.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;O agente usa isso para decidir se vai carregar a skill.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;name: release-notes&lt;/p&gt;
+&lt;p&gt;description: Gera o rascunho das release notes da próxima versão a partir dos commits desde a última tag, no formato do projeto. Use quando o usuário pedir release notes, changelog ou notas da próxima versão.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;2. Convenções e decisões.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Incluir decisões da equipe sobre formatos, exclusões, saídas etc. Não ensine o que ele já faz bem sozinho.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3. KISS.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Mantenha a concisão e simplicidade.&lt;/p&gt;
+&lt;p&gt;Use arquivos externos de apoio.&lt;/p&gt;
+&lt;p&gt;Mantenha coesão. Uma coisa é bem feita.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;4. Inclua determinismo quando necessário.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Se houver algum passo que você quer garantir que aconteça e de forma determinística, use scripts.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;5. Precisa mesmo de uma skill?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Meça com e sem a skill para ver o efeito.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;6. Controle o agente.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Se ele não puder carregar a skill automaticamente, use &lt;code&gt;disable-model-invocation: true&lt;/code&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;o-segundo-agentes&#34;&gt;O segundo: agentes&lt;/h1&gt;
+&lt;p&gt;Você pode definir agentes especializados.&lt;/p&gt;
+&lt;p&gt;Quando carregados, possuem papel, &lt;strong&gt;ferramentas&lt;/strong&gt;, modelo e &lt;strong&gt;contexto&lt;/strong&gt; próprios.&lt;/p&gt;
+&lt;p&gt;O agente roda em uma janela separada e devolve só o resumo. Aqui está a diferença para a skill. A skill entra no contexto do agente que já está trabalhando, e o agente delegado trabalha no dele.&lt;/p&gt;
+&lt;p&gt;Onde? &lt;code&gt;.claude/agents/&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;&amp;lt;demonstração em sala de aula&amp;gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Vamos analisar o &lt;code&gt;release-auditor.md&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;---
+name: release-auditor
+description: Confere um rascunho de release notes contra o
+  histórico de commits. Use depois de gerar as notas.
+tools: Read, Grep, Glob
+model: haiku
+---
+
+(corpo: o system prompt do agente)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Só &lt;code&gt;name&lt;/code&gt; e &lt;code&gt;description&lt;/code&gt; são obrigatórios. Existem outros campos (&lt;code&gt;skills&lt;/code&gt;, &lt;code&gt;maxTurns&lt;/code&gt;, &lt;code&gt;permissionMode&lt;/code&gt; e etc.&lt;/p&gt;
+&lt;p&gt;O agente não vê a conversa. Ele recebe o corpo do arquivo, a mensagem de delegação que o agente principal escreve, as instruções do repositório e pouco mais. Tudo o que ele precisa saber tem de estar no corpo ou na mensagem.&lt;/p&gt;
+&lt;p&gt;O auditor só lê, então recebe &lt;code&gt;Read, Grep, Glob&lt;/code&gt;. Se ele precisasse de Bash, restringir a comandos específicos não é possível pelo campo &lt;code&gt;tools&lt;/code&gt;: listar Bash com um especificador em &lt;code&gt;disallowedTools&lt;/code&gt; remove a ferramenta inteira. Por isso desenhamos o script da skill para deixar o histórico em arquivo.&lt;/p&gt;
+&lt;p&gt;O campo &lt;code&gt;skills&lt;/code&gt; do agente injeta o conteúdo completo de cada skill no início da execução.&lt;/p&gt;
+&lt;h1 id=&#34;diretrizes-para-especificar-agentes&#34;&gt;Diretrizes para Especificar Agentes&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Uma responsabilidade por agente.&lt;/li&gt;
+&lt;li&gt;Ferramentas mínimas.&lt;/li&gt;
+&lt;li&gt;Descrição escrita para a decisão de delegar.&lt;/li&gt;
+&lt;li&gt;Corpo escrito para quem não viu a conversa.&lt;/li&gt;
+&lt;li&gt;Formato de retorno definido.&lt;/li&gt;
+&lt;li&gt;Modelo escolhido pelo trabalho.&lt;/li&gt;
+&lt;li&gt;Arquivo versionado no repositório, para o time melhorar junto.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;paralelo&#34;&gt;Paralelo&lt;/h1&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;Skill&lt;/th&gt;
+&lt;th&gt;Agente&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Onde entra&lt;/td&gt;
+&lt;td&gt;Contexto principal, sob demanda&lt;/td&gt;
+&lt;td&gt;Contexto próprio&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;O que carrega&lt;/td&gt;
+&lt;td&gt;Instruções&lt;/td&gt;
+&lt;td&gt;Papel, ferramentas, modelo&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Quem executa&lt;/td&gt;
+&lt;td&gt;O agente que já trabalha&lt;/td&gt;
+&lt;td&gt;Outra instância&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;O que volta&lt;/td&gt;
+&lt;td&gt;Nada separado, tudo na conversa&lt;/td&gt;
+&lt;td&gt;Um resumo&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Custo&lt;/td&gt;
+&lt;td&gt;Ocupa o contexto depois de carregada&lt;/td&gt;
+&lt;td&gt;Começa do zero e gasta tokens próprios&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h1 id=&#34;quando-eu-ensino-algo-ao-agente-e-quando-eu-crio-outro-agente&#34;&gt;Quando eu ensino algo ao agente e quando eu crio outro agente?&lt;/h1&gt;
+&lt;p&gt;Ensino por skill quando falta conhecimento e o trabalho pode acontecer na conversa. Crio outro agente quando o problema é volume, restrição ou isolamento.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Agente cria unidade separada de trabalho.&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&#34;algumas-boas-referências&#34;&gt;Algumas boas referências&lt;/h1&gt;
+&lt;p&gt;Para agentes: &lt;a href=&#34;https://github.com/github/awesome-copilot/tree/main/agents&#34;&gt;awesome agents&lt;/a&gt; e &lt;a href=&#34;https://opencode.ai/docs/pt-br/agents/&#34;&gt;criando agentes no opencode&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Para skills:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;@mattpocockuk&lt;/li&gt;
+&lt;li&gt;@poteto&lt;/li&gt;
+&lt;li&gt;@dexhorthy&lt;/li&gt;
+&lt;li&gt;@emilkowalski&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+       </item>
+       
+       <item>
          <title>Visão Geral de Desenvolvimento de Software com Agentes e IA Generativa</title>
          <link>https://joaoarthurbm.github.io/dev-ia/posts/visao-geral-agentes-ia-generativa/</link>
          <pubDate>Fri, 14 Aug 2026 00:00:00 -0300</pubDate>
@@ -1854,6 +2020,73 @@ Sempre utilize:
 &lt;hr&gt;
 &lt;h2 id=&#34;próxima-aula&#34;&gt;Próxima aula&lt;/h2&gt;
 &lt;p&gt;No próximo encontro vou apresentar uma visão geral sobre desenvolvimento de software com agentes e IA generativa. Para isso, vou relembrar o que é LLM, agentes e as atividades de desenvolvimento que vamos focar, entre elas, entendimento, implementação, avaliação, implantação e operação.&lt;/p&gt;
+</description>
+       </item>
+       
+       <item>
+         <title></title>
+         <link>https://joaoarthurbm.github.io/dev-ia/posts/mcp/novo/</link>
+         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+         
+         <guid>https://joaoarthurbm.github.io/dev-ia/posts/mcp/novo/</guid>
+         <description>&lt;h1 id=&#34;contexto&#34;&gt;Contexto&lt;/h1&gt;
+&lt;p&gt;Qual foi a grande revolução no uso de LLMs para tarefas? A capacidade de executar ferramentas. Vimos isso na contextualização e na aula sobre anatomia dos agentes, que são os responsáveis de fato por executar ferramentas.
+LLM só gera texto. Já vimos isso.&lt;/p&gt;
+&lt;p&gt;E como são executadas as ferramentas? Pensa bem. O LMM diz &amp;ldquo;preciso ler o arquivo X&amp;rdquo; ou até de forma mais específica exec readFile(&amp;ldquo;X&amp;rdquo;). Como o agente pode executar? Vamos ver 3 maneiras, da mais simplória e problemática para a forma como se faz hoje em dia.&lt;/p&gt;
+&lt;p&gt;A primeira é simplesmente fazer parse do texto gerado pelo LLM. Funciona em muitos casos, mas esse parse pode dar errado porque a string pode não ser a esperada, uma vez que o LLM é um gerador estocástico e não-determinístico.&lt;/p&gt;
+&lt;p&gt;Uma evolução seria pedir ao LLM que gere a chamada em formato estruturado. Um json, por exemplo. Isso melhora o cenário, mas ainda pode ser gerado um json que não seja bem estruturado. No final das contas, essa abordagem aplica uma melhoria no prompt para tentar controlar a saída do LLM, mas ainda sim não podemos controlar via pedido.&lt;/p&gt;
+&lt;p&gt;O que é feito então? Para as ferramentas nativas o esquema já é pré-determinado e o modelo não precisa inventar como executar uma operação: recebe schemas/descrições das ferramentas e produz uma chamada estruturada. Por exemplo, o esquema abaixo define como chamar a ferramenta de ler arquivo:&lt;/p&gt;
+&lt;p&gt;{
+&amp;ldquo;name&amp;rdquo;: &amp;ldquo;files.read&amp;rdquo;,
+&amp;ldquo;description&amp;rdquo;: &amp;ldquo;Read content from a known file or range&amp;rdquo;,
+&amp;ldquo;input_schema&amp;rdquo;: {
+&amp;ldquo;type&amp;rdquo;: &amp;ldquo;object&amp;rdquo;,
+&amp;ldquo;properties&amp;rdquo;: {
+&amp;ldquo;file_id&amp;rdquo;: {
+&amp;ldquo;type&amp;rdquo;: &amp;ldquo;string&amp;rdquo;
+},
+&amp;ldquo;start_line&amp;rdquo;: {
+&amp;ldquo;type&amp;rdquo;: &amp;ldquo;integer&amp;rdquo;
+},
+&amp;ldquo;end_line&amp;rdquo;: {
+&amp;ldquo;type&amp;rdquo;: &amp;ldquo;integer&amp;rdquo;
+}
+},
+&amp;ldquo;required&amp;rdquo;: [&amp;ldquo;file_id&amp;rdquo;]
+}
+}&lt;/p&gt;
+&lt;p&gt;É assim que os &lt;em&gt;AI Coding Agents&lt;/em&gt; funcionam para as chamadas relacionadas às ferramentas &amp;ldquo;nativas&amp;rdquo;. O que estou
+chamando de ferramentas nativas aqui são as relacionadas a arquivos e shell, Search, WebSearch, Bash, SendFile, SendMessage entre outras. São ferramentas que os provedores já possuem implementadas. Ferramentas de prateleira.&lt;/p&gt;
+&lt;p&gt;Mas essa solução não é só um pouco mais sofisticada que a segunda? Ainda sim, com esquema e exemplo o LMM, por ser não-determinístico, pode gerar o texto de uma execução de forma errada, não é?&lt;/p&gt;
+&lt;p&gt;Sim. E ainda podemos ir além. Uma chamada por ser sintaticamente válida, mas não semânticamente válida. Temos, no final das contas, 3 níveis de verificação:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Sintaticamente válida — JSON/formato correto.&lt;/li&gt;
+&lt;li&gt;Schema-valid — argumentos respeitam os tipos, enumerações, campos obrigatórios etc.&lt;/li&gt;
+&lt;li&gt;Semanticamente correta — a chamada realmente corresponde ao que o usuário pediu.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;O esquema resolve deterministicamente a parte sintática, retornando erro quando não houver consistência, mas não resolve as outras.&lt;/p&gt;
+&lt;p&gt;A boa notícia é que o harness usa de outros mecanismos para controlar ainda mais. Em geral, um pipeline validação de schema -&amp;gt; validação semântica -&amp;gt; guardrail -&amp;gt; autorização -&amp;gt; execução.&lt;/p&gt;
+&lt;h1 id=&#34;aumentando-a-capacidade-de-agentes-com-ferramentas&#34;&gt;Aumentando a capacidade de agentes com ferramentas&lt;/h1&gt;
+&lt;p&gt;Ótimo. Entendi que se houver esquema e um bom harness, o agente consegue executar as ferramentas nativas sem maiores problemas. E vem fazendo isso bem. Mas a gente viu que isso é feito para as ferramentas nativas que os devs dos provedores implementam, certo? Mas tenho algumas perguntas:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;E se eu quiser fazer uma ferramenta e quiser que o opencode consiga usar essa minha ferramenta?&lt;/li&gt;
+&lt;li&gt;E se eu quiser que qualquer agente consiga usar essa ferramenta?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Vamos tentar abordar essas perguntas por caso de uso. O primeiro é: fiz um programa/script python que resolve algo e quero que o meu agente seja capaz de executar ele. Nesse caso, você pode registrar ele como uma ferramenta personalizada disponível no seu AI Coding Agent que ele vai saber invocar. Veja, por exemplo, como fazer isso no OpenCode: &lt;a href=&#34;https://opencode.ai/docs/custom-tools&#34;&gt;https://opencode.ai/docs/custom-tools&lt;/a&gt;. Nele você usa o helper  &lt;code&gt;tool()&lt;/code&gt; que fica responsável por gerar o esquema e lidar com segurança de tipo e validação.&lt;/p&gt;
+&lt;p&gt;Uma vez que você usou o helper &lt;code&gt;tool()&lt;/code&gt; para o seu código, isso virou uma ferramenta. Agora basta registrar nas ferramentas disponíveis (em .opencode/tools/ ou ~/.config/opencode/tools/.) que o OpenCode vai saber executá-la.&lt;/p&gt;
+&lt;p&gt;O segundo é: eu quero que esse pedaço de código que eu fiz seja passível de ser utilizado não somente pelo agente do opencode, mas por qualquer AI Coding Agent. Mais, por qualquer agente.&lt;/p&gt;
+&lt;p&gt;Nesse caso, assim como fiz com opencode, eu poderia usar as biblitecas do claude para isso, não? Pode. Se você tem uma aplicação e quer ensinar o claude a lidar com ela, você pode escrever um adapter para o claude. Depois, se você quiser que o CodeX saiba lidar com ela, você pode escrever um adapter para o CodeX. Já viu onde vamos chegar, né? Para cada provedor, você teria que escrever um adapter. Para N provedores e M aplicações, teríamos NxM adapters.&lt;/p&gt;
+&lt;p&gt;A solução para o problema apontado acima é, então, um protocolo que todos saibam falar. Esse protocolo é o MCP.&lt;/p&gt;
+&lt;p&gt;MCP define uma forma padrão de comunicação de um agente com ferramentas. Se você desenvolver um servidor MCP para a sua API, por exemplo, os agentes serão capazes de se comunicar com ela. E o número de integrações cai de N×M para N+M.&lt;/p&gt;
+&lt;h1 id=&#34;problemas&#34;&gt;Problemas&lt;/h1&gt;
+&lt;p&gt;Isto é, eu quero ampliar a capacidade dos agentes para além de apenas utilizarem ferramentas nativas.&lt;/p&gt;
+&lt;p&gt;Bom,&lt;/p&gt;
+&lt;p&gt;uma primeira solução é passar a documentação da sua API no contexto. O modelo teria informação sobre os recursos e como invocá-los. Isso pode funcionar, mas temos algumas grandes problemas com essa solução.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Doc inteira consome muito contexto.&lt;/li&gt;
+&lt;li&gt;Chamada gerada livre a cada vez pode gerar erro.&lt;/li&gt;
+&lt;li&gt;Reuso: aprendizado via contexto não persiste entre sessões.&lt;/li&gt;
+&lt;/ul&gt;
 </description>
        </item>
        
