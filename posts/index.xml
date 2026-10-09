@@ -1093,6 +1093,7 @@ python3 -m venv .venv
 &lt;/ul&gt;
 &lt;hr&gt;
 &lt;h1 id=&#34;relatos-da-aula&#34;&gt;Relatos da Aula&lt;/h1&gt;
+&lt;p&gt;Usar MCP é dar a um gerador de texto não determinístico uma interface padronizada para acionar sistemas que executam de forma determinística.&lt;/p&gt;
 &lt;p&gt;A questão &amp;ldquo;MCP or not MCP&amp;rdquo; não remoto vs. local. É para quem você pretende expor sua ferramenta? Se for só para o seu AI Coding Agent preferido, adiciona via plugin (@tool). Se for para qualquer agente genérico que, inclusive, você sequer conhece, use MCP. O MCP generaliza o acesso a sua ferramenta para qualquer agente.&lt;/p&gt;
 &lt;h2 id=&#34;aumentando-a-capacidade-de-agentes-com-ferramentas&#34;&gt;Aumentando a capacidade de agentes com ferramentas&lt;/h2&gt;
 &lt;p&gt;Ótimo. Entendi que se houver esquema e um bom harness, o agente consegue executar as ferramentas nativas sem maiores problemas. E vem fazendo isso bem. Mas a gente viu que isso é feito para as ferramentas nativas que os devs dos AI Coding Agents implementam, certo? Tenho algumas perguntas:&lt;/p&gt;
