@@ -211,3 +211,35 @@ Para skills:
 * @poteto
 * @dexhorthy
 * @emilkowalski
+
+
+***
+# Relatos da aula
+
+
+## Insights
+
+Há algumas formas de aumentar/refinar a capacidade dos agentes. Já vimos Prompting, Engenharia de Contexto, Tools (com apoio de MCP), Skills e Agentes.
+
+São conceitos em níveis diferentes. Prompting e engenharia de contexto atuam sobre o que o agente recebe, ferramentas e skills sobre o que ele sabe ou pode fazer, e agentes sobre quem executa.
+
+Um dos pontos importantes da diferenciação entre skill e agente é a janela de contexto. Invocar um agente é saber que ele vai trabalhar na sua própria janela. A skill é carregada na janela atual. 
+
+## Participação dos Alunos
+
+Se agents.md também é markdown com instruções, por que não colocar tudo lá?
+
+Como o agente decide carregar a skill? O que acontece se a descrição for ruim ou ambígua?
+
+Como saber o que o modelo já faz bem sozinho e não precisa ser ensinado? 
+
+Por que usar um script em vez de pedir ao modelo que faça o passo?
+
+Como medir de forma séria se a skill melhorou o resultado?
+
+Se os dois são markdown com frontmatter, qual o critério objetivo para escolher?
+
+Agentes gastam mais tokens, então quando compensa?
+
+Dado um problema do meu projeto, como decido se preciso de skill, agente ou nenhum dos dois?
+***
