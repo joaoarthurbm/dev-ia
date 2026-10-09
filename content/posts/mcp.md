@@ -395,3 +395,40 @@ Prompting e engenharia de contexto.
 
 * [Model Context Protocol](https://modelcontextprotocol.io/)
 * [Writing effective tools for agents, with agents](https://www.anthropic.com/engineering/writing-tools-for-agents) (Engineering at Anthropic)
+
+***
+
+# Relatos da Aula
+
+A questão "MCP or not MCP" não remoto vs. local. É para quem você pretende expor sua ferramenta? Se for só para o seu AI Coding Agent preferido, adiciona via plugin (@tool). Se for para qualquer agente genérico que, inclusive, você sequer conhece, use MCP. O MCP generaliza o acesso a sua ferramenta para qualquer agente.
+
+## Aumentando a capacidade de agentes com ferramentas
+
+Ótimo. Entendi que se houver esquema e um bom harness, o agente consegue executar as ferramentas nativas sem maiores problemas. E vem fazendo isso bem. Mas a gente viu que isso é feito para as ferramentas nativas que os devs dos AI Coding Agents implementam, certo? Tenho algumas perguntas:
+
+1. E se eu quiser fazer uma ferramenta e quiser que o opencode consiga usar essa minha ferramenta?
+2. E se eu quiser que qualquer agente consiga usar essa ferramenta?
+
+
+Vamos tentar abordar essas perguntas por caso de uso. O primeiro é: fiz um programa/script python que resolve algo e quero que o meu agente seja capaz de executar ele. Nesse caso, você pode registrar ele como uma ferramenta personalizada disponível no seu **AI Coding Agent** que ele vai saber invocar. Veja, por exemplo, como fazer isso no OpenCode: https://opencode.ai/docs/custom-tools. Nele você usa o helper  `tool()` que fica responsável por gerar o esquema e lidar com segurança de tipo e validação.
+
+Uma vez que você usou o helper `tool()` para o seu código, isso virou uma ferramenta. Agora basta registrar nas ferramentas disponíveis (em .opencode/tools/ ou ~/.config/opencode/tools/.) que o OpenCode vai saber executá-la.
+
+O segundo é: eu quero que esse pedaço de código que eu fiz seja passível de ser utilizado não somente pelo agente do opencode, mas por qualquer AI Coding Agent. Mais, por qualquer agente.
+
+Nesse caso, assim como fiz com opencode, eu poderia usar a SDK da anthropic para isso, não? Pode. Se você tem uma aplicação e quer ensinar o claude a lidar com ela, você pode escrever um adapter para o claude. Depois, se você quiser que o CodeX saiba lidar com ela, você pode escrever um adapter para o CodeX. Já viu onde vamos chegar, né? Para cada provedor, você teria que escrever um adapter. Para N provedores e M aplicações, teríamos NxM adapters.
+
+A solução para o problema apontado acima é, então, um protocolo que todos saibam falar. Esse protocolo é o MCP.
+
+MCP define uma forma padrão de comunicação de um agente com ferramentas. Se você desenvolver um servidor MCP para a sua API, por exemplo, os agentes serão capazes de se comunicar com ela. E o número de integrações cai de N×M para N+M.
+
+## Participação dos Alunos
+
+Uma aluna relatou ao final da aula um caso interessante. Ela trabalha em uma empresa que desenvolve um sistema usado por vários clientes, sejam eles outros sistemas ou agentes. A empresa criou um servidor MCP para facilitar a comunicação entre esses agentes e o sistema. Mesmo assim, chegam muitas reclamações e pedidos de extensão porque os clientes não conseguem executar certas tarefas via MCP, e essas tarefas estão fora do escopo do sistema. 
+
+O relato me pareceu mostrar que se espera demais de um sistema só porque a interação com ele é agêntica, como se a caixa de entrada do prompt fosse uma caixa de desejos capaz de resolver qualquer coisa. 
+
+**Talvez os clientes estejam atribuindo ao sistema a generalidade do agente/harness que estão usando (claude, opencode etc).**
+
+
+***
