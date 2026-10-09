@@ -178,7 +178,7 @@ model: haiku
 &lt;hr&gt;
 &lt;h1 id=&#34;relatos-da-aula&#34;&gt;Relatos da aula&lt;/h1&gt;
 &lt;h2 id=&#34;insights&#34;&gt;Insights&lt;/h2&gt;
-&lt;p&gt;Há algumas formas de aumentar/refinar a capacidade dos agentes. Já vimos Prompting, Engenharia de Contexto, Tools (com apoio de MCP), Skills e Agentes.&lt;/p&gt;
+&lt;p&gt;Há algumas formas de aumentar/refinar a capacidade dos agentes. Já vimos Prompting, Engenharia de Contexto, Tools (com plugins ou apoio de MCP), Skills e Agentes.&lt;/p&gt;
 &lt;p&gt;São conceitos em níveis diferentes. Prompting e engenharia de contexto atuam sobre o que o agente recebe, ferramentas e skills sobre o que ele sabe ou pode fazer, e agentes sobre quem executa.&lt;/p&gt;
 &lt;p&gt;Um dos pontos importantes da diferenciação entre skill e agente é a janela de contexto. Invocar um agente é saber que ele vai trabalhar na sua própria janela. A skill é carregada na janela atual.&lt;/p&gt;
 &lt;h2 id=&#34;participação-dos-alunos&#34;&gt;Participação dos Alunos&lt;/h2&gt;
