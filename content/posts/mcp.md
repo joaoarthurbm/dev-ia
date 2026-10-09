@@ -400,6 +400,8 @@ Prompting e engenharia de contexto.
 
 # Relatos da Aula
 
+Usar MCP é dar a um gerador de texto não determinístico uma interface padronizada para acionar sistemas que executam de forma determinística.
+
 A questão "MCP or not MCP" não remoto vs. local. É para quem você pretende expor sua ferramenta? Se for só para o seu AI Coding Agent preferido, adiciona via plugin (@tool). Se for para qualquer agente genérico que, inclusive, você sequer conhece, use MCP. O MCP generaliza o acesso a sua ferramenta para qualquer agente.
 
 ## Aumentando a capacidade de agentes com ferramentas
