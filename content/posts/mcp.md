@@ -1,6 +1,6 @@
 +++
 title = "MCP: o Protocolo que Padroniza a Interface entre Agentes e Sistemas"
-date = 2026-09-01
+date = 2026-08-28
 tags = ["mcp", "agentes", "tools"]
 categories = ["harness"]
 ppt = "https://docs.google.com/presentation/d/1Me7CYibAIRzENaSnYNL_4egRvzQv-yCrG3Wlzib4UGQ/edit?usp=sharing"
