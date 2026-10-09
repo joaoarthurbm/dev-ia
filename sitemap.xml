@@ -9,71 +9,86 @@
   
   <url>
     <loc>https://joaoarthurbm.github.io/dev-ia/tags/agentes/</loc>
-    <lastmod>2026-09-01T00:00:00-03:00</lastmod>
+    <lastmod>2026-09-08T00:00:00-03:00</lastmod>
   </url>
   
   <url>
     <loc>https://joaoarthurbm.github.io/dev-ia/categories/</loc>
-    <lastmod>2026-09-01T00:00:00-03:00</lastmod>
+    <lastmod>2026-09-08T00:00:00-03:00</lastmod>
   </url>
   
   <url>
     <loc>https://joaoarthurbm.github.io/dev-ia/</loc>
-    <lastmod>2026-09-01T00:00:00-03:00</lastmod>
+    <lastmod>2026-09-08T00:00:00-03:00</lastmod>
   </url>
   
   <url>
     <loc>https://joaoarthurbm.github.io/dev-ia/categories/harness/</loc>
+    <lastmod>2026-09-08T00:00:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://joaoarthurbm.github.io/dev-ia/tags/llms/</loc>
+    <lastmod>2026-09-08T00:00:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://joaoarthurbm.github.io/dev-ia/posts/</loc>
+    <lastmod>2026-09-08T00:00:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://joaoarthurbm.github.io/dev-ia/tags/skills/</loc>
+    <lastmod>2026-09-08T00:00:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://joaoarthurbm.github.io/dev-ia/posts/skills-agentes/</loc>
+    <lastmod>2026-09-08T00:00:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://joaoarthurbm.github.io/dev-ia/tags/</loc>
+    <lastmod>2026-09-08T00:00:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://joaoarthurbm.github.io/dev-ia/tags/context-engineering/</loc>
+    <lastmod>2026-09-02T00:00:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://joaoarthurbm.github.io/dev-ia/tags/contexto/</loc>
+    <lastmod>2026-09-02T00:00:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://joaoarthurbm.github.io/dev-ia/posts/engenharia-de-contexto/</loc>
+    <lastmod>2026-09-02T00:00:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://joaoarthurbm.github.io/dev-ia/posts/prompting/</loc>
+    <lastmod>2026-09-01T00:00:00-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://joaoarthurbm.github.io/dev-ia/tags/prompting/</loc>
     <lastmod>2026-09-01T00:00:00-03:00</lastmod>
   </url>
   
   <url>
     <loc>https://joaoarthurbm.github.io/dev-ia/tags/mcp/</loc>
-    <lastmod>2026-09-01T00:00:00-03:00</lastmod>
+    <lastmod>2026-08-28T00:00:00-03:00</lastmod>
   </url>
   
   <url>
     <loc>https://joaoarthurbm.github.io/dev-ia/posts/mcp/</loc>
-    <lastmod>2026-09-01T00:00:00-03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://joaoarthurbm.github.io/dev-ia/posts/</loc>
-    <lastmod>2026-09-01T00:00:00-03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://joaoarthurbm.github.io/dev-ia/tags/</loc>
-    <lastmod>2026-09-01T00:00:00-03:00</lastmod>
+    <lastmod>2026-08-28T00:00:00-03:00</lastmod>
   </url>
   
   <url>
     <loc>https://joaoarthurbm.github.io/dev-ia/tags/tools/</loc>
-    <lastmod>2026-09-01T00:00:00-03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://joaoarthurbm.github.io/dev-ia/tags/context-engineering/</loc>
-    <lastmod>2026-08-28T00:00:00-03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://joaoarthurbm.github.io/dev-ia/tags/contexto/</loc>
-    <lastmod>2026-08-28T00:00:00-03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://joaoarthurbm.github.io/dev-ia/posts/engenharia-de-contexto/</loc>
-    <lastmod>2026-08-28T00:00:00-03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://joaoarthurbm.github.io/dev-ia/posts/prompting/</loc>
-    <lastmod>2026-08-28T00:00:00-03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://joaoarthurbm.github.io/dev-ia/tags/prompting/</loc>
     <lastmod>2026-08-28T00:00:00-03:00</lastmod>
   </url>
   
@@ -113,22 +128,7 @@
   </url>
   
   <url>
-    <loc>https://joaoarthurbm.github.io/dev-ia/tags/llms/</loc>
-    <lastmod>2026-08-14T00:00:00-03:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://joaoarthurbm.github.io/dev-ia/tags/opencode/</loc>
-    <lastmod>2026-08-14T00:00:00-03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://joaoarthurbm.github.io/dev-ia/tags/skills/</loc>
-    <lastmod>2026-08-14T00:00:00-03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://joaoarthurbm.github.io/dev-ia/posts/skills-agentes/</loc>
     <lastmod>2026-08-14T00:00:00-03:00</lastmod>
   </url>
   
@@ -153,15 +153,7 @@
   </url>
   
   <url>
-    <loc>https://joaoarthurbm.github.io/dev-ia/_drafts/novo/</loc>
-  </url>
-  
-  <url>
     <loc>https://joaoarthurbm.github.io/dev-ia/posts/mcp/novo/</loc>
-  </url>
-  
-  <url>
-    <loc>https://joaoarthurbm.github.io/dev-ia/_drafts/</loc>
   </url>
   
 </urlset>

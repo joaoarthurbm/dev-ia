@@ -6,7 +6,7 @@
        <description>Recent content in mcp on Desenvolvimento de Software com Agentes e IA Generativa</description>
        <generator>Hugo -- gohugo.io</generator>
        <copyright>Copyright &amp;copy; 2026 - joaoarthurbm.github.io. Licença de uso: versão para uso pessoal, sendo proibida sua redistribuição ou modificação.</copyright>
-       <lastBuildDate>Tue, 01 Sep 2026 00:00:00 -0300</lastBuildDate>
+       <lastBuildDate>Fri, 28 Aug 2026 00:00:00 -0300</lastBuildDate>
        
            <atom:link href="https://joaoarthurbm.github.io/dev-ia/tags/mcp/index.xml" rel="self" type="application/rss+xml" />
        
@@ -14,11 +14,11 @@
        <item>
          <title>MCP: o Protocolo que Padroniza a Interface entre Agentes e Sistemas</title>
          <link>https://joaoarthurbm.github.io/dev-ia/posts/mcp/</link>
-         <pubDate>Tue, 01 Sep 2026 00:00:00 -0300</pubDate>
+         <pubDate>Fri, 28 Aug 2026 00:00:00 -0300</pubDate>
          
          <guid>https://joaoarthurbm.github.io/dev-ia/posts/mcp/</guid>
          <description>&lt;hr&gt;
-&lt;p&gt;Ao final dessa aula, o aluno deve ser capaz de definir o que é o MCP; entender e explicar dois problemas que ele resolve (interface para agentes e integração N×M); implementar um servidor MCP; conhecer boas práticas na implementação de tools; e avaliar a qualidade de um servidor MCP.&lt;/p&gt;
+&lt;p&gt;Ao final dessa aula, o aluno deve ser capaz de definir o que é o MCP; entender e explicar dois problemas que ele resolve (interface para agentes e integração N×M); implementar um servidor MCP; conhecer boas práticas na implementação de tools e avaliar a qualidade de um servidor MCP.&lt;/p&gt;
 &lt;h2 id=&#34;preâmbulo&#34;&gt;Preâmbulo&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;Sobre as notas de aula.&lt;/strong&gt; Conteúdo escrito por mim em sua totalidade. Tabelas e figura foram geradas com auxílio do Claude. Estou deixando isso claro para que você tenha ciência de que, se houver erro aqui ou achar o material ruim, a culpa é minha mesmo. As notas de aula são um guia para a discussão em sala de aula e servem muito pouco como conteúdo para estudo.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Eu não traduzi &lt;em&gt;tools&lt;/em&gt;.&lt;/strong&gt; &lt;em&gt;Tool&lt;/em&gt; é um termo técnico do ecossistema de agentes com uma semântica bem definida. Se eu traduzisse para &amp;ldquo;ferramenta&amp;rdquo;, poderia confundir dependendo do contexto, porque é mais amplo.&lt;/p&gt;
