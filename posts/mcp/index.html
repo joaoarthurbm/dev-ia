@@ -182,7 +182,7 @@
 <ul>
 <li><em>Padronização do texto + parsing.</em> O prompt ensina o modelo a escrever <code>Action: nome[argumento]</code>, e quem está por fora fica caçando esse padrão no texto com regex.</li>
 <li><em>Pedir em formato JSON.</em> Um meio-termo: pede-se ao modelo que responda em JSON seguindo um formato descrito no próprio prompt. Melhora o parsing, mas ainda não há garantia.</li>
-<li><em>Tool calling nativo.</em> O provedor do modelo treina o próprio modelo para emitir a chamada como um tipo de saída estruturado, validado contra um schema que o desenvolvedor declara antes (nome, tipos, quais argumentos são obrigatórios). Quem recebe não faz mais parsing de texto solto, recebe algo já tipado e checado. É assim que os agentes funcionam hoje.</li>
+<li><em>Tool calling nativo.</em> O AI Coding Agente emite a chamada como um tipo de saída estruturado, validado contra um schema que o desenvolvedor declara antes (nome, tipos, quais argumentos são obrigatórios). Quem recebe não faz mais parsing de texto solto, recebe algo já tipado e checado. É assim que os agentes funcionam hoje.</li>
 </ul>
 <p>Como projetar uma interface para um consumidor que não lê documentação, não é determinístico, e é sensível a tudo que está no contexto ao seu redor? Projetando interfaces para os mesmos: <strong>Agent-Computer Interface.</strong></p>
 <h3 id="relembrando-aci">Relembrando ACI</h3>
