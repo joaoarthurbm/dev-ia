@@ -175,6 +175,22 @@ model: haiku
 &lt;li&gt;@dexhorthy&lt;/li&gt;
 &lt;li&gt;@emilkowalski&lt;/li&gt;
 &lt;/ul&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;relatos-da-aula&#34;&gt;Relatos da aula&lt;/h1&gt;
+&lt;h2 id=&#34;insights&#34;&gt;Insights&lt;/h2&gt;
+&lt;p&gt;Há algumas formas de aumentar/refinar a capacidade dos agentes. Já vimos Prompting, Engenharia de Contexto, Tools (com apoio de MCP), Skills e Agentes.&lt;/p&gt;
+&lt;p&gt;São conceitos em níveis diferentes. Prompting e engenharia de contexto atuam sobre o que o agente recebe, ferramentas e skills sobre o que ele sabe ou pode fazer, e agentes sobre quem executa.&lt;/p&gt;
+&lt;p&gt;Um dos pontos importantes da diferenciação entre skill e agente é a janela de contexto. Invocar um agente é saber que ele vai trabalhar na sua própria janela. A skill é carregada na janela atual.&lt;/p&gt;
+&lt;h2 id=&#34;participação-dos-alunos&#34;&gt;Participação dos Alunos&lt;/h2&gt;
+&lt;p&gt;Se agents.md também é markdown com instruções, por que não colocar tudo lá?&lt;/p&gt;
+&lt;p&gt;Como o agente decide carregar a skill? O que acontece se a descrição for ruim ou ambígua?&lt;/p&gt;
+&lt;p&gt;Como saber o que o modelo já faz bem sozinho e não precisa ser ensinado?&lt;/p&gt;
+&lt;p&gt;Por que usar um script em vez de pedir ao modelo que faça o passo?&lt;/p&gt;
+&lt;p&gt;Como medir de forma séria se a skill melhorou o resultado?&lt;/p&gt;
+&lt;p&gt;Se os dois são markdown com frontmatter, qual o critério objetivo para escolher?&lt;/p&gt;
+&lt;p&gt;Agentes gastam mais tokens, então quando compensa?&lt;/p&gt;
+&lt;p&gt;Dado um problema do meu projeto, como decido se preciso de skill, agente ou nenhum dos dois?&lt;/p&gt;
+&lt;hr&gt;
 </description>
        </item>
        
