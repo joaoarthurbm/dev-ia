@@ -1,6 +1,6 @@
 +++
 title = "Skills e Especificação de Agentes"
-date = 2026-08-14
+date = 2026-09-08
 tags = ["llms", "agentes", "skills"]
 categories = ["harness"]
 ppt = "https://docs.google.com/presentation/d/1tnC5LiZ6SJLRIpqDGm_fSyhy2DepUv2NyqtFwSJOiTk/edit?usp=sharing"
