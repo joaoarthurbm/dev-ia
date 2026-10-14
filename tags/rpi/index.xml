@@ -25,7 +25,7 @@
 &lt;h1 id=&#34;contexto&#34;&gt;Contexto&lt;/h1&gt;
 &lt;p&gt;Especificar sempre foi uma das atividades mais complexas durante o ciclo de desenvolvimento de software. Essa figura tem sido usada há décadas para ilustrar o problema: comunicação falha.&lt;/p&gt;
 &lt;figure style=&#34;align: center; margin-left:5%; width: 90%&#34;&gt;
-    &lt;img src=&#34;sdd/balanco.png&#34;&gt;
+    &lt;img src=&#34;balanco.png&#34;&gt;
 &lt;/figure&gt;
 &lt;p&gt;Definir o que vai ser feito antes do como será feito é fundamental. Mas é uma tarefa muito difícil porque há ambiguidade, sobreposição semântica de termos, diferentes visões sobre a mesma coisa etc.&lt;/p&gt;
 &lt;p&gt;Agora o consumidor da especificação mudou. Antes, quem a lia era uma pessoa, que podia perguntar, discordar e preencher lacunas. Hoje pode ser um agente, que vai produzir código a partir do que está escrito, com muita velocidade.&lt;/p&gt;
@@ -139,7 +139,7 @@ então a reserva é aceita (horário de término não conflita com o início).
 &lt;/ol&gt;
 &lt;p&gt;&lt;strong&gt;Research Plan Implement (RPI).&lt;/strong&gt; &lt;a href=&#34;https://www.humanlayer.dev/blog/advanced-context-engineering&#34;&gt;Advanced context engineering&lt;/a&gt;. Plugin: &lt;a href=&#34;https://github.com/bostonaholic/team&#34;&gt;https://github.com/bostonaholic/team&lt;/a&gt;&lt;/p&gt;
 &lt;figure style=&#34;align: center; margin-left:5%; width: 90%&#34;&gt;
-    &lt;img src=&#34;sdd/workflow-rpi.png&#34;&gt;
+    &lt;img src=&#34;workflow-rpi.png&#34;&gt;
 &lt;/figure&gt;
 &lt;p&gt;&lt;strong&gt;RePPIT.&lt;/strong&gt; Research the codebase, Propose solutions, Plan the chosen one, Implement it, Test it. (&lt;a href=&#34;https://mlops.community/blog/reppit-a-framework-to-ship-production-code-2-3x-faster&#34;&gt;artigo&lt;/a&gt;, &lt;a href=&#34;https://github.com/levelup-labs-ai/reppit-framework&#34;&gt;repositório&lt;/a&gt;)&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;O fluxo principal (Matt Pocock).&lt;/strong&gt; /grill, /to-spec, /to-tickets, /implement (implement-spec), /code-review, /pr, /retro.&lt;/p&gt;
