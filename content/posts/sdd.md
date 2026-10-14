@@ -1,6 +1,6 @@
 +++
 title = "Spec-driven development"
-date = 2026-09-01
+date = 2026-09-15
 tags = ["sdd", "rpi", "reppit"]
 categories = ["harness"]
 ppt = "https://docs.google.com/presentation/d/1fm6aEPlq0SAsytoEd0GZpIs-AyVru6-3yFhdk-402dA/edit?usp=sharing"
