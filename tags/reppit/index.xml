@@ -142,8 +142,8 @@ então a reserva é aceita (horário de término não conflita com o início).
     &lt;img src=&#34;workflow-rpi.png&#34;&gt;
 &lt;/figure&gt;
 &lt;p&gt;&lt;strong&gt;RePPIT.&lt;/strong&gt; Research the codebase, Propose solutions, Plan the chosen one, Implement it, Test it. (&lt;a href=&#34;https://mlops.community/blog/reppit-a-framework-to-ship-production-code-2-3x-faster&#34;&gt;artigo&lt;/a&gt;, &lt;a href=&#34;https://github.com/levelup-labs-ai/reppit-framework&#34;&gt;repositório&lt;/a&gt;)&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;O fluxo principal (Matt Pocock).&lt;/strong&gt; /grill, /to-spec, /to-tickets, /implement (implement-spec), /code-review, /pr, /retro.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Specify, Plan, Implement and Validate (Kiro).&lt;/strong&gt; (demonstração de Débora em sala de aula).&lt;/p&gt;
+&lt;p&gt;Eu tenho usado o &lt;strong&gt;fluxo principal&lt;/strong&gt; do Matt Pocock &lt;a href=&#34;https://www.aihero.dev/skills&#34;&gt;link&lt;/a&gt;: /grill, /to-spec, /to-tickets, /implement (implement-spec), /code-review, /pr, /retro. Gostei deste &lt;a href=&#34;https://x.com/thehypekevin/status/2108598006748794896?s=20&#34;&gt;link&lt;/a&gt; vídeo explicativo.&lt;/p&gt;
 &lt;h1 id=&#34;ferramentas&#34;&gt;Ferramentas&lt;/h1&gt;
 &lt;p&gt;&lt;strong&gt;Spec Kit (GitHub, 2025).&lt;/strong&gt; Kit de código aberto (MIT) que funciona com vários agentes por meio de comandos como /speckit.specify e /speckit.plan. Organiza o trabalho em fases sequenciais com pontos de revisão humana e uma &amp;ldquo;constituição&amp;rdquo; de princípios do projeto. Uma spec pequena por funcionalidade.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;OpenSpec (Fission AI).&lt;/strong&gt; Framework de código aberto (MIT). Em vez de exigir uma spec completa de início, trabalha com propostas de mudança sobre um diretório de specs versionadas, e as etapas (criar, implementar, atualizar, arquivar) podem ser feitas a qualquer momento.&lt;/p&gt;
