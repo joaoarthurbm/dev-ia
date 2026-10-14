@@ -1,0 +1,346 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <title>Desenvolvimento de Software com Agentes e IA Generativa</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="The HTML5 Herald" />
+  <meta name="author" content="João Arthur Brunet" /><meta name="generator" content="Hugo 0.75.1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/v4-shims.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  <link rel="stylesheet" type="text/css" href="https://joaoarthurbm.github.io/dev-ia/css/styles.css" /><link rel='stylesheet' href='https://joaoarthurbm.github.io/dev-ia/css/site.css'><script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+  });
+  MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+
+  MathJax.Hub.Config({
+  
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+  });
+</script>
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-151903059-1"></script>
+<script>
+      window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+            gtag('config', 'UA-151903059-1');
+        </script>
+
+
+</head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="https://joaoarthurbm.github.io/dev-ia/">Desenvolvimento de Software com Agentes e IA Generativa</a>
+            </h1>
+
+      <ul id="social-media">
+        
+        
+         
+        <li><a href="https://github.com/joaoarthurbm/dev-ia"><i class="fab fa-github fa-lg" aria-hidden="true"></i> repo</a></li>
+           
+        <li><a href="http://lattes.cnpq.br/7892247821251194"><i class="fas fa-graduation-cap fa-lg" aria-hidden="true"></i> lattes</a></li>
+        
+      </ul>
+      
+      <p><em><a href="https://joaoarthurbm.github.io">joaoarthurbm.github.io</a> <br> Computação @ UFCG</em></p>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="" href="https://joaoarthurbm.github.io/dev-ia/">
+                <i class="fa-li fa fa-home fa-lg"></i><span>Home</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="https://joaoarthurbm.github.io/dev-ia/aulas/">
+                <i class="fa-li fa  fa-lg"></i><span>Aulas</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+    <main>
+
+
+
+<article>
+
+    <h1>Spec-driven development</h1>
+
+    
+        <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2026-09-01T00:00:00-03:00">Sep 1, 2026</time>
+        </li>
+
+        <li>8 minutos de leitura</li>
+
+
+        
+
+
+        
+
+
+
+        
+
+
+    </ul>
+</aside>
+
+    
+
+    
+    <details id="toc" open>
+        <summary>Sumário</summary>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#processo-vs-artefato">Processo vs. artefato</a></li>
+    <li><a href="#spec-como-artefato-prévio">Spec como artefato prévio</a>
+      <ul>
+        <li><a href="#exemplo-clássico">Exemplo clássico</a></li>
+        <li><a href="#exemplo-moderno">Exemplo &ldquo;moderno&rdquo;</a></li>
+      </ul>
+    </li>
+    <li><a href="#perguntas-importantes">Perguntas importantes</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#o-que-mudou">O que mudou?</a></li>
+    <li><a href="#o-que-não-mudou">O que não mudou?</a></li>
+    <li><a href="#waterfall-de-novo">Waterfall de novo?</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#insights">Insights</a></li>
+    <li><a href="#participação-dos-alunos">Participação dos alunos</a></li>
+  </ul>
+</nav>
+    </details>
+    
+
+    <hr>
+<p>Ao final da aula, o aluno deve ser capaz de tratar a especificação como artefato de primeira classe (ou próximo disso) no desenvolvimento com agentes, além de reconhecer como fluxos de trabalho como RPI e RePPIT a incorporam em etapas com artefatos revisáveis.</p>
+<hr>
+<h1 id="preâmbulo">Preâmbulo</h1>
+<p><strong>Sobre as notas de aula.</strong> Conteúdo escrito por mim em sua totalidade. Tabelas e figura foram geradas com auxílio do Claude. Estou deixando isso claro para que você tenha ciência de que, se houver erro aqui ou achar o material ruim, a culpa é minha mesmo. As notas de aula são um guia para a discussão em sala de aula e servem muito pouco como conteúdo para estudo.</p>
+<h1 id="contexto">Contexto</h1>
+<p>Especificar sempre foi uma das atividades mais complexas durante o ciclo de desenvolvimento de software. Essa figura tem sido usada há décadas para ilustrar o problema: comunicação falha.</p>
+<figure style="align: center; margin-left:5%; width: 90%">
+    <img src="sdd/balanco.png">
+</figure>
+<p>Definir o que vai ser feito antes do como será feito é fundamental. Mas é uma tarefa muito difícil porque há ambiguidade, sobreposição semântica de termos, diferentes visões sobre a mesma coisa etc.</p>
+<p>Agora o consumidor da especificação mudou. Antes, quem a lia era uma pessoa, que podia perguntar, discordar e preencher lacunas. Hoje pode ser um agente, que vai produzir código a partir do que está escrito, com muita velocidade.</p>
+<p>Do que estamos tratando aqui? O que é especificação?</p>
+<h1 id="o-que-é-spec">O que é spec</h1>
+<p>Como muita coisa na nossa área, há diferentes definições e que não são necessariamente conflitantes, mas muitas vezes complementares.</p>
+<h2 id="processo-vs-artefato">Processo vs. artefato</h2>
+<p>Assim como design/projeto, podemos ver especificação sob duas formas: processo e artefato. Segundo Sommerville, especificação de software é o processo de compreender e definir quais serviços são necessários ao sistema e de identificar as restrições à sua operação e ao seu desenvolvimento.</p>
+<p>O processo busca produzir um documento de requisitos que descreva o sistema e que possa ser acordado entre clientes e desenvolvedores. Isso pode envolver estudo de viabilidade, elicitação e análise de requisitos, especificação de requisitos e validação de requisitos.</p>
+<p>Os requisitos costumam ser apresentados em dois níveis de detalhe: os requisitos de usuário, em linguagem natural e diagramas voltados a clientes e usuários finais, e os requisitos de sistema, descrições mais detalhadas e precisas voltadas a quem vai desenvolver o sistema. Esses documentos também são chamados de especificação. Essa é a visão de especificação como artefato, não como processo.</p>
+<p>Na minha visão, sobretudo no contexto desta disciplina, o processo é o que estamos chamando de maneira mais genérica de Entendimento. Note que essa visão é mais ampla e muito do que estamos fazendo nesta fase apoia ou está diretamente relacionado à escrita de especificações. Por exemplo, o /grill-me nos ajuda a alinhar objetivos, glossário, projeto etc, o que é fundamental para a escrita de boas especificações.</p>
+<h2 id="spec-como-artefato-prévio">Spec como artefato prévio</h2>
+<p>Aqui, quando falo &ldquo;spec&rdquo;, falo do artefato que antecede o código e que o agente consome. Ele descreve o que o código deve fazer, não como. Há várias formas e formatos. Sommerville é o ponto de partida clássico, não o formato esperado.</p>
+<h3 id="exemplo-clássico">Exemplo clássico</h3>
+<p>Um formato mais &ldquo;clássico&rdquo;, baseado no que o Sommerville sugere:</p>
+<exemplo>
+Requisitos de usuário:
+<pre><code>O sistema deve permitir que professores reservem laboratórios para aulas e atividades de pesquisa.
+O sistema deve avisar o professor quando uma reserva sua for cancelada ou alterada pela coordenação.
+</code></pre>
+<p>Requisitos de sistema:</p>
+<pre><code>1.1 O sistema deve exibir, a partir de uma data e de um horário informados pelo professor, os laboratórios livres naquele intervalo.
+
+1.2 Ao confirmar uma reserva, o sistema deve registrar o professor, o laboratório, a data, os horários de início e de término e a finalidade.
+
+1.3 O sistema deve impedir reservas sobrepostas no mesmo laboratório e informar o conflito ao usuário.
+
+1.4 O sistema deveria sugerir laboratórios alternativos quando o escolhido estiver ocupado.
+
+
+2.1 Quando a coordenação cancelar ou alterar uma reserva, o sistema deve enviar um e-mail ao professor responsável em até 5 minutos.
+
+2.2 A notificação deve informar a reserva original, a alteração feita e a justificativa registrada pela coordenação.
+</code></pre>
+<p>Requisito não funcional:</p>
+<pre><code>3.1 Um professor sem treinamento prévio deve concluir uma reserva em até 2 minutos, e pelo menos 90% de um grupo de teste com dez professores deve conseguir isso na primeira tentativa.
+</code></pre>
+</exemplo>
+<h3 id="exemplo-moderno">Exemplo &ldquo;moderno&rdquo;</h3>
+<p>A mesma funcionalidade como uma spec curta de <strong>workflow</strong> moderno:</p>
+<exemplo>
+Contexto: professores reservam laboratórios. Hoje o conflito de horário só é percebido na hora da aula.
+<p>Comportamento esperado:</p>
+<pre><code>Dado que o LabA está reservado das 14h às 16h na segunda,
+quando um professor tenta reservar o LabA das 15h às 17h na segunda,
+então o sistema recusa a reserva e informa quem já reservou e em qual horário.
+
+Dado que o LabA está reservado das 14h às 16h na segunda,
+quando um professor reserva o LabA das 16h às 18h na segunda,
+então a reserva é aceita (horário de término não conflita com o início).
+</code></pre>
+<p>Fora de escopo: notificações por e-mail, sugestão de laboratórios alternativos.</p>
+<p>Critérios de aceite:</p>
+<pre><code>- Dois pedidos simultâneos para o mesmo horário resultam em exatamente uma reserva.
+- Cada exemplo acima tem um teste automatizado.
+</code></pre>
+</exemplo>
+<ul>
+<li>é mais curta;</li>
+<li>mais exemplos; e</li>
+<li>mais próxima de algo verificável (teste).</li>
+</ul>
+<h2 id="perguntas-importantes">Perguntas importantes</h2>
+<p>Vamos discutir algumas questões importantes sobre esse tipo de documento.</p>
+<ul>
+<li>Na prática, fazemos sempre? Completo? Para todo o sistema? A resposta é sempre depende, mas&hellip;</li>
+<li>Uma discussão importante é &ldquo;em que momento&rdquo; e &ldquo;como manter atualizado&rdquo;.</li>
+<li>A dicotomia processos &ldquo;pesados&rdquo; vs. processos leves/ágeis.</li>
+</ul>
+<h1 id="uma-ideia-antiga">Uma ideia antiga</h1>
+<p>Especificar antes de implementar não é novo. A mesma ideia reaparece, há décadas, em formas diferentes:</p>
+<ul>
+<li><strong>1969, Hoare (pré e pós-condições)</strong>, e <strong>1986, Design by Contract (Meyer)</strong>: spec como contrato verificável. Dizemos o que a operação exige e o que ela garante.</li>
+<li><strong>2001, Model-Driven Architecture (OMG)</strong>: spec como modelo, do qual se gera código.</li>
+<li><strong>2003, Test-driven development (Beck)</strong>: spec como teste executável.</li>
+</ul>
+<p>Todas tentaram o mesmo: dizer o quê antes do como. E o que limitava era quem escrevia, como escrevia e mantinha.</p>
+<blockquote>
+<p>Se especificar antes de implementar sempre foi vantajoso e mesmo assim raramente foi feito, o que mudou?</p>
+</blockquote>
+<p>Vamos por partes.</p>
+<ul>
+<li>Sempre foi vantajoso?</li>
+<li>Por que raramente foi feito?</li>
+</ul>
+<h2 id="o-que-mudou">O que mudou?</h2>
+<ul>
+<li><strong>O consumidor.</strong> Quem lê a spec agora é um agente.</li>
+<li><strong>O custo humano de produzir código diminuiu.</strong> O gargalo passa a ser decidir o que fazer, e não digitar.</li>
+</ul>
+<h2 id="o-que-não-mudou">O que não mudou?</h2>
+<ul>
+<li>Spec ruim gera código ruim.</li>
+<li>Código evolui muito mais rapidamente que a spec.</li>
+<li>A mesma spec pode gerar código diferente, então a spec sozinha não garante nada e os testes/sensores continuam necessários.</li>
+</ul>
+<h2 id="waterfall-de-novo">Waterfall de novo?</h2>
+<p>Não. A ideia é que o ciclo seja de minutos ou horas e a spec seja pequena e revisada.</p>
+<blockquote>
+<p>É tudo sobre os bons princípios e como você aplica no fluxo de trabalho.</p>
+</blockquote>
+<h1 id="workflows">Workflows</h1>
+<p>Fluxos de trabalho incorporam SDD. É assim que tem sido feito na prática.</p>
+<p>Há vários. Minha curadoria chegou nestes quatro. Note que são todos desenvolvidos em cima dos mesmos bons princípios de ES que sempre existiram (e sempre existirão):</p>
+<ol>
+<li>Entender antes de decidir.</li>
+<li>Decisão humana em pontos de revisão.</li>
+<li>Trabalho em fatias pequenas e verificáveis.</li>
+<li>Feedback por teste/validação/sensores/guardrails.</li>
+<li>Contexto curto e limpo.</li>
+</ol>
+<p><strong>Research Plan Implement (RPI).</strong> <a href="https://www.humanlayer.dev/blog/advanced-context-engineering">Advanced context engineering</a>. Plugin: <a href="https://github.com/bostonaholic/team">https://github.com/bostonaholic/team</a></p>
+<figure style="align: center; margin-left:5%; width: 90%">
+    <img src="sdd/workflow-rpi.png">
+</figure>
+<p><strong>RePPIT.</strong> Research the codebase, Propose solutions, Plan the chosen one, Implement it, Test it. (<a href="https://mlops.community/blog/reppit-a-framework-to-ship-production-code-2-3x-faster">artigo</a>, <a href="https://github.com/levelup-labs-ai/reppit-framework">repositório</a>)</p>
+<p><strong>O fluxo principal (Matt Pocock).</strong> /grill, /to-spec, /to-tickets, /implement (implement-spec), /code-review, /pr, /retro.</p>
+<p><strong>Specify, Plan, Implement and Validate (Kiro).</strong> (demonstração de Débora em sala de aula).</p>
+<h1 id="ferramentas">Ferramentas</h1>
+<p><strong>Spec Kit (GitHub, 2025).</strong> Kit de código aberto (MIT) que funciona com vários agentes por meio de comandos como /speckit.specify e /speckit.plan. Organiza o trabalho em fases sequenciais com pontos de revisão humana e uma &ldquo;constituição&rdquo; de princípios do projeto. Uma spec pequena por funcionalidade.</p>
+<p><strong>OpenSpec (Fission AI).</strong> Framework de código aberto (MIT). Em vez de exigir uma spec completa de início, trabalha com propostas de mudança sobre um diretório de specs versionadas, e as etapas (criar, implementar, atualizar, arquivar) podem ser feitas a qualquer momento.</p>
+<p><strong>Kiro (AWS).</strong> IDE própria, baseada no VS Code, de código fechado. Conduz cada funcionalidade por requisitos, projeto e tarefas, guardados como arquivos na pasta .kiro/specs/ do repositório. Permite alternar entre o modo spec e o modo livre (&ldquo;vibe&rdquo;).</p>
+<p>Entenda o fluxo antes de adotar a ferramenta. As ferramentas mudam mais rápido que os princípios. Hoje eu uso o fluxo do <em>Matt Pocock</em>.</p>
+<hr>
+<h1 id="relatos-da-aula">Relatos da aula</h1>
+<h2 id="insights">Insights</h2>
+<blockquote>
+<p>Não é human in the loop. É human in control.</p>
+</blockquote>
+<ul>
+<li>Não terceirize decisões. Controle as decisões e documente.</li>
+<li>Matenha simples e pequeno.</li>
+<li>Controle o processo.</li>
+<li>Invista tempo em validação: guardrails e sensores são primordiais.</li>
+</ul>
+<h2 id="participação-dos-alunos">Participação dos alunos</h2>
+<ul>
+<li>Como lidar com o viés de que o modelo vai fazer testes parafusados para o código dele?</li>
+</ul>
+<p>Aqui discutimos algumas estratégias, como testes antes da implementação, uso de modelos diferentes para gerar testes ou julgar o que o modelo principal fez. Isso diminui o viés de um único modelo.</p>
+<ul>
+<li>Como avaliar a qualidade dos testes?</li>
+</ul>
+<p>Ferramentas específicas para isso e usá-las como sensores.</p>
+<p>Novamente a importância de sensores. Nós, como engenheiros, temos que definir as retrições de qualidade, arquitetura, funcionalidade e colocarmos como métodos determinísticos dentro do processo.</p>
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        <li>
+            <a href="https://joaoarthurbm.github.io/dev-ia/posts/mcp/"><i class="fa fa-chevron-circle-left"></i> MCP: o Protocolo que Padroniza a Interface entre Agentes e Sistemas</a>
+        </li>
+        
+        
+        <li>
+            <a href="https://joaoarthurbm.github.io/dev-ia/posts/prompting/">Prompting <i class="fa fa-chevron-circle-right"></i> </a>
+        </li>
+        
+    </ul>
+</section>
+    
+
+
+
+
+
+</main>
+    <footer>
+    <h6><a href="http://joaoarthurbm.github.io">Copyright © 2026 - joaoarthurbm.github.io. Licença de uso: versão para uso pessoal, sendo proibida sua redistribuição ou modificação.</a></h6>
+    </footer>
+</div>
+<script src="https://joaoarthurbm.github.io/dev-ia/js/scripts.js"></script>
+
+</body>
+
+</html>
+
