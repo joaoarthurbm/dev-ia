@@ -216,7 +216,6 @@ Para skills:
 ***
 # Relatos da aula
 
-
 ## Insights
 
 Há algumas formas de aumentar/refinar a capacidade dos agentes. Já vimos Prompting, Engenharia de Contexto, Tools (com plugins ou apoio de MCP), Skills e Agentes.
