@@ -22,7 +22,7 @@ Ao final da aula, o aluno deve ser capaz de tratar a especificação como artefa
 Especificar sempre foi uma das atividades mais complexas durante o ciclo de desenvolvimento de software. Essa figura tem sido usada há décadas para ilustrar o problema: comunicação falha.
 
 <figure style="align: center; margin-left:5%; width: 90%">
-    <img src="sdd/balanco.png">
+    <img src="balanco.png">
 </figure>
 
 Definir o que vai ser feito antes do como será feito é fundamental. Mas é uma tarefa muito difícil porque há ambiguidade, sobreposição semântica de termos, diferentes visões sobre a mesma coisa etc.
@@ -166,7 +166,7 @@ Há vários. Minha curadoria chegou nestes quatro. Note que são todos desenvolv
 **Research Plan Implement (RPI).** [Advanced context engineering](https://www.humanlayer.dev/blog/advanced-context-engineering). Plugin: https://github.com/bostonaholic/team
 
 <figure style="align: center; margin-left:5%; width: 90%">
-    <img src="sdd/workflow-rpi.png">
+    <img src="workflow-rpi.png">
 </figure>
 
 **RePPIT.** Research the codebase, Propose solutions, Plan the chosen one, Implement it, Test it. ([artigo](https://mlops.community/blog/reppit-a-framework-to-ship-production-code-2-3x-faster), [repositório](https://github.com/levelup-labs-ai/reppit-framework))
