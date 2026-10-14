@@ -171,10 +171,9 @@ Há vários. Minha curadoria chegou nestes quatro. Note que são todos desenvolv
 
 **RePPIT.** Research the codebase, Propose solutions, Plan the chosen one, Implement it, Test it. ([artigo](https://mlops.community/blog/reppit-a-framework-to-ship-production-code-2-3x-faster), [repositório](https://github.com/levelup-labs-ai/reppit-framework))
 
-**O fluxo principal (Matt Pocock).** /grill, /to-spec, /to-tickets, /implement (implement-spec), /code-review, /pr, /retro.
-
 **Specify, Plan, Implement and Validate (Kiro).** (demonstração de Débora em sala de aula).
 
+Eu tenho usado o **fluxo principal** do Matt Pocock [link](https://www.aihero.dev/skills): /grill, /to-spec, /to-tickets, /implement (implement-spec), /code-review, /pr, /retro. Gostei deste [link](https://x.com/thehypekevin/status/2108598006748794896?s=20) vídeo explicativo.
 
 # Ferramentas
 
