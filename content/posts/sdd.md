@@ -177,6 +177,8 @@ Eu tenho usado o **fluxo principal** do Matt Pocock [link](https://www.aihero.de
 
 Também tenho analisado com bons olhos o [pstack](https://claude.ai/artifact/JNBnuspjGxGw3vW1k9sMiY) da Lauren Tan (https://x.com/poteto).
 
+[Aqui o link](https://github.com/cursor/plugins/tree/main/pstack) para os fontes.
+
 # Ferramentas
 
 **Spec Kit (GitHub, 2025).** Kit de código aberto (MIT) que funciona com vários agentes por meio de comandos como /speckit.specify e /speckit.plan. Organiza o trabalho em fases sequenciais com pontos de revisão humana e uma "constituição" de princípios do projeto. Uma spec pequena por funcionalidade.
