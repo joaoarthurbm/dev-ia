@@ -175,6 +175,8 @@ Há vários. Minha curadoria chegou nestes quatro. Note que são todos desenvolv
 
 Eu tenho usado o **fluxo principal** do Matt Pocock [link](https://www.aihero.dev/skills): /grill, /to-spec, /to-tickets, /implement (implement-spec), /code-review, /pr, /retro. Gostei deste [link](https://x.com/thehypekevin/status/2108598006748794896?s=20) vídeo explicativo.
 
+Também tenho analisado com bons olhos o [pstack](https://claude.ai/artifact/JNBnuspjGxGw3vW1k9sMiY) da Lauren Tan (https://x.com/poteto).
+
 # Ferramentas
 
 **Spec Kit (GitHub, 2025).** Kit de código aberto (MIT) que funciona com vários agentes por meio de comandos como /speckit.specify e /speckit.plan. Organiza o trabalho em fases sequenciais com pontos de revisão humana e uma "constituição" de princípios do projeto. Uma spec pequena por funcionalidade.
