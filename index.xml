@@ -6,7 +6,7 @@
        <description>Recent content on Desenvolvimento de Software com Agentes e IA Generativa</description>
        <generator>Hugo -- gohugo.io</generator>
        <copyright>Copyright &amp;copy; 2026 - joaoarthurbm.github.io. Licença de uso: versão para uso pessoal, sendo proibida sua redistribuição ou modificação.</copyright>
-       <lastBuildDate>Tue, 15 Sep 2026 00:00:00 -0300</lastBuildDate>
+       <lastBuildDate>Fri, 16 Oct 2026 00:00:00 -0300</lastBuildDate>
        
            <atom:link href="https://joaoarthurbm.github.io/dev-ia/index.xml" rel="self" type="application/rss+xml" />
        
@@ -19,6 +19,17 @@
          <guid>https://joaoarthurbm.github.io/dev-ia/aulas/</guid>
          <description>&lt;hr&gt;
 &lt;p&gt;Cada post abaixo contém o material de apoio para uma aula específica da disciplina. Isso inclui as notas de aula e os slides. As datas, os temas e as atividades avaliativas de cada encontro estão no &lt;a class=&#34;external&#34; href=&#34;https://docs.google.com/spreadsheets/d/e/2PACX-1vT03bNljzmWaFXs4mcNeWQPeilFyJIuEw5aDLu3sSJnLAgzYYwJ7P7GVghA13Taq8Wucgcod__dFbwG/pubhtml&#34; target=&#34;_blank&#34;&gt;cronograma da disciplina&lt;/a&gt;.&lt;/p&gt;
+</description>
+       </item>
+       
+       <item>
+         <title>Conversas com a indústria</title>
+         <link>https://joaoarthurbm.github.io/dev-ia/industria/</link>
+         <pubDate>Thu, 01 Jan 2026 00:00:00 -0300</pubDate>
+         
+         <guid>https://joaoarthurbm.github.io/dev-ia/industria/</guid>
+         <description>&lt;hr&gt;
+&lt;p&gt;Conversas com profissionais da indústria sobre como agentes e IA generativa estão sendo usados na prática. Cada post traz o vídeo da conversa, um resumo e os principais aprendizados.&lt;/p&gt;
 </description>
        </item>
        
