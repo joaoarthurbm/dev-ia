@@ -151,6 +151,7 @@
 
     <hr>
 <p>Conversa com o Jonhnny Weslley, dev senior na NexHealth, sobre como o time dele usa agentes de código no dia a dia. A apresentação de Jonhnny está disponível no youtube. Aqui eu vou escrever um pouco sobre o que discutimos e colocar alguns shorts que selecionei para a discussão.</p>
+<p><strong>Minha principal observação:</strong> Jonhnny apresentou o workflow usado por ele. Foi interessante ver que é muito alinhado com o que estamos vendo em sala de aula e com o que outros devs relatam. Sobretudo o RPI, RePPIT e o workflow do Matt Pocock. No final das contas, sempre é sobre entender, projetar, implementar e validar :)</p>
 <h1 id="o-que-aprendemos">O que aprendemos</h1>
 <ul>
 <li>
@@ -160,7 +161,7 @@
 <p>Delegar decisão para o agente sem esse processo ganha produtividade, mas tem um custo: conhecimento que deveria ficar com você fica só no código, porque foi o agente que decidiu sem te envolver.</p>
 </li>
 <li>
-<p>O que separa um time que usa bem agentes de um que não usa não é o modelo ou o AI code agent escolhido, é o workflow. quebrar tarefas, especificar antes de implementar, ter roteiro de teste e sensores bem definidos. A parte determinística — revisão e controle de qualidade — continua na mão de quem desenvolve.</p>
+<p>O que separa um time que usa bem agentes de um que não usa não é o modelo ou o AI code agent escolhido, <strong>é o workflow</strong>: quebrar tarefas, especificar antes de implementar, ter roteiro de teste e sensores bem definidos. A parte determinística — revisão e controle de qualidade — continua na mão de quem desenvolve.</p>
 </li>
 <li>
 <p>Segurança de agente também é parte do workflow: a NexHealth construiu uma ferramenta que valida toda consulta SQL antes do agente executá-la no banco, bloqueando qualquer coisa que vaze dado sensível ou peça acesso a credenciais (AWS, por exemplo) sem motivo. Tudo implementado via hooks.</p>
