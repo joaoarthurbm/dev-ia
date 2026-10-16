@@ -19,17 +19,31 @@ Ao final dessa aula, o aluno deve ser capaz de definir o que é o MCP; entender 
 
 ## Contexto
 
-Agentes invocando *tools* representou um grande avanço na área.
+Agentes invocando *tools* representou um grande avanço na área. Usar uma *tool* é dar a um gerador de texto não determinístico uma interface padronizada para acionar sistemas que executam de forma determinística.
 
-Mas como isso é (pode ser) feito?
+Isso levanta uma pergunta recorrente: **MCP or not MCP?**
 
-* *Padronização do texto + parsing.* O prompt ensina o modelo a escrever `Action: nome[argumento]`, e quem está por fora fica caçando esse padrão no texto com regex.
-* *Pedir em formato JSON.* Um meio-termo: pede-se ao modelo que responda em JSON seguindo um formato descrito no próprio prompt. Melhora o parsing, mas ainda não há garantia.
-* *Tool calling nativo.* O AI Coding Agente emite a chamada como um tipo de saída estruturado, validado contra um schema que o desenvolvedor declara antes (nome, tipos, quais argumentos são obrigatórios). Quem recebe não faz mais parsing de texto solto, recebe algo já tipado e checado. É assim que os agentes funcionam hoje.
+Essa pergunta não é remoto vs. local. É: **para quem você pretende expor sua *tool*?**
 
-Como projetar uma interface para um consumidor que não lê documentação, não é determinístico, e é sensível a tudo que está no contexto ao seu redor? Projetando interfaces para os mesmos: **Agent-Computer Interface.**
+### Caso 1: a tool é só para o seu agente
 
-### Relembrando ACI
+Fiz um programa, um script Python que resolve algo, e quero que o meu *AI Coding Agent* seja capaz de executá-lo.
+
+Nesse caso, basta registrar a *tool* como *custom tool*/plugin direto no agente. No OpenCode, por exemplo, há um helper `tool()` que gera o *schema* e cuida de segurança de tipo e validação; depois é só registrar em `.opencode/tools/` (ou `~/.config/opencode/tools/`) que o OpenCode já sabe invocá-la. Veja [Custom Tools, OpenCode](https://opencode.ai/docs/custom-tools).
+
+### Caso 2: a tool é para qualquer agente
+
+Agora quero que esse mesmo código seja utilizável não só pelo agente do OpenCode, mas por qualquer *AI Coding Agent*. Mais: por qualquer agente, inclusive um que eu nem conheço.
+
+Uma primeira ideia seria usar a SDK de cada provedor. Tenho uma aplicação e quero ensinar o Claude a lidar com ela? Escrevo um *adapter* para o Claude. Quero que o Codex também saiba? Escrevo outro *adapter* para o Codex. Já dá pra ver onde isso vai dar: para cada provedor, um *adapter* novo. Para N provedores e M aplicações, teríamos N×M *adapters*.
+
+A solução para esse problema é um protocolo que todos saibam falar. Esse protocolo é o **MCP**.
+
+MCP define uma forma padrão de comunicação entre agente e *tools*. Se você desenvolve um servidor MCP para a sua API, qualquer agente capaz de falar MCP consegue se comunicar com ela. O número de integrações cai de N×M para N+M.
+
+### Projetando essa interface: ACI
+
+Mas como projetar essa interface para um consumidor que não lê documentação, não é determinístico, e é sensível a tudo que está no contexto ao seu redor? Projetando interfaces para os mesmos: **Agent-Computer Interface.**
 
 <figure style="align: center; margin-left:5%; width: 90%">
     <img src="swe-agent-aci-diagrama.png">
@@ -56,7 +70,7 @@ Podemos enxergar ACI como um princípio de design: escrever APIs que sejam adequ
 
 Escrever para o agente ler é uma habilidade de engenharia.
 
-MCP é um protocolo que padroniza descoberta e invocação de *tools* entre agente e sistema. Uma implementação do princípio de ACI.
+MCP é um protocolo que padroniza descoberta e invocação de *tools* entre agente e sistema. **Uma implementação do princípio de ACI.** Implementar servidor MCP é aplicar ACI na prática.
 
 <figure style="align: center; margin-left:5%; width: 90%">
     <img src="mcp-protocolo-modelcontextprotocol.png">
@@ -65,7 +79,15 @@ MCP é um protocolo que padroniza descoberta e invocação de *tools* entre agen
     </figcaption>
 </figure>
 
-Implementar servidor MCP é aplicar ACI na prática.
+### Mas como a chamada de tool acontece, de fato?
+
+Por baixo dos panos, existem (pelo menos) três formas de fazer isso:
+
+* *Padronização do texto + parsing.* O prompt ensina o modelo a escrever `Action: nome[argumento]`, e quem está por fora fica caçando esse padrão no texto com regex.
+* *Pedir em formato JSON.* Um meio-termo: pede-se ao modelo que responda em JSON seguindo um formato descrito no próprio prompt. Melhora o parsing, mas ainda não há garantia.
+* *Tool calling nativo.* O AI Coding Agente emite a chamada como um tipo de saída estruturado, validado contra um schema que o desenvolvedor declara antes (nome, tipos, quais argumentos são obrigatórios). Quem recebe não faz mais parsing de texto solto, recebe algo já tipado e checado. É assim que os agentes funcionam hoje.
+
+É sobre o *tool calling* nativo que o MCP se apoia: ele padroniza como as *tools* são descobertas e invocadas entre agente e servidor, dos dois lados do Caso 2.
 
 MCP Server: expõe *tools*, dados e prompts que podem ser utilizados pelo agente.
 
@@ -82,7 +104,7 @@ Três primitivas:
 * Contexto: doc inteira consome muito e degrada desempenho (*Lost in the Middle*, *Context Rot*).
 * Confiabilidade: chamada gerada livre a cada vez, erro silencioso.
 * Reuso: aprendizado via contexto não persiste entre sessões.
-* **Interoperabilidade: N×M virou N+M. Um protocolo comum para todos os provedores.**
+* **Interoperabilidade: é o problema do Caso 2. N×M virou N+M com um protocolo comum para todos os provedores.**
 * Segurança: acesso amplo via documentação e credenciais versus escopo controlado por servidor.
 
 ### Visão Geral
@@ -399,30 +421,6 @@ Prompting e engenharia de contexto.
 ***
 
 # Relatos da Aula
-
-Usar MCP é dar a um gerador de texto não determinístico uma interface padronizada para acionar sistemas que executam de forma determinística.
-
-A questão "MCP or not MCP" não remoto vs. local. É para quem você pretende expor sua ferramenta? Se for só para o seu AI Coding Agent preferido, adiciona via plugin (@tool). Se for para qualquer agente genérico que, inclusive, você sequer conhece, use MCP. O MCP generaliza o acesso a sua ferramenta para qualquer agente.
-
-## Aumentando a capacidade de agentes com ferramentas
-
-Ótimo. Entendi que se houver esquema e um bom harness, o agente consegue executar as ferramentas nativas sem maiores problemas. E vem fazendo isso bem. Mas a gente viu que isso é feito para as ferramentas nativas que os devs dos AI Coding Agents implementam, certo? Tenho algumas perguntas:
-
-1. E se eu quiser fazer uma ferramenta e quiser que o opencode consiga usar essa minha ferramenta?
-2. E se eu quiser que qualquer agente consiga usar essa ferramenta?
-
-
-Vamos tentar abordar essas perguntas por caso de uso. O primeiro é: fiz um programa/script python que resolve algo e quero que o meu agente seja capaz de executar ele. Nesse caso, você pode registrar ele como uma ferramenta personalizada disponível no seu **AI Coding Agent** que ele vai saber invocar. Veja, por exemplo, como fazer isso no OpenCode: https://opencode.ai/docs/custom-tools. Nele você usa o helper  `tool()` que fica responsável por gerar o esquema e lidar com segurança de tipo e validação.
-
-Uma vez que você usou o helper `tool()` para o seu código, isso virou uma ferramenta. Agora basta registrar nas ferramentas disponíveis (em .opencode/tools/ ou ~/.config/opencode/tools/.) que o OpenCode vai saber executá-la.
-
-O segundo é: eu quero que esse pedaço de código que eu fiz seja passível de ser utilizado não somente pelo agente do opencode, mas por qualquer AI Coding Agent. Mais, por qualquer agente.
-
-Nesse caso, assim como fiz com opencode, eu poderia usar a SDK da anthropic para isso, não? Pode. Se você tem uma aplicação e quer ensinar o claude a lidar com ela, você pode escrever um adapter para o claude. Depois, se você quiser que o CodeX saiba lidar com ela, você pode escrever um adapter para o CodeX. Já viu onde vamos chegar, né? Para cada provedor, você teria que escrever um adapter. Para N provedores e M aplicações, teríamos NxM adapters.
-
-A solução para o problema apontado acima é, então, um protocolo que todos saibam falar. Esse protocolo é o MCP.
-
-MCP define uma forma padrão de comunicação de um agente com ferramentas. Se você desenvolver um servidor MCP para a sua API, por exemplo, os agentes serão capazes de se comunicar com ela. E o número de integrações cai de N×M para N+M.
 
 ## Participação dos Alunos
 
