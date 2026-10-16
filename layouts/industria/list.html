@@ -1,0 +1,37 @@
+{{ define "main" }}
+
+{{ partial "article" . }}
+
+<section id="home" class="industria-list">
+  {{ if .RegularPages }}
+  <ul>
+    {{ range .RegularPages.ByDate.Reverse }}
+    {{ $yt := "" }}
+    {{ with .Params.youtube }}{{ $yt = partial "yt-id.html" . }}{{ end }}
+    <li class="post-card live-card">
+      <div class="live-card-thumb{{ if not $yt }} live-card-thumb--soon{{ end }}">
+        {{ if $yt }}
+        <img src="https://img.youtube.com/vi/{{ $yt }}/hqdefault.jpg" alt="" loading="lazy">
+        {{ else }}
+        <span><i class="fas fa-clock" aria-hidden="true"></i> em breve</span>
+        {{ end }}
+      </div>
+      <div class="live-card-body">
+        <h2><a class="stretched-link" href="{{ .Permalink }}" title="{{ .Title }}">{{ .Title }}</a></h2>
+        <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+        {{ with .Params.convidados }}
+        <p class="live-card-guests">
+          {{ range $i, $g := . }}{{ if $i }}, {{ end }}<strong>{{ $g.nome }}</strong>{{ with $g.cargo }}, {{ . }}{{ end }}{{ end }}{{ with $.Params.empresa }} · {{ . }}{{ end }}
+        </p>
+        {{ end }}
+        {{ with .Description }}<p>{{ . }}</p>{{ end }}
+      </div>
+    </li>
+    {{ end }}
+  </ul>
+  {{ else }}
+  <p>Em breve, as primeiras conversas.</p>
+  {{ end }}
+</section>
+
+{{ end }}

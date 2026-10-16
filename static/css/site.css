@@ -55,8 +55,8 @@
   }
 }
 
-/* ---- Chamada para a seção Aulas (home) ---- */
-#container main a#aulas-cta {
+/* ---- Chamadas para as seções Aulas e Conversas com a indústria (home) ---- */
+#container main a.home-cta {
   display: block;
   margin: 1.8em 0;
   padding: 1.5em 1.7em;
@@ -68,12 +68,12 @@
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-#container main a#aulas-cta:hover {
+#container main a.home-cta:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 30px rgba(20, 60, 110, 0.3);
 }
 
-#aulas-cta .aulas-cta-text {
+.home-cta .aulas-cta-text {
   display: block;
   font-family: "Ruda", sans-serif;
   font-weight: 700;
@@ -81,11 +81,11 @@
   line-height: 1.35;
 }
 
-#aulas-cta .aulas-cta-text i {
+.home-cta .aulas-cta-text i {
   margin-right: 0.35em;
 }
 
-#aulas-cta .aulas-cta-action {
+.home-cta .aulas-cta-action {
   display: inline-flex;
   align-items: center;
   gap: 0.5em;
@@ -99,7 +99,7 @@
   font-size: 0.95rem;
 }
 
-#aulas-cta:hover .aulas-cta-action {
+.home-cta:hover .aulas-cta-action {
   background: rgba(255, 255, 255, 0.28);
 }
 
@@ -361,4 +361,113 @@
   flex-wrap: wrap;
   gap: 0.6em;
   margin-top: 0.6em;
+}
+
+#container main a.home-cta--industria {
+  background: linear-gradient(135deg, #0f9d8a 0%, #0b4f68 100%);
+}
+
+/* ---- Conversas com a indústria ---- */
+#container main section.industria-list .live-card {
+  display: flex;
+  gap: 1.3em;
+  align-items: flex-start;
+}
+
+.live-card-thumb {
+  flex: 0 0 220px;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #eaf3ff;
+}
+
+.live-card-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.live-card-thumb--soon,
+.video-wrap--soon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0a3d7a;
+  font-family: "Ruda", sans-serif;
+  font-weight: 700;
+}
+
+.live-card-body {
+  flex: 1;
+  min-width: 0;
+}
+
+#container main section.industria-list .live-card-guests {
+  margin: 0 0 0.4em;
+  color: #0a3d7a;
+  font-size: 0.95em;
+}
+
+.live-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4em 1.4em;
+  margin: 0 0 1.2em;
+  padding: 0;
+  list-style: none;
+  font-family: "Ruda", sans-serif;
+  font-size: 0.95em;
+}
+
+.live-meta li {
+  margin: 0;
+}
+
+.live-meta i {
+  margin-right: 0.35em;
+  color: #1980e6;
+}
+
+.video-wrap {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  margin: 0 0 1.6em;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #0b1f3a;
+}
+
+.video-wrap iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.video-wrap--soon {
+  background: #eaf3ff;
+  font-size: 1.4rem;
+}
+
+article.live video.clip {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 9 / 16;
+  margin: 0 auto 1.2em;
+  border-radius: 10px;
+  background: #0b1f3a;
+}
+
+@media (max-width: 640px) {
+  #container main section.industria-list .live-card {
+    flex-direction: column;
+  }
+
+  .live-card-thumb {
+    flex: none;
+    width: 100%;
+  }
 }

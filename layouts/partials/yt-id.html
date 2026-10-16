@@ -1,0 +1,7 @@
+{{- $id := . -}}
+{{- $m := findRE `(?:v=|youtu\.be/|embed/|live/)[A-Za-z0-9_-]{11}` . 1 -}}
+{{- if $m -}}
+  {{- $s := index $m 0 -}}
+  {{- $id = substr $s (sub (len $s) 11) -}}
+{{- end -}}
+{{- return $id -}}

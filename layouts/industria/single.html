@@ -1,0 +1,58 @@
+{{ define "main" }}
+
+{{ $yt := "" }}
+{{ with .Params.youtube }}{{ $yt = partial "yt-id.html" . }}{{ end }}
+
+<article class="live">
+
+    <h1>{{ .Title }}</h1>
+
+    <ul class="live-meta">
+        <li><time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">{{ .Date.Format "Jan 2, 2006" }}</time></li>
+        {{ with .Params.empresa }}<li><i class="fas fa-building" aria-hidden="true"></i> {{ . }}</li>{{ end }}
+        {{ range .Params.convidados }}
+        <li><i class="fas fa-user" aria-hidden="true"></i>
+            {{ if .link }}<a href="{{ .link }}" target="_blank" rel="noopener">{{ .nome }}</a>{{ else }}{{ .nome }}{{ end }}{{ with .cargo }}, {{ . }}{{ end }}
+        </li>
+        {{ end }}
+        {{ with .Params.aula }}<li><i class="fas fa-book-open" aria-hidden="true"></i> <a href="{{ . }}">aula relacionada</a></li>{{ end }}
+    </ul>
+
+    {{ if $yt }}
+    <div class="video-wrap"><div id="yt-player"></div></div>
+    <script>
+    (function () {
+      var player = null;
+      var videoId = {{ $yt }};
+      window.onYouTubeIframeAPIReady = function () {
+        player = new YT.Player('yt-player', { videoId: videoId, playerVars: { rel: 0 } });
+      };
+      var s = document.createElement('script');
+      s.src = 'https://www.youtube.com/iframe_api';
+      document.head.appendChild(s);
+      document.querySelectorAll('a[href^="#t="]').forEach(function (a) {
+        a.addEventListener('click', function (e) {
+          e.preventDefault();
+          var t = parseInt(a.getAttribute('href').slice(3), 10) || 0;
+          if (player && player.seekTo) {
+            player.seekTo(t, true);
+            player.playVideo();
+            document.getElementById('yt-player').scrollIntoView({ behavior: 'smooth', block: 'center' });
+          } else {
+            window.open('https://www.youtube.com/watch?v=' + videoId + '&t=' + t + 's', '_blank');
+          }
+        });
+      });
+    })();
+    </script>
+    {{ else }}
+    <div class="video-wrap video-wrap--soon"><span><i class="fas fa-clock" aria-hidden="true"></i> Em breve</span></div>
+    {{ end }}
+
+    {{ .Content }}
+
+</article>
+
+{{ partial "single_footer" . }}
+
+{{ end }}
