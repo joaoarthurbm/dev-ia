@@ -3,7 +3,7 @@ title = "Jonhnny Weslley (NexHealth)"
 date = 2026-10-16
 draft = false
 description = "Jonhnny Weslley, dev senior na NexHealth, fala sobre sessões de grilling com o agente, por que o workflow importa mais que o modelo, validação automática de SQL via hooks e os riscos de instalar skills sem ler o que elas fazem."
-youtube = ""
+youtube = "https://youtu.be/rBFsKgc90Jw"
 empresa = "NexHealth"
 aula = ""
 
@@ -45,7 +45,7 @@ Não adianta ter o melhor modelo ou o melhor AI code agent se você não quebra 
 
 ## Validação automática de SQL antes de qualquer consulta
 
-<video controls preload="metadata" class="clip" src="/industria/jonhnny/validacao-sql.mp4"></video>
+<video controls preload="metadata" class="clip" src="https://youtu.be/rBFsKgc90Jw"></video>
 
 O time da NexHealth criou uma ferramenta que intercepta toda consulta SQL que o agente tentar executar no banco. Antes de rodar, ela valida se aquela consulta vazaria alguma informação que não deveria — se vazar, o comando é bloqueado. O mesmo mecanismo serve para bloquear pedidos sem sentido, como o agente tentar ler credenciais da AWS no meio de uma tarefa que não precisa disso. Implementado com hooks.
 
