@@ -136,7 +136,10 @@
     <li><a href="#preâmbulo">Preâmbulo</a></li>
     <li><a href="#contexto">Contexto</a>
       <ul>
-        <li><a href="#relembrando-aci">Relembrando ACI</a></li>
+        <li><a href="#caso-1-a-tool-é-só-para-o-seu-agente">Caso 1: a tool é só para o seu agente</a></li>
+        <li><a href="#caso-2-a-tool-é-para-qualquer-agente">Caso 2: a tool é para qualquer agente</a></li>
+        <li><a href="#projetando-essa-interface-aci">Projetando essa interface: ACI</a></li>
+        <li><a href="#mas-como-a-chamada-de-tool-acontece-de-fato">Mas como a chamada de tool acontece, de fato?</a></li>
       </ul>
     </li>
     <li><a href="#pergunta">Pergunta</a>
@@ -169,7 +172,6 @@
   </ul>
 
   <ul>
-    <li><a href="#aumentando-a-capacidade-de-agentes-com-ferramentas">Aumentando a capacidade de agentes com ferramentas</a></li>
     <li><a href="#participação-dos-alunos">Participação dos Alunos</a></li>
   </ul>
 </nav>
@@ -182,15 +184,19 @@
 <p><strong>Sobre as notas de aula.</strong> Conteúdo escrito por mim em sua totalidade. Tabelas e figura foram geradas com auxílio do Claude. Estou deixando isso claro para que você tenha ciência de que, se houver erro aqui ou achar o material ruim, a culpa é minha mesmo. As notas de aula são um guia para a discussão em sala de aula e servem muito pouco como conteúdo para estudo.</p>
 <p><strong>Eu não traduzi <em>tools</em>.</strong> <em>Tool</em> é um termo técnico do ecossistema de agentes com uma semântica bem definida. Se eu traduzisse para &ldquo;ferramenta&rdquo;, poderia confundir dependendo do contexto, porque é mais amplo.</p>
 <h2 id="contexto">Contexto</h2>
-<p>Agentes invocando <em>tools</em> representou um grande avanço na área.</p>
-<p>Mas como isso é (pode ser) feito?</p>
-<ul>
-<li><em>Padronização do texto + parsing.</em> O prompt ensina o modelo a escrever <code>Action: nome[argumento]</code>, e quem está por fora fica caçando esse padrão no texto com regex.</li>
-<li><em>Pedir em formato JSON.</em> Um meio-termo: pede-se ao modelo que responda em JSON seguindo um formato descrito no próprio prompt. Melhora o parsing, mas ainda não há garantia.</li>
-<li><em>Tool calling nativo.</em> O AI Coding Agente emite a chamada como um tipo de saída estruturado, validado contra um schema que o desenvolvedor declara antes (nome, tipos, quais argumentos são obrigatórios). Quem recebe não faz mais parsing de texto solto, recebe algo já tipado e checado. É assim que os agentes funcionam hoje.</li>
-</ul>
-<p>Como projetar uma interface para um consumidor que não lê documentação, não é determinístico, e é sensível a tudo que está no contexto ao seu redor? Projetando interfaces para os mesmos: <strong>Agent-Computer Interface.</strong></p>
-<h3 id="relembrando-aci">Relembrando ACI</h3>
+<p>Agentes invocando <em>tools</em> representou um grande avanço na área. Usar uma <em>tool</em> é dar a um gerador de texto não determinístico uma interface padronizada para acionar sistemas que executam de forma determinística.</p>
+<p>Isso levanta uma pergunta recorrente: <strong>MCP or not MCP?</strong></p>
+<p>Essa pergunta não é remoto vs. local. É: <strong>para quem você pretende expor sua <em>tool</em>?</strong></p>
+<h3 id="caso-1-a-tool-é-só-para-o-seu-agente">Caso 1: a tool é só para o seu agente</h3>
+<p>Fiz um programa, um script Python que resolve algo, e quero que o meu <em>AI Coding Agent</em> seja capaz de executá-lo.</p>
+<p>Nesse caso, basta registrar a <em>tool</em> como <em>custom tool</em>/plugin direto no agente. No OpenCode, por exemplo, há um helper <code>tool()</code> que gera o <em>schema</em> e cuida de segurança de tipo e validação; depois é só registrar em <code>.opencode/tools/</code> (ou <code>~/.config/opencode/tools/</code>) que o OpenCode já sabe invocá-la. Veja <a href="https://opencode.ai/docs/custom-tools">Custom Tools, OpenCode</a>.</p>
+<h3 id="caso-2-a-tool-é-para-qualquer-agente">Caso 2: a tool é para qualquer agente</h3>
+<p>Agora quero que esse mesmo código seja utilizável não só pelo agente do OpenCode, mas por qualquer <em>AI Coding Agent</em>. Mais: por qualquer agente, inclusive um que eu nem conheço.</p>
+<p>Uma primeira ideia seria usar a SDK de cada provedor. Tenho uma aplicação e quero ensinar o Claude a lidar com ela? Escrevo um <em>adapter</em> para o Claude. Quero que o Codex também saiba? Escrevo outro <em>adapter</em> para o Codex. Já dá pra ver onde isso vai dar: para cada provedor, um <em>adapter</em> novo. Para N provedores e M aplicações, teríamos N×M <em>adapters</em>.</p>
+<p>A solução para esse problema é um protocolo que todos saibam falar. Esse protocolo é o <strong>MCP</strong>.</p>
+<p>MCP define uma forma padrão de comunicação entre agente e <em>tools</em>. Se você desenvolve um servidor MCP para a sua API, qualquer agente capaz de falar MCP consegue se comunicar com ela. O número de integrações cai de N×M para N+M.</p>
+<h3 id="projetando-essa-interface-aci">Projetando essa interface: ACI</h3>
+<p>Mas como projetar essa interface para um consumidor que não lê documentação, não é determinístico, e é sensível a tudo que está no contexto ao seu redor? Projetando interfaces para os mesmos: <strong>Agent-Computer Interface.</strong></p>
 <figure style="align: center; margin-left:5%; width: 90%">
     <img src="swe-agent-aci-diagrama.png">
     <figcaption align="center">
@@ -212,14 +218,21 @@
 <li><em>Guardrails mitigate error propagation and hasten recovery.</em></li>
 </ul>
 <p>Escrever para o agente ler é uma habilidade de engenharia.</p>
-<p>MCP é um protocolo que padroniza descoberta e invocação de <em>tools</em> entre agente e sistema. Uma implementação do princípio de ACI.</p>
+<p>MCP é um protocolo que padroniza descoberta e invocação de <em>tools</em> entre agente e sistema. <strong>Uma implementação do princípio de ACI.</strong> Implementar servidor MCP é aplicar ACI na prática.</p>
 <figure style="align: center; margin-left:5%; width: 90%">
     <img src="mcp-protocolo-modelcontextprotocol.png">
     <figcaption align="center">
         Fonte: <a class="external" href="https://modelcontextprotocol.io/docs/2026-07-28/getting-started/intro">modelcontextprotocol.io</a>.
     </figcaption>
 </figure>
-<p>Implementar servidor MCP é aplicar ACI na prática.</p>
+<h3 id="mas-como-a-chamada-de-tool-acontece-de-fato">Mas como a chamada de tool acontece, de fato?</h3>
+<p>Por baixo dos panos, existem (pelo menos) três formas de fazer isso:</p>
+<ul>
+<li><em>Padronização do texto + parsing.</em> O prompt ensina o modelo a escrever <code>Action: nome[argumento]</code>, e quem está por fora fica caçando esse padrão no texto com regex.</li>
+<li><em>Pedir em formato JSON.</em> Um meio-termo: pede-se ao modelo que responda em JSON seguindo um formato descrito no próprio prompt. Melhora o parsing, mas ainda não há garantia.</li>
+<li><em>Tool calling nativo.</em> O AI Coding Agente emite a chamada como um tipo de saída estruturado, validado contra um schema que o desenvolvedor declara antes (nome, tipos, quais argumentos são obrigatórios). Quem recebe não faz mais parsing de texto solto, recebe algo já tipado e checado. É assim que os agentes funcionam hoje.</li>
+</ul>
+<p>É sobre o <em>tool calling</em> nativo que o MCP se apoia: ele padroniza como as <em>tools</em> são descobertas e invocadas entre agente e servidor, dos dois lados do Caso 2.</p>
 <p>MCP Server: expõe <em>tools</em>, dados e prompts que podem ser utilizados pelo agente.</p>
 <p>Três primitivas:</p>
 <ul>
@@ -235,7 +248,7 @@
 <li>Contexto: doc inteira consome muito e degrada desempenho (<em>Lost in the Middle</em>, <em>Context Rot</em>).</li>
 <li>Confiabilidade: chamada gerada livre a cada vez, erro silencioso.</li>
 <li>Reuso: aprendizado via contexto não persiste entre sessões.</li>
-<li><strong>Interoperabilidade: N×M virou N+M. Um protocolo comum para todos os provedores.</strong></li>
+<li><strong>Interoperabilidade: é o problema do Caso 2. N×M virou N+M com um protocolo comum para todos os provedores.</strong></li>
 <li>Segurança: acesso amplo via documentação e credenciais versus escopo controlado por servidor.</li>
 </ul>
 <h3 id="visão-geral">Visão Geral</h3>
@@ -552,20 +565,6 @@ python3 -m venv .venv
 </ul>
 <hr>
 <h1 id="relatos-da-aula">Relatos da Aula</h1>
-<p>Usar MCP é dar a um gerador de texto não determinístico uma interface padronizada para acionar sistemas que executam de forma determinística.</p>
-<p>A questão &ldquo;MCP or not MCP&rdquo; não remoto vs. local. É para quem você pretende expor sua ferramenta? Se for só para o seu AI Coding Agent preferido, adiciona via plugin (@tool). Se for para qualquer agente genérico que, inclusive, você sequer conhece, use MCP. O MCP generaliza o acesso a sua ferramenta para qualquer agente.</p>
-<h2 id="aumentando-a-capacidade-de-agentes-com-ferramentas">Aumentando a capacidade de agentes com ferramentas</h2>
-<p>Ótimo. Entendi que se houver esquema e um bom harness, o agente consegue executar as ferramentas nativas sem maiores problemas. E vem fazendo isso bem. Mas a gente viu que isso é feito para as ferramentas nativas que os devs dos AI Coding Agents implementam, certo? Tenho algumas perguntas:</p>
-<ol>
-<li>E se eu quiser fazer uma ferramenta e quiser que o opencode consiga usar essa minha ferramenta?</li>
-<li>E se eu quiser que qualquer agente consiga usar essa ferramenta?</li>
-</ol>
-<p>Vamos tentar abordar essas perguntas por caso de uso. O primeiro é: fiz um programa/script python que resolve algo e quero que o meu agente seja capaz de executar ele. Nesse caso, você pode registrar ele como uma ferramenta personalizada disponível no seu <strong>AI Coding Agent</strong> que ele vai saber invocar. Veja, por exemplo, como fazer isso no OpenCode: <a href="https://opencode.ai/docs/custom-tools">https://opencode.ai/docs/custom-tools</a>. Nele você usa o helper  <code>tool()</code> que fica responsável por gerar o esquema e lidar com segurança de tipo e validação.</p>
-<p>Uma vez que você usou o helper <code>tool()</code> para o seu código, isso virou uma ferramenta. Agora basta registrar nas ferramentas disponíveis (em .opencode/tools/ ou ~/.config/opencode/tools/.) que o OpenCode vai saber executá-la.</p>
-<p>O segundo é: eu quero que esse pedaço de código que eu fiz seja passível de ser utilizado não somente pelo agente do opencode, mas por qualquer AI Coding Agent. Mais, por qualquer agente.</p>
-<p>Nesse caso, assim como fiz com opencode, eu poderia usar a SDK da anthropic para isso, não? Pode. Se você tem uma aplicação e quer ensinar o claude a lidar com ela, você pode escrever um adapter para o claude. Depois, se você quiser que o CodeX saiba lidar com ela, você pode escrever um adapter para o CodeX. Já viu onde vamos chegar, né? Para cada provedor, você teria que escrever um adapter. Para N provedores e M aplicações, teríamos NxM adapters.</p>
-<p>A solução para o problema apontado acima é, então, um protocolo que todos saibam falar. Esse protocolo é o MCP.</p>
-<p>MCP define uma forma padrão de comunicação de um agente com ferramentas. Se você desenvolver um servidor MCP para a sua API, por exemplo, os agentes serão capazes de se comunicar com ela. E o número de integrações cai de N×M para N+M.</p>
 <h2 id="participação-dos-alunos">Participação dos Alunos</h2>
 <p>Uma aluna relatou ao final da aula um caso interessante. Ela trabalha em uma empresa que desenvolve um sistema usado por vários clientes, sejam eles outros sistemas ou agentes. A empresa criou um servidor MCP para facilitar a comunicação entre esses agentes e o sistema. Mesmo assim, chegam muitas reclamações e pedidos de extensão porque os clientes não conseguem executar certas tarefas via MCP, e essas tarefas estão fora do escopo do sistema.</p>
 <p>O relato me pareceu mostrar que se espera demais de um sistema só porque a interação com ele é agêntica, como se a caixa de entrada do prompt fosse uma caixa de desejos capaz de resolver qualquer coisa.</p>
