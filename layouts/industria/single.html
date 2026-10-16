@@ -15,7 +15,7 @@
             {{ if .link }}<a href="{{ .link }}" target="_blank" rel="noopener">{{ .nome }}</a>{{ else }}{{ .nome }}{{ end }}{{ with .cargo }}, {{ . }}{{ end }}
         </li>
         {{ end }}
-        {{ with .Params.aula }}<li><i class="fas fa-book-open" aria-hidden="true"></i> <a href="{{ . }}">aula relacionada</a></li>{{ end }}
+        {{ with .Params.slides }}<li><i class="fas fa-book-open" aria-hidden="true"></i> <a href="{{ . }}">slides</a></li>{{ end }}
     </ul>
 
     {{ if $yt }}
