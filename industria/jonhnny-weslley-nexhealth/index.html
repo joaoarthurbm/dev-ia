@@ -121,7 +121,32 @@
     </ul>
 
     
-    <div class="video-wrap video-wrap--soon"><span><i class="fas fa-clock" aria-hidden="true"></i> Em breve</span></div>
+    <div class="video-wrap"><div id="yt-player"></div></div>
+    <script>
+    (function () {
+      var player = null;
+      var videoId = "rBFsKgc90Jw";
+      window.onYouTubeIframeAPIReady = function () {
+        player = new YT.Player('yt-player', { videoId: videoId, playerVars: { rel: 0 } });
+      };
+      var s = document.createElement('script');
+      s.src = 'https://www.youtube.com/iframe_api';
+      document.head.appendChild(s);
+      document.querySelectorAll('a[href^="#t="]').forEach(function (a) {
+        a.addEventListener('click', function (e) {
+          e.preventDefault();
+          var t = parseInt(a.getAttribute('href').slice(3), 10) || 0;
+          if (player && player.seekTo) {
+            player.seekTo(t, true);
+            player.playVideo();
+            document.getElementById('yt-player').scrollIntoView({ behavior: 'smooth', block: 'center' });
+          } else {
+            window.open('https://www.youtube.com/watch?v=' + videoId + '&t=' + t + 's', '_blank');
+          }
+        });
+      });
+    })();
+    </script>
     
 
     <hr>
@@ -152,7 +177,7 @@
 <p><video controls preload="metadata" class="clip" src="https://joaoarthurbm.github.io/dev-ia/industria/jonhnny/workflow.mp4"></video></p>
 <p>Não adianta ter o melhor modelo ou o melhor AI code agent se você não quebra as tarefas, não define especificação antes de implementar e não tem roteiro de teste com sensores bem definidos. Monitorar e avaliar é fundamental nessa nova forma de desenvolver.</p>
 <h2 id="validação-automática-de-sql-antes-de-qualquer-consulta">Validação automática de SQL antes de qualquer consulta</h2>
-<p><video controls preload="metadata" class="clip" src="https://joaoarthurbm.github.io/dev-ia/industria/jonhnny/validacao-sql.mp4"></video></p>
+<p><video controls preload="metadata" class="clip" src="https://youtu.be/rBFsKgc90Jw"></video></p>
 <p>O time da NexHealth criou uma ferramenta que intercepta toda consulta SQL que o agente tentar executar no banco. Antes de rodar, ela valida se aquela consulta vazaria alguma informação que não deveria — se vazar, o comando é bloqueado. O mesmo mecanismo serve para bloquear pedidos sem sentido, como o agente tentar ler credenciais da AWS no meio de uma tarefa que não precisa disso. Implementado com hooks.</p>
 <h2 id="o-perigo-de-instalar-skills-sem-ler-o-que-elas-fazem">O perigo de instalar skills sem ler o que elas fazem</h2>
 <p><video controls preload="metadata" class="clip" src="https://joaoarthurbm.github.io/dev-ia/industria/jonhnny/perigos.mp4"></video></p>

@@ -45,7 +45,7 @@
 &lt;p&gt;&lt;video controls preload=&#34;metadata&#34; class=&#34;clip&#34; src=&#34;https://joaoarthurbm.github.io/dev-ia/industria/jonhnny/workflow.mp4&#34;&gt;&lt;/video&gt;&lt;/p&gt;
 &lt;p&gt;Não adianta ter o melhor modelo ou o melhor AI code agent se você não quebra as tarefas, não define especificação antes de implementar e não tem roteiro de teste com sensores bem definidos. Monitorar e avaliar é fundamental nessa nova forma de desenvolver.&lt;/p&gt;
 &lt;h2 id=&#34;validação-automática-de-sql-antes-de-qualquer-consulta&#34;&gt;Validação automática de SQL antes de qualquer consulta&lt;/h2&gt;
-&lt;p&gt;&lt;video controls preload=&#34;metadata&#34; class=&#34;clip&#34; src=&#34;https://joaoarthurbm.github.io/dev-ia/industria/jonhnny/validacao-sql.mp4&#34;&gt;&lt;/video&gt;&lt;/p&gt;
+&lt;p&gt;&lt;video controls preload=&#34;metadata&#34; class=&#34;clip&#34; src=&#34;https://youtu.be/rBFsKgc90Jw&#34;&gt;&lt;/video&gt;&lt;/p&gt;
 &lt;p&gt;O time da NexHealth criou uma ferramenta que intercepta toda consulta SQL que o agente tentar executar no banco. Antes de rodar, ela valida se aquela consulta vazaria alguma informação que não deveria — se vazar, o comando é bloqueado. O mesmo mecanismo serve para bloquear pedidos sem sentido, como o agente tentar ler credenciais da AWS no meio de uma tarefa que não precisa disso. Implementado com hooks.&lt;/p&gt;
 &lt;h2 id=&#34;o-perigo-de-instalar-skills-sem-ler-o-que-elas-fazem&#34;&gt;O perigo de instalar skills sem ler o que elas fazem&lt;/h2&gt;
 &lt;p&gt;&lt;video controls preload=&#34;metadata&#34; class=&#34;clip&#34; src=&#34;https://joaoarthurbm.github.io/dev-ia/industria/jonhnny/perigos.mp4&#34;&gt;&lt;/video&gt;&lt;/p&gt;
