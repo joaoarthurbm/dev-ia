@@ -135,20 +135,24 @@
     
 
     
-    <details id="toc" open>
-        <summary>Sumário</summary>
+    <details id="toc">
+        <summary>Tópicos</summary>
         <nav id="TableOfContents">
   <ul>
-    <li><a href="#o-trace">O trace</a></li>
-    <li><a href="#o-ponto-de-partida">O ponto de partida</a>
+    <li><a href="#ai-coding-agents">AI Coding Agents</a></li>
+    <li><a href="#anatomia-de-um-agente-exemplo-concreto">Anatomia de um agente: exemplo concreto</a>
       <ul>
-        <li><a href="#tool-calling">Tool Calling</a></li>
+        <li><a href="#o-trace">O trace</a></li>
+        <li><a href="#o-ponto-de-partida">O ponto de partida</a></li>
+        <li><a href="#a-primeira-volta-do-loop-agir-e-observar-a-falha">A primeira volta do loop: agir e observar a falha</a></li>
+        <li><a href="#thought-o-passo-que-normalmente-não-aparece">Thought: O passo que normalmente não aparece</a></li>
+        <li><a href="#segunda-volta-do-loop-agir-sobre-a-causa">Segunda volta do loop: agir sobre a causa</a></li>
+        <li><a href="#o-guardrail-como-o-agente-sabe-que-terminou">O guardrail: como o agente sabe que terminou</a></li>
       </ul>
     </li>
-    <li><a href="#a-primeira-volta-do-loop-agir-e-observar-a-falha">A primeira volta do loop: agir e observar a falha</a></li>
-    <li><a href="#thought-o-passo-que-normalmente-não-aparece">Thought: O passo que normalmente não aparece</a></li>
-    <li><a href="#segunda-volta-do-loop-agir-sobre-a-causa">Segunda volta do loop: agir sobre a causa</a></li>
-    <li><a href="#o-guardrail-como-o-agente-sabe-que-terminou">O guardrail: como o agente sabe que terminou</a></li>
+    <li><a href="#generalizando">Generalizando</a></li>
+    <li><a href="#na-prática">Na prática</a></li>
+    <li><a href="#referências">Referências</a></li>
   </ul>
 </nav>
     </details>
@@ -159,7 +163,7 @@
 ; identificar os componentes da anatomia (loop, contexto, tools, skills, guardrails) em uma execução real de um <em>AI coding agent</em> e implementar um protótipo simples de agente.</p>
 <hr>
 <p><strong>Disclaimer.</strong>  As notas de aula foram escritas por mim em sua totalidade. Não utilizei auxílio de nenhum modelo, embora não veja problema nesse auxílio. Estou deixando isso claro para que você tenha ciência de que, se houver erro aqui ou achar o material ruim, a culpa é minha mesmo. Vale destacar também que as notas de aula são um guia para a discussão em sala de aula e servem muito pouco como conteúdo para estudo.</p>
-<h1 id="ai-coding-agents">AI Coding Agents</h1>
+<h2 id="ai-coding-agents">AI Coding Agents</h2>
 <p>O conceito de agentes é antigo. Não nasceu agora. Tem havido uma sobreposição semântica no termo, isto é, tem se interpretado ultimamente agentes como  “LLM based agents”.</p>
 <p>De maneira simplória, agente é um loop com tomadas de decisões baseadas em um conjunto de critérios. O que mudou não foi a existência do loop, foi <strong>quem preenche o espaço da decisão dentro dele</strong>. Antes, alguém definia uma heurística, agora a decisão é terceirizada para uma chamada a um LLM a cada iteração do loop.</p>
 <p>LLMs não são agentes. LLMs geram texto.  Eles são um componente da decisão que o agente (loop) consulta. Eles estão intrinsecamente relacionados ao raciocínio, não às ações.</p>
@@ -171,11 +175,11 @@
 <p>Chamar uma ferramenta, fazer uma chamada de API, buscar etc. É esse repertório de ações que dá forma concreta ao &ldquo;Action&rdquo; do ReAct.</p>
 <p>Depois de agir, o agente reavalia onde está. Usa o que observou para decidir entre responder de vez ou formular o próximo Thought.</p>
 <p>Um AI Coding Agent é um agente especializado em desenvolvimento de software.</p>
-<h1 id="anatomia-de-um-agente-exemplo-concreto">Anatomia de um agente: exemplo concreto</h1>
+<h2 id="anatomia-de-um-agente-exemplo-concreto">Anatomia de um agente: exemplo concreto</h2>
 <p>O vocabulário que está por vir: loop, contexto, tools e guardrails/avaliação.</p>
 <p>O cenário abaixo é pequeno de propósito: um repositório com uma função <code>apply_discount</code> que tem um bug, e um teste que falha por causa dele. O prompt usado está abaixo. Depois vamos discutir porque esse pode não ser um bom prompt. Por ora, vamos com ele.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#f92672">**</span><span style="color:#e6db74">&#34;conserte o teste que está falhando em test_inventory.py&#34;</span><span style="color:#f92672">**</span>. 
-</code></pre></div><h2 id="o-trace">O trace</h2>
+</code></pre></div><h3 id="o-trace">O trace</h3>
 <p><strong>Thought:</strong> Preciso entender a tarefa antes de agir. O teste test_inventory.py está
 falhando — vou ler o código-fonte e o teste para ver o que está em jogo.</p>
 <p><strong>Action:</strong> read(<a href="http://inventory.py/">inventory.py</a>)
@@ -223,10 +227,10 @@ test_inventory.py::test_apply_discount PASSED
 1 passed in 0.01s</p>
 <hr>
 <p><strong>Thought:</strong> O teste passou. Não há mais falhas conhecidas — a tarefa está concluída.</p>
-<h2 id="o-ponto-de-partida">O ponto de partida</h2>
+<h3 id="o-ponto-de-partida">O ponto de partida</h3>
 <p>O agente recebe a instrução do usuário.</p>
 <p>Antes de decidir qualquer coisa, o agente ainda não sabe o que está no repositório. Então a primeira ação é reunir informação.</p>
-<h3 id="tool-calling">Tool Calling</h3>
+<h4 id="tool-calling">Tool Calling</h4>
 <pre><code>read inventory.py
 read test_inventory.py
 </code></pre><p>python</p>
@@ -259,14 +263,14 @@ read test_inventory.py
 <p>O contexto não é um dado que o modelo possui, precisa ser ativamente montado, turno a turno.</p>
 <p>Refs</p>
 <p>YANG, John et al. Swe-agent: Agent-computer interfaces enable automated software engineering. <strong>Advances in Neural Information Processing Systems, 2024.</strong></p>
-<h2 id="a-primeira-volta-do-loop-agir-e-observar-a-falha">A primeira volta do loop: agir e observar a falha</h2>
+<h3 id="a-primeira-volta-do-loop-agir-e-observar-a-falha">A primeira volta do loop: agir e observar a falha</h3>
 <p>Com os arquivos lidos, o agente decide que o próximo passo natural é confirmar o problema rodando o teste. Isso já é uma decisão, ainda que pequena: a escolha de investigar antes de agir sobre a causa.</p>
 <pre><code>execute: pytest test_inventory.py
 </code></pre><pre><code>FAILED test_inventory.py::test_apply_discount - assert 190 == 180
 E       assert 190 == 180
 E        +  where 190 = apply_discount(200, 10)
 </code></pre><p>Essa saída de erro é o segundo tipo de contexto que aparece no exemplo, e é diferente do primeiro: não veio de um arquivo estático, veio do <em>resultado de uma ação do próprio agente</em>. É exatamente esse ciclo: <strong>agir</strong>, <strong>observar</strong> o resultado, e <strong>usar</strong> esse resultado para decidir a próxima ação.. Sem essa realimentação, o agente teria apenas um palpite sobre o código.</p>
-<h2 id="thought-o-passo-que-normalmente-não-aparece">Thought: O passo que normalmente não aparece</h2>
+<h3 id="thought-o-passo-que-normalmente-não-aparece">Thought: O passo que normalmente não aparece</h3>
 <p>Entre observar <code>190 == 180</code> e decidir editar o arquivo, há um raciocínio: &ldquo;<code>percent</code> está sendo subtraído do preço em vez de aplicado como uma fração&rdquo;. Esse passo não gera nenhuma chamada de ferramenta. Ele faz parte do “thought”. Normalmente as ferramentas escondem isso, mas aqui o que foi gerado pelo log no nosso exemplo:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#f92672">**</span><span style="color:#a6e22e">Thought</span><span style="color:#f92672">:**</span> <span style="color:#a6e22e">O</span> <span style="color:#a6e22e">teste</span> <span style="color:#a6e22e">espera</span> <span style="color:#ae81ff">180</span>, <span style="color:#a6e22e">e</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">função</span> <span style="color:#a6e22e">devolveu</span> <span style="color:#ae81ff">190</span> <span style="color:#a6e22e">fazendo</span> <span style="color:#a6e22e">price</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">percent</span>
 (<span style="color:#ae81ff">200</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">190</span>).
@@ -281,18 +285,18 @@ E        +  where 190 = apply_discount(200, 10)
 </code></pre></div><p><strong> Isso aqui é o LLM processando o contexto acumulado (a função, a documentação, o teste, o erro) e decidindo o que fazer a seguir.</strong></p>
 <p>O docstring diz &ldquo;aplica um desconto <strong>percentual</strong>&rdquo;. O LLM viu esse padrão de código milhares de vezes no treinamento. Isso não é raciocínio matemático, é reconhecimento de padrão: &ldquo;desconto percentual&rdquo; quase sempre vira <code>price * (1 - percent/100)</code> em código real.</p>
 <p>O teste dá <strong>um único par entrada/saída.</strong> Isso não especifica a fórmula, só restringe o espaço de fórmulas possíveis. Muitas soluções passariam nesse teste. O agente escolheu a que casa com o padrão textual do passo anterior.</p>
-<h2 id="segunda-volta-do-loop-agir-sobre-a-causa">Segunda volta do loop: agir sobre a causa</h2>
+<h3 id="segunda-volta-do-loop-agir-sobre-a-causa">Segunda volta do loop: agir sobre a causa</h3>
 <p>Com o diagnóstico feito, o agente edita o arquivo:</p>
 <p>diff</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#f92672">- return price - percent
 </span><span style="color:#f92672"></span><span style="color:#a6e22e">+ return price * (1 - percent / 100)
 </span></code></pre></div><p>Essa é a ação central da tarefa, mas note que ela só foi possível porque as duas voltas anteriores do loop (ler, depois rodar e observar a falha) já tinham montado o contexto necessário. Se o agente tivesse editado o arquivo na primeira iteração, sem rodar o teste antes, estaria decidindo às cegas.</p>
-<h2 id="o-guardrail-como-o-agente-sabe-que-terminou">O guardrail: como o agente sabe que terminou</h2>
+<h3 id="o-guardrail-como-o-agente-sabe-que-terminou">O guardrail: como o agente sabe que terminou</h3>
 <pre><code>execute: pytest test_inventory.py
 </code></pre><pre><code>test_inventory.py::test_apply_discount PASSED
 1 passed in 0.01s
 </code></pre><p>Agente decide parar porque um critério verificável (o teste passou) foi satisfeito. Esse é o papel de guardrails e avaliação dentro do loop: não é uma etapa de qualidade de código feita depois, por um humano ou por outra ferramenta. É o mecanismo que o agente usa, em tempo real, para decidir entre continuar, tentar de novo, ou parar. Tirem esse passo do exemplo e o agente não tem como saber se <code>price * (1 - percent / 100)</code> era a correção certa ou apenas mais uma tentativa.</p>
-<h1 id="generalizando">Generalizando</h1>
+<h2 id="generalizando">Generalizando</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#a6e22e">contexto</span> <span style="color:#f92672">=</span> [<span style="color:#a6e22e">tarefa</span> <span style="color:#a6e22e">inicial</span>]
 <span style="color:#a6e22e">enquanto</span> <span style="color:#a6e22e">não</span> <span style="color:#a6e22e">terminou</span><span style="color:#f92672">:</span>
     <span style="color:#a6e22e">thought</span>, <span style="color:#a6e22e">action</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">LLM</span>(<span style="color:#a6e22e">contexto</span>)
@@ -301,7 +305,7 @@ E        +  where 190 = apply_discount(200, 10)
     <span style="color:#a6e22e">senão</span><span style="color:#f92672">:</span>
         <span style="color:#a6e22e">observation</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">executar</span>(<span style="color:#a6e22e">action</span>)
         <span style="color:#a6e22e">contexto</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">contexto</span> <span style="color:#f92672">+</span> [<span style="color:#a6e22e">thought</span>, <span style="color:#a6e22e">action</span>, <span style="color:#a6e22e">observation</span>]
-</code></pre></div><h1 id="na-prática">Na prática</h1>
+</code></pre></div><h2 id="na-prática">Na prática</h2>
 <p>Na prática, não implementamos o loop do agente. Configuramos o agente em markdown e o <code>agent harness</code> executa o loop de raciocínio e ação.</p>
 <p>No opencode, por exemplo, o agente principal é chamado de <em>build agent</em>. Por default, ele interage com o usuário e decide chamar os outros agentes de acordo com os pedidos.</p>
 <p>É possível trocar o <em>build agent</em> via conf ou na própria TUI, usando TAB ou @meu-agente&hellip;</p>
@@ -309,7 +313,7 @@ E        +  where 190 = apply_discount(200, 10)
 <p>Vamos dedicar uma aula exclusiva para especificação de agentes específicos
 para o contexto de atividades de engenharia de software.</p>
 <p>Teaser: <a href="https://github.com/github/awesome-copilot/tree/main/agents">awesome-agents</a></p>
-<h1 id="referências">Referências</h1>
+<h2 id="referências">Referências</h2>
 <p>ReAct: Synergizing Reasoning and Acting in Language Models&quot;, ICLR 2023)</p>
 
 

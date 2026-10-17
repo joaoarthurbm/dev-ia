@@ -402,8 +402,8 @@ python3 -m venv .venv
 &lt;li&gt;&lt;a href=&#34;https://modelcontextprotocol.io/&#34;&gt;Model Context Protocol&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.anthropic.com/engineering/writing-tools-for-agents&#34;&gt;Writing effective tools for agents, with agents&lt;/a&gt; (Engineering at Anthropic)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;hr&gt;
-&lt;h1 id=&#34;relatos-da-aula&#34;&gt;Relatos da Aula&lt;/h1&gt;
+&lt;div class=&#34;relatos-aula-banner&#34;&gt;&lt;i class=&#34;fas fa-pen-nib&#34;&gt;&lt;/i&gt; Relatos da Aula&lt;/div&gt;
+
 &lt;h2 id=&#34;participação-dos-alunos&#34;&gt;Participação dos Alunos&lt;/h2&gt;
 &lt;p&gt;Uma aluna relatou ao final da aula um caso interessante. Ela trabalha em uma empresa que desenvolve um sistema usado por vários clientes, sejam eles outros sistemas ou agentes. A empresa criou um servidor MCP para facilitar a comunicação entre esses agentes e o sistema. Mesmo assim, chegam muitas reclamações e pedidos de extensão porque os clientes não conseguem executar certas tarefas via MCP, e essas tarefas estão fora do escopo do sistema.&lt;/p&gt;
 &lt;p&gt;O relato me pareceu mostrar que se espera demais de um sistema só porque a interação com ele é agêntica, como se a caixa de entrada do prompt fosse uma caixa de desejos capaz de resolver qualquer coisa.&lt;/p&gt;

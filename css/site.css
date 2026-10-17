@@ -183,23 +183,40 @@
 
 #tldr ul li strong,
 #container main strong {
-  color: #06356e;
+  color: #a8491f;
   font-weight: 700;
+}
+
+#container main article em,
+#container main section em {
+  color: inherit;
+  font-style: italic;
+  font-weight: 500;
 }
 
 #container main article a,
 #container main section a {
   color: #0b5fc4;
-  font-weight: 600;
+  font-weight: 700;
   text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 2px;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+#container main article a::after,
+#container main section a::after {
+  content: "\2197";
+  display: inline-block;
+  margin-left: 0.1em;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.7em;
+  vertical-align: super;
 }
 
 #container main article a:hover,
 #container main section a:hover {
   color: #06356e;
-  text-decoration-thickness: 2px;
 }
 
 .cta-slides {
@@ -470,4 +487,147 @@ article.live video.clip {
     flex: none;
     width: 100%;
   }
+}
+
+/* ---- Redesign do corpo do artigo (posts) ---- */
+#container > * {
+  width: 820px;
+}
+
+@media only screen and (max-width: 860px) {
+  #container > * {
+    width: auto;
+    margin: 0 1.2em;
+  }
+}
+
+#container main article h2 {
+  margin-top: 2.2em;
+  margin-bottom: 0.7em;
+  padding-bottom: 0.4em;
+  border-bottom: 2px solid #1980e6;
+  color: #06356e;
+  font-size: 1.55rem;
+}
+
+#container main article h3 {
+  margin-top: 1.8em;
+  margin-bottom: 0.5em;
+  color: #06356e;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+#container main article h4 {
+  margin-top: 1.5em;
+  margin-bottom: 0.4em;
+  color: #0a3d7a;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+#container main article hr {
+  border: 0;
+  height: 2px;
+  width: 80px;
+  background: #1980e6;
+  margin: 2.6em auto;
+}
+
+.relatos-aula-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.55em;
+  margin: 2.6em 0 1.4em;
+  padding: 0.7em 1.2em;
+  background: linear-gradient(135deg, #1980e6 0%, #0a3d7a 100%);
+  color: #ffffff;
+  border-radius: 8px;
+  font-family: "Ruda", sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  box-shadow: 0 6px 16px rgba(20, 60, 110, 0.2);
+}
+
+#container main article blockquote {
+  position: relative;
+  margin: 1.8em 0;
+  padding: 1.3em 1.7em 1.3em 2.1em;
+  border: none;
+  border-left: 4px solid #1980e6;
+  background: linear-gradient(135deg, #f3f6fb 0%, #eaf1fa 100%);
+  border-radius: 10px;
+  box-shadow: 0 3px 14px rgba(20, 60, 110, 0.1);
+  font-family: "Roboto Slab", serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: #274058;
+}
+
+#container main article blockquote::before {
+  content: "\201C";
+  position: absolute;
+  top: -0.1em;
+  left: 0.4em;
+  font-family: Georgia, serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 2.8rem;
+  line-height: 1;
+  color: #1980e6;
+  opacity: 0.22;
+}
+
+#container main article blockquote p {
+  position: relative;
+  z-index: 1;
+  margin: 0.4em 0;
+}
+
+#container main article pre {
+  background-color: #1c2b40;
+  color: #eaf3ff;
+  border-radius: 8px;
+  padding: 1.1em 1.3em;
+  box-shadow: none;
+  border: 1px solid #13202f;
+}
+
+#container main article p code,
+#container main article li code,
+#container main article td code {
+  background-color: #eef2fa;
+  color: #0a3d7a;
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  font-size: 0.88em;
+}
+
+#container main article table {
+  border-collapse: collapse;
+  border: 1px solid #dde3ec;
+  box-shadow: none;
+}
+
+#container main article table thead {
+  background-color: #0a3d7a;
+}
+
+#container main article table thead th {
+  color: #ffffff;
+  font-family: "Ruda", sans-serif;
+  padding: 0.6em 0.8em;
+  text-align: left;
+}
+
+#container main article table td {
+  padding: 0.55em 0.8em;
+  border-bottom: 1px solid #e2e6ec;
+}
+
+#container main article table tbody tr:nth-child(even) {
+  background-color: #f6f8fb;
 }

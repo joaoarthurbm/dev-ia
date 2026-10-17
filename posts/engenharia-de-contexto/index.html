@@ -135,50 +135,35 @@
     
 
     
-    <details id="toc" open>
-        <summary>Sumário</summary>
+    <details id="toc">
+        <summary>Tópicos</summary>
         <nav id="TableOfContents">
   <ul>
-    <li><a href="#o-mecanismo-de-atenção-não-escala">O mecanismo de atenção não escala</a></li>
-    <li><a href="#context-rot">Context rot</a></li>
-    <li><a href="#lost-in-the-middle">Lost in the middle</a></li>
-    <li><a href="#4-modos-de-falha">4 Modos de falha</a>
+    <li><a href="#preâmbulo">Preâmbulo</a></li>
+    <li><a href="#introdução">Introdução</a></li>
+    <li><a href="#os-problemas">Os Problemas</a>
       <ul>
-        <li><a href="#context-poisoning-when-a-hallucination-makes-it-into-the-context">Context Poisoning: When a hallucination makes it into the context</a></li>
-        <li><a href="#context-distraction-when-the-context-overwhelms-the-training">Context Distraction: When the context overwhelms the training</a></li>
-        <li><a href="#context-confusion-when-superfluous-context-influences-the-response">Context Confusion: When superfluous context influences the response</a></li>
-        <li><a href="#context-clash-when-parts-of-the-context-disagree">Context Clash: When parts of the context disagree</a></li>
+        <li><a href="#o-mecanismo-de-atenção-não-escala">O mecanismo de atenção não escala</a></li>
+        <li><a href="#context-rot">Context rot</a></li>
+        <li><a href="#lost-in-the-middle">Lost in the middle</a></li>
+        <li><a href="#4-modos-de-falha">4 Modos de falha</a></li>
       </ul>
     </li>
-  </ul>
-
-  <ul>
-    <li><a href="#the-anatomy-of-effective-context"><strong>The anatomy of effective context</strong></a>
+    <li><a href="#solução-engenharia-de-contexto">Solução: Engenharia de Contexto</a>
       <ul>
-        <li><a href="#write">Write</a></li>
-        <li><a href="#select">Select</a></li>
-        <li><a href="#compress">Compress</a></li>
-        <li><a href="#isolate">Isolate</a></li>
+        <li><a href="#the-anatomy-of-effective-context"><strong>The anatomy of effective context</strong></a></li>
       </ul>
     </li>
-  </ul>
-
-  <ul>
-    <li><a href="#how-three-yc-startups-built-their-companies-with-claude-code">How three YC startups built their companies with Claude Code</a></li>
-    <li><a href="#humanlayer">HumanLayer</a>
+    <li><a href="#engenharia-de-contexto-na-prática">Engenharia de Contexto na prática</a>
       <ul>
-        <li><a href="#the-nayve-way"><strong>The nayve way</strong></a></li>
-        <li><a href="#slightly-smarter-intentional-compaction"><strong>Slightly Smarter: Intentional Compaction</strong></a></li>
+        <li><a href="#how-three-yc-startups-built-their-companies-with-claude-code">How three YC startups built their companies with Claude Code</a></li>
+        <li><a href="#humanlayer">HumanLayer</a></li>
+        <li><a href="#o-que-consome-o-contexto"><strong>O que consome o contexto?</strong></a></li>
+        <li><a href="#compactar">Compactar</a></li>
+        <li><a href="#outros-casos">Outros casos</a></li>
       </ul>
     </li>
-    <li><a href="#o-que-consome-o-contexto"><strong>O que consome o contexto?</strong></a></li>
-    <li><a href="#compactar">Compactar</a>
-      <ul>
-        <li><a href="#um-caso-curioso-extremo-repomirror">Um caso curioso (extremo): repomirror</a></li>
-        <li><a href="#frequent-intentional-compactation">Frequent Intentional Compactation</a></li>
-      </ul>
-    </li>
-    <li><a href="#outros-casos">Outros casos</a></li>
+    <li><a href="#refs">Refs</a></li>
   </ul>
 </nav>
     </details>
@@ -187,9 +172,9 @@
     <hr>
 <p>Ao final dessa aula, o aluno deve ser capaz de entender o conceito de janela de contexto e suas limitações, além de entender e implementar técnicas de engenharia de contexto.</p>
 <hr>
-<h1 id="preâmbulo">Preâmbulo</h1>
+<h2 id="preâmbulo">Preâmbulo</h2>
 <p><strong>Sobre as notas de aulas:</strong> i) Conteúdo escrito por mim em sua totalidade. Tabelas e figura foram geradas com auxílio do Claude. Estou deixando isso claro para que você tenha ciência de que se houver erro aqui ou achar o material ruim, a culpa é minha mesmo;  e ii) as notas de aula são um guia para a discussão em sala de aula e servem muito pouco como conteúdo para estudo.</p>
-<h1 id="introdução">Introdução</h1>
+<h2 id="introdução">Introdução</h2>
 <p>Contexto é tudo, mas nem tudo cabe no contexto.</p>
 <p><a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents">https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents</a></p>
 <blockquote>
@@ -254,14 +239,14 @@
 <p>Um agente pode ter uma janela de 1 milhão de tokens, mas não necessariamente colocar 1 milhão de tokens nela a cada chamada. O <em>agent harness</em> normalmente constrói o contexto dinamicamente.</p>
 <p><strong>Quanto maior a janela, não significa necessariamente que o modelo utilize igualmente bem tudo que está dentro dela</strong>.</p>
 <p>A capacidade de recuperar e raciocinar sobre informações espalhadas por centenas de milhares de tokens continua sendo uma questão de desempenho.</p>
-<h1 id="os-problemas">Os Problemas</h1>
+<h2 id="os-problemas">Os Problemas</h2>
 <p>A janela é finita. Mas não seria só aumentar a janela de contexto?</p>
-<h2 id="o-mecanismo-de-atenção-não-escala">O mecanismo de atenção não escala</h2>
+<h3 id="o-mecanismo-de-atenção-não-escala">O mecanismo de atenção não escala</h3>
 <p>Relações n² entre tokens.</p>
 <blockquote>
 <p>Cada token tem que &ldquo;prestar atenção&rdquo; em todos os outros para decidir quais são os relevantes.</p>
 </blockquote>
-<h2 id="context-rot">Context rot</h2>
+<h3 id="context-rot">Context rot</h3>
 <figure style="align: center; margin-left:5%; width: 90%">
     <img src="image%202.png">
     <figcaption align="center">
@@ -273,7 +258,7 @@
 <figure style="align: center; margin-left:5%; width: 90%">
     <img src="image%203.png">
 </figure>
-<h2 id="lost-in-the-middle">Lost in the middle</h2>
+<h3 id="lost-in-the-middle">Lost in the middle</h3>
 <figure style="align: center; margin-left:5%; width: 90%">
     <img src="image%204.png">
     <figcaption align="center">
@@ -297,20 +282,20 @@
 <li>Meio: informações podem ser &ldquo;perdidas&rdquo; entre muitas outras.</li>
 <li>Fim: &ldquo;O que acabei de ver provavelmente é relevante para o que vou responder agora.&rdquo;</li>
 </ul>
-<h2 id="4-modos-de-falha">4 Modos de falha</h2>
+<h3 id="4-modos-de-falha">4 Modos de falha</h3>
 <p>Drew Breunig. <em>How Long Contexts Fail</em>. Drew Breunig, 22 jun. 2025. <a href="https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html?utm_source=chatgpt.com">https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html</a></p>
-<h3 id="context-poisoning-when-a-hallucination-makes-it-into-the-context">Context Poisoning: When a hallucination makes it into the context</h3>
+<h4 id="context-poisoning-when-a-hallucination-makes-it-into-the-context">Context Poisoning: When a hallucination makes it into the context</h4>
 <p><a href="https://storage.googleapis.com/deepmind-media/gemini/gemini_v2_5_report.pdf">Gemini 2.5 technical report</a></p>
 <blockquote>
 <p>An especially egregious form of this issue can take place with “context poisoning” – where many parts of the context (goals, summary) are “poisoned” with misinformation about the game state, which can often take a very long time to undo. As a result, the model can become fixated on achieving impossible or irrelevant goals.</p>
 </blockquote>
-<h3 id="context-distraction-when-the-context-overwhelms-the-training">Context Distraction: When the context overwhelms the training</h3>
+<h4 id="context-distraction-when-the-context-overwhelms-the-training">Context Distraction: When the context overwhelms the training</h4>
 <p>O modelo desenvolve hiperfoco no contexto.</p>
 <blockquote>
 <p>It was observed that as the context grew significantly beyond 100k tokens, the agent showed a tendency toward favoring repeating actions from its vast history rather than synthesizing novel plans.</p>
 </blockquote>
 <p>Ao invés de usar a capacidade adquirida no treinamento, passou a utilizar muito o contexto.</p>
-<h3 id="context-confusion-when-superfluous-context-influences-the-response">Context Confusion: When superfluous context influences the response</h3>
+<h4 id="context-confusion-when-superfluous-context-influences-the-response">Context Confusion: When superfluous context influences the response</h4>
 <p>Se você colocar algo no contexto, o modelo vai levar em consideração, mesmo que essa informação seja irrelevante. Alguns modelos já estão melhorando em ignorar ou descartar informação irrelevante, mas ainda é comum ver informação ruim distrair modelos.</p>
 <p><strong>Less is more: Optimizing function calling for llm execution on edge devices.&quot; <em>2025 Design, Automation &amp; Test in Europe Conference (DATE)</em>. IEEE, 2025.</strong></p>
 <blockquote>
@@ -320,9 +305,9 @@
 <blockquote>
 <p>In simpler terms, we discover that when LLMs take a wrong turn in a conversation, they get lost and do not recover.</p>
 </blockquote>
-<h3 id="context-clash-when-parts-of-the-context-disagree">Context Clash: When parts of the context disagree</h3>
+<h4 id="context-clash-when-parts-of-the-context-disagree">Context Clash: When parts of the context disagree</h4>
 <p>Parece um pouco com context confusion, mas a informação aqui não é irrelevante é conflitante com algo que já está no contexto.</p>
-<h4 id="exemplo">Exemplo</h4>
+<h5 id="exemplo">Exemplo</h5>
 <p>O <strong>system prompt</strong> instrui:</p>
 <blockquote>
 <p>“Sempre use <strong>aspas simples</strong> e <strong>indentação de 2 espaços</strong>.”</p>
@@ -331,10 +316,10 @@
 <blockquote>
 <p>“Use <strong>aspas duplas</strong> e <strong>indentação de 4 espaços</strong>.”</p>
 </blockquote>
-<h4 id="outro-exemplo">Outro exemplo</h4>
+<h5 id="outro-exemplo">Outro exemplo</h5>
 <p>Um agente de suporte tem no contexto a política de reembolso atual (via tool call a um sistema interno) e um trecho de e-mail antigo do cliente citando uma política antiga diferente.</p>
 <p><strong>O contexto contém instruções conflitantes.</strong> O agente agora precisa decidir qual seguir, e o resultado observável costuma ser inconsistência.</p>
-<h1 id="solução-engenharia-de-contexto">Solução: Engenharia de Contexto</h1>
+<h2 id="solução-engenharia-de-contexto">Solução: Engenharia de Contexto</h2>
 <blockquote>
 <p>The <strong>engineering</strong> problem at hand is optimizing the utility of tokens.</p>
 </blockquote>
@@ -343,13 +328,13 @@
 </blockquote>
 <p>Isso vale tanto para quem vai construir agentes/harness quanto para quem vai usar agentes e precisa fazer isso de maneira adequada e que não impacte no desempenho, que é o nosso caso.</p>
 <p>Vou discutir o nosso caso, mas falar um pouco sobre quem vai construir agentes também.</p>
-<h2 id="the-anatomy-of-effective-context"><strong>The anatomy of effective context</strong></h2>
+<h3 id="the-anatomy-of-effective-context"><strong>The anatomy of effective context</strong></h3>
 <p>As técnicas do LangChain:  <a href="https://www.langchain.com/blog/context-engineering-for-agents:">https://www.langchain.com/blog/context-engineering-for-agents:</a> <strong>write, select, compress, and isolate.</strong></p>
 <p>Formas de evitar e lidar com contextos longos. Não são conflitantes.</p>
 <figure style="align: center; margin-left:5%; width: 90%">
     <img src="image%205.png">
 </figure>
-<h3 id="write">Write</h3>
+<h4 id="write">Write</h4>
 <p>Manter artefatos fora do agente para ele consultar: <code>AGENTS.md</code> , <code>CLAUDE.md</code> <code>NOTES.md</code> de sessão, specs  etc.</p>
 <p>Paralelo com essa ideia: <a href="https://research.memgpt.ai/:">https://research.memgpt.ai/:</a> <strong>Towards LLMs as Operating Systems - Teach LLMs to manage their own memory for unbounded context!</strong></p>
 <p><strong>O próprio agente faz isso. structured note-taking</strong>.</p>
@@ -366,24 +351,24 @@
 <li>Sobrevive ao término das sessões.</li>
 <li>Pode ser combinado com técnicas de descarte e compressão.</li>
 </ol>
-<h3 id="select">Select</h3>
+<h4 id="select">Select</h4>
 <p>Trazer somente o que é relevante e no momento certo.</p>
 <p>Ao invés de trazer tudo (RAG tradicional), <em>just-in-time retrieval.</em></p>
 <p>Exemplo: ao invés de ler todos os documentos de um diretório, decidir antes qual ler.</p>
 <p>Parelelo com &ldquo;Lost in the Middle&rdquo;: selecionar menos e melhor evita literalmente o vale de desempenho no meio do contexto.</p>
-<h3 id="compress">Compress</h3>
+<h4 id="compress">Compress</h4>
 <p>Reduzir o contexto quando se aproxima do limite.</p>
 <p>Técnica: <em>compaction.</em></p>
 <p>“Anota o resumo para a gente reiniciar essa conversa amanhã (outra sessão), por favor” :)</p>
 <p>Tradeoff: toda compressão tem custo de cache, comprimir tem preço em latência e economia.</p>
-<h3 id="isolate">Isolate</h3>
+<h4 id="isolate">Isolate</h4>
 <p>Arquiteturas de sub-agentes. Dividir contexto entre múltiplos agentes ou sub-processos, cada um com sua própria janela.</p>
 <p>Tradeoff: Isolar contexto melhora Confusion e Distraction, mas pode gerar decisões conflitantes entre sub-agentes que não compartilham estado.</p>
 <p>Que tipo de tarefa é mais adequada a esse princípio? Que tipo de tarefa não é?</p>
 <p><strong>Revisar um PR grande com mudanças em múltiplos módulos seria um bom cadidato a ser paralelizado?</strong></p>
-<h1 id="engenharia-de-contexto-na-prática">Engenharia de Contexto na prática</h1>
+<h2 id="engenharia-de-contexto-na-prática">Engenharia de Contexto na prática</h2>
 <p>Relembrando: técnicas de engenharia de contexto podem ser aplicadas pra quem está desenvolvendo agentes e para quem está desenvolvendo COM agentes. Vamos focar no segundo caso.</p>
-<h2 id="how-three-yc-startups-built-their-companies-with-claude-code">How three YC startups built their companies with Claude Code</h2>
+<h3 id="how-three-yc-startups-built-their-companies-with-claude-code">How three YC startups built their companies with Claude Code</h3>
 <p>Relato completo: <a href="https://claude.com/blog/building-companies-with-claude-code">https://claude.com/blog/building-companies-with-claude-code</a></p>
 <p>Tratar o contexto como <strong>um artefato de engenharia</strong>.</p>
 <p>Sistematizaram práticas de <em>context engineering</em>.</p>
@@ -410,12 +395,12 @@
 <blockquote>
 <p><strong>&ldquo;Como construir e manter o contexto que o agente precisa para trabalhar?&quot;</strong></p>
 </blockquote>
-<h2 id="humanlayer">HumanLayer</h2>
+<h3 id="humanlayer">HumanLayer</h3>
 <p>Relato completo: <a href="https://www.humanlayer.dev/blog/advanced-context-engineering">https://www.humanlayer.dev/blog/advanced-context-engineering</a></p>
 <p>A infra que usam: <a href="https://github.com/humanlayer/humanlayer/tree/main/.claude">https://github.com/humanlayer/humanlayer/tree/main/.claude</a></p>
-<h3 id="the-nayve-way"><strong>The nayve way</strong></h3>
+<h4 id="the-nayve-way"><strong>The nayve way</strong></h4>
 <p>Vai lá, filhão.</p>
-<h3 id="slightly-smarter-intentional-compaction"><strong>Slightly Smarter: Intentional Compaction</strong></h3>
+<h4 id="slightly-smarter-intentional-compaction"><strong>Slightly Smarter: Intentional Compaction</strong></h4>
 <p>“Resume, vamos começar em outro.”</p>
 <blockquote>
 <p><em>&ldquo;Write everything we did so far to progress.md, ensure to note the end goal, the approach we&rsquo;re taking, the steps we&rsquo;ve done so far, and the current failure we&rsquo;re working on&rdquo;</em></p>
@@ -423,7 +408,7 @@
 <figure style="align: center; margin-left:5%; width: 90%">
     <img src="image%206.png">
 </figure>
-<h2 id="o-que-consome-o-contexto"><strong>O que consome o contexto?</strong></h2>
+<h3 id="o-que-consome-o-contexto"><strong>O que consome o contexto?</strong></h3>
 <ul>
 <li>Busca por arquivos</li>
 <li>Compreensão do fluxo de execução do código</li>
@@ -431,31 +416,31 @@
 <li>Logs de testes/build</li>
 <li>Grandes blocos de JSON gerados pelas ferramentas</li>
 </ul>
-<h2 id="compactar">Compactar</h2>
+<h3 id="compactar">Compactar</h3>
 <p><strong>Solução é compactar</strong> essas informações em artefatos estruturados. Bom exemplo:</p>
 <figure style="align: center; margin-left:5%; width: 90%">
     <img src="output.png">
 </figure>
-<h3 id="um-caso-curioso-extremo-repomirror">Um caso curioso (extremo): repomirror</h3>
+<h4 id="um-caso-curioso-extremo-repomirror">Um caso curioso (extremo): repomirror</h4>
 <p>link: <a href="https://github.com/repomirrorhq/repomirror/blob/main/repomirror.md">https://github.com/repomirrorhq/repomirror/blob/main/repomirror.md</a></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown"> while :; do cat [<span style="color:#f92672">prompt.md</span>](<span style="color:#a6e22e">http://prompt.md/</span>) | amp; done
 </code></pre></div><p>O estado vai sendo alterado a cada iteração e persistido no github, scratchpad, todo.md, logs, testes, bd, filesystem etc.</p>
 <blockquote>
 <p>We came back in the morning to an <a href="https://github.com/repomirrorhq/better-use">almost fully functional port</a> of Browser Use to TypeScript.</p>
 </blockquote>
-<h3 id="frequent-intentional-compactation">Frequent Intentional Compactation</h3>
+<h4 id="frequent-intentional-compactation">Frequent Intentional Compactation</h4>
 <blockquote>
 <p>Essentially, this means designing your ENTIRE WORKFLOW around context management, and keeping utilization in the 40%-60% range (depends on complexity of the problem ).</p>
 </blockquote>
 <p>Framework RPI: <em>Research, Plan, and Implement.</em></p>
 <p>Vamos discutir essa e outras técnicas similares na aula de especificação de agentes. Mas é importante que você saiba que as boas práticas de desenvolver com agentes passa por ter algo nessa linha.</p>
 <p>Lembra que vivo dizendo “é tudo sobre os princípios/fundamentos/conceitos” ? Isso aqui é engenharia bem feita. Fazíamos antes dos agentes, fazemos agora e vamos fazer sempre.</p>
-<h2 id="outros-casos">Outros casos</h2>
+<h3 id="outros-casos">Outros casos</h3>
 <p><a href="https://alabeduarte.com/context-engineering-with-claude-code-my-evolving-workflow/">https://alabeduarte.com/context-engineering-with-claude-code-my-evolving-workflow/</a></p>
 <p><a href="https://martinfowler.com/articles/exploring-gen-ai/context-engineering-coding-agents.html">https://martinfowler.com/articles/exploring-gen-ai/context-engineering-coding-agents.html</a></p>
 <p><a href="https://www.reddit.com/r/ClaudeAI/comments/1ockyib/i_shipped_a_production_ios_app_with_claude_code/">https://www.reddit.com/r/ClaudeAI/comments/1ockyib/i_shipped_a_production_ios_app_with_claude_code/</a></p>
 <p>https://x.com/vartekxx/article/2074864291568664646</p>
-<h1 id="refs">Refs</h1>
+<h2 id="refs">Refs</h2>
 <ul>
 <li><a href="https://app.notion.com/p/Notas-de-Aula-Engenharia-de-Contexto-3cf3a7edc4f780428789e247b91fa2fd?pvs=21">AnthropicAI Effective context engineering for AI agents</a></li>
 <li><a href="https://app.notion.com/p/Notas-de-Aula-Engenharia-de-Contexto-3cf3a7edc4f780428789e247b91fa2fd?pvs=21">Exploring Gen AI: Context Engineering for Coding Agents (Martin Fowler)</a></li>

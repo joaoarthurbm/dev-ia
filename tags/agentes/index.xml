@@ -175,8 +175,8 @@ model: haiku
 &lt;li&gt;@dexhorthy&lt;/li&gt;
 &lt;li&gt;@emilkowalski&lt;/li&gt;
 &lt;/ul&gt;
-&lt;hr&gt;
-&lt;h1 id=&#34;relatos-da-aula&#34;&gt;Relatos da aula&lt;/h1&gt;
+&lt;div class=&#34;relatos-aula-banner&#34;&gt;&lt;i class=&#34;fas fa-pen-nib&#34;&gt;&lt;/i&gt; Relatos da Aula&lt;/div&gt;
+
 &lt;h2 id=&#34;insights&#34;&gt;Insights&lt;/h2&gt;
 &lt;p&gt;Há algumas formas de aumentar/refinar a capacidade dos agentes. Já vimos Prompting, Engenharia de Contexto, Tools (com plugins ou apoio de MCP), Skills e Agentes.&lt;/p&gt;
 &lt;p&gt;São conceitos em níveis diferentes. Prompting e engenharia de contexto atuam sobre o que o agente recebe, ferramentas e skills sobre o que ele sabe ou pode fazer, e agentes sobre quem executa.&lt;/p&gt;
@@ -203,9 +203,9 @@ model: haiku
          <description>&lt;hr&gt;
 &lt;p&gt;Ao final dessa aula, o aluno deve ser capaz de entender o conceito de janela de contexto e suas limitações, além de entender e implementar técnicas de engenharia de contexto.&lt;/p&gt;
 &lt;hr&gt;
-&lt;h1 id=&#34;preâmbulo&#34;&gt;Preâmbulo&lt;/h1&gt;
+&lt;h2 id=&#34;preâmbulo&#34;&gt;Preâmbulo&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;Sobre as notas de aulas:&lt;/strong&gt; i) Conteúdo escrito por mim em sua totalidade. Tabelas e figura foram geradas com auxílio do Claude. Estou deixando isso claro para que você tenha ciência de que se houver erro aqui ou achar o material ruim, a culpa é minha mesmo;  e ii) as notas de aula são um guia para a discussão em sala de aula e servem muito pouco como conteúdo para estudo.&lt;/p&gt;
-&lt;h1 id=&#34;introdução&#34;&gt;Introdução&lt;/h1&gt;
+&lt;h2 id=&#34;introdução&#34;&gt;Introdução&lt;/h2&gt;
 &lt;p&gt;Contexto é tudo, mas nem tudo cabe no contexto.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents&#34;&gt;https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents&lt;/a&gt;&lt;/p&gt;
 &lt;blockquote&gt;
@@ -270,14 +270,14 @@ model: haiku
 &lt;p&gt;Um agente pode ter uma janela de 1 milhão de tokens, mas não necessariamente colocar 1 milhão de tokens nela a cada chamada. O &lt;em&gt;agent harness&lt;/em&gt; normalmente constrói o contexto dinamicamente.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Quanto maior a janela, não significa necessariamente que o modelo utilize igualmente bem tudo que está dentro dela&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;A capacidade de recuperar e raciocinar sobre informações espalhadas por centenas de milhares de tokens continua sendo uma questão de desempenho.&lt;/p&gt;
-&lt;h1 id=&#34;os-problemas&#34;&gt;Os Problemas&lt;/h1&gt;
+&lt;h2 id=&#34;os-problemas&#34;&gt;Os Problemas&lt;/h2&gt;
 &lt;p&gt;A janela é finita. Mas não seria só aumentar a janela de contexto?&lt;/p&gt;
-&lt;h2 id=&#34;o-mecanismo-de-atenção-não-escala&#34;&gt;O mecanismo de atenção não escala&lt;/h2&gt;
+&lt;h3 id=&#34;o-mecanismo-de-atenção-não-escala&#34;&gt;O mecanismo de atenção não escala&lt;/h3&gt;
 &lt;p&gt;Relações n² entre tokens.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Cada token tem que &amp;ldquo;prestar atenção&amp;rdquo; em todos os outros para decidir quais são os relevantes.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2 id=&#34;context-rot&#34;&gt;Context rot&lt;/h2&gt;
+&lt;h3 id=&#34;context-rot&#34;&gt;Context rot&lt;/h3&gt;
 &lt;figure style=&#34;align: center; margin-left:5%; width: 90%&#34;&gt;
     &lt;img src=&#34;image%202.png&#34;&gt;
     &lt;figcaption align=&#34;center&#34;&gt;
@@ -289,7 +289,7 @@ model: haiku
 &lt;figure style=&#34;align: center; margin-left:5%; width: 90%&#34;&gt;
     &lt;img src=&#34;image%203.png&#34;&gt;
 &lt;/figure&gt;
-&lt;h2 id=&#34;lost-in-the-middle&#34;&gt;Lost in the middle&lt;/h2&gt;
+&lt;h3 id=&#34;lost-in-the-middle&#34;&gt;Lost in the middle&lt;/h3&gt;
 &lt;figure style=&#34;align: center; margin-left:5%; width: 90%&#34;&gt;
     &lt;img src=&#34;image%204.png&#34;&gt;
     &lt;figcaption align=&#34;center&#34;&gt;
@@ -313,20 +313,20 @@ model: haiku
 &lt;li&gt;Meio: informações podem ser &amp;ldquo;perdidas&amp;rdquo; entre muitas outras.&lt;/li&gt;
 &lt;li&gt;Fim: &amp;ldquo;O que acabei de ver provavelmente é relevante para o que vou responder agora.&amp;rdquo;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;4-modos-de-falha&#34;&gt;4 Modos de falha&lt;/h2&gt;
+&lt;h3 id=&#34;4-modos-de-falha&#34;&gt;4 Modos de falha&lt;/h3&gt;
 &lt;p&gt;Drew Breunig. &lt;em&gt;How Long Contexts Fail&lt;/em&gt;. Drew Breunig, 22 jun. 2025. &lt;a href=&#34;https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html?utm_source=chatgpt.com&#34;&gt;https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;context-poisoning-when-a-hallucination-makes-it-into-the-context&#34;&gt;Context Poisoning: When a hallucination makes it into the context&lt;/h3&gt;
+&lt;h4 id=&#34;context-poisoning-when-a-hallucination-makes-it-into-the-context&#34;&gt;Context Poisoning: When a hallucination makes it into the context&lt;/h4&gt;
 &lt;p&gt;&lt;a href=&#34;https://storage.googleapis.com/deepmind-media/gemini/gemini_v2_5_report.pdf&#34;&gt;Gemini 2.5 technical report&lt;/a&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;An especially egregious form of this issue can take place with “context poisoning” – where many parts of the context (goals, summary) are “poisoned” with misinformation about the game state, which can often take a very long time to undo. As a result, the model can become fixated on achieving impossible or irrelevant goals.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3 id=&#34;context-distraction-when-the-context-overwhelms-the-training&#34;&gt;Context Distraction: When the context overwhelms the training&lt;/h3&gt;
+&lt;h4 id=&#34;context-distraction-when-the-context-overwhelms-the-training&#34;&gt;Context Distraction: When the context overwhelms the training&lt;/h4&gt;
 &lt;p&gt;O modelo desenvolve hiperfoco no contexto.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;It was observed that as the context grew significantly beyond 100k tokens, the agent showed a tendency toward favoring repeating actions from its vast history rather than synthesizing novel plans.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Ao invés de usar a capacidade adquirida no treinamento, passou a utilizar muito o contexto.&lt;/p&gt;
-&lt;h3 id=&#34;context-confusion-when-superfluous-context-influences-the-response&#34;&gt;Context Confusion: When superfluous context influences the response&lt;/h3&gt;
+&lt;h4 id=&#34;context-confusion-when-superfluous-context-influences-the-response&#34;&gt;Context Confusion: When superfluous context influences the response&lt;/h4&gt;
 &lt;p&gt;Se você colocar algo no contexto, o modelo vai levar em consideração, mesmo que essa informação seja irrelevante. Alguns modelos já estão melhorando em ignorar ou descartar informação irrelevante, mas ainda é comum ver informação ruim distrair modelos.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Less is more: Optimizing function calling for llm execution on edge devices.&amp;quot; &lt;em&gt;2025 Design, Automation &amp;amp; Test in Europe Conference (DATE)&lt;/em&gt;. IEEE, 2025.&lt;/strong&gt;&lt;/p&gt;
 &lt;blockquote&gt;
@@ -336,9 +336,9 @@ model: haiku
 &lt;blockquote&gt;
 &lt;p&gt;In simpler terms, we discover that when LLMs take a wrong turn in a conversation, they get lost and do not recover.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3 id=&#34;context-clash-when-parts-of-the-context-disagree&#34;&gt;Context Clash: When parts of the context disagree&lt;/h3&gt;
+&lt;h4 id=&#34;context-clash-when-parts-of-the-context-disagree&#34;&gt;Context Clash: When parts of the context disagree&lt;/h4&gt;
 &lt;p&gt;Parece um pouco com context confusion, mas a informação aqui não é irrelevante é conflitante com algo que já está no contexto.&lt;/p&gt;
-&lt;h4 id=&#34;exemplo&#34;&gt;Exemplo&lt;/h4&gt;
+&lt;h5 id=&#34;exemplo&#34;&gt;Exemplo&lt;/h5&gt;
 &lt;p&gt;O &lt;strong&gt;system prompt&lt;/strong&gt; instrui:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;“Sempre use &lt;strong&gt;aspas simples&lt;/strong&gt; e &lt;strong&gt;indentação de 2 espaços&lt;/strong&gt;.”&lt;/p&gt;
@@ -347,10 +347,10 @@ model: haiku
 &lt;blockquote&gt;
 &lt;p&gt;“Use &lt;strong&gt;aspas duplas&lt;/strong&gt; e &lt;strong&gt;indentação de 4 espaços&lt;/strong&gt;.”&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h4 id=&#34;outro-exemplo&#34;&gt;Outro exemplo&lt;/h4&gt;
+&lt;h5 id=&#34;outro-exemplo&#34;&gt;Outro exemplo&lt;/h5&gt;
 &lt;p&gt;Um agente de suporte tem no contexto a política de reembolso atual (via tool call a um sistema interno) e um trecho de e-mail antigo do cliente citando uma política antiga diferente.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;O contexto contém instruções conflitantes.&lt;/strong&gt; O agente agora precisa decidir qual seguir, e o resultado observável costuma ser inconsistência.&lt;/p&gt;
-&lt;h1 id=&#34;solução-engenharia-de-contexto&#34;&gt;Solução: Engenharia de Contexto&lt;/h1&gt;
+&lt;h2 id=&#34;solução-engenharia-de-contexto&#34;&gt;Solução: Engenharia de Contexto&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;The &lt;strong&gt;engineering&lt;/strong&gt; problem at hand is optimizing the utility of tokens.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -359,13 +359,13 @@ model: haiku
 &lt;/blockquote&gt;
 &lt;p&gt;Isso vale tanto para quem vai construir agentes/harness quanto para quem vai usar agentes e precisa fazer isso de maneira adequada e que não impacte no desempenho, que é o nosso caso.&lt;/p&gt;
 &lt;p&gt;Vou discutir o nosso caso, mas falar um pouco sobre quem vai construir agentes também.&lt;/p&gt;
-&lt;h2 id=&#34;the-anatomy-of-effective-context&#34;&gt;&lt;strong&gt;The anatomy of effective context&lt;/strong&gt;&lt;/h2&gt;
+&lt;h3 id=&#34;the-anatomy-of-effective-context&#34;&gt;&lt;strong&gt;The anatomy of effective context&lt;/strong&gt;&lt;/h3&gt;
 &lt;p&gt;As técnicas do LangChain:  &lt;a href=&#34;https://www.langchain.com/blog/context-engineering-for-agents:&#34;&gt;https://www.langchain.com/blog/context-engineering-for-agents:&lt;/a&gt; &lt;strong&gt;write, select, compress, and isolate.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Formas de evitar e lidar com contextos longos. Não são conflitantes.&lt;/p&gt;
 &lt;figure style=&#34;align: center; margin-left:5%; width: 90%&#34;&gt;
     &lt;img src=&#34;image%205.png&#34;&gt;
 &lt;/figure&gt;
-&lt;h3 id=&#34;write&#34;&gt;Write&lt;/h3&gt;
+&lt;h4 id=&#34;write&#34;&gt;Write&lt;/h4&gt;
 &lt;p&gt;Manter artefatos fora do agente para ele consultar: &lt;code&gt;AGENTS.md&lt;/code&gt; , &lt;code&gt;CLAUDE.md&lt;/code&gt; &lt;code&gt;NOTES.md&lt;/code&gt; de sessão, specs  etc.&lt;/p&gt;
 &lt;p&gt;Paralelo com essa ideia: &lt;a href=&#34;https://research.memgpt.ai/:&#34;&gt;https://research.memgpt.ai/:&lt;/a&gt; &lt;strong&gt;Towards LLMs as Operating Systems - Teach LLMs to manage their own memory for unbounded context!&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;O próprio agente faz isso. structured note-taking&lt;/strong&gt;.&lt;/p&gt;
@@ -382,24 +382,24 @@ model: haiku
 &lt;li&gt;Sobrevive ao término das sessões.&lt;/li&gt;
 &lt;li&gt;Pode ser combinado com técnicas de descarte e compressão.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h3 id=&#34;select&#34;&gt;Select&lt;/h3&gt;
+&lt;h4 id=&#34;select&#34;&gt;Select&lt;/h4&gt;
 &lt;p&gt;Trazer somente o que é relevante e no momento certo.&lt;/p&gt;
 &lt;p&gt;Ao invés de trazer tudo (RAG tradicional), &lt;em&gt;just-in-time retrieval.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Exemplo: ao invés de ler todos os documentos de um diretório, decidir antes qual ler.&lt;/p&gt;
 &lt;p&gt;Parelelo com &amp;ldquo;Lost in the Middle&amp;rdquo;: selecionar menos e melhor evita literalmente o vale de desempenho no meio do contexto.&lt;/p&gt;
-&lt;h3 id=&#34;compress&#34;&gt;Compress&lt;/h3&gt;
+&lt;h4 id=&#34;compress&#34;&gt;Compress&lt;/h4&gt;
 &lt;p&gt;Reduzir o contexto quando se aproxima do limite.&lt;/p&gt;
 &lt;p&gt;Técnica: &lt;em&gt;compaction.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;“Anota o resumo para a gente reiniciar essa conversa amanhã (outra sessão), por favor” :)&lt;/p&gt;
 &lt;p&gt;Tradeoff: toda compressão tem custo de cache, comprimir tem preço em latência e economia.&lt;/p&gt;
-&lt;h3 id=&#34;isolate&#34;&gt;Isolate&lt;/h3&gt;
+&lt;h4 id=&#34;isolate&#34;&gt;Isolate&lt;/h4&gt;
 &lt;p&gt;Arquiteturas de sub-agentes. Dividir contexto entre múltiplos agentes ou sub-processos, cada um com sua própria janela.&lt;/p&gt;
 &lt;p&gt;Tradeoff: Isolar contexto melhora Confusion e Distraction, mas pode gerar decisões conflitantes entre sub-agentes que não compartilham estado.&lt;/p&gt;
 &lt;p&gt;Que tipo de tarefa é mais adequada a esse princípio? Que tipo de tarefa não é?&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Revisar um PR grande com mudanças em múltiplos módulos seria um bom cadidato a ser paralelizado?&lt;/strong&gt;&lt;/p&gt;
-&lt;h1 id=&#34;engenharia-de-contexto-na-prática&#34;&gt;Engenharia de Contexto na prática&lt;/h1&gt;
+&lt;h2 id=&#34;engenharia-de-contexto-na-prática&#34;&gt;Engenharia de Contexto na prática&lt;/h2&gt;
 &lt;p&gt;Relembrando: técnicas de engenharia de contexto podem ser aplicadas pra quem está desenvolvendo agentes e para quem está desenvolvendo COM agentes. Vamos focar no segundo caso.&lt;/p&gt;
-&lt;h2 id=&#34;how-three-yc-startups-built-their-companies-with-claude-code&#34;&gt;How three YC startups built their companies with Claude Code&lt;/h2&gt;
+&lt;h3 id=&#34;how-three-yc-startups-built-their-companies-with-claude-code&#34;&gt;How three YC startups built their companies with Claude Code&lt;/h3&gt;
 &lt;p&gt;Relato completo: &lt;a href=&#34;https://claude.com/blog/building-companies-with-claude-code&#34;&gt;https://claude.com/blog/building-companies-with-claude-code&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Tratar o contexto como &lt;strong&gt;um artefato de engenharia&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;Sistematizaram práticas de &lt;em&gt;context engineering&lt;/em&gt;.&lt;/p&gt;
@@ -426,12 +426,12 @@ model: haiku
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;&amp;ldquo;Como construir e manter o contexto que o agente precisa para trabalhar?&amp;quot;&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2 id=&#34;humanlayer&#34;&gt;HumanLayer&lt;/h2&gt;
+&lt;h3 id=&#34;humanlayer&#34;&gt;HumanLayer&lt;/h3&gt;
 &lt;p&gt;Relato completo: &lt;a href=&#34;https://www.humanlayer.dev/blog/advanced-context-engineering&#34;&gt;https://www.humanlayer.dev/blog/advanced-context-engineering&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;A infra que usam: &lt;a href=&#34;https://github.com/humanlayer/humanlayer/tree/main/.claude&#34;&gt;https://github.com/humanlayer/humanlayer/tree/main/.claude&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;the-nayve-way&#34;&gt;&lt;strong&gt;The nayve way&lt;/strong&gt;&lt;/h3&gt;
+&lt;h4 id=&#34;the-nayve-way&#34;&gt;&lt;strong&gt;The nayve way&lt;/strong&gt;&lt;/h4&gt;
 &lt;p&gt;Vai lá, filhão.&lt;/p&gt;
-&lt;h3 id=&#34;slightly-smarter-intentional-compaction&#34;&gt;&lt;strong&gt;Slightly Smarter: Intentional Compaction&lt;/strong&gt;&lt;/h3&gt;
+&lt;h4 id=&#34;slightly-smarter-intentional-compaction&#34;&gt;&lt;strong&gt;Slightly Smarter: Intentional Compaction&lt;/strong&gt;&lt;/h4&gt;
 &lt;p&gt;“Resume, vamos começar em outro.”&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;em&gt;&amp;ldquo;Write everything we did so far to progress.md, ensure to note the end goal, the approach we&amp;rsquo;re taking, the steps we&amp;rsquo;ve done so far, and the current failure we&amp;rsquo;re working on&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
@@ -439,7 +439,7 @@ model: haiku
 &lt;figure style=&#34;align: center; margin-left:5%; width: 90%&#34;&gt;
     &lt;img src=&#34;image%206.png&#34;&gt;
 &lt;/figure&gt;
-&lt;h2 id=&#34;o-que-consome-o-contexto&#34;&gt;&lt;strong&gt;O que consome o contexto?&lt;/strong&gt;&lt;/h2&gt;
+&lt;h3 id=&#34;o-que-consome-o-contexto&#34;&gt;&lt;strong&gt;O que consome o contexto?&lt;/strong&gt;&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Busca por arquivos&lt;/li&gt;
 &lt;li&gt;Compreensão do fluxo de execução do código&lt;/li&gt;
@@ -447,31 +447,31 @@ model: haiku
 &lt;li&gt;Logs de testes/build&lt;/li&gt;
 &lt;li&gt;Grandes blocos de JSON gerados pelas ferramentas&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;compactar&#34;&gt;Compactar&lt;/h2&gt;
+&lt;h3 id=&#34;compactar&#34;&gt;Compactar&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;Solução é compactar&lt;/strong&gt; essas informações em artefatos estruturados. Bom exemplo:&lt;/p&gt;
 &lt;figure style=&#34;align: center; margin-left:5%; width: 90%&#34;&gt;
     &lt;img src=&#34;output.png&#34;&gt;
 &lt;/figure&gt;
-&lt;h3 id=&#34;um-caso-curioso-extremo-repomirror&#34;&gt;Um caso curioso (extremo): repomirror&lt;/h3&gt;
+&lt;h4 id=&#34;um-caso-curioso-extremo-repomirror&#34;&gt;Um caso curioso (extremo): repomirror&lt;/h4&gt;
 &lt;p&gt;link: &lt;a href=&#34;https://github.com/repomirrorhq/repomirror/blob/main/repomirror.md&#34;&gt;https://github.com/repomirrorhq/repomirror/blob/main/repomirror.md&lt;/a&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt; while :; do cat [&lt;span style=&#34;color:#f92672&#34;&gt;prompt.md&lt;/span&gt;](&lt;span style=&#34;color:#a6e22e&#34;&gt;http://prompt.md/&lt;/span&gt;) | amp; done
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;O estado vai sendo alterado a cada iteração e persistido no github, scratchpad, todo.md, logs, testes, bd, filesystem etc.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;We came back in the morning to an &lt;a href=&#34;https://github.com/repomirrorhq/better-use&#34;&gt;almost fully functional port&lt;/a&gt; of Browser Use to TypeScript.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3 id=&#34;frequent-intentional-compactation&#34;&gt;Frequent Intentional Compactation&lt;/h3&gt;
+&lt;h4 id=&#34;frequent-intentional-compactation&#34;&gt;Frequent Intentional Compactation&lt;/h4&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Essentially, this means designing your ENTIRE WORKFLOW around context management, and keeping utilization in the 40%-60% range (depends on complexity of the problem ).&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Framework RPI: &lt;em&gt;Research, Plan, and Implement.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Vamos discutir essa e outras técnicas similares na aula de especificação de agentes. Mas é importante que você saiba que as boas práticas de desenvolver com agentes passa por ter algo nessa linha.&lt;/p&gt;
 &lt;p&gt;Lembra que vivo dizendo “é tudo sobre os princípios/fundamentos/conceitos” ? Isso aqui é engenharia bem feita. Fazíamos antes dos agentes, fazemos agora e vamos fazer sempre.&lt;/p&gt;
-&lt;h2 id=&#34;outros-casos&#34;&gt;Outros casos&lt;/h2&gt;
+&lt;h3 id=&#34;outros-casos&#34;&gt;Outros casos&lt;/h3&gt;
 &lt;p&gt;&lt;a href=&#34;https://alabeduarte.com/context-engineering-with-claude-code-my-evolving-workflow/&#34;&gt;https://alabeduarte.com/context-engineering-with-claude-code-my-evolving-workflow/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://martinfowler.com/articles/exploring-gen-ai/context-engineering-coding-agents.html&#34;&gt;https://martinfowler.com/articles/exploring-gen-ai/context-engineering-coding-agents.html&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://www.reddit.com/r/ClaudeAI/comments/1ockyib/i_shipped_a_production_ios_app_with_claude_code/&#34;&gt;https://www.reddit.com/r/ClaudeAI/comments/1ockyib/i_shipped_a_production_ios_app_with_claude_code/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;https://x.com/vartekxx/article/2074864291568664646&lt;/p&gt;
-&lt;h1 id=&#34;refs&#34;&gt;Refs&lt;/h1&gt;
+&lt;h2 id=&#34;refs&#34;&gt;Refs&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://app.notion.com/p/Notas-de-Aula-Engenharia-de-Contexto-3cf3a7edc4f780428789e247b91fa2fd?pvs=21&#34;&gt;AnthropicAI Effective context engineering for AI agents&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://app.notion.com/p/Notas-de-Aula-Engenharia-de-Contexto-3cf3a7edc4f780428789e247b91fa2fd?pvs=21&#34;&gt;Exploring Gen AI: Context Engineering for Coding Agents (Martin Fowler)&lt;/a&gt;&lt;/li&gt;
@@ -887,8 +887,8 @@ python3 -m venv .venv
 &lt;li&gt;&lt;a href=&#34;https://modelcontextprotocol.io/&#34;&gt;Model Context Protocol&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.anthropic.com/engineering/writing-tools-for-agents&#34;&gt;Writing effective tools for agents, with agents&lt;/a&gt; (Engineering at Anthropic)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;hr&gt;
-&lt;h1 id=&#34;relatos-da-aula&#34;&gt;Relatos da Aula&lt;/h1&gt;
+&lt;div class=&#34;relatos-aula-banner&#34;&gt;&lt;i class=&#34;fas fa-pen-nib&#34;&gt;&lt;/i&gt; Relatos da Aula&lt;/div&gt;
+
 &lt;h2 id=&#34;participação-dos-alunos&#34;&gt;Participação dos Alunos&lt;/h2&gt;
 &lt;p&gt;Uma aluna relatou ao final da aula um caso interessante. Ela trabalha em uma empresa que desenvolve um sistema usado por vários clientes, sejam eles outros sistemas ou agentes. A empresa criou um servidor MCP para facilitar a comunicação entre esses agentes e o sistema. Mesmo assim, chegam muitas reclamações e pedidos de extensão porque os clientes não conseguem executar certas tarefas via MCP, e essas tarefas estão fora do escopo do sistema.&lt;/p&gt;
 &lt;p&gt;O relato me pareceu mostrar que se espera demais de um sistema só porque a interação com ele é agêntica, como se a caixa de entrada do prompt fosse uma caixa de desejos capaz de resolver qualquer coisa.&lt;/p&gt;
@@ -908,7 +908,7 @@ python3 -m venv .venv
 ; identificar os componentes da anatomia (loop, contexto, tools, skills, guardrails) em uma execução real de um &lt;em&gt;AI coding agent&lt;/em&gt; e implementar um protótipo simples de agente.&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;&lt;strong&gt;Disclaimer.&lt;/strong&gt;  As notas de aula foram escritas por mim em sua totalidade. Não utilizei auxílio de nenhum modelo, embora não veja problema nesse auxílio. Estou deixando isso claro para que você tenha ciência de que, se houver erro aqui ou achar o material ruim, a culpa é minha mesmo. Vale destacar também que as notas de aula são um guia para a discussão em sala de aula e servem muito pouco como conteúdo para estudo.&lt;/p&gt;
-&lt;h1 id=&#34;ai-coding-agents&#34;&gt;AI Coding Agents&lt;/h1&gt;
+&lt;h2 id=&#34;ai-coding-agents&#34;&gt;AI Coding Agents&lt;/h2&gt;
 &lt;p&gt;O conceito de agentes é antigo. Não nasceu agora. Tem havido uma sobreposição semântica no termo, isto é, tem se interpretado ultimamente agentes como  “LLM based agents”.&lt;/p&gt;
 &lt;p&gt;De maneira simplória, agente é um loop com tomadas de decisões baseadas em um conjunto de critérios. O que mudou não foi a existência do loop, foi &lt;strong&gt;quem preenche o espaço da decisão dentro dele&lt;/strong&gt;. Antes, alguém definia uma heurística, agora a decisão é terceirizada para uma chamada a um LLM a cada iteração do loop.&lt;/p&gt;
 &lt;p&gt;LLMs não são agentes. LLMs geram texto.  Eles são um componente da decisão que o agente (loop) consulta. Eles estão intrinsecamente relacionados ao raciocínio, não às ações.&lt;/p&gt;
@@ -920,11 +920,11 @@ python3 -m venv .venv
 &lt;p&gt;Chamar uma ferramenta, fazer uma chamada de API, buscar etc. É esse repertório de ações que dá forma concreta ao &amp;ldquo;Action&amp;rdquo; do ReAct.&lt;/p&gt;
 &lt;p&gt;Depois de agir, o agente reavalia onde está. Usa o que observou para decidir entre responder de vez ou formular o próximo Thought.&lt;/p&gt;
 &lt;p&gt;Um AI Coding Agent é um agente especializado em desenvolvimento de software.&lt;/p&gt;
-&lt;h1 id=&#34;anatomia-de-um-agente-exemplo-concreto&#34;&gt;Anatomia de um agente: exemplo concreto&lt;/h1&gt;
+&lt;h2 id=&#34;anatomia-de-um-agente-exemplo-concreto&#34;&gt;Anatomia de um agente: exemplo concreto&lt;/h2&gt;
 &lt;p&gt;O vocabulário que está por vir: loop, contexto, tools e guardrails/avaliação.&lt;/p&gt;
 &lt;p&gt;O cenário abaixo é pequeno de propósito: um repositório com uma função &lt;code&gt;apply_discount&lt;/code&gt; que tem um bug, e um teste que falha por causa dele. O prompt usado está abaixo. Depois vamos discutir porque esse pode não ser um bom prompt. Por ora, vamos com ele.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-jsx&#34; data-lang=&#34;jsx&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;**&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;conserte o teste que está falhando em test_inventory.py&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;**&lt;/span&gt;. 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;o-trace&#34;&gt;O trace&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;o-trace&#34;&gt;O trace&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;Thought:&lt;/strong&gt; Preciso entender a tarefa antes de agir. O teste test_inventory.py está
 falhando — vou ler o código-fonte e o teste para ver o que está em jogo.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Action:&lt;/strong&gt; read(&lt;a href=&#34;http://inventory.py/&#34;&gt;inventory.py&lt;/a&gt;)
@@ -972,10 +972,10 @@ test_inventory.py::test_apply_discount PASSED
 1 passed in 0.01s&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;&lt;strong&gt;Thought:&lt;/strong&gt; O teste passou. Não há mais falhas conhecidas — a tarefa está concluída.&lt;/p&gt;
-&lt;h2 id=&#34;o-ponto-de-partida&#34;&gt;O ponto de partida&lt;/h2&gt;
+&lt;h3 id=&#34;o-ponto-de-partida&#34;&gt;O ponto de partida&lt;/h3&gt;
 &lt;p&gt;O agente recebe a instrução do usuário.&lt;/p&gt;
 &lt;p&gt;Antes de decidir qualquer coisa, o agente ainda não sabe o que está no repositório. Então a primeira ação é reunir informação.&lt;/p&gt;
-&lt;h3 id=&#34;tool-calling&#34;&gt;Tool Calling&lt;/h3&gt;
+&lt;h4 id=&#34;tool-calling&#34;&gt;Tool Calling&lt;/h4&gt;
 &lt;pre&gt;&lt;code&gt;read inventory.py
 read test_inventory.py
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;python&lt;/p&gt;
@@ -1008,14 +1008,14 @@ read test_inventory.py
 &lt;p&gt;O contexto não é um dado que o modelo possui, precisa ser ativamente montado, turno a turno.&lt;/p&gt;
 &lt;p&gt;Refs&lt;/p&gt;
 &lt;p&gt;YANG, John et al. Swe-agent: Agent-computer interfaces enable automated software engineering. &lt;strong&gt;Advances in Neural Information Processing Systems, 2024.&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&#34;a-primeira-volta-do-loop-agir-e-observar-a-falha&#34;&gt;A primeira volta do loop: agir e observar a falha&lt;/h2&gt;
+&lt;h3 id=&#34;a-primeira-volta-do-loop-agir-e-observar-a-falha&#34;&gt;A primeira volta do loop: agir e observar a falha&lt;/h3&gt;
 &lt;p&gt;Com os arquivos lidos, o agente decide que o próximo passo natural é confirmar o problema rodando o teste. Isso já é uma decisão, ainda que pequena: a escolha de investigar antes de agir sobre a causa.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;execute: pytest test_inventory.py
 &lt;/code&gt;&lt;/pre&gt;&lt;pre&gt;&lt;code&gt;FAILED test_inventory.py::test_apply_discount - assert 190 == 180
 E       assert 190 == 180
 E        +  where 190 = apply_discount(200, 10)
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Essa saída de erro é o segundo tipo de contexto que aparece no exemplo, e é diferente do primeiro: não veio de um arquivo estático, veio do &lt;em&gt;resultado de uma ação do próprio agente&lt;/em&gt;. É exatamente esse ciclo: &lt;strong&gt;agir&lt;/strong&gt;, &lt;strong&gt;observar&lt;/strong&gt; o resultado, e &lt;strong&gt;usar&lt;/strong&gt; esse resultado para decidir a próxima ação.. Sem essa realimentação, o agente teria apenas um palpite sobre o código.&lt;/p&gt;
-&lt;h2 id=&#34;thought-o-passo-que-normalmente-não-aparece&#34;&gt;Thought: O passo que normalmente não aparece&lt;/h2&gt;
+&lt;h3 id=&#34;thought-o-passo-que-normalmente-não-aparece&#34;&gt;Thought: O passo que normalmente não aparece&lt;/h3&gt;
 &lt;p&gt;Entre observar &lt;code&gt;190 == 180&lt;/code&gt; e decidir editar o arquivo, há um raciocínio: &amp;ldquo;&lt;code&gt;percent&lt;/code&gt; está sendo subtraído do preço em vez de aplicado como uma fração&amp;rdquo;. Esse passo não gera nenhuma chamada de ferramenta. Ele faz parte do “thought”. Normalmente as ferramentas escondem isso, mas aqui o que foi gerado pelo log no nosso exemplo:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-jsx&#34; data-lang=&#34;jsx&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;**&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;Thought&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:**&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;O&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;teste&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;espera&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;180&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;e&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;função&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;devolveu&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;190&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;fazendo&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;price&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;percent&lt;/span&gt;
 (&lt;span style=&#34;color:#ae81ff&#34;&gt;200&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;190&lt;/span&gt;).
@@ -1030,18 +1030,18 @@ E        +  where 190 = apply_discount(200, 10)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt; Isso aqui é o LLM processando o contexto acumulado (a função, a documentação, o teste, o erro) e decidindo o que fazer a seguir.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;O docstring diz &amp;ldquo;aplica um desconto &lt;strong&gt;percentual&lt;/strong&gt;&amp;rdquo;. O LLM viu esse padrão de código milhares de vezes no treinamento. Isso não é raciocínio matemático, é reconhecimento de padrão: &amp;ldquo;desconto percentual&amp;rdquo; quase sempre vira &lt;code&gt;price * (1 - percent/100)&lt;/code&gt; em código real.&lt;/p&gt;
 &lt;p&gt;O teste dá &lt;strong&gt;um único par entrada/saída.&lt;/strong&gt; Isso não especifica a fórmula, só restringe o espaço de fórmulas possíveis. Muitas soluções passariam nesse teste. O agente escolheu a que casa com o padrão textual do passo anterior.&lt;/p&gt;
-&lt;h2 id=&#34;segunda-volta-do-loop-agir-sobre-a-causa&#34;&gt;Segunda volta do loop: agir sobre a causa&lt;/h2&gt;
+&lt;h3 id=&#34;segunda-volta-do-loop-agir-sobre-a-causa&#34;&gt;Segunda volta do loop: agir sobre a causa&lt;/h3&gt;
 &lt;p&gt;Com o diagnóstico feito, o agente edita o arquivo:&lt;/p&gt;
 &lt;p&gt;diff&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-diff&#34; data-lang=&#34;diff&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;- return price - percent
 &lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;+ return price * (1 - percent / 100)
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Essa é a ação central da tarefa, mas note que ela só foi possível porque as duas voltas anteriores do loop (ler, depois rodar e observar a falha) já tinham montado o contexto necessário. Se o agente tivesse editado o arquivo na primeira iteração, sem rodar o teste antes, estaria decidindo às cegas.&lt;/p&gt;
-&lt;h2 id=&#34;o-guardrail-como-o-agente-sabe-que-terminou&#34;&gt;O guardrail: como o agente sabe que terminou&lt;/h2&gt;
+&lt;h3 id=&#34;o-guardrail-como-o-agente-sabe-que-terminou&#34;&gt;O guardrail: como o agente sabe que terminou&lt;/h3&gt;
 &lt;pre&gt;&lt;code&gt;execute: pytest test_inventory.py
 &lt;/code&gt;&lt;/pre&gt;&lt;pre&gt;&lt;code&gt;test_inventory.py::test_apply_discount PASSED
 1 passed in 0.01s
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Agente decide parar porque um critério verificável (o teste passou) foi satisfeito. Esse é o papel de guardrails e avaliação dentro do loop: não é uma etapa de qualidade de código feita depois, por um humano ou por outra ferramenta. É o mecanismo que o agente usa, em tempo real, para decidir entre continuar, tentar de novo, ou parar. Tirem esse passo do exemplo e o agente não tem como saber se &lt;code&gt;price * (1 - percent / 100)&lt;/code&gt; era a correção certa ou apenas mais uma tentativa.&lt;/p&gt;
-&lt;h1 id=&#34;generalizando&#34;&gt;Generalizando&lt;/h1&gt;
+&lt;h2 id=&#34;generalizando&#34;&gt;Generalizando&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-jsx&#34; data-lang=&#34;jsx&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;contexto&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [&lt;span style=&#34;color:#a6e22e&#34;&gt;tarefa&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;inicial&lt;/span&gt;]
 &lt;span style=&#34;color:#a6e22e&#34;&gt;enquanto&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;não&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;terminou&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;
     &lt;span style=&#34;color:#a6e22e&#34;&gt;thought&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;action&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;LLM&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;contexto&lt;/span&gt;)
@@ -1050,7 +1050,7 @@ E        +  where 190 = apply_discount(200, 10)
     &lt;span style=&#34;color:#a6e22e&#34;&gt;senão&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;
         &lt;span style=&#34;color:#a6e22e&#34;&gt;observation&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;executar&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;action&lt;/span&gt;)
         &lt;span style=&#34;color:#a6e22e&#34;&gt;contexto&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;contexto&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; [&lt;span style=&#34;color:#a6e22e&#34;&gt;thought&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;action&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;observation&lt;/span&gt;]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;na-prática&#34;&gt;Na prática&lt;/h1&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;na-prática&#34;&gt;Na prática&lt;/h2&gt;
 &lt;p&gt;Na prática, não implementamos o loop do agente. Configuramos o agente em markdown e o &lt;code&gt;agent harness&lt;/code&gt; executa o loop de raciocínio e ação.&lt;/p&gt;
 &lt;p&gt;No opencode, por exemplo, o agente principal é chamado de &lt;em&gt;build agent&lt;/em&gt;. Por default, ele interage com o usuário e decide chamar os outros agentes de acordo com os pedidos.&lt;/p&gt;
 &lt;p&gt;É possível trocar o &lt;em&gt;build agent&lt;/em&gt; via conf ou na própria TUI, usando TAB ou @meu-agente&amp;hellip;&lt;/p&gt;
@@ -1058,7 +1058,7 @@ E        +  where 190 = apply_discount(200, 10)
 &lt;p&gt;Vamos dedicar uma aula exclusiva para especificação de agentes específicos
 para o contexto de atividades de engenharia de software.&lt;/p&gt;
 &lt;p&gt;Teaser: &lt;a href=&#34;https://github.com/github/awesome-copilot/tree/main/agents&#34;&gt;awesome-agents&lt;/a&gt;&lt;/p&gt;
-&lt;h1 id=&#34;referências&#34;&gt;Referências&lt;/h1&gt;
+&lt;h2 id=&#34;referências&#34;&gt;Referências&lt;/h2&gt;
 &lt;p&gt;ReAct: Synergizing Reasoning and Acting in Language Models&amp;quot;, ICLR 2023)&lt;/p&gt;
 </description>
        </item>

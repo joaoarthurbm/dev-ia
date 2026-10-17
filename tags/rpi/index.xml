@@ -151,8 +151,8 @@ então a reserva é aceita (horário de término não conflita com o início).
 &lt;p&gt;&lt;strong&gt;OpenSpec (Fission AI).&lt;/strong&gt; Framework de código aberto (MIT). Em vez de exigir uma spec completa de início, trabalha com propostas de mudança sobre um diretório de specs versionadas, e as etapas (criar, implementar, atualizar, arquivar) podem ser feitas a qualquer momento.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Kiro (AWS).&lt;/strong&gt; IDE própria, baseada no VS Code, de código fechado. Conduz cada funcionalidade por requisitos, projeto e tarefas, guardados como arquivos na pasta .kiro/specs/ do repositório. Permite alternar entre o modo spec e o modo livre (&amp;ldquo;vibe&amp;rdquo;).&lt;/p&gt;
 &lt;p&gt;Entenda o fluxo antes de adotar a ferramenta. As ferramentas mudam mais rápido que os princípios. Hoje eu uso o fluxo do &lt;em&gt;Matt Pocock&lt;/em&gt;.&lt;/p&gt;
-&lt;hr&gt;
-&lt;h1 id=&#34;relatos-da-aula&#34;&gt;Relatos da aula&lt;/h1&gt;
+&lt;div class=&#34;relatos-aula-banner&#34;&gt;&lt;i class=&#34;fas fa-pen-nib&#34;&gt;&lt;/i&gt; Relatos da Aula&lt;/div&gt;
+
 &lt;h2 id=&#34;insights&#34;&gt;Insights&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Não é human in the loop. É human in control.&lt;/p&gt;

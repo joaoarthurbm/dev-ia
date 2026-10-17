@@ -175,8 +175,8 @@ model: haiku
 &lt;li&gt;@dexhorthy&lt;/li&gt;
 &lt;li&gt;@emilkowalski&lt;/li&gt;
 &lt;/ul&gt;
-&lt;hr&gt;
-&lt;h1 id=&#34;relatos-da-aula&#34;&gt;Relatos da aula&lt;/h1&gt;
+&lt;div class=&#34;relatos-aula-banner&#34;&gt;&lt;i class=&#34;fas fa-pen-nib&#34;&gt;&lt;/i&gt; Relatos da Aula&lt;/div&gt;
+
 &lt;h2 id=&#34;insights&#34;&gt;Insights&lt;/h2&gt;
 &lt;p&gt;Há algumas formas de aumentar/refinar a capacidade dos agentes. Já vimos Prompting, Engenharia de Contexto, Tools (com plugins ou apoio de MCP), Skills e Agentes.&lt;/p&gt;
 &lt;p&gt;São conceitos em níveis diferentes. Prompting e engenharia de contexto atuam sobre o que o agente recebe, ferramentas e skills sobre o que ele sabe ou pode fazer, e agentes sobre quem executa.&lt;/p&gt;
