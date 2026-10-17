@@ -139,18 +139,21 @@
         <summary>Tópicos</summary>
         <nav id="TableOfContents">
   <ul>
-    <li><a href="#os-problemas">Os problemas</a></li>
-    <li><a href="#falta-de-alinhamento">Falta de alinhamento</a>
+    <li><a href="#contexto">Contexto</a></li>
+    <li><a href="#o-primeiro-skill">O primeiro: skill</a>
       <ul>
-        <li><a href="#diferença-com-e-sem-skill-alinhamento">Diferença com e sem skill (alinhamento!)</a></li>
+        <li><a href="#os-problemas">Os problemas</a></li>
+        <li><a href="#falta-de-alinhamento">Falta de alinhamento</a></li>
+        <li><a href="#reuso">Reuso</a></li>
+        <li><a href="#formato">Formato</a></li>
+        <li><a href="#conteúdo">Conteúdo</a></li>
       </ul>
     </li>
-    <li><a href="#reuso">Reuso</a></li>
-    <li><a href="#formato">Formato</a></li>
-    <li><a href="#conteúdo">Conteúdo</a></li>
-  </ul>
-
-  <ul>
+    <li><a href="#o-segundo-agentes">O segundo: agentes</a></li>
+    <li><a href="#diretrizes-para-especificar-agentes">Diretrizes para Especificar Agentes</a></li>
+    <li><a href="#paralelo">Paralelo</a></li>
+    <li><a href="#quando-eu-ensino-algo-ao-agente-e-quando-eu-crio-outro-agente">Quando eu ensino algo ao agente e quando eu crio outro agente?</a></li>
+    <li><a href="#algumas-boas-referências">Algumas boas referências</a></li>
     <li><a href="#insights">Insights</a></li>
     <li><a href="#participação-dos-alunos">Participação dos Alunos</a></li>
   </ul>
@@ -161,11 +164,11 @@
     <hr>
 <p>Ao final dessa aula, o aluno deve ser capaz de explicar e especificar skills e agentes, além de diferenciar os dois.</p>
 <hr>
-<h1 id="contexto">Contexto</h1>
+<h2 id="contexto">Contexto</h2>
 <p>Quando (e como) eu ensino algo ao agente? Quando eu crio outro agente?</p>
 <p>Nós acabamos de passar por prompting e engenharia de contexto. Ali aprendemos e utilizamos algumas técnicas para direcionar o agente a fazer o que queremos e como queremos. Além disso, vimos que muitas vezes a quantidade de informação relevante para o trabalho pode não caber na janela de contexto, por isso, vimos que é importante escrever essa informação em algum documento (tipicamente markdown) para ser utilizado em momento oportuno.</p>
 <p>Até aqui você escreveu, com ajuda dele, documentos markdown para o agente, como sessões de entendimento (grill-me) e planos de implementação (to-spec). Em todos, quem decidia quando o documento seria usado era você. Hoje vamos tratar de dois arquivos em que essa decisão muda de lugar. Os dois são markdown com <em>frontmatter</em>, e por isso parecem a mesma coisa, mas não são.</p>
-<h1 id="o-primeiro-skill">O primeiro: skill</h1>
+<h2 id="o-primeiro-skill">O primeiro: skill</h2>
 <p>Setup:</p>
 <ul>
 <li>Vamos trabalhar em cima do projeto humanize (<a href="https://github.com/python-humanize/humanize">link</a>).</li>
@@ -180,9 +183,9 @@
 <p>Assim funciona para um agente. Ele pode ter habilidades de revisor de código, de testador, de especialista em cloud entre outras, mas só as usa quando preciso e dentro do contexto que for preciso. Isso é importante entender sobre skill: é carregada dinamicamente (ou explicitamente pelo usuário com @) para uma determinada tarefa.</p>
 <p>Se eu pedir para o agente descrito acima revisar alguma coisa, ele muito provavelmente vai carregar a skill que eu escrevi para revisar do jeito que eu especifiquei.</p>
 <p>Lembra do grill-me? Aquilo é uma skill. Dá uma olhada no markdown dela <a href="https://github.com/mattpocock/skills/blob/main/skills/productivity/grilling/SKILL.md">aqui</a>.</p>
-<h2 id="os-problemas">Os problemas</h2>
+<h3 id="os-problemas">Os problemas</h3>
 <p>Em termos simples, SKILL resolve dois grandes problemas: falta de alinhamento e duplicação de trabalho.</p>
-<h2 id="falta-de-alinhamento">Falta de alinhamento</h2>
+<h3 id="falta-de-alinhamento">Falta de alinhamento</h3>
 <p><em>&lt;demonstração prática em sala de aula&gt;</em></p>
 <p>&ldquo;Gere as release notes da próxima versão e salve o conteúdo em no-skill-release-notes.md&rdquo;</p>
 <p>Vamos ver o trace.</p>
@@ -204,21 +207,21 @@ Based on the commits merged since the 4.16.0 tag (2026-06-30), here are the rele
 <figure style="align: center; margin-left:5%; width: 90%">
     <img src="loading.png">
 </figure>
-<h3 id="diferença-com-e-sem-skill-alinhamento">Diferença com e sem skill (alinhamento!)</h3>
+<h4 id="diferença-com-e-sem-skill-alinhamento">Diferença com e sem skill (alinhamento!)</h4>
 <p>Vamos ver o que o próprio modelo diz:</p>
 <blockquote>
 <p>&ldquo;draft-release-note.md parece ser a saída real do bot release-drafter do GitHub, que categoriza PRs pelas labels atribuídas nelas (ex: label &ldquo;bug&rdquo; → Fixed), não pelo texto do assunto do commit. Meu arquivo seguiu estritamente as regras textuais de formato.md do skill, que mapeia por palavras do assunto (&ldquo;Return&rdquo;, &ldquo;Use&rdquo;, &ldquo;Support&rdquo; → Changed/Added) e exclui mudanças só de doctest.</p>
 <p>Ou seja: a divergência não é erro de um lado, são <strong>critérios diferentes</strong> (labels do GitHub vs. heurística por texto do commit). Quer que eu ajuste o meu rascunho para seguir as labels reais das PRs (preciso consultar o GitHub), ou mantenho conforme a regra do skill?&rdquo;</p>
 </blockquote>
-<h2 id="reuso">Reuso</h2>
+<h3 id="reuso">Reuso</h3>
 <p>Skill é conhecimento escrito para não termos que escrever no prompt toda vez que precisarmos dele.</p>
-<h2 id="formato">Formato</h2>
+<h3 id="formato">Formato</h3>
 <pre><code>./release-notes/formato.md
 ./release-notes/scripts/commits.py
 ./release-notes/SKILL.md
 </code></pre><p>A língua-franca é markdown, mas sem formato pré-definido.</p>
 <p>Vamos ver algumas e discutir o que e como vale a pena descrever.</p>
-<h2 id="conteúdo">Conteúdo</h2>
+<h3 id="conteúdo">Conteúdo</h3>
 <p><strong>1. Nome, descrição e ferramentas (<code>allowed-tools</code>) para o agente.</strong></p>
 <p>O agente usa isso para decidir se vai carregar a skill.</p>
 <blockquote>
@@ -237,7 +240,7 @@ Based on the commits merged since the 4.16.0 tag (2026-06-30), here are the rele
 <p>Meça com e sem a skill para ver o efeito.</p>
 <p><strong>6. Controle o agente.</strong></p>
 <p>Se ele não puder carregar a skill automaticamente, use <code>disable-model-invocation: true</code>.</p>
-<h1 id="o-segundo-agentes">O segundo: agentes</h1>
+<h2 id="o-segundo-agentes">O segundo: agentes</h2>
 <p>Você pode definir agentes especializados.</p>
 <p>Quando carregados, possuem papel, <strong>ferramentas</strong>, modelo e <strong>contexto</strong> próprios.</p>
 <p>O agente roda em uma janela separada e devolve só o resumo. Aqui está a diferença para a skill. A skill entra no contexto do agente que já está trabalhando, e o agente delegado trabalha no dele.</p>
@@ -257,7 +260,7 @@ model: haiku
 <p>O agente não vê a conversa. Ele recebe o corpo do arquivo, a mensagem de delegação que o agente principal escreve, as instruções do repositório e pouco mais. Tudo o que ele precisa saber tem de estar no corpo ou na mensagem.</p>
 <p>O auditor só lê, então recebe <code>Read, Grep, Glob</code>. Se ele precisasse de Bash, restringir a comandos específicos não é possível pelo campo <code>tools</code>: listar Bash com um especificador em <code>disallowedTools</code> remove a ferramenta inteira. Por isso desenhamos o script da skill para deixar o histórico em arquivo.</p>
 <p>O campo <code>skills</code> do agente injeta o conteúdo completo de cada skill no início da execução.</p>
-<h1 id="diretrizes-para-especificar-agentes">Diretrizes para Especificar Agentes</h1>
+<h2 id="diretrizes-para-especificar-agentes">Diretrizes para Especificar Agentes</h2>
 <ul>
 <li>Uma responsabilidade por agente.</li>
 <li>Ferramentas mínimas.</li>
@@ -267,7 +270,7 @@ model: haiku
 <li>Modelo escolhido pelo trabalho.</li>
 <li>Arquivo versionado no repositório, para o time melhorar junto.</li>
 </ul>
-<h1 id="paralelo">Paralelo</h1>
+<h2 id="paralelo">Paralelo</h2>
 <table>
 <thead>
 <tr>
@@ -304,10 +307,10 @@ model: haiku
 </tr>
 </tbody>
 </table>
-<h1 id="quando-eu-ensino-algo-ao-agente-e-quando-eu-crio-outro-agente">Quando eu ensino algo ao agente e quando eu crio outro agente?</h1>
+<h2 id="quando-eu-ensino-algo-ao-agente-e-quando-eu-crio-outro-agente">Quando eu ensino algo ao agente e quando eu crio outro agente?</h2>
 <p>Ensino por skill quando falta conhecimento e o trabalho pode acontecer na conversa. Crio outro agente quando o problema é volume, restrição ou isolamento.</p>
 <p><strong>Agente cria unidade separada de trabalho.</strong></p>
-<h1 id="algumas-boas-referências">Algumas boas referências</h1>
+<h2 id="algumas-boas-referências">Algumas boas referências</h2>
 <p>Para agentes: <a href="https://github.com/github/awesome-copilot/tree/main/agents">awesome agents</a> e <a href="https://opencode.ai/docs/pt-br/agents/">criando agentes no opencode</a>.</p>
 <p>Para skills:</p>
 <ul>

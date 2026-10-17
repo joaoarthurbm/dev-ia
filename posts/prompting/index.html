@@ -139,11 +139,22 @@
         <summary>Tópicos</summary>
         <nav id="TableOfContents">
   <ul>
-    <li><a href="#importante">Importante</a></li>
-    <li><a href="#contrato--contraste">Contrato + Contraste</a></li>
-    <li><a href="#técnicas-mais-avançadas">Técnicas mais avançadas</a></li>
-    <li><a href="#diretrizes">Diretrizes</a></li>
-    <li><a href="#mais-a-frente">Mais a frente</a></li>
+    <li><a href="#preâmbulo">Preâmbulo</a></li>
+    <li><a href="#disclaimer">Disclaimer</a></li>
+    <li><a href="#o-modo-como-vamos-ver-isso-hoje">O modo como vamos ver isso hoje</a></li>
+    <li><a href="#definições">Definições</a></li>
+    <li><a href="#zero-shot">Zero-shot</a></li>
+    <li><a href="#kfew-shot">k/few-shot</a></li>
+    <li><a href="#chain-of-thought">Chain of thought</a>
+      <ul>
+        <li><a href="#importante">Importante</a></li>
+        <li><a href="#contrato--contraste">Contrato + Contraste</a></li>
+        <li><a href="#técnicas-mais-avançadas">Técnicas mais avançadas</a></li>
+        <li><a href="#diretrizes">Diretrizes</a></li>
+        <li><a href="#mais-a-frente">Mais a frente</a></li>
+      </ul>
+    </li>
+    <li><a href="#referências">Referências</a></li>
   </ul>
 </nav>
     </details>
@@ -152,9 +163,9 @@
     <hr>
 <p>Ao final dessa aula, o aluno deve ser capaz de entender e implementar técnicas eficientes de prompting.</p>
 <hr>
-<h1 id="preâmbulo">Preâmbulo</h1>
+<h2 id="preâmbulo">Preâmbulo</h2>
 <p><strong>Sobre as notas de aulas:</strong> i) Conteúdo escrito por mim em sua totalidade. Tabelas e figuras foram geradas com auxílio do Claude. Estou deixando isso claro para que você tenha ciência de que se houver erro aqui ou achar o material ruim, a culpa é minha mesmo;  e ii) as notas de aula são um guia para a discussão em sala de aula e servem muito pouco como conteúdo para estudo.</p>
-<h1 id="disclaimer">Disclaimer</h1>
+<h2 id="disclaimer">Disclaimer</h2>
 <blockquote>
 <p>Há um movimento natural de shift do prompting manual para formas mais estruturadas de especificação, engenharia de contexto e configuração do agente.</p>
 </blockquote>
@@ -165,13 +176,13 @@
 <p>It&rsquo;s all about the principles.</p>
 </blockquote>
 <p>O jeito que a gente instrui os agentes pode mudar, os princípios se mantém.</p>
-<h1 id="o-modo-como-vamos-ver-isso-hoje">O modo como vamos ver isso hoje</h1>
+<h2 id="o-modo-como-vamos-ver-isso-hoje">O modo como vamos ver isso hoje</h2>
 <ul>
 <li>Prompt ruim, resultado ruim</li>
 <li>Melhoria no prompt, melhoria no resultado</li>
 </ul>
 <p>Com esse esquema, meu objetivo é ir apresentando os conceitos importantes, como zero/few-shots, Chain of Thought, entre outros.</p>
-<h1 id="definições">Definições</h1>
+<h2 id="definições">Definições</h2>
 <ul>
 <li>Prompt se divide em system prompt, user prompt e a tarefa específica.</li>
 </ul>
@@ -192,7 +203,7 @@
 ## Formato de resposta
 - Para perguntas: responda em no máximo 3 frases.
 - Para código: use code blocks com a linguagem correta.
-</code></pre><h1 id="zero-shot">Zero-shot</h1>
+</code></pre><h2 id="zero-shot">Zero-shot</h2>
 <p>Prompt ruim: &ldquo;Escreva uma função que valida se um voucher pode ser usado no checkout.&rdquo;</p>
 <p>Prompt bom:</p>
 <pre><code>&lt;role&gt;
@@ -207,7 +218,7 @@ Implemente validate_voucher(voucher, total_price, quantity, customer_email, chan
 - Uso único por cliente, se apply_once_per_customer
 - Exclusivo para staff, se only_for_staff
 &lt;/constraints&gt;
-</code></pre><h1 id="kfew-shot">k/few-shot</h1>
+</code></pre><h2 id="kfew-shot">k/few-shot</h2>
 <p>Pedindo com exemplos.</p>
 <p>Prompt ruim: &ldquo;Escreva uma função Python que calcula o desconto de frete dado um voucher e o preço do frete.&rdquo;</p>
 <p>Saída ruim:</p>
@@ -240,7 +251,7 @@ get_shipping_voucher_discount(voucher: &quot;Voucher&quot;, shipping_price: Mone
 como essa.</p>
 <p>Perceba o uso de marcadores. Para o claude, inclusive, funciona muito bem tags html.</p>
 <p>Markdown como <em>lingua franca</em>.</p>
-<h1 id="chain-of-thought">Chain of thought</h1>
+<h2 id="chain-of-thought">Chain of thought</h2>
 <p>O conceito de ensinar o raciocínio, não a resposta.</p>
 <ul>
 <li>Regra real: percentual incide sobre o valor restante, nunca fica negativo; tarefa <code>applyPromotions</code>.</li>
@@ -284,14 +295,14 @@ Implemente applyPromotions(originalAmount, promotions), um comentário por regra
 </span><span style="color:#75715e"></span>  }
   <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">remaining</span>;
 }
-</code></pre></div><h2 id="importante">Importante</h2>
+</code></pre></div><h3 id="importante">Importante</h3>
 <p>O CoT foi um dos comportamentos que foram descobertos depois dos modelos serem lancados e deu tão certo que os provedores passaram a treinar modelos com eles.</p>
 <p>&ldquo;Chain-of-Thought Prompting Elicits Reasoning in Large Language Models&rdquo; (NeurIPS 2022) [1]. Pesquisadores descobriram que, via prompting, os modelos melhoravam muito em tarefas de raciocínio se fossem instruídos a mostrar os passos intermediários antes da resposta final.</p>
 <p>&ldquo;Large Language Models are Zero-Shot Reasoners&rdquo; (NeurIPS 2022) [2] mostrou que nem precisa de exemplo, só pedir &ldquo;vamos pensar passo a passo&rdquo; já melhora. Isso é tipicamente chamado de zero-shot CoT.</p>
 <p>Pedir para incluir o &ldquo;reasoning&rdquo; ajuda bastante para futuras i(n)terações.</p>
 <p>A OpenAI afirma explicitamente que treinou o modelo com reinforcement learning para usar e aperfeiçoar sua chain of thought, aprendendo estratégias como decompor problemas, detectar/corrigir erros e tentar abordagens alternativas [3].</p>
 <p>Outro relato &ldquo;DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning&rdquo; [4].</p>
-<h2 id="contrato--contraste">Contrato + Contraste</h2>
+<h3 id="contrato--contraste">Contrato + Contraste</h3>
 <ul>
 <li>Regra real: ordem de aplicação (buyget antes de standard, decrescente dentro do tipo).</li>
 </ul>
@@ -316,12 +327,12 @@ A ordem de aplicação (buyget antes de standard, decrescente dentro do tipo) é
 &lt;task&gt;
 Refatore para ficar mais legível, mantendo o contrato acima.
 &lt;/task&gt;
-</code></pre><h2 id="técnicas-mais-avançadas">Técnicas mais avançadas</h2>
+</code></pre><h3 id="técnicas-mais-avançadas">Técnicas mais avançadas</h3>
 <p>Self-consistence. 3 CoTs. Paper google [5].</p>
 <p>Tree of thoughts. Paper google e princeton [6]. Na prática: [7].</p>
 <p>Skeleton of Thought (Esqueleto de Pensamento). É mais para otimizar tempo, não qualidade [8].</p>
 <p>ReAct [9].</p>
-<h2 id="diretrizes">Diretrizes</h2>
+<h3 id="diretrizes">Diretrizes</h3>
 <blockquote>
 <p>&ldquo;Como eu pediria para um dev sem experiência/contexto?&rdquo;</p>
 </blockquote>
@@ -335,7 +346,7 @@ Refatore para ficar mais legível, mantendo o contrato acima.
 <p>Dê tempo (inclusive é técnica de otimização time/inference scaling): &ldquo;Read everything and Think hard before answering&rdquo;</p>
 <p>Decomponha em tarefas menores.</p>
 <p>Ref: [11]</p>
-<h2 id="mais-a-frente">Mais a frente</h2>
+<h3 id="mais-a-frente">Mais a frente</h3>
 <p>Planeje! Itere! Valide!</p>
 <p>As técnicas e diretrizes são a base para os frameworks que estão sendo adotados: SDD, RPI, RePPIT, etc.</p>
 <p>De novo:</p>
@@ -343,7 +354,7 @@ Refatore para ficar mais legível, mantendo o contrato acima.
 <p>Há um movimento natural de shift do prompting manual para formas mais estruturadas de especificação, engenharia de contexto e configuração do agente.</p>
 </blockquote>
 <p>É isso que vamos ver em detalhes nos próximos capítulos.</p>
-<h1 id="referências">Referências</h1>
+<h2 id="referências">Referências</h2>
 <p>[1] Wei et al. &ldquo;Chain-of-Thought Prompting Elicits Reasoning in Large Language Models&rdquo; (NeurIPS 2022). <a href="https://arxiv.org/abs/2201.11903">https://arxiv.org/abs/2201.11903</a></p>
 <p>[2] Kojima et al. &ldquo;Large Language Models are Zero-Shot Reasoners&rdquo; (NeurIPS 2022). <a href="https://arxiv.org/abs/2205.11916">https://arxiv.org/abs/2205.11916</a></p>
 <p>[3] OpenAI. &ldquo;Learning to reason with LLMs&rdquo;. <a href="https://openai.com/index/learning-to-reason-with-llms">https://openai.com/index/learning-to-reason-with-llms</a></p>

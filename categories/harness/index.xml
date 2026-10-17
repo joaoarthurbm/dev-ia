@@ -20,9 +20,9 @@
          <description>&lt;hr&gt;
 &lt;p&gt;Ao final da aula, o aluno deve ser capaz de tratar a especificação como artefato de primeira classe (ou próximo disso) no desenvolvimento com agentes, além de reconhecer como fluxos de trabalho como RPI e RePPIT a incorporam em etapas com artefatos revisáveis.&lt;/p&gt;
 &lt;hr&gt;
-&lt;h1 id=&#34;preâmbulo&#34;&gt;Preâmbulo&lt;/h1&gt;
+&lt;h2 id=&#34;preâmbulo&#34;&gt;Preâmbulo&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;Sobre as notas de aula.&lt;/strong&gt; Conteúdo escrito por mim em sua totalidade. Tabelas e figura foram geradas com auxílio do Claude. Estou deixando isso claro para que você tenha ciência de que, se houver erro aqui ou achar o material ruim, a culpa é minha mesmo. As notas de aula são um guia para a discussão em sala de aula e servem muito pouco como conteúdo para estudo.&lt;/p&gt;
-&lt;h1 id=&#34;contexto&#34;&gt;Contexto&lt;/h1&gt;
+&lt;h2 id=&#34;contexto&#34;&gt;Contexto&lt;/h2&gt;
 &lt;p&gt;Especificar sempre foi uma das atividades mais complexas durante o ciclo de desenvolvimento de software. Essa figura tem sido usada há décadas para ilustrar o problema: comunicação falha.&lt;/p&gt;
 &lt;figure style=&#34;align: center; margin-left:5%; width: 90%&#34;&gt;
     &lt;img src=&#34;balanco.png&#34;&gt;
@@ -30,16 +30,16 @@
 &lt;p&gt;Definir o que vai ser feito antes do como será feito é fundamental. Mas é uma tarefa muito difícil porque há ambiguidade, sobreposição semântica de termos, diferentes visões sobre a mesma coisa etc.&lt;/p&gt;
 &lt;p&gt;Agora o consumidor da especificação mudou. Antes, quem a lia era uma pessoa, que podia perguntar, discordar e preencher lacunas. Hoje pode ser um agente, que vai produzir código a partir do que está escrito, com muita velocidade.&lt;/p&gt;
 &lt;p&gt;Do que estamos tratando aqui? O que é especificação?&lt;/p&gt;
-&lt;h1 id=&#34;o-que-é-spec&#34;&gt;O que é spec&lt;/h1&gt;
+&lt;h2 id=&#34;o-que-é-spec&#34;&gt;O que é spec&lt;/h2&gt;
 &lt;p&gt;Como muita coisa na nossa área, há diferentes definições e que não são necessariamente conflitantes, mas muitas vezes complementares.&lt;/p&gt;
-&lt;h2 id=&#34;processo-vs-artefato&#34;&gt;Processo vs. artefato&lt;/h2&gt;
+&lt;h3 id=&#34;processo-vs-artefato&#34;&gt;Processo vs. artefato&lt;/h3&gt;
 &lt;p&gt;Assim como design/projeto, podemos ver especificação sob duas formas: processo e artefato. Segundo Sommerville, especificação de software é o processo de compreender e definir quais serviços são necessários ao sistema e de identificar as restrições à sua operação e ao seu desenvolvimento.&lt;/p&gt;
 &lt;p&gt;O processo busca produzir um documento de requisitos que descreva o sistema e que possa ser acordado entre clientes e desenvolvedores. Isso pode envolver estudo de viabilidade, elicitação e análise de requisitos, especificação de requisitos e validação de requisitos.&lt;/p&gt;
 &lt;p&gt;Os requisitos costumam ser apresentados em dois níveis de detalhe: os requisitos de usuário, em linguagem natural e diagramas voltados a clientes e usuários finais, e os requisitos de sistema, descrições mais detalhadas e precisas voltadas a quem vai desenvolver o sistema. Esses documentos também são chamados de especificação. Essa é a visão de especificação como artefato, não como processo.&lt;/p&gt;
 &lt;p&gt;Na minha visão, sobretudo no contexto desta disciplina, o processo é o que estamos chamando de maneira mais genérica de Entendimento. Note que essa visão é mais ampla e muito do que estamos fazendo nesta fase apoia ou está diretamente relacionado à escrita de especificações. Por exemplo, o /grill-me nos ajuda a alinhar objetivos, glossário, projeto etc, o que é fundamental para a escrita de boas especificações.&lt;/p&gt;
-&lt;h2 id=&#34;spec-como-artefato-prévio&#34;&gt;Spec como artefato prévio&lt;/h2&gt;
+&lt;h3 id=&#34;spec-como-artefato-prévio&#34;&gt;Spec como artefato prévio&lt;/h3&gt;
 &lt;p&gt;Aqui, quando falo &amp;ldquo;spec&amp;rdquo;, falo do artefato que antecede o código e que o agente consome. Ele descreve o que o código deve fazer, não como. Há várias formas e formatos. Sommerville é o ponto de partida clássico, não o formato esperado.&lt;/p&gt;
-&lt;h3 id=&#34;exemplo-clássico&#34;&gt;Exemplo clássico&lt;/h3&gt;
+&lt;h4 id=&#34;exemplo-clássico&#34;&gt;Exemplo clássico&lt;/h4&gt;
 &lt;p&gt;Um formato mais &amp;ldquo;clássico&amp;rdquo;, baseado no que o Sommerville sugere:&lt;/p&gt;
 &lt;exemplo&gt;
 Requisitos de usuário:
@@ -64,7 +64,7 @@ O sistema deve avisar o professor quando uma reserva sua for cancelada ou altera
 &lt;pre&gt;&lt;code&gt;3.1 Um professor sem treinamento prévio deve concluir uma reserva em até 2 minutos, e pelo menos 90% de um grupo de teste com dez professores deve conseguir isso na primeira tentativa.
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/exemplo&gt;
-&lt;h3 id=&#34;exemplo-moderno&#34;&gt;Exemplo &amp;ldquo;moderno&amp;rdquo;&lt;/h3&gt;
+&lt;h4 id=&#34;exemplo-moderno&#34;&gt;Exemplo &amp;ldquo;moderno&amp;rdquo;&lt;/h4&gt;
 &lt;p&gt;A mesma funcionalidade como uma spec curta de &lt;strong&gt;workflow&lt;/strong&gt; moderno:&lt;/p&gt;
 &lt;exemplo&gt;
 Contexto: professores reservam laboratórios. Hoje o conflito de horário só é percebido na hora da aula.
@@ -88,14 +88,14 @@ então a reserva é aceita (horário de término não conflita com o início).
 &lt;li&gt;mais exemplos; e&lt;/li&gt;
 &lt;li&gt;mais próxima de algo verificável (teste).&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;perguntas-importantes&#34;&gt;Perguntas importantes&lt;/h2&gt;
+&lt;h3 id=&#34;perguntas-importantes&#34;&gt;Perguntas importantes&lt;/h3&gt;
 &lt;p&gt;Vamos discutir algumas questões importantes sobre esse tipo de documento.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Na prática, fazemos sempre? Completo? Para todo o sistema? A resposta é sempre depende, mas&amp;hellip;&lt;/li&gt;
 &lt;li&gt;Uma discussão importante é &amp;ldquo;em que momento&amp;rdquo; e &amp;ldquo;como manter atualizado&amp;rdquo;.&lt;/li&gt;
 &lt;li&gt;A dicotomia processos &amp;ldquo;pesados&amp;rdquo; vs. processos leves/ágeis.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1 id=&#34;uma-ideia-antiga&#34;&gt;Uma ideia antiga&lt;/h1&gt;
+&lt;h2 id=&#34;uma-ideia-antiga&#34;&gt;Uma ideia antiga&lt;/h2&gt;
 &lt;p&gt;Especificar antes de implementar não é novo. A mesma ideia reaparece, há décadas, em formas diferentes:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;1969, Hoare (pré e pós-condições)&lt;/strong&gt;, e &lt;strong&gt;1986, Design by Contract (Meyer)&lt;/strong&gt;: spec como contrato verificável. Dizemos o que a operação exige e o que ela garante.&lt;/li&gt;
@@ -111,23 +111,23 @@ então a reserva é aceita (horário de término não conflita com o início).
 &lt;li&gt;Sempre foi vantajoso?&lt;/li&gt;
 &lt;li&gt;Por que raramente foi feito?&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;o-que-mudou&#34;&gt;O que mudou?&lt;/h2&gt;
+&lt;h3 id=&#34;o-que-mudou&#34;&gt;O que mudou?&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;O consumidor.&lt;/strong&gt; Quem lê a spec agora é um agente.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;O custo humano de produzir código diminuiu.&lt;/strong&gt; O gargalo passa a ser decidir o que fazer, e não digitar.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;o-que-não-mudou&#34;&gt;O que não mudou?&lt;/h2&gt;
+&lt;h3 id=&#34;o-que-não-mudou&#34;&gt;O que não mudou?&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Spec ruim gera código ruim.&lt;/li&gt;
 &lt;li&gt;Código evolui muito mais rapidamente que a spec.&lt;/li&gt;
 &lt;li&gt;A mesma spec pode gerar código diferente, então a spec sozinha não garante nada e os testes/sensores continuam necessários.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;waterfall-de-novo&#34;&gt;Waterfall de novo?&lt;/h2&gt;
+&lt;h3 id=&#34;waterfall-de-novo&#34;&gt;Waterfall de novo?&lt;/h3&gt;
 &lt;p&gt;Não. A ideia é que o ciclo seja de minutos ou horas e a spec seja pequena e revisada.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;É tudo sobre os bons princípios e como você aplica no fluxo de trabalho.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h1 id=&#34;workflows&#34;&gt;Workflows&lt;/h1&gt;
+&lt;h2 id=&#34;workflows&#34;&gt;Workflows&lt;/h2&gt;
 &lt;p&gt;Fluxos de trabalho incorporam SDD. É assim que tem sido feito na prática.&lt;/p&gt;
 &lt;p&gt;Há vários. Minha curadoria chegou nestes quatro. Note que são todos desenvolvidos em cima dos mesmos bons princípios de ES que sempre existiram (e sempre existirão):&lt;/p&gt;
 &lt;ol&gt;
@@ -146,7 +146,7 @@ então a reserva é aceita (horário de término não conflita com o início).
 &lt;p&gt;Eu tenho usado o &lt;strong&gt;fluxo principal&lt;/strong&gt; do Matt Pocock &lt;a href=&#34;https://www.aihero.dev/skills&#34;&gt;link&lt;/a&gt;: /grill, /to-spec, /to-tickets, /implement (implement-spec), /code-review, /pr, /retro. Gostei deste &lt;a href=&#34;https://x.com/thehypekevin/status/2108598006748794896?s=20&#34;&gt;link&lt;/a&gt; vídeo explicativo.&lt;/p&gt;
 &lt;p&gt;Também tenho analisado com bons olhos o &lt;a href=&#34;https://claude.ai/artifact/JNBnuspjGxGw3vW1k9sMiY&#34;&gt;pstack&lt;/a&gt; da Lauren Tan (https://x.com/poteto).&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://github.com/cursor/plugins/tree/main/pstack&#34;&gt;Aqui o link&lt;/a&gt; para os fontes.&lt;/p&gt;
-&lt;h1 id=&#34;ferramentas&#34;&gt;Ferramentas&lt;/h1&gt;
+&lt;h2 id=&#34;ferramentas&#34;&gt;Ferramentas&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;Spec Kit (GitHub, 2025).&lt;/strong&gt; Kit de código aberto (MIT) que funciona com vários agentes por meio de comandos como /speckit.specify e /speckit.plan. Organiza o trabalho em fases sequenciais com pontos de revisão humana e uma &amp;ldquo;constituição&amp;rdquo; de princípios do projeto. Uma spec pequena por funcionalidade.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;OpenSpec (Fission AI).&lt;/strong&gt; Framework de código aberto (MIT). Em vez de exigir uma spec completa de início, trabalha com propostas de mudança sobre um diretório de specs versionadas, e as etapas (criar, implementar, atualizar, arquivar) podem ser feitas a qualquer momento.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Kiro (AWS).&lt;/strong&gt; IDE própria, baseada no VS Code, de código fechado. Conduz cada funcionalidade por requisitos, projeto e tarefas, guardados como arquivos na pasta .kiro/specs/ do repositório. Permite alternar entre o modo spec e o modo livre (&amp;ldquo;vibe&amp;rdquo;).&lt;/p&gt;
@@ -185,11 +185,11 @@ então a reserva é aceita (horário de término não conflita com o início).
          <description>&lt;hr&gt;
 &lt;p&gt;Ao final dessa aula, o aluno deve ser capaz de explicar e especificar skills e agentes, além de diferenciar os dois.&lt;/p&gt;
 &lt;hr&gt;
-&lt;h1 id=&#34;contexto&#34;&gt;Contexto&lt;/h1&gt;
+&lt;h2 id=&#34;contexto&#34;&gt;Contexto&lt;/h2&gt;
 &lt;p&gt;Quando (e como) eu ensino algo ao agente? Quando eu crio outro agente?&lt;/p&gt;
 &lt;p&gt;Nós acabamos de passar por prompting e engenharia de contexto. Ali aprendemos e utilizamos algumas técnicas para direcionar o agente a fazer o que queremos e como queremos. Além disso, vimos que muitas vezes a quantidade de informação relevante para o trabalho pode não caber na janela de contexto, por isso, vimos que é importante escrever essa informação em algum documento (tipicamente markdown) para ser utilizado em momento oportuno.&lt;/p&gt;
 &lt;p&gt;Até aqui você escreveu, com ajuda dele, documentos markdown para o agente, como sessões de entendimento (grill-me) e planos de implementação (to-spec). Em todos, quem decidia quando o documento seria usado era você. Hoje vamos tratar de dois arquivos em que essa decisão muda de lugar. Os dois são markdown com &lt;em&gt;frontmatter&lt;/em&gt;, e por isso parecem a mesma coisa, mas não são.&lt;/p&gt;
-&lt;h1 id=&#34;o-primeiro-skill&#34;&gt;O primeiro: skill&lt;/h1&gt;
+&lt;h2 id=&#34;o-primeiro-skill&#34;&gt;O primeiro: skill&lt;/h2&gt;
 &lt;p&gt;Setup:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Vamos trabalhar em cima do projeto humanize (&lt;a href=&#34;https://github.com/python-humanize/humanize&#34;&gt;link&lt;/a&gt;).&lt;/li&gt;
@@ -204,9 +204,9 @@ então a reserva é aceita (horário de término não conflita com o início).
 &lt;p&gt;Assim funciona para um agente. Ele pode ter habilidades de revisor de código, de testador, de especialista em cloud entre outras, mas só as usa quando preciso e dentro do contexto que for preciso. Isso é importante entender sobre skill: é carregada dinamicamente (ou explicitamente pelo usuário com @) para uma determinada tarefa.&lt;/p&gt;
 &lt;p&gt;Se eu pedir para o agente descrito acima revisar alguma coisa, ele muito provavelmente vai carregar a skill que eu escrevi para revisar do jeito que eu especifiquei.&lt;/p&gt;
 &lt;p&gt;Lembra do grill-me? Aquilo é uma skill. Dá uma olhada no markdown dela &lt;a href=&#34;https://github.com/mattpocock/skills/blob/main/skills/productivity/grilling/SKILL.md&#34;&gt;aqui&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;os-problemas&#34;&gt;Os problemas&lt;/h2&gt;
+&lt;h3 id=&#34;os-problemas&#34;&gt;Os problemas&lt;/h3&gt;
 &lt;p&gt;Em termos simples, SKILL resolve dois grandes problemas: falta de alinhamento e duplicação de trabalho.&lt;/p&gt;
-&lt;h2 id=&#34;falta-de-alinhamento&#34;&gt;Falta de alinhamento&lt;/h2&gt;
+&lt;h3 id=&#34;falta-de-alinhamento&#34;&gt;Falta de alinhamento&lt;/h3&gt;
 &lt;p&gt;&lt;em&gt;&amp;lt;demonstração prática em sala de aula&amp;gt;&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&amp;ldquo;Gere as release notes da próxima versão e salve o conteúdo em no-skill-release-notes.md&amp;rdquo;&lt;/p&gt;
 &lt;p&gt;Vamos ver o trace.&lt;/p&gt;
@@ -228,21 +228,21 @@ Based on the commits merged since the 4.16.0 tag (2026-06-30), here are the rele
 &lt;figure style=&#34;align: center; margin-left:5%; width: 90%&#34;&gt;
     &lt;img src=&#34;loading.png&#34;&gt;
 &lt;/figure&gt;
-&lt;h3 id=&#34;diferença-com-e-sem-skill-alinhamento&#34;&gt;Diferença com e sem skill (alinhamento!)&lt;/h3&gt;
+&lt;h4 id=&#34;diferença-com-e-sem-skill-alinhamento&#34;&gt;Diferença com e sem skill (alinhamento!)&lt;/h4&gt;
 &lt;p&gt;Vamos ver o que o próprio modelo diz:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&amp;ldquo;draft-release-note.md parece ser a saída real do bot release-drafter do GitHub, que categoriza PRs pelas labels atribuídas nelas (ex: label &amp;ldquo;bug&amp;rdquo; → Fixed), não pelo texto do assunto do commit. Meu arquivo seguiu estritamente as regras textuais de formato.md do skill, que mapeia por palavras do assunto (&amp;ldquo;Return&amp;rdquo;, &amp;ldquo;Use&amp;rdquo;, &amp;ldquo;Support&amp;rdquo; → Changed/Added) e exclui mudanças só de doctest.&lt;/p&gt;
 &lt;p&gt;Ou seja: a divergência não é erro de um lado, são &lt;strong&gt;critérios diferentes&lt;/strong&gt; (labels do GitHub vs. heurística por texto do commit). Quer que eu ajuste o meu rascunho para seguir as labels reais das PRs (preciso consultar o GitHub), ou mantenho conforme a regra do skill?&amp;rdquo;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2 id=&#34;reuso&#34;&gt;Reuso&lt;/h2&gt;
+&lt;h3 id=&#34;reuso&#34;&gt;Reuso&lt;/h3&gt;
 &lt;p&gt;Skill é conhecimento escrito para não termos que escrever no prompt toda vez que precisarmos dele.&lt;/p&gt;
-&lt;h2 id=&#34;formato&#34;&gt;Formato&lt;/h2&gt;
+&lt;h3 id=&#34;formato&#34;&gt;Formato&lt;/h3&gt;
 &lt;pre&gt;&lt;code&gt;./release-notes/formato.md
 ./release-notes/scripts/commits.py
 ./release-notes/SKILL.md
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;A língua-franca é markdown, mas sem formato pré-definido.&lt;/p&gt;
 &lt;p&gt;Vamos ver algumas e discutir o que e como vale a pena descrever.&lt;/p&gt;
-&lt;h2 id=&#34;conteúdo&#34;&gt;Conteúdo&lt;/h2&gt;
+&lt;h3 id=&#34;conteúdo&#34;&gt;Conteúdo&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;1. Nome, descrição e ferramentas (&lt;code&gt;allowed-tools&lt;/code&gt;) para o agente.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;O agente usa isso para decidir se vai carregar a skill.&lt;/p&gt;
 &lt;blockquote&gt;
@@ -261,7 +261,7 @@ Based on the commits merged since the 4.16.0 tag (2026-06-30), here are the rele
 &lt;p&gt;Meça com e sem a skill para ver o efeito.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;6. Controle o agente.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Se ele não puder carregar a skill automaticamente, use &lt;code&gt;disable-model-invocation: true&lt;/code&gt;.&lt;/p&gt;
-&lt;h1 id=&#34;o-segundo-agentes&#34;&gt;O segundo: agentes&lt;/h1&gt;
+&lt;h2 id=&#34;o-segundo-agentes&#34;&gt;O segundo: agentes&lt;/h2&gt;
 &lt;p&gt;Você pode definir agentes especializados.&lt;/p&gt;
 &lt;p&gt;Quando carregados, possuem papel, &lt;strong&gt;ferramentas&lt;/strong&gt;, modelo e &lt;strong&gt;contexto&lt;/strong&gt; próprios.&lt;/p&gt;
 &lt;p&gt;O agente roda em uma janela separada e devolve só o resumo. Aqui está a diferença para a skill. A skill entra no contexto do agente que já está trabalhando, e o agente delegado trabalha no dele.&lt;/p&gt;
@@ -281,7 +281,7 @@ model: haiku
 &lt;p&gt;O agente não vê a conversa. Ele recebe o corpo do arquivo, a mensagem de delegação que o agente principal escreve, as instruções do repositório e pouco mais. Tudo o que ele precisa saber tem de estar no corpo ou na mensagem.&lt;/p&gt;
 &lt;p&gt;O auditor só lê, então recebe &lt;code&gt;Read, Grep, Glob&lt;/code&gt;. Se ele precisasse de Bash, restringir a comandos específicos não é possível pelo campo &lt;code&gt;tools&lt;/code&gt;: listar Bash com um especificador em &lt;code&gt;disallowedTools&lt;/code&gt; remove a ferramenta inteira. Por isso desenhamos o script da skill para deixar o histórico em arquivo.&lt;/p&gt;
 &lt;p&gt;O campo &lt;code&gt;skills&lt;/code&gt; do agente injeta o conteúdo completo de cada skill no início da execução.&lt;/p&gt;
-&lt;h1 id=&#34;diretrizes-para-especificar-agentes&#34;&gt;Diretrizes para Especificar Agentes&lt;/h1&gt;
+&lt;h2 id=&#34;diretrizes-para-especificar-agentes&#34;&gt;Diretrizes para Especificar Agentes&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Uma responsabilidade por agente.&lt;/li&gt;
 &lt;li&gt;Ferramentas mínimas.&lt;/li&gt;
@@ -291,7 +291,7 @@ model: haiku
 &lt;li&gt;Modelo escolhido pelo trabalho.&lt;/li&gt;
 &lt;li&gt;Arquivo versionado no repositório, para o time melhorar junto.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1 id=&#34;paralelo&#34;&gt;Paralelo&lt;/h1&gt;
+&lt;h2 id=&#34;paralelo&#34;&gt;Paralelo&lt;/h2&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
@@ -328,10 +328,10 @@ model: haiku
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;h1 id=&#34;quando-eu-ensino-algo-ao-agente-e-quando-eu-crio-outro-agente&#34;&gt;Quando eu ensino algo ao agente e quando eu crio outro agente?&lt;/h1&gt;
+&lt;h2 id=&#34;quando-eu-ensino-algo-ao-agente-e-quando-eu-crio-outro-agente&#34;&gt;Quando eu ensino algo ao agente e quando eu crio outro agente?&lt;/h2&gt;
 &lt;p&gt;Ensino por skill quando falta conhecimento e o trabalho pode acontecer na conversa. Crio outro agente quando o problema é volume, restrição ou isolamento.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Agente cria unidade separada de trabalho.&lt;/strong&gt;&lt;/p&gt;
-&lt;h1 id=&#34;algumas-boas-referências&#34;&gt;Algumas boas referências&lt;/h1&gt;
+&lt;h2 id=&#34;algumas-boas-referências&#34;&gt;Algumas boas referências&lt;/h2&gt;
 &lt;p&gt;Para agentes: &lt;a href=&#34;https://github.com/github/awesome-copilot/tree/main/agents&#34;&gt;awesome agents&lt;/a&gt; e &lt;a href=&#34;https://opencode.ai/docs/pt-br/agents/&#34;&gt;criando agentes no opencode&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Para skills:&lt;/p&gt;
 &lt;ul&gt;
