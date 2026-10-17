@@ -13,12 +13,12 @@ Ao final dessa aula, o aluno deve ser capaz de entender e implementar técnicas 
 
 ***
 
-# Preâmbulo
+## Preâmbulo
 
 **Sobre as notas de aulas:** i) Conteúdo escrito por mim em sua totalidade. Tabelas e figuras foram geradas com auxílio do Claude. Estou deixando isso claro para que você tenha ciência de que se houver erro aqui ou achar o material ruim, a culpa é minha mesmo;  e ii) as notas de aula são um guia para a discussão em sala de aula e servem muito pouco como conteúdo para estudo.
 
 
-# Disclaimer
+## Disclaimer
 
 > Há um movimento natural de shift do prompting manual para formas mais estruturadas de especificação, engenharia de contexto e configuração do agente.
 
@@ -33,14 +33,14 @@ Hoje vamos aprender a andar para depois correr.
 O jeito que a gente instrui os agentes pode mudar, os princípios se mantém.
 
 
-# O modo como vamos ver isso hoje
+## O modo como vamos ver isso hoje
 
 - Prompt ruim, resultado ruim
 - Melhoria no prompt, melhoria no resultado
 
 Com esse esquema, meu objetivo é ir apresentando os conceitos importantes, como zero/few-shots, Chain of Thought, entre outros.
 
-# Definições
+## Definições
 
 - Prompt se divide em system prompt, user prompt e a tarefa específica.
 
@@ -65,7 +65,7 @@ Você é um assistente de engenharia de software especializado em Python.
 - Para código: use code blocks com a linguagem correta.
 ```
 
-# Zero-shot
+## Zero-shot
 
 Prompt ruim: "Escreva uma função que valida se um voucher pode ser usado no checkout."
 
@@ -85,7 +85,7 @@ Implemente validate_voucher(voucher, total_price, quantity, customer_email, chan
 </constraints>
 ```
 
-# k/few-shot
+## k/few-shot
 
 Pedindo com exemplos.
 
@@ -134,7 +134,7 @@ Perceba o uso de marcadores. Para o claude, inclusive, funciona muito bem tags h
 Markdown como *lingua franca*.
 
 
-# Chain of thought
+## Chain of thought
 
 O conceito de ensinar o raciocínio, não a resposta.
 
@@ -191,7 +191,7 @@ function applyPromotions(originalAmount: number, promotions: Promotion[]): numbe
 }
 ```
 
-## Importante
+### Importante
 
 O CoT foi um dos comportamentos que foram descobertos depois dos modelos serem lancados e deu tão certo que os provedores passaram a treinar modelos com eles.
 
@@ -206,7 +206,7 @@ A OpenAI afirma explicitamente que treinou o modelo com reinforcement learning p
 Outro relato "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning" [4].
 
 
-## Contrato + Contraste
+### Contrato + Contraste
 
 - Regra real: ordem de aplicação (buyget antes de standard, decrescente dentro do tipo).
 
@@ -237,7 +237,7 @@ Refatore para ficar mais legível, mantendo o contrato acima.
 </task>
 ```
 
-## Técnicas mais avançadas
+### Técnicas mais avançadas
 
 Self-consistence. 3 CoTs. Paper google [5].
 
@@ -247,7 +247,7 @@ Skeleton of Thought (Esqueleto de Pensamento). É mais para otimizar tempo, não
 
 ReAct [9].
 
-## Diretrizes
+### Diretrizes
 
 > "Como eu pediria para um dev sem experiência/contexto?"
 
@@ -272,7 +272,7 @@ Decomponha em tarefas menores.
 Ref: [11]
 
 
-## Mais a frente
+### Mais a frente
 
 Planeje! Itere! Valide!
 
@@ -285,7 +285,7 @@ De novo:
 
 É isso que vamos ver em detalhes nos próximos capítulos.
 
-# Referências
+## Referências
 
 [1] Wei et al. "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models" (NeurIPS 2022). https://arxiv.org/abs/2201.11903
 

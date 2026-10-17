@@ -13,7 +13,7 @@ Ao final dessa aula, o aluno deve ser capaz de explicar e especificar skills e a
 
 ***
 
-# Contexto
+## Contexto
 
 Quando (e como) eu ensino algo ao agente? Quando eu crio outro agente?
 
@@ -21,7 +21,7 @@ Nós acabamos de passar por prompting e engenharia de contexto. Ali aprendemos e
 
 Até aqui você escreveu, com ajuda dele, documentos markdown para o agente, como sessões de entendimento (grill-me) e planos de implementação (to-spec). Em todos, quem decidia quando o documento seria usado era você. Hoje vamos tratar de dois arquivos em que essa decisão muda de lugar. Os dois são markdown com *frontmatter*, e por isso parecem a mesma coisa, mas não são.
 
-# O primeiro: skill
+## O primeiro: skill
 
 Setup:
 
@@ -46,11 +46,11 @@ Se eu pedir para o agente descrito acima revisar alguma coisa, ele muito provave
 
 Lembra do grill-me? Aquilo é uma skill. Dá uma olhada no markdown dela [aqui](https://github.com/mattpocock/skills/blob/main/skills/productivity/grilling/SKILL.md).
 
-## Os problemas
+### Os problemas
 
 Em termos simples, SKILL resolve dois grandes problemas: falta de alinhamento e duplicação de trabalho.
 
-## Falta de alinhamento
+### Falta de alinhamento
 
 *\<demonstração prática em sala de aula\>*
 
@@ -81,7 +81,7 @@ Agora vamos ver e usar a skill que criei para ver o resultado.
     <img src="loading.png">
 </figure>
 
-### Diferença com e sem skill (alinhamento!)
+#### Diferença com e sem skill (alinhamento!)
 
 Vamos ver o que o próprio modelo diz:
 
@@ -89,11 +89,11 @@ Vamos ver o que o próprio modelo diz:
 >
 > Ou seja: a divergência não é erro de um lado, são **critérios diferentes** (labels do GitHub vs. heurística por texto do commit). Quer que eu ajuste o meu rascunho para seguir as labels reais das PRs (preciso consultar o GitHub), ou mantenho conforme a regra do skill?"
 
-## Reuso
+### Reuso
 
 Skill é conhecimento escrito para não termos que escrever no prompt toda vez que precisarmos dele.
 
-## Formato
+### Formato
 
 ```
 ./release-notes/formato.md
@@ -105,7 +105,7 @@ A língua-franca é markdown, mas sem formato pré-definido.
 
 Vamos ver algumas e discutir o que e como vale a pena descrever.
 
-## Conteúdo
+### Conteúdo
 
 **1. Nome, descrição e ferramentas (`allowed-tools`) para o agente.**
 
@@ -139,7 +139,7 @@ Meça com e sem a skill para ver o efeito.
 
 Se ele não puder carregar a skill automaticamente, use `disable-model-invocation: true`.
 
-# O segundo: agentes
+## O segundo: agentes
 
 Você pode definir agentes especializados.
 
@@ -174,7 +174,7 @@ O auditor só lê, então recebe `Read, Grep, Glob`. Se ele precisasse de Bash, 
 O campo `skills` do agente injeta o conteúdo completo de cada skill no início da execução.
 
 
-# Diretrizes para Especificar Agentes
+## Diretrizes para Especificar Agentes
 
 - Uma responsabilidade por agente.
 - Ferramentas mínimas.
@@ -184,7 +184,7 @@ O campo `skills` do agente injeta o conteúdo completo de cada skill no início 
 - Modelo escolhido pelo trabalho.
 - Arquivo versionado no repositório, para o time melhorar junto.
 
-# Paralelo
+## Paralelo
 
 | | Skill | Agente |
 |---|---|---|
@@ -195,13 +195,13 @@ O campo `skills` do agente injeta o conteúdo completo de cada skill no início 
 | Custo | Ocupa o contexto depois de carregada | Começa do zero e gasta tokens próprios |
 
 
-# Quando eu ensino algo ao agente e quando eu crio outro agente?
+## Quando eu ensino algo ao agente e quando eu crio outro agente?
 
  Ensino por skill quando falta conhecimento e o trabalho pode acontecer na conversa. Crio outro agente quando o problema é volume, restrição ou isolamento.
 
  <strong>Agente cria unidade separada de trabalho.</strong>
 
-# Algumas boas referências
+## Algumas boas referências
 
 Para agentes: [awesome agents](https://github.com/github/awesome-copilot/tree/main/agents) e [criando agentes no opencode](https://opencode.ai/docs/pt-br/agents/).
 

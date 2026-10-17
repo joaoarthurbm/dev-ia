@@ -13,11 +13,11 @@ Ao final da aula, o aluno deve ser capaz de tratar a especificação como artefa
 
 ***
 
-# Preâmbulo
+## Preâmbulo
 
 **Sobre as notas de aula.** Conteúdo escrito por mim em sua totalidade. Tabelas e figura foram geradas com auxílio do Claude. Estou deixando isso claro para que você tenha ciência de que, se houver erro aqui ou achar o material ruim, a culpa é minha mesmo. As notas de aula são um guia para a discussão em sala de aula e servem muito pouco como conteúdo para estudo.
 
-# Contexto
+## Contexto
 
 Especificar sempre foi uma das atividades mais complexas durante o ciclo de desenvolvimento de software. Essa figura tem sido usada há décadas para ilustrar o problema: comunicação falha.
 
@@ -31,11 +31,11 @@ Agora o consumidor da especificação mudou. Antes, quem a lia era uma pessoa, q
 
 Do que estamos tratando aqui? O que é especificação?
 
-# O que é spec
+## O que é spec
 
 Como muita coisa na nossa área, há diferentes definições e que não são necessariamente conflitantes, mas muitas vezes complementares.
 
-## Processo vs. artefato
+### Processo vs. artefato
 
 Assim como design/projeto, podemos ver especificação sob duas formas: processo e artefato. Segundo Sommerville, especificação de software é o processo de compreender e definir quais serviços são necessários ao sistema e de identificar as restrições à sua operação e ao seu desenvolvimento.
 
@@ -45,11 +45,11 @@ Os requisitos costumam ser apresentados em dois níveis de detalhe: os requisito
 
 Na minha visão, sobretudo no contexto desta disciplina, o processo é o que estamos chamando de maneira mais genérica de Entendimento. Note que essa visão é mais ampla e muito do que estamos fazendo nesta fase apoia ou está diretamente relacionado à escrita de especificações. Por exemplo, o /grill-me nos ajuda a alinhar objetivos, glossário, projeto etc, o que é fundamental para a escrita de boas especificações.
 
-## Spec como artefato prévio
+### Spec como artefato prévio
 
 Aqui, quando falo "spec", falo do artefato que antecede o código e que o agente consome. Ele descreve o que o código deve fazer, não como. Há várias formas e formatos. Sommerville é o ponto de partida clássico, não o formato esperado.
 
-### Exemplo clássico
+#### Exemplo clássico
 
 Um formato mais "clássico", baseado no que o Sommerville sugere:
 
@@ -79,7 +79,7 @@ Requisito não funcional:
 	3.1 Um professor sem treinamento prévio deve concluir uma reserva em até 2 minutos, e pelo menos 90% de um grupo de teste com dez professores deve conseguir isso na primeira tentativa.
 </exemplo>
 
-### Exemplo "moderno"
+#### Exemplo "moderno"
 
 A mesma funcionalidade como uma spec curta de **workflow** moderno:
 
@@ -108,7 +108,7 @@ Critérios de aceite:
 * mais exemplos; e
 * mais próxima de algo verificável (teste). 
 
-## Perguntas importantes
+### Perguntas importantes
 
 Vamos discutir algumas questões importantes sobre esse tipo de documento.
 
@@ -116,7 +116,7 @@ Vamos discutir algumas questões importantes sobre esse tipo de documento.
 * Uma discussão importante é "em que momento" e "como manter atualizado".
 * A dicotomia processos "pesados" vs. processos leves/ágeis.
 
-# Uma ideia antiga
+## Uma ideia antiga
 
 Especificar antes de implementar não é novo. A mesma ideia reaparece, há décadas, em formas diferentes:
 
@@ -134,24 +134,24 @@ Vamos por partes.
 * Sempre foi vantajoso?
 * Por que raramente foi feito?
 
-## O que mudou?
+### O que mudou?
 
 * **O consumidor.** Quem lê a spec agora é um agente.
 * **O custo humano de produzir código diminuiu.** O gargalo passa a ser decidir o que fazer, e não digitar.
 
-## O que não mudou?
+### O que não mudou?
 
 * Spec ruim gera código ruim.
 * Código evolui muito mais rapidamente que a spec.
 * A mesma spec pode gerar código diferente, então a spec sozinha não garante nada e os testes/sensores continuam necessários.
 
-## Waterfall de novo?
+### Waterfall de novo?
 
 Não. A ideia é que o ciclo seja de minutos ou horas e a spec seja pequena e revisada. 
 
 > É tudo sobre os bons princípios e como você aplica no fluxo de trabalho.
 
-# Workflows
+## Workflows
 
 Fluxos de trabalho incorporam SDD. É assim que tem sido feito na prática.
 
@@ -179,7 +179,7 @@ Também tenho analisado com bons olhos o [pstack](https://claude.ai/artifact/JNB
 
 [Aqui o link](https://github.com/cursor/plugins/tree/main/pstack) para os fontes.
 
-# Ferramentas
+## Ferramentas
 
 **Spec Kit (GitHub, 2025).** Kit de código aberto (MIT) que funciona com vários agentes por meio de comandos como /speckit.specify e /speckit.plan. Organiza o trabalho em fases sequenciais com pontos de revisão humana e uma "constituição" de princípios do projeto. Uma spec pequena por funcionalidade.
 
