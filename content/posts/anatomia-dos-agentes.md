@@ -13,7 +13,7 @@ Ao final dessa aula, o aluno deve ser capaz de explicar o funcionamento interno 
 
 **Disclaimer.**  As notas de aula foram escritas por mim em sua totalidade. Não utilizei auxílio de nenhum modelo, embora não veja problema nesse auxílio. Estou deixando isso claro para que você tenha ciência de que, se houver erro aqui ou achar o material ruim, a culpa é minha mesmo. Vale destacar também que as notas de aula são um guia para a discussão em sala de aula e servem muito pouco como conteúdo para estudo.
 
-# AI Coding Agents
+## AI Coding Agents
 
 O conceito de agentes é antigo. Não nasceu agora. Tem havido uma sobreposição semântica no termo, isto é, tem se interpretado ultimamente agentes como  “LLM based agents”.
 
@@ -37,7 +37,7 @@ Depois de agir, o agente reavalia onde está. Usa o que observou para decidir en
 
 Um AI Coding Agent é um agente especializado em desenvolvimento de software.
 
-# Anatomia de um agente: exemplo concreto
+## Anatomia de um agente: exemplo concreto
 
 O vocabulário que está por vir: loop, contexto, tools e guardrails/avaliação. 
 
@@ -47,7 +47,7 @@ O cenário abaixo é pequeno de propósito: um repositório com uma função `ap
 **"conserte o teste que está falhando em test_inventory.py"**. 
 ```
 
-## O trace
+### O trace
 
 **Thought:** Preciso entender a tarefa antes de agir. O teste test_inventory.py está
 falhando — vou ler o código-fonte e o teste para ver o que está em jogo.
@@ -110,13 +110,13 @@ test_inventory.py::test_apply_discount PASSED
 
 **Thought:** O teste passou. Não há mais falhas conhecidas — a tarefa está concluída.
 
-## O ponto de partida
+### O ponto de partida
 
 O agente recebe a instrução do usuário. 
 
 Antes de decidir qualquer coisa, o agente ainda não sabe o que está no repositório. Então a primeira ação é reunir informação.
 
-### Tool Calling
+#### Tool Calling
 
 ```
 read inventory.py
@@ -169,7 +169,7 @@ Refs
 
 YANG, John et al. Swe-agent: Agent-computer interfaces enable automated software engineering. **Advances in Neural Information Processing Systems, 2024.**
 
-## A primeira volta do loop: agir e observar a falha
+### A primeira volta do loop: agir e observar a falha
 
 Com os arquivos lidos, o agente decide que o próximo passo natural é confirmar o problema rodando o teste. Isso já é uma decisão, ainda que pequena: a escolha de investigar antes de agir sobre a causa.
 
@@ -185,7 +185,7 @@ E        +  where 190 = apply_discount(200, 10)
 
 Essa saída de erro é o segundo tipo de contexto que aparece no exemplo, e é diferente do primeiro: não veio de um arquivo estático, veio do *resultado de uma ação do próprio agente*. É exatamente esse ciclo: **agir**, **observar** o resultado, e **usar** esse resultado para decidir a próxima ação.. Sem essa realimentação, o agente teria apenas um palpite sobre o código.
 
-## Thought: O passo que normalmente não aparece
+### Thought: O passo que normalmente não aparece
 
 Entre observar `190 == 180` e decidir editar o arquivo, há um raciocínio: "`percent` está sendo subtraído do preço em vez de aplicado como uma fração". Esse passo não gera nenhuma chamada de ferramenta. Ele faz parte do “thought”. Normalmente as ferramentas escondem isso, mas aqui o que foi gerado pelo log no nosso exemplo:
 
@@ -208,7 +208,7 @@ O docstring diz "aplica um desconto **percentual**". O LLM viu esse padrão de c
 
 O teste dá **um único par entrada/saída.** Isso não especifica a fórmula, só restringe o espaço de fórmulas possíveis. Muitas soluções passariam nesse teste. O agente escolheu a que casa com o padrão textual do passo anterior.
 
-## Segunda volta do loop: agir sobre a causa
+### Segunda volta do loop: agir sobre a causa
 
 Com o diagnóstico feito, o agente edita o arquivo:
 
@@ -221,7 +221,7 @@ diff
 
 Essa é a ação central da tarefa, mas note que ela só foi possível porque as duas voltas anteriores do loop (ler, depois rodar e observar a falha) já tinham montado o contexto necessário. Se o agente tivesse editado o arquivo na primeira iteração, sem rodar o teste antes, estaria decidindo às cegas.
 
-## O guardrail: como o agente sabe que terminou
+### O guardrail: como o agente sabe que terminou
 
 ```
 execute: pytest test_inventory.py
@@ -234,7 +234,7 @@ test_inventory.py::test_apply_discount PASSED
 
 Agente decide parar porque um critério verificável (o teste passou) foi satisfeito. Esse é o papel de guardrails e avaliação dentro do loop: não é uma etapa de qualidade de código feita depois, por um humano ou por outra ferramenta. É o mecanismo que o agente usa, em tempo real, para decidir entre continuar, tentar de novo, ou parar. Tirem esse passo do exemplo e o agente não tem como saber se `price * (1 - percent / 100)` era a correção certa ou apenas mais uma tentativa.
 
-# Generalizando
+## Generalizando
 
 ```jsx
 contexto = [tarefa inicial]
@@ -247,7 +247,7 @@ enquanto não terminou:
         contexto = contexto + [thought, action, observation]
 ```
 
-# Na prática
+## Na prática
 
 Na prática, não implementamos o loop do agente. Configuramos o agente em markdown e o `agent harness` executa o loop de raciocínio e ação.
 
@@ -266,6 +266,6 @@ Teaser: [awesome-agents](https://github.com/github/awesome-copilot/tree/main/age
 
 
 
-# Referências
+## Referências
 
 ReAct: Synergizing Reasoning and Acting in Language Models", ICLR 2023)

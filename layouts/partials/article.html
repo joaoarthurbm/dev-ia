@@ -7,8 +7,8 @@
     {{ end }}
 
     {{ if and (eq .Section "posts") .TableOfContents }}
-    <details id="toc" open>
-        <summary>Sumário</summary>
+    <details id="toc">
+        <summary>Tópicos</summary>
         {{ .TableOfContents }}
     </details>
     {{ end }}

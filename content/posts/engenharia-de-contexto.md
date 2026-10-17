@@ -13,11 +13,11 @@ Ao final dessa aula, o aluno deve ser capaz de entender o conceito de janela de 
 
 ***
 
-# Preâmbulo
+## Preâmbulo
 
 **Sobre as notas de aulas:** i) Conteúdo escrito por mim em sua totalidade. Tabelas e figura foram geradas com auxílio do Claude. Estou deixando isso claro para que você tenha ciência de que se houver erro aqui ou achar o material ruim, a culpa é minha mesmo;  e ii) as notas de aula são um guia para a discussão em sala de aula e servem muito pouco como conteúdo para estudo.
 
-# Introdução
+## Introdução
 
 Contexto é tudo, mas nem tudo cabe no contexto.
 
@@ -65,17 +65,17 @@ Um agente pode ter uma janela de 1 milhão de tokens, mas não necessariamente c
 
 A capacidade de recuperar e raciocinar sobre informações espalhadas por centenas de milhares de tokens continua sendo uma questão de desempenho.
 
-# Os Problemas
+## Os Problemas
 
 A janela é finita. Mas não seria só aumentar a janela de contexto?
 
-## O mecanismo de atenção não escala
+### O mecanismo de atenção não escala
 
 Relações n² entre tokens.
 
 > Cada token tem que "prestar atenção" em todos os outros para decidir quais são os relevantes.
 
-## Context rot
+### Context rot
 
 <figure style="align: center; margin-left:5%; width: 90%">
     <img src="image%202.png">
@@ -93,7 +93,7 @@ O modelo continua capaz em contextos longos, mas com precisão reduzida para rec
     <img src="image%203.png">
 </figure>
 
-## Lost in the middle
+### Lost in the middle
 
 <figure style="align: center; margin-left:5%; width: 90%">
     <img src="image%204.png">
@@ -121,17 +121,17 @@ Experimento:
 - Meio: informações podem ser "perdidas" entre muitas outras.
 - Fim: "O que acabei de ver provavelmente é relevante para o que vou responder agora."
 
-## 4 Modos de falha
+### 4 Modos de falha
 
 Drew Breunig. *How Long Contexts Fail*. Drew Breunig, 22 jun. 2025. [https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html](https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html?utm_source=chatgpt.com)
 
-### Context Poisoning: When a hallucination makes it into the context
+#### Context Poisoning: When a hallucination makes it into the context
 
 [Gemini 2.5 technical report](https://storage.googleapis.com/deepmind-media/gemini/gemini_v2_5_report.pdf) 
 
 > An especially egregious form of this issue can take place with “context poisoning” – where many parts of the context (goals, summary) are “poisoned” with misinformation about the game state, which can often take a very long time to undo. As a result, the model can become fixated on achieving impossible or irrelevant goals.
 
-### Context Distraction: When the context overwhelms the training
+#### Context Distraction: When the context overwhelms the training
 
 O modelo desenvolve hiperfoco no contexto. 
 
@@ -139,7 +139,7 @@ O modelo desenvolve hiperfoco no contexto.
 
 Ao invés de usar a capacidade adquirida no treinamento, passou a utilizar muito o contexto.
 
-### Context Confusion: When superfluous context influences the response
+#### Context Confusion: When superfluous context influences the response
 
 Se você colocar algo no contexto, o modelo vai levar em consideração, mesmo que essa informação seja irrelevante. Alguns modelos já estão melhorando em ignorar ou descartar informação irrelevante, mas ainda é comum ver informação ruim distrair modelos.
 
@@ -153,11 +153,11 @@ Se você colocar algo no contexto, o modelo vai levar em consideração, mesmo q
 > In simpler terms, we discover that when LLMs take a wrong turn in a conversation, they get lost and do not recover.
 
 
-### Context Clash: When parts of the context disagree
+#### Context Clash: When parts of the context disagree
 
 Parece um pouco com context confusion, mas a informação aqui não é irrelevante é conflitante com algo que já está no contexto.
 
-#### Exemplo
+##### Exemplo
 
 O **system prompt** instrui:
 
@@ -169,13 +169,13 @@ O **RAG** recupera um arquivo antigo do repositório que recomenda:
 > “Use **aspas duplas** e **indentação de 4 espaços**.”
 > 
 
-#### Outro exemplo
+##### Outro exemplo
 
 Um agente de suporte tem no contexto a política de reembolso atual (via tool call a um sistema interno) e um trecho de e-mail antigo do cliente citando uma política antiga diferente.
 
 **O contexto contém instruções conflitantes.** O agente agora precisa decidir qual seguir, e o resultado observável costuma ser inconsistência.
 
-# Solução: Engenharia de Contexto
+## Solução: Engenharia de Contexto
 
 > The **engineering** problem at hand is optimizing the utility of tokens.
 > 
@@ -187,7 +187,7 @@ Isso vale tanto para quem vai construir agentes/harness quanto para quem vai usa
 
 Vou discutir o nosso caso, mas falar um pouco sobre quem vai construir agentes também.
 
-## **The anatomy of effective context**
+### **The anatomy of effective context**
 
 As técnicas do LangChain:  https://www.langchain.com/blog/context-engineering-for-agents: **write, select, compress, and isolate.**
 
@@ -197,7 +197,7 @@ Formas de evitar e lidar com contextos longos. Não são conflitantes.
     <img src="image%205.png">
 </figure>
 
-### Write
+#### Write
 
 Manter artefatos fora do agente para ele consultar: `AGENTS.md` , `CLAUDE.md` `NOTES.md` de sessão, specs  etc.
 
@@ -218,7 +218,7 @@ Sim, mas…
 3. Sobrevive ao término das sessões.
 4. Pode ser combinado com técnicas de descarte e compressão.
 
-### Select
+#### Select
 
 Trazer somente o que é relevante e no momento certo.
 
@@ -228,7 +228,7 @@ Exemplo: ao invés de ler todos os documentos de um diretório, decidir antes qu
 
 Parelelo com "Lost in the Middle": selecionar menos e melhor evita literalmente o vale de desempenho no meio do contexto.
 
-### Compress
+#### Compress
 
 Reduzir o contexto quando se aproxima do limite.
 
@@ -238,7 +238,7 @@ Técnica: *compaction.*
 
 Tradeoff: toda compressão tem custo de cache, comprimir tem preço em latência e economia.
 
-### Isolate
+#### Isolate
 
 Arquiteturas de sub-agentes. Dividir contexto entre múltiplos agentes ou sub-processos, cada um com sua própria janela.
 
@@ -248,11 +248,11 @@ Que tipo de tarefa é mais adequada a esse princípio? Que tipo de tarefa não �
 
 **Revisar um PR grande com mudanças em múltiplos módulos seria um bom cadidato a ser paralelizado?**
 
-# Engenharia de Contexto na prática
+## Engenharia de Contexto na prática
 
 Relembrando: técnicas de engenharia de contexto podem ser aplicadas pra quem está desenvolvendo agentes e para quem está desenvolvendo COM agentes. Vamos focar no segundo caso.
 
-## How three YC startups built their companies with Claude Code
+### How three YC startups built their companies with Claude Code
 
 Relato completo: https://claude.com/blog/building-companies-with-claude-code
 
@@ -285,17 +285,17 @@ para:
 > **"Como construir e manter o contexto que o agente precisa para trabalhar?"**
 > 
 
-## HumanLayer
+### HumanLayer
 
 Relato completo: https://www.humanlayer.dev/blog/advanced-context-engineering
 
 A infra que usam: https://github.com/humanlayer/humanlayer/tree/main/.claude
 
-### **The nayve way**
+#### **The nayve way**
 
 Vai lá, filhão.
 
-### **Slightly Smarter: Intentional Compaction**
+#### **Slightly Smarter: Intentional Compaction**
 
 “Resume, vamos começar em outro.”
 
@@ -306,7 +306,7 @@ Vai lá, filhão.
     <img src="image%206.png">
 </figure>
 
-## **O que consome o contexto?**
+### **O que consome o contexto?**
 
 - Busca por arquivos
 - Compreensão do fluxo de execução do código
@@ -314,7 +314,7 @@ Vai lá, filhão.
 - Logs de testes/build
 - Grandes blocos de JSON gerados pelas ferramentas
 
-## Compactar
+### Compactar
 
 **Solução é compactar** essas informações em artefatos estruturados. Bom exemplo:
 
@@ -322,7 +322,7 @@ Vai lá, filhão.
     <img src="output.png">
 </figure>
 
-### Um caso curioso (extremo): repomirror
+#### Um caso curioso (extremo): repomirror
 
 link: https://github.com/repomirrorhq/repomirror/blob/main/repomirror.md
 
@@ -335,7 +335,7 @@ O estado vai sendo alterado a cada iteração e persistido no github, scratchpad
 > We came back in the morning to an [almost fully functional port](https://github.com/repomirrorhq/better-use) of Browser Use to TypeScript.
 > 
 
-### Frequent Intentional Compactation
+#### Frequent Intentional Compactation
 
 > 
 > 
@@ -349,7 +349,7 @@ Vamos discutir essa e outras técnicas similares na aula de especificação de a
 
 Lembra que vivo dizendo “é tudo sobre os princípios/fundamentos/conceitos” ? Isso aqui é engenharia bem feita. Fazíamos antes dos agentes, fazemos agora e vamos fazer sempre.
 
-## Outros casos
+### Outros casos
 
 https://alabeduarte.com/context-engineering-with-claude-code-my-evolving-workflow/
 
@@ -359,7 +359,7 @@ https://www.reddit.com/r/ClaudeAI/comments/1ockyib/i_shipped_a_production_ios_ap
 
 https://x.com/vartekxx/article/2074864291568664646
 
-# Refs
+## Refs
 
 - [AnthropicAI Effective context engineering for AI agents](https://app.notion.com/p/Notas-de-Aula-Engenharia-de-Contexto-3cf3a7edc4f780428789e247b91fa2fd?pvs=21)
 - [Exploring Gen AI: Context Engineering for Coding Agents (Martin Fowler)](https://app.notion.com/p/Notas-de-Aula-Engenharia-de-Contexto-3cf3a7edc4f780428789e247b91fa2fd?pvs=21)

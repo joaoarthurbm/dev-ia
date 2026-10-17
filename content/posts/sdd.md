@@ -189,9 +189,7 @@ Também tenho analisado com bons olhos o [pstack](https://claude.ai/artifact/JNB
 
 Entenda o fluxo antes de adotar a ferramenta. As ferramentas mudam mais rápido que os princípios. Hoje eu uso o fluxo do *Matt Pocock*.
 
-***
-# Relatos da aula
-
+{{< relatos-aula >}}
 
 ## Insights
 

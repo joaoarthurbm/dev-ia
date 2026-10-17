@@ -213,8 +213,7 @@ Para skills:
 * @emilkowalski
 
 
-***
-# Relatos da aula
+{{< relatos-aula >}}
 
 ## Insights
 

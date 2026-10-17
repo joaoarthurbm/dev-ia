@@ -418,9 +418,7 @@ Prompting e engenharia de contexto.
 * [Model Context Protocol](https://modelcontextprotocol.io/)
 * [Writing effective tools for agents, with agents](https://www.anthropic.com/engineering/writing-tools-for-agents) (Engineering at Anthropic)
 
-***
-
-# Relatos da Aula
+{{< relatos-aula >}}
 
 ## Participação dos Alunos
 
