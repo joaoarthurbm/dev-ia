@@ -2,7 +2,7 @@
 title = "Jonhnny Weslley (NexHealth)"
 date = 2026-10-16
 draft = false
-description = "Jonhnny Weslley, dev senior na NexHealth, fala sobre sessões de grilling com o agente, por que o workflow importa mais que o modelo, validação automática de SQL via hooks e os riscos de instalar skills sem ler o que elas fazem."
+description = "Jonhnny Weslley, dev senior na NexHealth, fala sobre o workflow que o time dele usa no dia a dia e como isso importa mais que o modelo."
 youtube = "https://youtu.be/rBFsKgc90Jw"
 empresa = "NexHealth"
 slides = "https://drive.google.com/file/d/1ABcKpoCKiZ_1hbW_FtrJmPDBxZ5uOVvG/view?usp=sharing"
