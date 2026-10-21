@@ -1,0 +1,193 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <title>Desenvolvimento de Software com Agentes e IA Generativa</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="The HTML5 Herald" />
+  <meta name="author" content="João Arthur Brunet" /><meta name="generator" content="Hugo 0.75.1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/v4-shims.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  <link rel="stylesheet" type="text/css" href="https://joaoarthurbm.github.io/dev-ia/css/styles.css" /><link rel='stylesheet' href='https://joaoarthurbm.github.io/dev-ia/css/site.css'><script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+  });
+  MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+
+  MathJax.Hub.Config({
+  
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+  });
+</script>
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-151903059-1"></script>
+<script>
+      window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+            gtag('config', 'UA-151903059-1');
+        </script>
+
+
+</head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="https://joaoarthurbm.github.io/dev-ia/">Desenvolvimento de Software com Agentes e IA Generativa</a>
+            </h1>
+
+      <ul id="social-media">
+        
+        
+         
+        <li><a href="https://github.com/joaoarthurbm/dev-ia"><i class="fab fa-github fa-lg" aria-hidden="true"></i> repo</a></li>
+           
+        <li><a href="http://lattes.cnpq.br/7892247821251194"><i class="fas fa-graduation-cap fa-lg" aria-hidden="true"></i> lattes</a></li>
+        
+      </ul>
+      
+      <p><em><a href="https://joaoarthurbm.github.io">joaoarthurbm.github.io</a> <br> Computação @ UFCG</em></p>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="" href="https://joaoarthurbm.github.io/dev-ia/">
+                <i class="fa-li fa fa-home fa-lg"></i><span>Home</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="https://joaoarthurbm.github.io/dev-ia/aulas/">
+                <i class="fa-li fa  fa-lg"></i><span>Aulas</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="https://joaoarthurbm.github.io/dev-ia/industria/">
+                <i class="fa-li fa  fa-lg"></i><span>Conversas com a indústria</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+    <main>
+
+
+
+
+
+
+<article class="live">
+
+    <h1>Pedro Serey (VTEX)</h1>
+
+    <ul class="live-meta">
+        <li><time class="post-date" datetime="2026-10-21T00:00:00-03:00">Oct 21, 2026</time></li>
+        <li><i class="fas fa-building" aria-hidden="true"></i> VTEX</li>
+        
+        <li><i class="fas fa-user" aria-hidden="true"></i>
+            Pedro Serey, Engenheiro de Software
+        </li>
+        
+        <li><i class="fas fa-book-open" aria-hidden="true"></i> <a href="https://docs.google.com/presentation/d/1Co2t5XOVs8nrcRZ6NeBSpJNNPF4iBbScDMbM6QUbaaQ/edit">slides</a></li>
+    </ul>
+
+    
+    <div class="video-wrap"><div id="yt-player"></div></div>
+    <script>
+    (function () {
+      var player = null;
+      var videoId = "ULa2a43pLg4";
+      window.onYouTubeIframeAPIReady = function () {
+        player = new YT.Player('yt-player', { videoId: videoId, playerVars: { rel: 0 } });
+      };
+      var s = document.createElement('script');
+      s.src = 'https://www.youtube.com/iframe_api';
+      document.head.appendChild(s);
+      document.querySelectorAll('a[href^="#t="]').forEach(function (a) {
+        a.addEventListener('click', function (e) {
+          e.preventDefault();
+          var t = parseInt(a.getAttribute('href').slice(3), 10) || 0;
+          if (player && player.seekTo) {
+            player.seekTo(t, true);
+            player.playVideo();
+            document.getElementById('yt-player').scrollIntoView({ behavior: 'smooth', block: 'center' });
+          } else {
+            window.open('https://www.youtube.com/watch?v=' + videoId + '&t=' + t + 's', '_blank');
+          }
+        });
+      });
+    })();
+    </script>
+    
+
+    <hr>
+<p>Conversa com o Pedro Serey, engenheiro de software de Developer Experience na VTEX, sobre o workflow pessoal que ele usa com agentes de código, usando o OpenCode como ferramenta. A apresentação do Pedro está disponível no youtube. Aqui eu vou escrever um pouco sobre o que discutimos.</p>
+<p><strong>Minha principal observação:</strong> mais uma vez ficou claro que, por trás de workflows diferentes, estão os mesmos princípios fundamentais. O workflow de Pedro não é igual ao do Matt Pocock, que não é igual ao do Jonhnny Weslley e assim por diante. Cada um organiza etapas, ferramentas e nomes do seu jeito. Mas todos giram em torno do mesmo núcleo: entender, alinhar, especificar, implementar e validar. A forma muda, <strong>o princípio não muda</strong>.</p>
+<p>A outra observação é sobre onde está o trabalho de quem desenvolve hoje. O modelo por trás do agente já sabe muito, mas é genérico. O que diferencia um bom uso de um uso mediano é a personalização: usar skills, MCPs e engenharia de contexto para que o agente produza o que aquele time e aquele projeto esperam. As preferências da equipe, os artefatos esperados, o jeito de programar daquele projeto, nada disso vem pronto no modelo, <strong>é contexto que a gente constrói</strong>.</p>
+<h1 id="o-que-aprendemos">O que aprendemos</h1>
+<ul>
+<li>O uso combinado do /grill-me com o /plannotator é excelente para a fase de entendimento.</li>
+<li>Muitas das tasks de Pedro envolvem vários repositórios ao mesmo tempo. A solução dele foi criar um diretório <code>workspace</code> reunindo todos os repositórios separadamente, com um <code>AGENTS.md</code> explicando a organização, e um diretório <code>tasks-artifacts</code> onde, para cada task, ele mantém o <code>PLAN.md</code>, o <code>TODO.md</code> e um diretório <code>evidencias</code>.</li>
+</ul>
+<img src="https://joaoarthurbm.github.io/dev-ia/industria/pedro/dirs.png">
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        <li>
+            <a href="https://joaoarthurbm.github.io/dev-ia/industria/jonhnny-weslley-nexhealth/"><i class="fa fa-chevron-circle-left"></i> Jonhnny Weslley (NexHealth)</a>
+        </li>
+        
+        
+    </ul>
+</section>
+    
+
+
+
+
+
+</main>
+    <footer>
+    <h6><a href="http://joaoarthurbm.github.io">Copyright © 2026 - joaoarthurbm.github.io. Licença de uso: versão para uso pessoal, sendo proibida sua redistribuição ou modificação.</a></h6>
+    </footer>
+</div>
+<script src="https://joaoarthurbm.github.io/dev-ia/js/scripts.js"></script>
+
+</body>
+
+</html>
+

@@ -12,6 +12,25 @@
        
        
        <item>
+         <title>Pedro Serey (VTEX)</title>
+         <link>https://joaoarthurbm.github.io/dev-ia/industria/pedro-serey-vtex/</link>
+         <pubDate>Wed, 21 Oct 2026 00:00:00 -0300</pubDate>
+         
+         <guid>https://joaoarthurbm.github.io/dev-ia/industria/pedro-serey-vtex/</guid>
+         <description>&lt;hr&gt;
+&lt;p&gt;Conversa com o Pedro Serey, engenheiro de software de Developer Experience na VTEX, sobre o workflow pessoal que ele usa com agentes de código, usando o OpenCode como ferramenta. A apresentação do Pedro está disponível no youtube. Aqui eu vou escrever um pouco sobre o que discutimos.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Minha principal observação:&lt;/strong&gt; mais uma vez ficou claro que, por trás de workflows diferentes, estão os mesmos princípios fundamentais. O workflow de Pedro não é igual ao do Matt Pocock, que não é igual ao do Jonhnny Weslley e assim por diante. Cada um organiza etapas, ferramentas e nomes do seu jeito. Mas todos giram em torno do mesmo núcleo: entender, alinhar, especificar, implementar e validar. A forma muda, &lt;strong&gt;o princípio não muda&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;A outra observação é sobre onde está o trabalho de quem desenvolve hoje. O modelo por trás do agente já sabe muito, mas é genérico. O que diferencia um bom uso de um uso mediano é a personalização: usar skills, MCPs e engenharia de contexto para que o agente produza o que aquele time e aquele projeto esperam. As preferências da equipe, os artefatos esperados, o jeito de programar daquele projeto, nada disso vem pronto no modelo, &lt;strong&gt;é contexto que a gente constrói&lt;/strong&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;o-que-aprendemos&#34;&gt;O que aprendemos&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;O uso combinado do /grill-me com o /plannotator é excelente para a fase de entendimento.&lt;/li&gt;
+&lt;li&gt;Muitas das tasks de Pedro envolvem vários repositórios ao mesmo tempo. A solução dele foi criar um diretório &lt;code&gt;workspace&lt;/code&gt; reunindo todos os repositórios separadamente, com um &lt;code&gt;AGENTS.md&lt;/code&gt; explicando a organização, e um diretório &lt;code&gt;tasks-artifacts&lt;/code&gt; onde, para cada task, ele mantém o &lt;code&gt;PLAN.md&lt;/code&gt;, o &lt;code&gt;TODO.md&lt;/code&gt; e um diretório &lt;code&gt;evidencias&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;img src=&#34;https://joaoarthurbm.github.io/dev-ia/industria/pedro/dirs.png&#34;&gt;
+</description>
+       </item>
+       
+       <item>
          <title>Jonhnny Weslley (NexHealth)</title>
          <link>https://joaoarthurbm.github.io/dev-ia/industria/jonhnny-weslley-nexhealth/</link>
          <pubDate>Fri, 16 Oct 2026 00:00:00 -0300</pubDate>
