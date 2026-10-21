@@ -22,8 +22,7 @@ Conversa com o Pedro Serey, engenheiro de software de Developer Experience na VT
 
 A outra observação é sobre onde está o trabalho de quem desenvolve hoje. O modelo por trás do agente já sabe muito, mas é genérico. O que diferencia um bom uso de um uso mediano é a personalização: usar skills, MCPs e engenharia de contexto para que o agente produza o que aquele time e aquele projeto esperam. As preferências da equipe, os artefatos esperados, o jeito de programar daquele projeto, nada disso vem pronto no modelo, <strong>é contexto que a gente constrói</strong>.
 
-# O que aprendemos
-
+# Alguns pontos
 
 * O uso combinado do /grill-me com o /plannotator é excelente para a fase de entendimento.
 * Muitas das tasks de Pedro envolvem vários repositórios ao mesmo tempo. A solução dele foi criar um diretório `workspace` reunindo todos os repositórios separadamente, com um `AGENTS.md` explicando a organização, e um diretório `tasks-artifacts` onde, para cada task, ele mantém o `PLAN.md`, o `TODO.md` e um diretório `evidencias`.
