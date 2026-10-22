@@ -305,6 +305,36 @@
   text-decoration: underline;
 }
 
+/* ---- Sumário das seções (home / aulas) ---- */
+.aulas-toc {
+  margin: 0 0 2em;
+  padding: 0.9em 1.4em;
+  background: #f2f4f8;
+  border: 1px solid #dde3ec;
+  border-radius: 8px;
+}
+
+.aulas-toc ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em 1.6em;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.aulas-toc a {
+  font-family: "Ruda", sans-serif;
+  font-weight: 700;
+  color: #0b5fc4;
+  text-decoration: none;
+}
+
+.aulas-toc a:hover {
+  color: #06356e;
+  text-decoration: underline;
+}
+
 /* ---- Lista de posts (home / aulas) ---- */
 #container main section.aulas-section + section.aulas-section {
   margin-top: 2.6em;
@@ -318,13 +348,13 @@
   font-size: 1.55rem;
 }
 
-#container main section#home ul {
+#container main section.aulas-section ul {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-#container main section#home .post-card {
+#container main section.aulas-section .post-card {
   position: relative;
   background: #ffffff;
   border: 1px solid #e2e6ec;
@@ -336,42 +366,42 @@
   transition: box-shadow 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
 }
 
-#container main section#home .post-card .stretched-link::after {
+#container main section.aulas-section .post-card .stretched-link::after {
   content: "";
   position: absolute;
   inset: 0;
   z-index: 1;
 }
 
-#container main section#home .post-card-links {
+#container main section.aulas-section .post-card-links {
   position: relative;
   z-index: 2;
 }
 
-#container main section#home .post-card:hover {
+#container main section.aulas-section .post-card:hover {
   border-color: #1980e6;
   box-shadow: 0 8px 20px rgba(20, 60, 110, 0.14);
   transform: translateY(-2px);
 }
 
-#container main section#home .post-card h2 {
+#container main section.aulas-section .post-card h2 {
   margin: 0 0 0.3em;
   font-size: 1.5rem;
 }
 
-#container main section#home .post-card h2 a {
+#container main section.aulas-section .post-card h2 a {
   color: #0a3d7a;
   font-weight: 700;
   text-decoration: none;
 }
 
-#container main section#home .post-card:hover h2 a,
-#container main section#home .post-card h2 a:hover {
+#container main section.aulas-section .post-card:hover h2 a,
+#container main section.aulas-section .post-card h2 a:hover {
   color: #1980e6;
   text-decoration: underline;
 }
 
-#container main section#home .post-card time.post-date {
+#container main section.aulas-section .post-card time.post-date {
   display: block;
   margin: 0 0 0.6em;
   color: #909090;
@@ -379,14 +409,14 @@
   font-size: 0.85em;
 }
 
-#container main section#home .post-card p {
+#container main section.aulas-section .post-card p {
   margin: 0.6em 0 0.8em;
   color: #333333;
   font-weight: 400;
   text-decoration: none;
 }
 
-#container main section#home .post-card-links {
+#container main section.aulas-section .post-card-links {
   display: flex;
   flex-wrap: wrap;
   gap: 0.6em;

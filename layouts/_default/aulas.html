@@ -5,11 +5,23 @@
 {{ $allPosts := sort (where .Site.RegularPages "Section" "in" .Site.Params.mainSections) "Date" "asc" }}
 {{ $sections := slice (dict "slug" "contexto" "title" "Contexto") (dict "slug" "harness" "title" "Harness") (dict "slug" "ciclo-dev" "title" "Ciclo de desenvolvimento") }}
 
+<nav class="aulas-toc">
+  <ul>
+    {{ range $sections }}
+    {{ $slug := .slug }}
+    {{ $posts := where $allPosts "Params.categories" "intersect" (slice $slug) }}
+    {{ if $posts }}
+    <li><a href="#{{ $slug }}">{{ .title }}</a></li>
+    {{ end }}
+    {{ end }}
+  </ul>
+</nav>
+
 {{ range $sections }}
 {{ $slug := .slug }}
 {{ $posts := where $allPosts "Params.categories" "intersect" (slice $slug) }}
 {{ if $posts }}
-<section id="home" class="aulas-section">
+<section id="{{ $slug }}" class="aulas-section">
         <h2 class="aulas-section-title">{{ .title }}</h2>
         <ul>
           {{ range $index, $page := $posts }}
