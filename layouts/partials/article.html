@@ -1,6 +1,8 @@
 <article>
 
+    {{ if not .Params.notitle }}
     <h1>{{ .Title }}</h1>
+    {{ end }}
 
     {{ if not .Params.meta }}
         {{ partial "aside" . }}

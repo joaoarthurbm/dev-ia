@@ -4,6 +4,7 @@ date = "2026-01-01"
 menu = "main"
 weight = "35"
 meta = "false"
+notitle = true
 layout = "aulas"
 +++
 

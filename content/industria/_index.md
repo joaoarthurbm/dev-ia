@@ -3,6 +3,7 @@ title = "Conversas com a indústria"
 menu = "main"
 weight = 36
 meta = "false"
+notitle = true
 
 # Lives agendadas têm data futura; sem isso o Hugo as esconderia.
 [cascade]
