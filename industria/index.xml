@@ -27,6 +27,13 @@
 &lt;li&gt;Muitas das tasks de Pedro envolvem vários repositórios ao mesmo tempo. A solução dele foi criar um diretório &lt;code&gt;workspace&lt;/code&gt; reunindo todos os repositórios separadamente, com um &lt;code&gt;AGENTS.md&lt;/code&gt; explicando a organização, e um diretório &lt;code&gt;tasks-artifacts&lt;/code&gt; onde, para cada task, ele mantém o &lt;code&gt;PLAN.md&lt;/code&gt;, o &lt;code&gt;TODO.md&lt;/code&gt; e um diretório &lt;code&gt;evidencias&lt;/code&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;img src=&#34;https://joaoarthurbm.github.io/dev-ia/industria/pedro/dirs.png&#34;&gt;
+&lt;h1 id=&#34;referências-de-pedro&#34;&gt;Referências de Pedro&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/pserey/opencode-demo&#34;&gt;Repositório com as skills e o AGENTS.md usados na demo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://plannotator.ai/&#34;&gt;Plannotator&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://herdr.dev/&#34;&gt;Herdr&lt;/a&gt; — multiplexador de terminal para agentes&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://x.com/unclebobmartin/status/2080257779395154409&#34;&gt;Tweet de Robert C. Martin&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </description>
        </item>
        
