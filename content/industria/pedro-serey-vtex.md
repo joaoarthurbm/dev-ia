@@ -28,3 +28,11 @@ A outra observação é sobre onde está o trabalho de quem desenvolve hoje. O m
 * Muitas das tasks de Pedro envolvem vários repositórios ao mesmo tempo. A solução dele foi criar um diretório `workspace` reunindo todos os repositórios separadamente, com um `AGENTS.md` explicando a organização, e um diretório `tasks-artifacts` onde, para cada task, ele mantém o `PLAN.md`, o `TODO.md` e um diretório `evidencias`.
 
 <img src="/industria/pedro/dirs.png">
+
+# Referências de Pedro
+
+* [Repositório com as skills e o AGENTS.md usados na demo](https://github.com/pserey/opencode-demo)
+* [Plannotator](https://plannotator.ai/)
+* [Herdr](https://herdr.dev/) — multiplexador de terminal para agentes
+* [Tweet de Robert C. Martin](https://x.com/unclebobmartin/status/2080257779395154409)
+
