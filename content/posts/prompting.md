@@ -2,7 +2,7 @@
 title = "Prompting"
 date = 2026-09-01
 tags = ["prompting"]
-categories = []
+categories = ["harness"]
 ppt = "https://docs.google.com/presentation/d/1aaQdQAV4OZ6xnqF2WDyF1D92mMXxCVjbVLy7khU2WF0/edit?usp=sharing"
 youtube = ""
 +++

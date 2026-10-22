@@ -1,12 +1,147 @@
+/* =========================================================================
+   Redesign minimalista — paleta neutra, tipografia única, sem gradientes,
+   sombras ou badges decorativos. Sobrescreve themes/kiera/static/css/styles.css
+   ========================================================================= */
+
+:root {
+  --text: #1f2328;
+  --muted: #767f8c;
+  --border: #e4e7eb;
+  --bg: #ffffff;
+  --bg-subtle: #fafbfc;
+  --accent: #1d5fae;
+  --accent-dark: #123a6e;
+  --code-bg: #1f2428;
+  --code-text: #e6e8eb;
+}
+
+/* ---- Base ---- */
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent-dark);
+  text-decoration: underline;
+}
+
+a.external {
+  color: var(--accent);
+}
+
+strong {
+  font-weight: 700;
+  color: inherit;
+}
+
+em {
+  font-style: italic;
+}
+
+.image, figure img, img,
+.full-image, figure.full img, img[src*="full"],
+.mid-image, figure.mid img, img[src*="mid"],
+.float-image, figure.float img, img[src*="float"],
+.float-image-right, figure.float-right img, img[src*="float-right"] {
+  box-shadow: none;
+}
+
+blockquote {
+  margin: 1.6em 0;
+  padding: 0.2em 0 0.2em 1.3em;
+  border-left: 3px solid var(--border);
+  background: none;
+  box-shadow: none;
+  color: var(--muted);
+  font-style: italic;
+}
+
+blockquote::before {
+  content: none;
+}
+
+table {
+  border-bottom: 1px solid var(--border);
+}
+
+table thead {
+  background: none;
+  border-bottom: 2px solid var(--text);
+}
+
+/* ---- Container width — coluna estreita para leitura confortável ---- */
+#container > * {
+  width: 680px;
+}
+
+@media only screen and (max-width: 760px) {
+  #container > * {
+    width: auto;
+    margin: 0 1.2em;
+  }
+}
+
+/* ---- Cabeçalho ---- */
+#container header {
+  margin-bottom: 1.6em;
+  padding-top: 2em;
+}
+
+#container header h1 {
+  font-size: 1.7rem;
+  font-weight: 700;
+}
+
+#container header h1 a {
+  color: var(--text);
+}
+
+#container header ul li a {
+  color: var(--muted);
+  font-family: "Ruda", sans-serif;
+  font-weight: 400;
+}
+
+#container header ul li a:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+#container header ul li a i {
+  margin-right: 0.3em;
+}
+
+#container header p em a,
+#container header p em {
+  color: var(--muted);
+  font-family: "Ruda", sans-serif;
+  font-style: normal;
+  font-size: 0.95rem;
+}
+
+#container header p em a {
+  font-weight: 400;
+}
+
+#container header p em a:hover {
+  color: var(--accent);
+}
+
 /* ---- Navegação principal ---- */
 #container nav {
-  border-bottom: solid 3px #dde3ec;
+  border-bottom: 1px solid var(--border);
   padding-bottom: 0;
 }
 
 #container nav ul {
   justify-content: flex-start;
-  gap: 0.4em;
+  gap: 1.6em;
 }
 
 #container nav ul li {
@@ -16,126 +151,158 @@
 #container nav ul li a {
   display: inline-flex;
   align-items: center;
-  gap: 0.45em;
-  padding: 0.55em 1.15em;
-  border-radius: 10px 10px 0 0;
+  gap: 0.4em;
+  padding: 0.7em 0;
+  border-bottom: 2px solid transparent;
   font-family: "Ruda", sans-serif;
-  font-size: 1.15rem;
+  font-size: 0.95rem;
   font-weight: 700;
-  color: #0a3d7a;
-  transition: background 0.15s ease, color 0.15s ease;
+  color: var(--text);
+  transition: color 0.15s ease, border-color 0.15s ease;
 }
 
 #container nav ul li a .fa-li {
   position: static;
   width: auto;
   margin: 0;
+  font-size: 0.9em;
+  color: var(--muted);
 }
 
 #container nav ul li a:hover {
-  background: #eaf3ff;
-  color: #06356e;
+  color: var(--accent);
+  border-bottom-color: var(--border);
 }
 
 #container nav ul li a.active {
-  background: #1980e6;
-  color: #ffffff;
-  border-bottom: 3px solid #06356e;
+  color: var(--accent);
+  border-bottom-color: var(--accent);
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 760px) {
   #container nav ul {
     flex-wrap: wrap;
     justify-content: center;
-    row-gap: 0.4em;
-  }
-
-  #container nav ul li {
-    margin: 0 0.2em;
+    row-gap: 0.2em;
+    gap: 1.1em;
   }
 }
 
-/* ---- Chamadas para as seções Aulas e Conversas com a indústria (home) ---- */
-#container main a.home-cta {
-  display: block;
-  margin: 1.8em 0;
-  padding: 1.5em 1.7em;
-  background: linear-gradient(135deg, #1980e6 0%, #0a3d7a 100%);
-  border-radius: 12px;
-  color: #ffffff !important;
-  text-decoration: none !important;
-  box-shadow: 0 8px 22px rgba(20, 60, 110, 0.22);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+/* ---- Conteúdo principal ---- */
+#container main {
+  line-height: 1.7;
+  font-size: 1.1rem;
 }
 
-#container main a.home-cta:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgba(20, 60, 110, 0.3);
+#container main article h2 {
+  margin-top: 2em;
+  margin-bottom: 0.6em;
+  padding-bottom: 0;
+  border-bottom: none;
+  color: var(--text);
+  font-size: 1.4rem;
 }
 
-.home-cta .aulas-cta-text {
-  display: block;
-  font-family: "Ruda", sans-serif;
+#container main article h3 {
+  margin-top: 1.6em;
+  margin-bottom: 0.5em;
+  color: var(--text);
   font-weight: 700;
-  font-size: 1.35rem;
-  line-height: 1.35;
+  font-size: 1.15rem;
 }
 
-.home-cta .aulas-cta-text i {
-  margin-right: 0.35em;
-}
-
-.home-cta .aulas-cta-action {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5em;
-  margin-top: 1em;
-  padding: 0.5em 1.15em;
-  background: rgba(255, 255, 255, 0.16);
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  border-radius: 999px;
-  font-family: "Ruda", sans-serif;
+#container main article h4 {
+  margin-top: 1.4em;
+  margin-bottom: 0.4em;
+  color: var(--text);
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 1.02rem;
 }
 
-.home-cta:hover .aulas-cta-action {
-  background: rgba(255, 255, 255, 0.28);
+#container main article hr {
+  border: 0;
+  height: 1px;
+  width: 100%;
+  background: var(--border);
+  margin: 2.4em 0;
 }
 
-#container header ul li a {
-  color: #1980e6;
-  font-family: "Ruda", sans-serif;
+#tldr ul li strong,
+#container main strong {
+  color: inherit;
   font-weight: 700;
 }
 
-#container header ul li a:hover {
-  color: #0a5bb0;
+#container main article em,
+#container main section em {
+  color: inherit;
+  font-style: italic;
+  font-weight: 400;
+}
+
+#container main article a,
+#container main section a {
+  color: var(--accent);
+  font-weight: 400;
   text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
 }
 
-#container header ul li a i {
-  margin-right: 0.25em;
+#container main article a::after,
+#container main section a::after {
+  content: none;
 }
 
-#container header p em a {
-  color: #1980e6;
-  font-family: "Ruda", sans-serif;
-  font-weight: 700;
+#container main article a:hover,
+#container main section a:hover {
+  color: var(--accent-dark);
 }
 
-#container header p em a:hover {
-  color: #0a5bb0;
-  text-decoration: underline;
+/* ---- Bloco de resumo (tl;dr) ---- */
+#tldr {
+  margin: 1.6em 0;
+  padding: 0;
+  background: none;
+  border-left: none;
+  border-radius: 0;
 }
 
+#tldr h2 {
+  margin: 0 0 0.5em;
+  color: var(--text);
+  font-size: 1.1rem;
+}
+
+#tldr ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#tldr ul li {
+  margin: 0.5em 0;
+  padding-left: 1.1em;
+  position: relative;
+  line-height: 1.6;
+}
+
+#tldr ul li::before {
+  content: "–";
+  position: absolute;
+  left: 0;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+/* ---- Foto de perfil ---- */
 #about .profile-picture {
-  width: 160px;
-  height: 160px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
   float: right;
-  margin: 0.4em 0 1em 1.5em;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+  margin: 0.2em 0 1em 1.5em;
+  box-shadow: none;
 }
 
 @media only screen and (max-width: 480px) {
@@ -146,135 +313,124 @@
   }
 }
 
-#tldr {
-  margin: 1.5em 0;
-  padding: 1.4em 1.6em;
-  background: #f2f4f8;
-  border-left: 4px solid #1980e6;
-  border-radius: 8px;
+/* ---- Chamadas para seções (home) ---- */
+#container main a.home-cta {
+  display: block;
+  margin: 1.4em 0;
+  padding: 1.1em 1.3em;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text) !important;
+  text-decoration: none !important;
+  box-shadow: none;
+  transition: border-color 0.15s ease;
 }
 
-#tldr h2 {
-  margin: 0 0 0.6em;
-  color: #0a579f;
-  font-size: 1.3rem;
+#container main a.home-cta:hover {
+  border-color: var(--accent);
+  transform: none;
+  box-shadow: none;
 }
 
-#tldr ul {
-  margin: 0;
+.home-cta .aulas-cta-text {
+  display: block;
+  font-family: "Ruda", sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  line-height: 1.4;
+  color: var(--text);
+}
+
+.home-cta .aulas-cta-text i {
+  margin-right: 0.4em;
+  color: var(--accent);
+}
+
+.home-cta .aulas-cta-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  margin-top: 0.7em;
   padding: 0;
-  list-style: none;
+  background: none;
+  border: none;
+  border-radius: 0;
+  font-family: "Ruda", sans-serif;
+  font-weight: 400;
+  font-size: 0.9rem;
+  color: var(--accent);
 }
 
-#tldr ul li {
-  margin: 0.6em 0;
-  padding-left: 1.4em;
-  position: relative;
-  line-height: 1.5;
-}
-
-#tldr ul li::before {
-  content: "▸";
-  position: absolute;
-  left: 0;
-  color: #1980e6;
-  font-weight: 700;
-}
-
-#tldr ul li strong,
-#container main strong {
-  color: #a8491f;
-  font-weight: 700;
-}
-
-#container main article em,
-#container main section em {
-  color: inherit;
-  font-style: italic;
-  font-weight: 500;
-}
-
-#container main article a,
-#container main section a {
-  color: #0b5fc4;
-  font-weight: 700;
+#container main a.home-cta:hover .aulas-cta-action {
+  background: none;
   text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 3px;
 }
 
-#container main article a::after,
-#container main section a::after {
-  content: "\2197";
-  display: inline-block;
-  margin-left: 0.1em;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 0.7em;
-  vertical-align: super;
+#container main a.home-cta--industria {
+  background: none;
 }
 
-#container main article a:hover,
-#container main section a:hover {
-  color: #06356e;
-}
-
+/* ---- Links de ação (slides, notas) ---- */
 .cta-slides {
   display: inline-flex;
   align-items: center;
-  gap: 0.5em;
-  margin-top: 0.5em;
-  padding: 0.5em 1.1em;
-  background: #eaf3ff;
-  border: 1px solid #1980e6;
-  border-radius: 999px;
-  color: #06356e !important;
-  font-weight: 700;
-  font-size: 1.15rem;
-  text-decoration: none !important;
-  transition: background 0.15s ease, color 0.15s ease;
-}
-
-.cta-slides i {
-  color: #1980e6;
+  gap: 0.4em;
+  margin-top: 0.3em;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 0;
+  color: var(--accent) !important;
+  font-weight: 400;
+  font-size: 1rem;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
   transition: color 0.15s ease;
 }
 
+.cta-slides i {
+  color: var(--accent);
+}
+
 .cta-slides:hover {
-  background: #1980e6;
-  color: #ffffff !important;
+  background: none;
+  color: var(--accent-dark) !important;
 }
 
 .cta-slides:hover i {
-  color: #ffffff;
+  color: var(--accent-dark);
 }
 
 .cta-slides--sm {
-  padding: 0.3em 0.8em;
-  font-size: 0.85rem;
+  padding: 0;
+  font-size: 0.9rem;
 }
 
+/* ---- Sumário (TOC) ---- */
 #toc {
-  margin: 1.5em 0;
-  padding: 0.9em 1.4em;
-  background: #f2f4f8;
-  border: 1px solid #dde3ec;
-  border-radius: 8px;
+  margin: 1.4em 0;
+  padding: 0.8em 0 0.8em 1.2em;
+  background: none;
+  border: none;
+  border-left: 3px solid var(--border);
+  border-radius: 0;
 }
 
 #toc summary {
   cursor: pointer;
   font-weight: 700;
   font-family: "Ruda", sans-serif;
-  color: #06356e;
+  color: var(--text);
 }
 
 #toc summary::marker {
-  color: #1980e6;
+  color: var(--muted);
 }
 
 #toc nav#TableOfContents {
-  margin-top: 0.8em;
+  margin-top: 0.7em;
 }
 
 #toc nav#TableOfContents ul {
@@ -295,14 +451,27 @@
 }
 
 #toc nav#TableOfContents a {
-  color: #0b5fc4;
-  font-weight: 500;
+  color: var(--accent);
+  font-weight: 400;
   text-decoration: none;
 }
 
 #toc nav#TableOfContents a:hover {
-  color: #06356e;
+  color: var(--accent-dark);
   text-decoration: underline;
+}
+
+/* ---- Lista de posts (home / aulas) ---- */
+#container main section.aulas-section + section.aulas-section {
+  margin-top: 2em;
+}
+
+#container main h2.aulas-section-title {
+  margin: 0 0 0.5em;
+  padding-bottom: 0.4em;
+  border-bottom: 2px solid var(--accent);
+  color: var(--text);
+  font-size: 1.4rem;
 }
 
 #container main section#home ul {
@@ -313,14 +482,19 @@
 
 #container main section#home .post-card {
   position: relative;
-  background: #ffffff;
-  border: 1px solid #e2e6ec;
-  border-radius: 12px;
-  padding: 1.4em 1.6em;
-  margin: 0 0 1.4em;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  padding: 1.5em 0;
+  margin: 0;
+  box-shadow: none;
   cursor: pointer;
-  transition: box-shadow 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+  transition: none;
+}
+
+#container main section#home .post-card:first-child {
+  padding-top: 0;
 }
 
 #container main section#home .post-card .stretched-link::after {
@@ -336,39 +510,39 @@
 }
 
 #container main section#home .post-card:hover {
-  border-color: #1980e6;
-  box-shadow: 0 8px 20px rgba(20, 60, 110, 0.14);
-  transform: translateY(-2px);
+  border-color: var(--border);
+  box-shadow: none;
+  transform: none;
 }
 
 #container main section#home .post-card h2 {
-  margin: 0 0 0.3em;
-  font-size: 1.5rem;
+  margin: 0 0 0.25em;
+  font-size: 1.2rem;
 }
 
 #container main section#home .post-card h2 a {
-  color: #0a3d7a;
+  color: var(--text);
   font-weight: 700;
   text-decoration: none;
 }
 
 #container main section#home .post-card:hover h2 a,
 #container main section#home .post-card h2 a:hover {
-  color: #1980e6;
+  color: var(--accent);
   text-decoration: underline;
 }
 
 #container main section#home .post-card time.post-date {
   display: block;
-  margin: 0 0 0.6em;
-  color: #909090;
+  margin: 0 0 0.5em;
+  color: var(--muted);
   font-family: "Ruda", sans-serif;
   font-size: 0.85em;
 }
 
 #container main section#home .post-card p {
-  margin: 0.6em 0 0.8em;
-  color: #333333;
+  margin: 0.5em 0 0.6em;
+  color: var(--text);
   font-weight: 400;
   text-decoration: none;
 }
@@ -376,27 +550,24 @@
 #container main section#home .post-card-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6em;
-  margin-top: 0.6em;
-}
-
-#container main a.home-cta--industria {
-  background: linear-gradient(135deg, #0f9d8a 0%, #0b4f68 100%);
+  gap: 1em;
+  margin-top: 0.4em;
 }
 
 /* ---- Conversas com a indústria ---- */
 #container main section.industria-list .live-card {
   display: flex;
-  gap: 1.3em;
+  gap: 1.2em;
   align-items: flex-start;
 }
 
 .live-card-thumb {
-  flex: 0 0 220px;
+  flex: 0 0 200px;
   aspect-ratio: 16 / 9;
-  border-radius: 8px;
+  border-radius: 4px;
   overflow: hidden;
-  background: #eaf3ff;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
 }
 
 .live-card-thumb img {
@@ -411,9 +582,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #0a3d7a;
+  color: var(--muted);
   font-family: "Ruda", sans-serif;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 .live-card-body {
@@ -423,19 +594,20 @@
 
 #container main section.industria-list .live-card-guests {
   margin: 0 0 0.4em;
-  color: #0a3d7a;
+  color: var(--muted);
   font-size: 0.95em;
 }
 
 .live-meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4em 1.4em;
+  gap: 0.4em 1.3em;
   margin: 0 0 1.2em;
   padding: 0;
   list-style: none;
   font-family: "Ruda", sans-serif;
-  font-size: 0.95em;
+  font-size: 0.9em;
+  color: var(--muted);
 }
 
 .live-meta li {
@@ -444,16 +616,16 @@
 
 .live-meta i {
   margin-right: 0.35em;
-  color: #1980e6;
+  color: var(--muted);
 }
 
 .video-wrap {
   position: relative;
   aspect-ratio: 16 / 9;
-  margin: 0 0 1.6em;
-  border-radius: 10px;
+  margin: 0 0 1.5em;
+  border-radius: 4px;
   overflow: hidden;
-  background: #0b1f3a;
+  background: var(--code-bg);
 }
 
 .video-wrap iframe {
@@ -464,8 +636,8 @@
 }
 
 .video-wrap--soon {
-  background: #eaf3ff;
-  font-size: 1.4rem;
+  background: var(--bg-subtle);
+  font-size: 1.1rem;
 }
 
 article.live video.clip {
@@ -474,8 +646,8 @@ article.live video.clip {
   max-width: 320px;
   aspect-ratio: 9 / 16;
   margin: 0 auto 1.2em;
-  border-radius: 10px;
-  background: #0b1f3a;
+  border-radius: 4px;
+  background: var(--code-bg);
 }
 
 @media (max-width: 640px) {
@@ -489,118 +661,45 @@ article.live video.clip {
   }
 }
 
-/* ---- Redesign do corpo do artigo (posts) ---- */
-#container > * {
-  width: 820px;
-}
-
-@media only screen and (max-width: 860px) {
-  #container > * {
-    width: auto;
-    margin: 0 1.2em;
-  }
-}
-
-#container main article h2 {
-  margin-top: 2.2em;
-  margin-bottom: 0.7em;
-  padding-bottom: 0.4em;
-  border-bottom: 2px solid #1980e6;
-  color: #06356e;
-  font-size: 1.55rem;
-}
-
-#container main article h3 {
-  margin-top: 1.8em;
-  margin-bottom: 0.5em;
-  color: #06356e;
-  font-weight: 700;
-  font-size: 1.2rem;
-}
-
-#container main article h4 {
-  margin-top: 1.5em;
-  margin-bottom: 0.4em;
-  color: #0a3d7a;
-  font-weight: 700;
-  font-size: 1.05rem;
-}
-
-#container main article hr {
-  border: 0;
-  height: 2px;
-  width: 80px;
-  background: #1980e6;
-  margin: 2.6em auto;
-}
-
+/* ---- Banner "Relatos da Aula" ---- */
 .relatos-aula-banner {
   display: flex;
   align-items: center;
-  gap: 0.55em;
-  margin: 2.6em 0 1.4em;
-  padding: 0.7em 1.2em;
-  background: linear-gradient(135deg, #1980e6 0%, #0a3d7a 100%);
-  color: #ffffff;
-  border-radius: 8px;
+  gap: 0.5em;
+  margin: 2.2em 0 1.2em;
+  padding: 0;
+  background: none;
+  color: var(--muted);
+  border-radius: 0;
+  border-top: 1px solid var(--border);
+  padding-top: 1em;
   font-family: "Ruda", sans-serif;
   font-weight: 700;
-  font-size: 1.05rem;
+  font-size: 0.85rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  box-shadow: 0 6px 16px rgba(20, 60, 110, 0.2);
-}
-
-#container main article blockquote {
-  position: relative;
-  margin: 1.8em 0;
-  padding: 1.3em 1.7em 1.3em 2.1em;
-  border: none;
-  border-left: 4px solid #1980e6;
-  background: linear-gradient(135deg, #f3f6fb 0%, #eaf1fa 100%);
-  border-radius: 10px;
-  box-shadow: 0 3px 14px rgba(20, 60, 110, 0.1);
-  font-family: "Roboto Slab", serif;
-  font-style: italic;
-  font-size: 1.15rem;
-  line-height: 1.6;
-  color: #274058;
-}
-
-#container main article blockquote::before {
-  content: "\201C";
-  position: absolute;
-  top: -0.1em;
-  left: 0.4em;
-  font-family: Georgia, serif;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 2.8rem;
-  line-height: 1;
-  color: #1980e6;
-  opacity: 0.22;
-}
-
-#container main article blockquote p {
-  position: relative;
-  z-index: 1;
-  margin: 0.4em 0;
-}
-
-#container main article pre {
-  background-color: #1c2b40;
-  color: #eaf3ff;
-  border-radius: 8px;
-  padding: 1.1em 1.3em;
   box-shadow: none;
-  border: 1px solid #13202f;
+}
+
+.relatos-aula-banner i {
+  color: var(--muted);
+}
+
+/* ---- Blocos de código e tabelas ---- */
+#container main article pre {
+  background-color: var(--code-bg);
+  color: var(--code-text);
+  border-radius: 4px;
+  padding: 1em 1.2em;
+  box-shadow: none;
+  border: none;
 }
 
 #container main article p code,
 #container main article li code,
 #container main article td code {
-  background-color: #eef2fa;
-  color: #0a3d7a;
+  background-color: var(--bg-subtle);
+  color: var(--text);
   padding: 0.15em 0.4em;
   border-radius: 4px;
   font-size: 0.88em;
@@ -608,26 +707,44 @@ article.live video.clip {
 
 #container main article table {
   border-collapse: collapse;
-  border: 1px solid #dde3ec;
+  border: none;
+  border-bottom: 1px solid var(--border);
   box-shadow: none;
 }
 
 #container main article table thead {
-  background-color: #0a3d7a;
+  background-color: transparent;
+  border-bottom: 2px solid var(--text);
 }
 
 #container main article table thead th {
-  color: #ffffff;
+  color: var(--text);
   font-family: "Ruda", sans-serif;
-  padding: 0.6em 0.8em;
+  font-weight: 700;
+  padding: 0.6em 0.7em;
   text-align: left;
 }
 
 #container main article table td {
-  padding: 0.55em 0.8em;
-  border-bottom: 1px solid #e2e6ec;
+  padding: 0.55em 0.7em;
+  border-bottom: 1px solid var(--border);
 }
 
 #container main article table tbody tr:nth-child(even) {
-  background-color: #f6f8fb;
+  background-color: transparent;
+}
+
+/* ---- Rodapé ---- */
+#container footer {
+  border-top: 1px solid var(--border);
+  margin-top: 2em;
+  padding: 1.5em 0;
+}
+
+#container footer h6 {
+  color: var(--muted);
+}
+
+#container footer h6 a {
+  color: var(--muted);
 }
