@@ -254,57 +254,6 @@
   font-size: 0.85rem;
 }
 
-#toc {
-  margin: 1.5em 0;
-  padding: 0.9em 1.4em;
-  background: #f2f4f8;
-  border: 1px solid #dde3ec;
-  border-radius: 8px;
-}
-
-#toc summary {
-  cursor: pointer;
-  font-weight: 700;
-  font-family: "Ruda", sans-serif;
-  color: #06356e;
-}
-
-#toc summary::marker {
-  color: #1980e6;
-}
-
-#toc nav#TableOfContents {
-  margin-top: 0.8em;
-}
-
-#toc nav#TableOfContents ul {
-  display: block;
-  justify-content: normal;
-  padding-left: 0;
-  margin: 0;
-  list-style: none;
-}
-
-#toc nav#TableOfContents ul ul {
-  padding-left: 1.2em;
-  margin: 0.2em 0;
-}
-
-#toc nav#TableOfContents li {
-  margin: 0.4em 0;
-}
-
-#toc nav#TableOfContents a {
-  color: #0b5fc4;
-  font-weight: 500;
-  text-decoration: none;
-}
-
-#toc nav#TableOfContents a:hover {
-  color: #06356e;
-  text-decoration: underline;
-}
-
 /* ---- Sumário das seções (home / aulas) ---- */
 .aulas-toc {
   margin: 0 0 2em;
@@ -343,8 +292,8 @@
 #container main h2.aulas-section-title {
   margin: 0 0 0.8em;
   padding-bottom: 0.4em;
-  border-bottom: 2px solid #0f9d8a;
-  color: #0b4f68;
+  border-bottom: 2px solid #d97706;
+  color: #92400e;
   font-size: 1.55rem;
 }
 

@@ -8,13 +8,6 @@
         {{ partial "aside" . }}
     {{ end }}
 
-    {{ if and (eq .Section "posts") .TableOfContents }}
-    <details id="toc">
-        <summary>Tópicos</summary>
-        {{ .TableOfContents }}
-    </details>
-    {{ end }}
-
     {{.Content}}
 
 </article>
