@@ -12,6 +12,52 @@
        
        
        <item>
+         <title>Henrique Nóbrega (Quinto Andar)</title>
+         <link>https://joaoarthurbm.github.io/dev-ia/industria/henrique-nobrega-quintoandar/</link>
+         <pubDate>Wed, 28 Oct 2026 00:00:00 -0300</pubDate>
+         
+         <guid>https://joaoarthurbm.github.io/dev-ia/industria/henrique-nobrega-quintoandar/</guid>
+         <description>&lt;hr&gt;
+&lt;p&gt;Conversa com o Henrique Nóbrega, engenheiro de software no Quinto Andar, com passagens por Alura e Uber, sobre como ele e o time usam IA no dia a dia de desenvolvimento. A apresentação de Henrique está disponível no youtube. Aqui eu vou escrever um pouco sobre o que discutimos.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Minha principal observação:&lt;/strong&gt; Henrique começou a apresentação falando de engenharia de software, incluindo mapa de domínio e tracking de decisões, antes de chegar a IA e agentes. Isso reforça algo que já apareceu nas conversas anteriores com Pedro Serey e Jonhnny Weslley: o que diferencia quem usa bem agente não é o agente, &lt;strong&gt;é o entendimento do domínio e do problema que vem antes dele&lt;/strong&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;alguns-pontos&#34;&gt;Alguns pontos&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Mapa de domínio e tracking de decisões são práticas que Henrique usa de forma cotidiana. Entender o domínio e registrar por que uma decisão foi tomada é o que permite usar agente com mais segurança depois, porque dá ao agente (e a quem revisa) o contexto que normalmente só existiria na cabeça de quem decidiu.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;IA como &amp;ldquo;decorator&amp;rdquo; dos sistemas que o time já usa.&lt;/strong&gt; Em vez de substituir ferramenta ou processo existente, a IA se encaixa em cima deles, reforçando o que já vimos em aula sobre contexto: o ganho não vem de trocar o workflow, vem de adicionar uma camada que opera dentro dele.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Como o custo de errar caiu, o time pode assumir mais riscos: é barato voltar atrás numa decisão quando boa parte do trabalho foi feita (ou refeita) por um agente.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Fadiga de leitura de texto gerado por IA.&lt;/strong&gt; Revisar PRs, specs e documentos gerados por agente cansa de um jeito diferente de revisar texto escrito por humano.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;/investigate&lt;/code&gt; no workflow do time, no mesmo espírito dos comandos que já vimos em aula (&lt;code&gt;/research&lt;/code&gt;, &lt;code&gt;/grill-me&lt;/code&gt;): usado para entender o problema antes de qualquer mudança.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;perguntas-e-dores&#34;&gt;Perguntas e dores&lt;/h1&gt;
+&lt;p&gt;Algumas perguntas ficaram no ar durante a conversa e vale assistir ao vídeo completo para ver como Henrique respondeu:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Quando algo quebra em produção, como saber se o trecho problemático foi escrito por humano ou gerado por IA, sobretudo no backend? Isso importa para quem vai debugar e para quem assume a responsabilidade pelo código.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Como é a gerência de skills do time: quem escreve, quem revisa, e como evitam divergência entre o que a skill descreve e o que o time de fato faz.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;O caso do GitHub de desenvolver código pensando em quem (ou o que) vai lê-lo depois,inclusive a própria IA. Onde esse tipo de decisão fica documentado?&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Dores: nem todo uso de agente deu certo. Quais casos falharam e por quê?&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+       </item>
+       
+       <item>
          <title>Pedro Serey (VTEX)</title>
          <link>https://joaoarthurbm.github.io/dev-ia/industria/pedro-serey-vtex/</link>
          <pubDate>Wed, 21 Oct 2026 00:00:00 -0300</pubDate>
