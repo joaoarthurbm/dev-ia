@@ -5,7 +5,7 @@ draft = false
 description = "Henrique Nóbrega, engenheiro de software no Quinto Andar, com passagens por Alura e Uber, fala sobre entendimento de domínio, tracking de decisões e onde a IA entra no dia a dia de desenvolvimento."
 youtube = "https://www.youtube.com/watch?v=H5X4cZ435UQ"
 empresa = "Quinto Andar"
-slides = ""
+slides = "https://drive.google.com/file/d/1MGTMXTcLmNRQgft2mG_gImMQJcSUfMTS/view?usp=sharing"
 
 [[convidados]]
   nome = "Henrique Nóbrega"
