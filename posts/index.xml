@@ -6,10 +6,139 @@
        <description>Recent content in Posts on Desenvolvimento de Software com Agentes e IA Generativa</description>
        <generator>Hugo -- gohugo.io</generator>
        <copyright>Copyright &amp;copy; 2026 - joaoarthurbm.github.io. Licença de uso: versão para uso pessoal, sendo proibida sua redistribuição ou modificação.</copyright>
-       <lastBuildDate>Tue, 15 Sep 2026 00:00:00 -0300</lastBuildDate>
+       <lastBuildDate>Wed, 04 Nov 2026 00:00:00 -0300</lastBuildDate>
        
            <atom:link href="https://joaoarthurbm.github.io/dev-ia/posts/index.xml" rel="self" type="application/rss+xml" />
        
+       
+       <item>
+         <title>Discussão da atividade com o RePPIT</title>
+         <link>https://joaoarthurbm.github.io/dev-ia/posts/discussao-atividade-reppit/</link>
+         <pubDate>Wed, 04 Nov 2026 00:00:00 -0300</pubDate>
+         
+         <guid>https://joaoarthurbm.github.io/dev-ia/posts/discussao-atividade-reppit/</guid>
+         <description>&lt;hr&gt;
+&lt;p&gt;Notas da aula em que discutimos a atividade com o workflow RePPIT. Mais do que o resultado, o que interessa aqui é o processo: o que funcionou, o que faltou e o que eu faria diferente.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;preâmbulo&#34;&gt;Preâmbulo&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Sobre estas notas.&lt;/strong&gt; Texto organizado a partir da gravação da aula (64 min, 4 de novembro de 2026), com auxílio do Claude na transcrição e na organização. As ideias e opiniões são minhas e da turma.&lt;/p&gt;
+&lt;h2 id=&#34;contexto&#34;&gt;Contexto&lt;/h2&gt;
+&lt;p&gt;Na atividade, vocês implementaram uma feature de busca de músicas por sequência de acordes (cifra) num projeto que não conheciam, seguindo o workflow RePPIT. O RePPIT é uma implementação de terceiros distribuída como comandos e skills, com fases de &lt;em&gt;research&lt;/em&gt; e &lt;em&gt;propose&lt;/em&gt; antes da implementação. Como as licenças de vocês não são Pro, havia limite de recursos.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A atividade vale pelo processo, não pelo resultado.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;janela-de-contexto-e-divisão-em-sessões&#34;&gt;Janela de contexto e divisão em sessões&lt;/h2&gt;
+&lt;p&gt;Vários de vocês tiveram problemas com consumo de tokens e com a janela de contexto. Uma saída é o &lt;code&gt;/compact&lt;/code&gt;, que já discutimos nas aulas de engenharia de contexto. Outra, que também melhora a qualidade do processo, é &lt;strong&gt;não fazer tudo numa única sessão&lt;/strong&gt;. Uma sessão sobrecarregada de informação pode levar o modelo a respostas piores.&lt;/p&gt;
+&lt;p&gt;A técnica que vimos em aula é separar o trabalho em unidades menores, sempre guardando o estado em arquivos &lt;code&gt;.md&lt;/code&gt;:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Planejamento&lt;/strong&gt; numa sessão, que termina gerando um documento.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Especificação detalhada&lt;/strong&gt; em outra.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Implementação&lt;/strong&gt; e &lt;strong&gt;validação&lt;/strong&gt; em outras.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;A feature não era trivial. Se você fez tudo numa sessão só, reveja essa escolha.&lt;/p&gt;
+&lt;p&gt;Minha orientação sobre limites é conservadora. Chegar a 50% da janela já é indesejável. A experiência de quem usa muito esses modelos indica que &lt;strong&gt;entre 40% e 45% é hora de compactar ou trocar de sessão&lt;/strong&gt;. O agente que travou para um de vocês provavelmente teve um problema desse tipo, agravado por uma instrução ambígua da própria atividade sobre o log da sessão (essa parte é culpa minha). De todo modo, o sofrimento ensina: às vezes a dor comunica melhor do que a paciência.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Uma ideia que ainda não testei:&lt;/strong&gt; gerar o DeepWiki do projeto e entregá-lo ao agente na fase de research, para que ele não refaça do zero o entendimento do repositório. Ele gastaria tokens para entender o DeepWiki, mas provavelmente menos do que para entender o código inteiro. Ninguém da turma tentou.&lt;/p&gt;
+&lt;h2 id=&#34;o-que-faltou-no-reppit-a-fase-de-entendimento&#34;&gt;O que faltou no RePPIT: a fase de entendimento&lt;/h2&gt;
+&lt;p&gt;Esta é a minha crítica central ao workflow: &lt;strong&gt;a fase de research olha só para o código.&lt;/strong&gt; Ela é apenas uma parte do que chamo de &lt;strong&gt;fase de entendimento&lt;/strong&gt;, que inclui:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;entender a base de código;&lt;/li&gt;
+&lt;li&gt;discutir a feature;&lt;/li&gt;
+&lt;li&gt;nivelar o vocabulário e os conceitos do domínio;&lt;/li&gt;
+&lt;li&gt;construir um glossário.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Vocês não conheciam o projeto, e a feature exigia conhecimento musical. O research sozinho não bastava, e o propose também não serve bem para discutir a feature como um todo. Eu esperava que vocês criticassem isso e complementassem a fase com outras skills, como o &lt;em&gt;grill-me&lt;/em&gt;, que faz o modelo perguntar exaustivamente sobre a tarefa. O próprio Claude já faz algo parecido quando você pede uma tarefa, mas o grill-me torna isso explícito. Vocês podiam alterar os comandos do RePPIT se julgassem necessário, ou usá-los como estão e sugerir mudanças depois.&lt;/p&gt;
+&lt;p&gt;Um aluno usou o grill-me na fase inicial. A maioria usou só o research. Ainda não analisei as entregas, mas acredito que o resultado seria melhor com a fase de entendimento ampliada.&lt;/p&gt;
+&lt;h2 id=&#34;requisitos-e-fonte-da-verdade&#34;&gt;Requisitos e fonte da verdade&lt;/h2&gt;
+&lt;p&gt;Vocês tomaram decisões de requisito funcional conversando apenas com o agente, sem consultar o cliente (eu). O exemplo que discutimos foi a semântica da busca:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Semântica&lt;/th&gt;
+&lt;th&gt;Regra&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Restritiva&lt;/td&gt;
+&lt;td&gt;a sequência aparece contígua e na mesma ordem na cifra&lt;/td&gt;
+&lt;td&gt;a que eu teria escolhido&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Permissiva&lt;/td&gt;
+&lt;td&gt;todos os acordes da sequência aparecem na música, em qualquer ordem&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Nenhuma das duas é errada em si. &lt;strong&gt;Mas a decisão precisava ser tomada com quem decide.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Havia ainda um mecanismo que dispensaria a pergunta: o enunciado trazia sequências já definidas, com resultados esperados, que funcionavam como gabarito. Quem as usou como testes de regressão tinha uma fonte de verdade e está dispensado de ter perguntado. Quem tornou o critério mais permissivo e alterou resultados que já eram verdade tomou uma decisão contrária ao que estava especificado.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A fonte de verdade é sempre a especificação ou os testes de regressão.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;bugs-que-exigem-conhecimento-de-domínio&#34;&gt;Bugs que exigem conhecimento de domínio&lt;/h2&gt;
+&lt;p&gt;Vocês encontraram dois bugs:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;7M ≠ 7m.&lt;/strong&gt; Na notação de acordes, 7M (sétima maior) e 7m (sétima menor) são coisas diferentes. Normalizar tudo para maiúsculas ou minúsculas quebra o significado. Quem conhecia música percebeu; quem não conhecia, não.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Vírgula vs. ponto e vírgula.&lt;/strong&gt; Os dois separadores eram tratados de forma diferente. Eu nem sabia desse bug; vocês o descobriram no processo.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Os dois reforçam a importância de &lt;strong&gt;entender o domínio antes de implementar&lt;/strong&gt;. E esse tipo de dúvida deveria ter chegado a mim pelo classroom.&lt;/p&gt;
+&lt;h2 id=&#34;segurança-rest-e-requisitos-não-funcionais&#34;&gt;Segurança, REST e requisitos não funcionais&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Segurança.&lt;/strong&gt; Uma implementação incluiu uma rota de delete que permite a qualquer visitante apagar sequências. Como o sistema não tem login, isso é um problema, assim como permitir adições ilimitadas. O ambiente é educacional, mas a decisão deveria ter sido discutida.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;REST.&lt;/strong&gt; Outro problema recorrente foi nomear rotas com verbos de ação (&lt;code&gt;/cadastra&lt;/code&gt;, &lt;code&gt;/remove&lt;/code&gt;, &lt;code&gt;/lista&lt;/code&gt;). Isso contraria o estilo REST, em que o recurso é o substantivo e a ação vem do verbo HTTP: &lt;code&gt;POST /sequencias&lt;/code&gt; cadastra, &lt;code&gt;DELETE /sequencias/{id}&lt;/code&gt; remove. É um antipadrão que vocês já viram em Web e em Projeto de Software.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;O agente não necessariamente avisa quando foge da especificação. Você precisa de mecanismos para verificar que ela está sendo seguida.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Testes ou análise estática que confirmem quais rotas foram criadas são exemplos desses mecanismos.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Desempenho.&lt;/strong&gt; O tempo de busca variou muito entre as entregas, e algumas ficaram acima do aceitável para uma aplicação web, onde a regra geral é responder em poucas centenas de milissegundos. Poucos de vocês se preocuparam com isso. Percorrer todas as músicas a cada busca é caro. Algumas alternativas:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;pré-calcular as sequências populares;&lt;/li&gt;
+&lt;li&gt;usar cache para as mais buscadas ou as mais recentes;&lt;/li&gt;
+&lt;li&gt;ao cadastrar uma sequência que já existe, simplesmente retornar a existente, sem refazer a busca no banco.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Em geral, segurança e desempenho foram pouco considerados. &lt;strong&gt;Requisitos não funcionais fazem parte do trabalho.&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;validação-e-controle-humano&#34;&gt;Validação e controle humano&lt;/h2&gt;
+&lt;p&gt;O agente costuma fazer muito mais do que foi pedido e alterar partes do código existente, o que torna difícil acompanhar tudo. Gosto de pensar nele como &lt;strong&gt;um labrador solto numa sala: é preciso colocar a coleira.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Por isso é útil um prompt de retroalimentação que pergunta &lt;em&gt;se foi preciso fazer algo diferente do planejado&lt;/em&gt;. Ele faz parte da validação: serve para enxergar os desvios e combater o excesso de engenharia. A validação pode ser determinística, com testes, ou feita perguntando ao agente que arquivos ele mudou e por quê.&lt;/p&gt;
+&lt;p&gt;Quando perguntei quem discordou do agente em algum momento, ninguém respondeu.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Human in the loop precisa significar human in control.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Se o processo é spec driven, como discutimos duas semanas antes, o caminho quando o resultado não agrada é &lt;strong&gt;voltar e refazer a especificação&lt;/strong&gt;, que é a fonte de verdade. Se você mexe só na implementação, especificação e código divergem, e a especificação acaba descartada. E quando o agente propõe duas alternativas, quem decide é você.&lt;/p&gt;
+&lt;h2 id=&#34;front-end-e-validação-manual&#34;&gt;Front-end e validação manual&lt;/h2&gt;
+&lt;p&gt;Ninguém usou skills para entender o front-end ou seguir as regras visuais existentes. Eu teria feito assim:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;abrir uma sessão separada para o agente entender a tela atual;&lt;/li&gt;
+&lt;li&gt;pedir propostas de como cadastrar novas sequências;&lt;/li&gt;
+&lt;li&gt;decidir;&lt;/li&gt;
+&lt;li&gt;pedir que ele mantivesse o padrão visual;&lt;/li&gt;
+&lt;li&gt;registrar as decisões de front-end em arquivo, para reuso em outras sessões.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Como a feature é vertical, com mudanças em front-end, back-end e dados, também dá para fazer o front-end primeiro, com rotas simuladas que retornam sempre o mesmo resultado.&lt;/p&gt;
+&lt;p&gt;Para quem usa o sistema, o que vale é o que se vê no front-end. Por isso &lt;strong&gt;a validação manual ganha importância com agentes&lt;/strong&gt;. O custo é o trabalho humano, mas os velhos roteiros de teste de interface, que todo mundo achava enfadonhos, voltam a fazer sentido. Há empresas que dedicam semanas inteiras a isso.&lt;/p&gt;
+&lt;h2 id=&#34;tempo-de-trabalho-e-fadiga&#34;&gt;Tempo de trabalho e fadiga&lt;/h2&gt;
+&lt;p&gt;Os relatos de tempo variaram bastante: uma sessão direta de cerca de duas horas, três a quatro horas para alguns, cerca de dez horas brutas para um aluno, e um que dividiu o trabalho em dois dias.&lt;/p&gt;
+&lt;p&gt;Alguns disseram ter sentido que deviam seguir o plano gerado pelo agente. Acho esse sentimento natural, mas o controle precisa ser mantido. Um plano de duas páginas que mexe no front-end, cria banco e faz deploy tira você do controle, e a proatividade constante do agente é um risco. A saída é &lt;strong&gt;picotar o trabalho em etapas pequenas&lt;/strong&gt;, entendendo bem uma antes de passar à próxima.&lt;/p&gt;
+&lt;p&gt;Como diretriz, sugiro &lt;strong&gt;sessões de duas a três horas&lt;/strong&gt;. Se a tarefa não cabe nisso, divida em duas sessões. Tentar fazer tudo de uma vez é um erro estratégico, e o custo é cansaço e perda de atenção: você entrega porque precisa, sem perceber o que o agente fez.&lt;/p&gt;
+&lt;p&gt;Reconheço a pressão de mercado, mas processos bem feitos levam tempo. Sou refratário a vídeos que mostram, por exemplo, dois mil PRs em um mês, porque ali o controle humano é nulo.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;O desenvolvedor deve comandar o loop, e não ser jogado para fora dele.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;sobre-o-futuro-da-profissão&#34;&gt;Sobre o futuro da profissão&lt;/h2&gt;
+&lt;p&gt;Costumo errar previsões. Mas desconfio de quem diz que tudo será muito fácil e muito rápido, ou que ninguém mais vai programar, principalmente quando isso serve para vender produto ou consultoria.&lt;/p&gt;
+&lt;p&gt;O front-end é complexo porque envolve visual e usabilidade. Os requisitos não funcionais arquiteturais (segurança, desempenho, latência, microsserviços ou não, persistência) trazem uma complexidade que só percebe quem dedica a vida ao assunto. O vibe coding pode servir a um arquiteto, ou a um médico que faz um protótipo para a própria clínica. Para o restante, o modelo ajuda, mas não resolve, porque o trabalho envolve decisão: saber o que testar e como, e o que importa naquele contexto específico.&lt;/p&gt;
+&lt;p&gt;Há benchmarks que humanos resolvem com facilidade e modelos não. E o modelo precisa de instruções muito bem definidas, que só um engenheiro experiente sabe dar.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A profissão não está em risco, mas passa por uma mudança forte. Saber os conceitos fundamentais importa cada vez mais.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;lições&#34;&gt;Lições&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Invista tempo e recursos na fase de entendimento&lt;/strong&gt;, com skills, não só para gerar um plano, mas para alinhá-lo na sua cabeça e com o modelo. A grande dificuldade do RePPIT foi justamente pular essa etapa.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Particione o trabalho em sessões diferentes&lt;/strong&gt;, mesmo sem limitação de créditos.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Planeje o tempo.&lt;/strong&gt; Muitas horas seguidas com o modelo levam à fadiga de aprovação e de leitura. Algo como duas horas por etapa é um bom ponto de partida.&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+       </item>
        
        <item>
          <title>Spec-driven development</title>
